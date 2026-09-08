@@ -9,6 +9,7 @@ import { clampWindowIndex, firstInvalidMeasurement } from '@/lib/helper-navigati
 import { track } from '@/lib/analytics-client';
 import { AffiliateLink } from './affiliate-link';
 import { SelectMenu } from './select-menu';
+import { MeasurementKeypad } from './measurement-keypad';
 import {
   SINGLE_QUOTE_KEY,
   hasQuoteInput,
@@ -82,6 +83,18 @@ export function QuoteHelper() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [storageError, setStorageError] = useState('');
   const [blocked, setBlocked] = useState(false);
+  const [useKeypad, setUseKeypad] = useState(false);
+  const [keypadField, setKeypadField] = useState<'width' | 'height' | null>(null);
+  useEffect(() => {
+    const media = window.matchMedia('(any-pointer: coarse), (max-width: 767px)');
+    const update = () => {
+      setUseKeypad(media.matches);
+      if (!media.matches) setKeypadField(null);
+    };
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
   const started = useRef(false);
   const panel = useRef<HTMLDivElement>(null);
   const focusStep = useRef(false);
@@ -519,25 +532,6 @@ export function QuoteHelper() {
                           <label htmlFor={`${measurement.id}-${key}`}>
                             {key === 'width' ? '가로' : '세로'}
                           </label>
-                          {key === 'width' && (
-                            <button
-                              className="inquiry-field-next"
-                              type="button"
-                              aria-label="세로 입력으로 이동"
-                              disabled={!ready}
-                              onPointerDown={(event) => {
-                                // Keep input focus until the direct user-activated click.
-                                if (event.button === 0) event.preventDefault();
-                              }}
-                              onClick={() => {
-                                document
-                                  .getElementById(`${measurement.id}-height`)
-                                  ?.focus({ preventScroll: true });
-                              }}
-                            >
-                              다음 <ArrowRight size={14} aria-hidden="true" />
-                            </button>
-                          )}
                         </div>
                         <div
                           className={`inquiry-size-input${errors[`${measurement.id}-${key}`] ? ' invalid' : ''}`}
@@ -545,12 +539,22 @@ export function QuoteHelper() {
                           <input
                             id={`${measurement.id}-${key}`}
                             aria-label={`${key === 'width' ? '가로' : '세로'} cm`}
-                            inputMode="decimal"
+                            inputMode={useKeypad ? 'none' : 'decimal'}
+                            readOnly={useKeypad}
+                            aria-haspopup={useKeypad ? 'dialog' : undefined}
+                            onClick={() => {
+                              if (useKeypad) setKeypadField(key);
+                            }}
                             enterKeyHint={key === 'width' ? 'next' : 'done'}
                             autoComplete="off"
                             maxLength={20}
                             placeholder={key === 'width' ? '예: 360' : '예: 240'}
                             onKeyDown={(event) => {
+                              if (useKeypad && (event.key === 'Enter' || event.key === ' ')) {
+                                event.preventDefault();
+                                setKeypadField(key);
+                                return;
+                              }
                               if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
                               event.preventDefault();
                               finishMeasurementInput();
@@ -700,6 +704,22 @@ export function QuoteHelper() {
             )}
           </div>
         </div>
+      )}
+      {entered && step === 1 && keypadField && (
+        <MeasurementKeypad
+          field={keypadField}
+          values={{ width: measurement.width, height: measurement.height }}
+          onField={setKeypadField}
+          onChange={(field, value) => {
+            patchRoom({
+              windows: room.windows.map((w) =>
+                w.id === measurement.id ? { ...w, [field]: value } : w,
+              ),
+            });
+            setErrors({});
+          }}
+          onClose={() => setKeypadField(null)}
+        />
       )}
       {entered && storageError && (
         <div className="inquiry-status" role="status">
