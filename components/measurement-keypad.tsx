@@ -9,12 +9,14 @@ export function MeasurementKeypad({
   values,
   onField,
   onChange,
+  onClear,
   onClose,
 }: {
   field: Field;
   values: Record<Field, string>;
   onField: (field: Field) => void;
   onChange: (field: Field, value: string) => void;
+  onClear: () => void;
   onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
@@ -107,14 +109,14 @@ export function MeasurementKeypad({
           <button
             type="button"
             onClick={() => {
-              onChange(field, '');
+              onClear();
               setReplace(false);
             }}
           >
             전체 지우기
           </button>
           <button type="button" className="keypad-confirm" onClick={confirm}>
-            {field === 'width' ? '다음 · 세로 입력' : '완료'}
+            {field === 'width' ? '다음' : '완료'}
           </button>
         </div>
       </div>

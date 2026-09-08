@@ -710,6 +710,14 @@ export function QuoteHelper() {
           field={keypadField}
           values={{ width: measurement.width, height: measurement.height }}
           onField={setKeypadField}
+          onClear={() => {
+            patchRoom({
+              windows: room.windows.map((w) =>
+                w.id === measurement.id ? { ...w, width: '', height: '' } : w,
+              ),
+            });
+            setErrors({});
+          }}
           onChange={(field, value) => {
             patchRoom({
               windows: room.windows.map((w) =>
