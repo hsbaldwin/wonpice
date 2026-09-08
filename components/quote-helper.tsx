@@ -412,9 +412,6 @@ export function QuoteHelper() {
       ) : (
         <div id="helper-panel-draft" className="inquiry-panel" ref={panel}>
           <header className="inquiry-heading">
-            <span className="inquiry-step">
-              {`${step} / 3 · ${step === 1 ? '사이즈 입력' : step === 2 ? '핵심 기능' : '문의 준비'}`}
-            </span>
             <h1 tabIndex={-1} data-step-heading>
               {copy.title}
             </h1>
