@@ -511,9 +511,23 @@ export function QuoteHelper() {
                             id={`${measurement.id}-${key}`}
                             aria-label={`${key === 'width' ? '가로' : '세로'} cm`}
                             inputMode="decimal"
+                            enterKeyHint={key === 'width' ? 'next' : 'done'}
                             autoComplete="off"
                             maxLength={20}
                             placeholder={key === 'width' ? '예: 360' : '예: 240'}
+                            onKeyDown={(event) => {
+                              if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
+                              // Finish editing without implicitly submitting the form and
+                              // moving focus while the mobile keyboard is closing.
+                              event.preventDefault();
+                              if (key === 'width') {
+                                document
+                                  .getElementById(`${measurement.id}-height`)
+                                  ?.focus({ preventScroll: true });
+                              } else {
+                                event.currentTarget.blur();
+                              }
+                            }}
                             value={measurement[key]}
                             disabled={!ready}
                             aria-invalid={Boolean(errors[`${measurement.id}-${key}`])}
