@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 const config: NextConfig = {
-  output: 'standalone',
+  // Vercel's adapter packages functions; standalone is only for self-hosting.
+  output: process.env.VERCEL === '1' ? undefined : 'standalone',
   env: {
     NEXT_PUBLIC_ANALYTICS_ENABLED:
       process.env.VERCEL === '1' ? 'false' : (process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'true'),
