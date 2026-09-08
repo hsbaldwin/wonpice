@@ -9,7 +9,6 @@ import { clampWindowIndex, firstInvalidMeasurement } from '@/lib/helper-navigati
 import { track } from '@/lib/analytics-client';
 import { AffiliateLink } from './affiliate-link';
 import { SelectMenu } from './select-menu';
-import { useMeasurementKeyboard } from './use-measurement-keyboard';
 import {
   SINGLE_QUOTE_KEY,
   hasQuoteInput,
@@ -75,7 +74,6 @@ function prepareMeasurementQuote(value: QuoteDocument): QuoteDocument {
 }
 
 export function QuoteHelper() {
-  useMeasurementKeyboard();
   const [doc, setDoc] = useState<QuoteDocument>(initial);
   const [ready, setReady] = useState(false);
   const [entered, setEntered] = useState(false);
