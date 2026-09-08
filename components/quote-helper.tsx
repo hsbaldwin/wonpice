@@ -86,9 +86,38 @@ export function QuoteHelper() {
   const panel = useRef<HTMLDivElement>(null);
   const focusStep = useRef(false);
   const invalidFocus = useRef<string | null>(null);
+  const advanceAfterKeyboardDismiss = useRef(false);
   const activeTransition = useRef<ViewTransition | null>(null);
   const latestQuote = useRef({ doc, ready, blocked });
   latestQuote.current = { doc, ready, blocked };
+
+  useEffect(() => {
+    const pointer = (event: PointerEvent) => {
+      const target = event.target;
+      advanceAfterKeyboardDismiss.current =
+        target instanceof HTMLInputElement &&
+        !!target.closest('#helper .inquiry-size-input') &&
+        target.id.endsWith('-width');
+    };
+    const cancelAdvance = () => {
+      advanceAfterKeyboardDismiss.current = false;
+    };
+    const key = (event: KeyboardEvent) => {
+      if (event.key === 'Tab' || event.key === 'Escape') cancelAdvance();
+    };
+    document.addEventListener('pointerdown', pointer, true);
+    document.addEventListener('touchmove', cancelAdvance, { passive: true });
+    document.addEventListener('keydown', key, true);
+    document.addEventListener('visibilitychange', cancelAdvance);
+    window.addEventListener('blur', cancelAdvance);
+    return () => {
+      document.removeEventListener('pointerdown', pointer, true);
+      document.removeEventListener('touchmove', cancelAdvance);
+      document.removeEventListener('keydown', key, true);
+      document.removeEventListener('visibilitychange', cancelAdvance);
+      window.removeEventListener('blur', cancelAdvance);
+    };
+  }, []);
 
   useEffect(
     () => () => {
@@ -285,6 +314,19 @@ export function QuoteHelper() {
       move(2);
     }
   }
+  function finishMeasurementInput() {
+    const input = document.activeElement;
+    if (!(input instanceof HTMLInputElement)) return false;
+    if (input.id === `${measurement.id}-width`) {
+      document.getElementById(`${measurement.id}-height`)?.focus({ preventScroll: true });
+      return true;
+    }
+    if (input.id === `${measurement.id}-height`) {
+      input.blur();
+      return true;
+    }
+    return false;
+  }
   function result() {
     if (!ready || !validate()) return;
     const missing = doc.rooms.findIndex((room) => !selectedNeeds(room).length);
@@ -433,7 +475,8 @@ export function QuoteHelper() {
                 noValidate
                 onSubmit={(e) => {
                   e.preventDefault();
-                  next();
+                  // Some virtual keyboards submit without sending a keydown.
+                  if (!finishMeasurementInput()) next();
                 }}
               >
                 <div className="inquiry-body">
@@ -515,18 +558,37 @@ export function QuoteHelper() {
                             autoComplete="off"
                             maxLength={20}
                             placeholder={key === 'width' ? '예: 360' : '예: 240'}
-                            onKeyDown={(event) => {
-                              if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
-                              // Finish editing without implicitly submitting the form and
-                              // moving focus while the mobile keyboard is closing.
-                              event.preventDefault();
-                              if (key === 'width') {
+                            onFocus={() => {
+                              advanceAfterKeyboardDismiss.current = key === 'width';
+                            }}
+                            onBlur={(event) => {
+                              if (
+                                key !== 'width' ||
+                                event.relatedTarget ||
+                                !advanceAfterKeyboardDismiss.current ||
+                                !document.hasFocus() ||
+                                !event.currentTarget.value.trim() ||
+                                !window.matchMedia('(any-pointer: coarse)').matches
+                              )
+                                return;
+                              advanceAfterKeyboardDismiss.current = false;
+                              // Keyboard toolbar Done can blur without any Enter/submit.
+                              // Do not treat a tap, swipe, Tab, or app switch as confirmation.
+                              queueMicrotask(() => {
+                                if (
+                                  document.activeElement !== document.body ||
+                                  !document.hasFocus()
+                                )
+                                  return;
                                 document
                                   .getElementById(`${measurement.id}-height`)
                                   ?.focus({ preventScroll: true });
-                              } else {
-                                event.currentTarget.blur();
-                              }
+                              });
+                            }}
+                            onKeyDown={(event) => {
+                              if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
+                              event.preventDefault();
+                              finishMeasurementInput();
                             }}
                             value={measurement[key]}
                             disabled={!ready}
@@ -550,7 +612,18 @@ export function QuoteHelper() {
                   </div>
                 </div>
                 <div className="inquiry-actions">
-                  <button className="button button-primary" disabled={!ready} type="submit">
+                  <button
+                    className="button button-primary"
+                    disabled={!ready}
+                    type="submit"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      // An implicit submit can also activate the default button.
+                      // A real tap/click continues even if the browser keeps input focus.
+                      if (event.detail === 0 && finishMeasurementInput()) return;
+                      next();
+                    }}
+                  >
                     다음 <ArrowRight size={16} />
                   </button>
                 </div>
