@@ -1,0 +1,17 @@
+NanumSquare Neo
+Copyright © 2022 NAVER Corp. All rights reserved.
+Font Designed by Sandoll Inc.
+
+Official source: https://campaign.naver.com/nanumsquare_neo/
+Official distribution: https://campaign.naver.com/nanumsquare_neo/download/NaverNanumSquareNeo.zip
+Retrieved: 2026-09-07
+
+Summary of the use notice on the official distribution page:
+
+NAVER distributes this open-license font free of charge for personal and
+business use, including commercial and noncommercial purposes. NAVER retains
+the intellectual property rights, and selling the font files is prohibited.
+
+The bundled NanumSquareNeo-Variable.woff2 is an unmodified file extracted from
+the official distribution archive. This file records provenance and summarizes
+the notice; the original terms remain available at the official source above.

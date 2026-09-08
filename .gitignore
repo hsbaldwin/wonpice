@@ -1,0 +1,20 @@
+node_modules/
+.next/
+.env*
+!.env.example
+data/
+tmp/
+output/
+*.tsbuildinfo
+test-results/
+
+# Deployment metadata, local databases and generated reports
+.vercel/
+.DS_Store
+*.log
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+coverage/
+artifacts/

@@ -1,0 +1,15 @@
+node_modules/
+.next/
+data/
+tmp/
+output/
+artifacts/
+test-results/
+coverage/
+public/
+package-lock.json
+next-env.d.ts
+AGENTS.md
+CLAUDE.md
+*.tsbuildinfo
+.env*

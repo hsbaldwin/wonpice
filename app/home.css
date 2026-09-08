@@ -1,0 +1,76 @@
+/* Native document scrolling: no wheel/touch interception or per-frame position writes. */
+html:has(> body > main[data-home-story]) {
+  --header-height: 0px;
+  scroll-padding-top: 0;
+  scroll-snap-type: y mandatory;
+}
+[data-home-story] > [data-story-scene] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+/* Only text entry releases snapping for the on-screen keyboard. Buttons and
+   step-heading focus keep mobile scene navigation available. */
+html:has(
+  [data-home-story] #helper input:not([type='checkbox']):not([type='radio']):focus,
+  [data-home-story] #helper textarea:focus
+) {
+  scroll-snap-type: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html:has(> body > main[data-home-story]) {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
+
+/* The helper is the opening scene. The background spans the scene, with no
+   enclosing card; its light veil also keeps active forms readable. */
+[data-home-story] .story-helper {
+  --helper-scene-height: calc(100svh - var(--header-height));
+  position: relative;
+  isolation: isolate;
+  scroll-margin-block-start: var(--header-height);
+  background: #f3f3ee;
+}
+[data-home-story] .story-helper > .container {
+  position: relative;
+  z-index: 1;
+}
+/* Gradients cannot interpolate to solid backgrounds. Keep both veils mounted
+   and crossfade their opacity to avoid a sudden brightness change on entry. */
+[data-home-story] .helper-background::before,
+[data-home-story] .helper-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transition: opacity 400ms ease;
+}
+[data-home-story] .helper-background::before {
+  opacity: 0;
+  background: linear-gradient(
+    90deg,
+    #f6f7f238,
+    #f6f7f2dd 32%,
+    #f6f7f2eb 50%,
+    #f6f7f2dd 68%,
+    #f6f7f238
+  );
+}
+[data-home-story] .helper-background::after {
+  background: #f6f7f2eb;
+  opacity: 1;
+}
+[data-home-story] .story-helper:has(.is-welcome) .helper-background::before {
+  opacity: 1;
+}
+[data-home-story] .story-helper:has(.is-welcome) .helper-background::after {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-home-story] .helper-background::before,
+  [data-home-story] .helper-background::after {
+    transition: none;
+  }
+}
