@@ -34,7 +34,7 @@ html[data-helper-transition]::view-transition {
 [data-home-story] .inquiry-helper {
   --inquiry-surface: #f6f7f2;
   display: grid;
-  grid-template-rows: 44px minmax(0, 1fr) 44px;
+  grid-template-rows: 44px minmax(0, 1fr);
   gap: 20px;
   block-size: calc(var(--helper-scene-height) - var(--helper-scene-inset) * 2);
   max-block-size: 680px;
@@ -44,6 +44,9 @@ html[data-helper-transition]::view-transition {
   border-radius: 0;
   background: transparent;
   color: #263d42;
+}
+[data-home-story] .inquiry-helper:has(.inquiry-status) {
+  grid-template-rows: 44px minmax(0, 1fr) auto;
 }
 [data-home-story] .inquiry-helper.is-welcome {
   grid-template-rows: minmax(0, 1fr);
@@ -548,7 +551,7 @@ html[data-helper-transition]::view-transition {
     padding-bottom: 12px;
   }
   [data-home-story] .story-helper {
-    --helper-scene-inset: 8px;
+    --helper-scene-inset: 16px;
   }
   [data-home-story] .inquiry-helper {
     gap: 8px;
@@ -759,7 +762,7 @@ html[data-helper-transition]::view-transition {
 @media (max-width: 767px) {
   .inquiry-helper .inquiry-panel:not(.inquiry-welcome) {
     block-size: 100%;
-    grid-template-rows: 144px minmax(0, 1fr);
+    grid-template-rows: 128px minmax(0, 1fr);
     align-self: stretch;
   }
   .inquiry-body {
@@ -768,7 +771,7 @@ html[data-helper-transition]::view-transition {
 }
 @media (max-width: 767px) and (max-height: 700px) {
   .inquiry-helper .inquiry-panel:not(.inquiry-welcome) {
-    grid-template-rows: 128px minmax(0, 1fr);
+    grid-template-rows: 112px minmax(0, 1fr);
   }
   .inquiry-body {
     gap: 8px;
