@@ -191,12 +191,30 @@ html[data-helper-transition]::view-transition {
   min-width: 0;
   position: relative;
 }
-.inquiry-size-field > label {
-  display: block;
+.inquiry-size-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  gap: 4px;
   margin-bottom: 8px;
   color: #516b74;
   font-size: 13px;
   line-height: 1.5;
+}
+.inquiry-field-next {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: #385966;
+  font-size: 12px;
+  font-weight: 600;
 }
 .inquiry-size-input {
   display: flex;
@@ -734,7 +752,7 @@ html[data-helper-transition]::view-transition {
 .inquiry-helper .inquiry-screen {
   display: grid;
   grid-template-rows: minmax(0, 1fr) auto;
-  height: min(100%, 300px);
+  height: min(100%, 320px);
   min-height: 0;
 }
 .inquiry-body {
@@ -799,7 +817,7 @@ html[data-helper-transition]::view-transition {
   }
   .inquiry-helper .inquiry-screen {
     height: auto;
-    min-block-size: 400px;
+    min-block-size: 408px;
     grid-template-rows: minmax(min-content, 1fr) auto;
   }
 }
@@ -808,7 +826,7 @@ html[data-helper-transition]::view-transition {
     grid-template-rows: minmax(88px, auto) auto;
   }
   .inquiry-helper .inquiry-screen {
-    min-block-size: 352px;
+    min-block-size: 376px;
   }
 }
 @media (min-width: 600px) and (max-height: 500px) {

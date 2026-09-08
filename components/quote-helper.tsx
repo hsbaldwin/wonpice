@@ -86,38 +86,9 @@ export function QuoteHelper() {
   const panel = useRef<HTMLDivElement>(null);
   const focusStep = useRef(false);
   const invalidFocus = useRef<string | null>(null);
-  const advanceAfterKeyboardDismiss = useRef(false);
   const activeTransition = useRef<ViewTransition | null>(null);
   const latestQuote = useRef({ doc, ready, blocked });
   latestQuote.current = { doc, ready, blocked };
-
-  useEffect(() => {
-    const pointer = (event: PointerEvent) => {
-      const target = event.target;
-      advanceAfterKeyboardDismiss.current =
-        target instanceof HTMLInputElement &&
-        !!target.closest('#helper .inquiry-size-input') &&
-        target.id.endsWith('-width');
-    };
-    const cancelAdvance = () => {
-      advanceAfterKeyboardDismiss.current = false;
-    };
-    const key = (event: KeyboardEvent) => {
-      if (event.key === 'Tab' || event.key === 'Escape') cancelAdvance();
-    };
-    document.addEventListener('pointerdown', pointer, true);
-    document.addEventListener('touchmove', cancelAdvance, { passive: true });
-    document.addEventListener('keydown', key, true);
-    document.addEventListener('visibilitychange', cancelAdvance);
-    window.addEventListener('blur', cancelAdvance);
-    return () => {
-      document.removeEventListener('pointerdown', pointer, true);
-      document.removeEventListener('touchmove', cancelAdvance);
-      document.removeEventListener('keydown', key, true);
-      document.removeEventListener('visibilitychange', cancelAdvance);
-      window.removeEventListener('blur', cancelAdvance);
-    };
-  }, []);
 
   useEffect(
     () => () => {
@@ -544,9 +515,30 @@ export function QuoteHelper() {
                   <div className="inquiry-size-fields" key={measurement.id}>
                     {(['width', 'height'] as const).map((key) => (
                       <div key={key} className="inquiry-size-field">
-                        <label htmlFor={`${measurement.id}-${key}`}>
-                          {key === 'width' ? '가로' : '세로'}
-                        </label>
+                        <div className="inquiry-size-label">
+                          <label htmlFor={`${measurement.id}-${key}`}>
+                            {key === 'width' ? '가로' : '세로'}
+                          </label>
+                          {key === 'width' && (
+                            <button
+                              className="inquiry-field-next"
+                              type="button"
+                              aria-label="세로 입력으로 이동"
+                              disabled={!ready}
+                              onPointerDown={(event) => {
+                                // Keep input focus until the direct user-activated click.
+                                if (event.button === 0) event.preventDefault();
+                              }}
+                              onClick={() => {
+                                document
+                                  .getElementById(`${measurement.id}-height`)
+                                  ?.focus({ preventScroll: true });
+                              }}
+                            >
+                              다음 <ArrowRight size={14} aria-hidden="true" />
+                            </button>
+                          )}
+                        </div>
                         <div
                           className={`inquiry-size-input${errors[`${measurement.id}-${key}`] ? ' invalid' : ''}`}
                         >
@@ -558,33 +550,6 @@ export function QuoteHelper() {
                             autoComplete="off"
                             maxLength={20}
                             placeholder={key === 'width' ? '예: 360' : '예: 240'}
-                            onFocus={() => {
-                              advanceAfterKeyboardDismiss.current = key === 'width';
-                            }}
-                            onBlur={(event) => {
-                              if (
-                                key !== 'width' ||
-                                event.relatedTarget ||
-                                !advanceAfterKeyboardDismiss.current ||
-                                !document.hasFocus() ||
-                                !event.currentTarget.value.trim() ||
-                                !window.matchMedia('(any-pointer: coarse)').matches
-                              )
-                                return;
-                              advanceAfterKeyboardDismiss.current = false;
-                              // Keyboard toolbar Done can blur without any Enter/submit.
-                              // Do not treat a tap, swipe, Tab, or app switch as confirmation.
-                              queueMicrotask(() => {
-                                if (
-                                  document.activeElement !== document.body ||
-                                  !document.hasFocus()
-                                )
-                                  return;
-                                document
-                                  .getElementById(`${measurement.id}-height`)
-                                  ?.focus({ preventScroll: true });
-                              });
-                            }}
                             onKeyDown={(event) => {
                               if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
                               event.preventDefault();
