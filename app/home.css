@@ -8,6 +8,13 @@ html:has(> body > main[data-home-story]) {
   scroll-snap-align: start;
   scroll-snap-stop: always;
 }
+/* Touch scrolling follows the finger instead of jumping back to a scene. */
+@media (max-width: 767px), (pointer: coarse) {
+  html:has(> body > main[data-home-story]) {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
+}
 /* Only text entry releases snapping for the on-screen keyboard. Buttons and
    step-heading focus keep mobile scene navigation available. */
 html:has(
