@@ -32,7 +32,7 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  if (path === '/') return null;
+  if (path === '/' || path.startsWith('/admin')) return null;
 
   return (
     <header className="site-header" ref={headerRef}>
@@ -64,11 +64,19 @@ export function SiteHeader() {
             aria-current={path === '/about' ? 'page' : undefined}
             onClick={() => setOpen(false)}
           >
-            서비스·제휴 안내 <ArrowUpRight size={16} aria-hidden="true" />
+            서비스 안내 <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
         </nav>
+        <noscript>
+          <style>{`.site-header .menu-toggle { display:none; } .site-header .header-inner { flex-wrap:wrap; height:auto; padding-block:12px; }`}</style>
+          <nav className="header-nojs-nav" aria-label="주 메뉴">
+            <a href="/">홈</a>
+            <a href="/guides">커튼 가이드</a>
+            <a href="/about">서비스 안내</a>
+          </nav>
+        </noscript>
         <AffiliateLink cta="home-header" className="header-apply">
-          견적 문의 <ArrowUpRight size={14} />
+          무료 견적 신청 <ArrowUpRight size={14} />
         </AffiliateLink>
       </div>
     </header>

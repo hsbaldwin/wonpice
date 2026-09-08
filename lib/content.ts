@@ -3,6 +3,8 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+import gfm from 'remark-gfm';
+import type { RootContent } from 'mdast';
 import type { RoomType } from './types';
 
 export type CtaIntent = 'helper' | 'apply';
@@ -95,7 +97,7 @@ export const categories: GuideCategory[] = [
       columns: ['비교 항목', '확인할 내용', '준비할 정보'],
       rows: [
         ['제품 구성', '원단, 겹수, 주름 방식', '원하는 분위기·기능'],
-        ['실측·설치', '방문 범위, 설치비, 부자재', '주소는 제휴 상담에서 전달'],
+        ['실측·설치', '방문 범위, 설치비, 부자재', '주소는 견적 상담에서 전달'],
         ['추가 비용', '철거, 특수 설치 조건', '기존 제품·설치면 사진'],
         ['일정·AS', '제작·설치 일정, 사후 조건', '희망 설치 시점'],
       ],
@@ -110,7 +112,7 @@ export const categories: GuideCategory[] = [
       {
         question: '이곳에서 여러 커튼업체 견적을 비교해 주나요?',
         answer:
-          '이 사이트는 공간과 요구사항을 정리하는 견적 도우미입니다. 문의 버튼은 연결된 제휴 신청 페이지로 이동하며, 여러 업체의 실시간 가격 비교를 제공하지 않습니다.',
+          '이 사이트는 공간과 요구사항을 정리하는 견적 도우미입니다. 문의 버튼은 연결된 견적 신청 페이지로 이동하며, 여러 업체의 실시간 가격 비교를 제공하지 않습니다.',
       },
       {
         question: '왜 예상 금액이 없나요?',
@@ -313,6 +315,11 @@ export interface ContentPost {
   helperPreset: RoomType;
   relatedPosts: string[];
   date: string;
+  dateModified?: string;
+  image?: string;
+  summary: string[];
+  preparation: string[];
+  headings: { id: string; text: string }[];
   html: string;
   href: string;
 }
@@ -347,7 +354,58 @@ async function loadPosts(): Promise<ContentPost[]> {
         throw new Error(`Missing related content: ${file}`);
       if (!['living', 'bedroom', 'newlywed', 'other'].includes(data.helperPreset))
         throw new Error(`Invalid room preset: ${file}`);
-      const rendered = await remark().use(html, { sanitize: true }).process(content);
+      for (const field of ['summary', 'preparation']) {
+        if (
+          !Array.isArray(data[field]) ||
+          data[field].length !== 3 ||
+          data[field].some((item: unknown) => typeof item !== 'string' || !item)
+        )
+          throw new Error(`Expected three ${field} items: ${file}`);
+      }
+      for (const field of ['date', 'dateModified']) {
+        const value = data[field];
+        if (
+          value !== undefined &&
+          (typeof value !== 'string' ||
+            !/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+            new Date(value).toISOString().slice(0, 10) !== value)
+        )
+          throw new Error(`Invalid ${field}: ${file}`);
+      }
+      if (data.dateModified && data.dateModified < data.date)
+        throw new Error(`Modification precedes publication: ${file}`);
+      if (
+        data.image !== undefined &&
+        (typeof data.image !== 'string' ||
+          !/^\/images\/[a-z0-9-]+\.(webp|png|jpg)$/.test(data.image))
+      )
+        throw new Error(`Invalid image: ${file}`);
+      const processor = remark().use(gfm).use(html, { sanitize: true });
+      const tree = processor.parse(content);
+      function plain(node: RootContent): string {
+        if ('value' in node) return node.value;
+        if ('children' in node)
+          return node.children.map((child) => plain(child as RootContent)).join('');
+        return '';
+      }
+      const headings: ContentPost['headings'] = [];
+      function collect(nodes: RootContent[]) {
+        for (const node of nodes) {
+          if (node.type === 'heading' && node.depth === 2)
+            headings.push({ id: `section-${headings.length + 1}`, text: plain(node) });
+          if ('children' in node) collect(node.children as RootContent[]);
+        }
+      }
+      collect(tree.children);
+      let index = 0;
+      const rendered = String(await processor.process(content))
+        .replace(/<h2>/g, () => `<h2 id="${headings[index++].id}">`)
+        .replace(
+          /<table>/g,
+          '<p class="guide-scroll-hint">표는 좌우로 스크롤할 수 있습니다.</p><div class="guide-table-wrap" role="region" aria-label="본문 비교표" tabindex="0"><table>',
+        )
+        .replace(/<\/table>/g, '</table></div>')
+        .replace(/<tr>\s*<td>([\s\S]*?)<\/td>/g, '<tr><th scope="row">$1</th>');
       return {
         slug,
         title: data.title,
@@ -359,6 +417,11 @@ async function loadPosts(): Promise<ContentPost[]> {
         helperPreset: data.helperPreset,
         relatedPosts: data.relatedPosts,
         date: data.date,
+        dateModified: data.dateModified,
+        image: data.image,
+        summary: data.summary,
+        preparation: data.preparation,
+        headings,
         html: String(rendered),
         href: `/guides/${category.slug}/${slug}`,
       } as ContentPost;
@@ -387,5 +450,6 @@ export async function getRelatedPosts(post: ContentPost) {
   const all = await getPosts();
   return post.relatedPosts
     .map((slug) => all.find((item) => item.slug === slug))
-    .filter((item): item is ContentPost => Boolean(item));
+    .filter((item): item is ContentPost => Boolean(item))
+    .slice(0, 3);
 }

@@ -5,7 +5,8 @@ export const runtime = 'nodejs';
 export async function POST(request: Request) {
   if (!sameOrigin(request))
     return new Response('Forbidden', { status: 403, headers: privateHeaders });
-  const response = NextResponse.redirect(new URL('/admin/login', request.url), {
+  // sameOrigin validated this browser origin; request.url may name an internal proxy host.
+  const response = NextResponse.redirect(new URL('/admin/login', request.headers.get('origin')!), {
     status: 303,
     headers: privateHeaders,
   });

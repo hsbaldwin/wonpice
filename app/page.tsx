@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import { pageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowUpRight } from 'lucide-react';
@@ -10,10 +10,11 @@ import './home.css';
 import './spaces-fit.css';
 import './helper-fit.css';
 
-export const metadata: Metadata = {
-  title: { absolute: `${site.name} | 맞춤커튼 사이즈·기능 정리` },
-  alternates: { canonical: '/' },
-};
+export const metadata = pageMetadata({
+  title: '맞춤커튼 사이즈·기능 정리',
+  description: site.description,
+  path: '/',
+});
 const spaces = [
   {
     title: '거실커튼',

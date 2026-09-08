@@ -154,7 +154,7 @@ test(
           assert.equal(wrong.headers.get('set-cookie'), null);
           const result = await post('/api/admin/login', body);
           assert.equal(result.status, 303);
-          assert.match(result.headers.get('location') || '', /\/admin$/);
+          assert.equal(result.headers.get('location'), `${publicOrigin}/admin`);
           const setCookie = result.headers.get('set-cookie') || '';
           for (const expected of [/HttpOnly/i, /Secure/i, /SameSite=strict/i, /Max-Age=28800/i])
             assert.match(setCookie, expected);
@@ -189,9 +189,9 @@ test(
           assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
           const html = await response.text();
           assert.match(html, /고객 여정 한눈에 보기/);
-          assert.match(html, /도우미 전환 흐름/);
-          assert.match(html, /UTC/);
-          assert.doesNotMatch(html, /통계 저장소에 연결할 수 없습니다/);
+          assert.match(html, /도우미 완료율/);
+          assert.match(html, /한국 시간/);
+          assert.doesNotMatch(html, /통계 조회에 실패했습니다/);
           const csv = await fetch(`${origin}/api/admin/export`, { headers: { Cookie: cookie } });
           assert.equal(csv.status, 200);
           assert.match(csv.headers.get('content-type') || '', /text\/csv/);
@@ -210,6 +210,48 @@ test(
             headers: { Cookie: `${cookie}tampered` },
           });
           assert.equal(tampered.status, 401);
+        },
+      );
+
+      await t.test(
+        'daily result API requires authentication and origin; saves and updates shared results without site conversion',
+        async () => {
+          const path = '/api/admin/affiliate-results';
+          const date = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
+          const save = (data: unknown, auth = cookie, requestOrigin = publicOrigin) =>
+            fetch(`${origin}${path}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Origin: requestOrigin,
+                ...(auth ? { Cookie: auth } : {}),
+              },
+              body: JSON.stringify(data),
+            });
+          assert.equal((await fetch(`${origin}${path}`)).status, 401);
+          const value = { date, scope: 'shared', applications: 3, approvals: 5 };
+          assert.equal((await save(value, '')).status, 401);
+          assert.equal((await save(value, cookie, 'https://evil.invalid')).status, 403);
+          assert.equal((await save({ ...value, scope: 'site' })).status, 400);
+          assert.equal((await save({ ...value, name: 'private' })).status, 400);
+          assert.equal((await save({ ...value, applications: -1 })).status, 400);
+          assert.equal((await save(value)).status, 200);
+          assert.equal((await save({ ...value, applications: 0 })).status, 200);
+          const response = await fetch(`${origin}${path}?from=${date}&to=${date}`, {
+            headers: { Cookie: cookie },
+          });
+          assert.equal(response.status, 200);
+          assert.match(response.headers.get('cache-control') || '', /no-store/);
+          const data = await response.json();
+          assert.equal(data.results.length, 1);
+          assert.equal(data.results[0].applications, 0);
+          assert.equal(data.results[0].approvals, 5);
+          const html = await (
+            await fetch(`${origin}/admin?period=today`, { headers: { Cookie: cookie } })
+          ).text();
+          assert.match(html, /전체 채널 신청 실적/);
+          assert.doesNotMatch(html, /기간 기준 신청 전환율:/);
+          assert.doesNotMatch(html, /제휴/);
         },
       );
 

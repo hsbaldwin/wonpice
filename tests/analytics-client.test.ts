@@ -52,6 +52,7 @@ test('events added during a pending send are drained and keep the original sessi
   }
   track('page_view');
   testDocument.referrer = 'https://curtain.example/guides';
+  (globalThis.location as unknown as { pathname: string }).pathname = '/guides';
   track('helper_start');
   assert.equal(sent.length, 1);
   release();
@@ -64,6 +65,11 @@ test('events added during a pending send are drained and keep the original sessi
     sent.map((event) => event.source),
     ['naver', 'naver'],
   );
+  assert.deepEqual(
+    sent.map((event) => event.landingPath),
+    ['/', '/'],
+  );
+  assert.equal(sent[1].path, '/guides');
   assert.equal(sent[0].sessionId, sent[1].sessionId);
   assert.notEqual(sent[0].eventId, sent[1].eventId);
   assert.equal(values.get('masters:analytics-queue'), '[]');

@@ -338,7 +338,7 @@ export function QuotePdfDocument({ document }: { document: QuoteDocument }) {
               ? '입력한 창문 개수는 문의 준비용입니다. 정확한 치수와 제품별 설치 수량은 상담에서 확인해 주세요. '
               : '입력한 치수는 상담을 위한 참고값입니다. '}
             원단, 주름, 레일, 설치 여건에 따라 제작 치수가 달라질 수 있습니다. 최종 제작 치수와
-            금액은 제휴업체의 실측·상담을 통해 확인해 주세요.
+            금액은 업체의 실측·상담을 통해 확인해 주세요.
           </Text>
           <Checklist
             items={[
@@ -350,14 +350,14 @@ export function QuotePdfDocument({ document }: { document: QuoteDocument }) {
           <View style={styles.applyBox}>
             <Text style={styles.applyTitle}>준비한 내용으로 바로 상담하기</Text>
             <Text style={styles.applyText}>
-              아래 링크를 누르면 제휴업체의 신청 페이지로 이동합니다. 이 요청서의 내용은 자동
-              전송되지 않으므로 상담 시 참고하거나 공유해 주세요.
+              아래 링크를 누르면 견적 신청 페이지로 이동합니다. 이 요청서의 내용은 자동 전송되지
+              않으므로 상담 시 참고하거나 공유해 주세요.
             </Text>
             <Link src={site.affiliateUrl} style={styles.link}>
               맞춤커튼 견적 문의로 이동 →
             </Link>
             <Text style={styles.disclosure}>
-              제휴 링크를 통한 신청으로 운영자에게 수수료가 발생할 수 있습니다.
+              이 링크를 통한 신청으로 운영자에게 수수료가 발생할 수 있습니다.
             </Text>
           </View>
         </View>

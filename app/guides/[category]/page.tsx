@@ -2,9 +2,8 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Plus } from 'lucide-react';
-import { categories, getCategory, getPosts, helperHref } from '@/lib/content';
-import { absoluteUrl } from '@/lib/site';
-import { AffiliateLink } from '@/components/affiliate-link';
+import { categories, getCategory, getPosts } from '@/lib/content';
+import { pageMetadata } from '@/lib/seo';
 import {
   Breadcrumbs,
   Checklist,
@@ -23,18 +22,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategory((await params).category);
   if (!category) return {};
-  const title = `${category.keywords.join('·')} 가이드 | ${category.lead}`;
-  return {
-    title,
+  return pageMetadata({
+    title: `${category.keywords.join('·')} 선택·견적 가이드`,
     description: category.description,
-    alternates: { canonical: absoluteUrl(`/guides/${category.slug}`) },
-    openGraph: {
-      title,
-      description: category.description,
-      url: absoluteUrl(`/guides/${category.slug}`),
-      images: ['/images/curtain-natural.webp'],
-    },
-  };
+    path: `/guides/${category.slug}`,
+  });
 }
 export default async function CategoryPage({ params }: Props) {
   const category = getCategory((await params).category);
@@ -59,29 +51,6 @@ export default async function CategoryPage({ params }: Props) {
               ))}
             </h1>
             <p>{category.lead}</p>
-            <div className="guide-hero-actions">
-              {category.ctaIntent === 'apply' ? (
-                <AffiliateLink
-                  className="button button-primary"
-                  cta="guide-top"
-                  category={category.slug}
-                >
-                  견적 문의로 이동 <ArrowRight size={18} />
-                </AffiliateLink>
-              ) : (
-                <Link className="button button-primary" href={helperHref(category.helperPreset)}>
-                  내 공간으로 추천받기 <ArrowRight size={18} />
-                </Link>
-              )}
-              <a href="#guide-comparison" className="guide-simple-link">
-                선택 기준 보기 ↓
-              </a>
-            </div>
-            {category.ctaIntent === 'apply' && (
-              <small className="guide-affiliate-note">
-                제휴 신청 페이지에서 상담을 신청합니다.
-              </small>
-            )}
           </div>
           <aside className="guide-hero-note">
             {category.slug === 'installation' ? (
@@ -110,6 +79,7 @@ export default async function CategoryPage({ params }: Props) {
             </div>
           ))}
         </section>
+        <GuideCta category={category} from={route} placement="guide-top" />
         <section id="guide-comparison" className="guide-comparison-section">
           <div className="guide-section-title">
             <div>
@@ -117,6 +87,7 @@ export default async function CategoryPage({ params }: Props) {
             </div>
             <span className="guide-caption">기능과 조건으로 비교하세요</span>
           </div>
+          <p className="guide-scroll-hint">표는 좌우로 스크롤할 수 있습니다.</p>
           <div
             className="guide-table-wrap"
             role="region"

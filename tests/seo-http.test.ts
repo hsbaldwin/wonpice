@@ -16,6 +16,7 @@ test(
     const pages = [
       { path: '/', keywords: ['맞춤커튼'], article: false },
       { path: '/guides', keywords: ['커튼'], article: false },
+      { path: '/about', keywords: ['서비스', '견적'], article: false },
       ...categories.map((category) => ({
         path: `/guides/${category.slug}`,
         keywords: category.keywords,
@@ -28,6 +29,10 @@ test(
       })),
     ];
     const canonicalUrls: string[] = [];
+    const titles = new Set<string>();
+    const descriptions = new Set<string>();
+    const publicPaths = new Set(pages.map((page) => page.path));
+    assert.equal(pages.length, 19);
     for (const page of pages) {
       const response = await fetch(new URL(page.path, origin));
       assert.equal(response.status, 200, page.path);
@@ -48,6 +53,52 @@ test(
         page.path,
       );
       canonicalUrls.push(new URL(canonical).toString());
+      const title = html.match(/<title>(.*?)<\/title>/)?.[1];
+      const description = html.match(/name="description" content="([^"]+)"/)?.[1];
+      assert.ok(title && description);
+      assert.ok(!titles.has(title), `Unique title: ${page.path}`);
+      titles.add(title);
+      assert.ok(!descriptions.has(description), `Unique description: ${page.path}`);
+      descriptions.add(description);
+      assert.doesNotMatch(html, /제휴/);
+      assert.match(html, /name="twitter:title"/);
+      assert.match(html, /property="og:locale" content="ko_KR"/);
+      const robots = html.match(/name="robots" content="([^"]+)"/)?.[1];
+      assert.ok(
+        robots?.includes(process.env.SEO_EXPECT_INDEXABLE === 'true' ? 'index, follow' : 'noindex'),
+      );
+      const anchors = [...html.matchAll(/<a[^>]*href="([^"]+)"/g)].map((m) =>
+        m[1].replaceAll('&amp;', '&'),
+      );
+      for (const href of anchors) {
+        const link = new URL(href, new URL(page.path, canonicalOrigin));
+        if (link.origin === new URL(canonicalOrigin).origin && !link.pathname.startsWith('/go/')) {
+          assert.ok(
+            publicPaths.has(link.pathname) || link.pathname === '/saved',
+            `Known link ${href} on ${page.path}`,
+          );
+          if (link.pathname === page.path && link.hash)
+            assert.ok(
+              html.includes(`id="${decodeURIComponent(link.hash.slice(1))}"`),
+              `Working anchor ${href}`,
+            );
+        }
+      }
+      if (page.path !== '/') {
+        const schemas = [
+          ...document.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+        ].flatMap((m) => JSON.parse(m[1]));
+        const breadcrumb = schemas.find((schema) => schema['@type'] === 'BreadcrumbList');
+        assert.ok(breadcrumb && breadcrumb.itemListElement.length >= 2);
+        assert.equal(breadcrumb.itemListElement[0].name, '홈');
+        assert.equal(breadcrumb.itemListElement.at(-1).item, canonical);
+        const nav = html.match(/<nav aria-label="현재 위치"[\s\S]*?<\/nav>/)?.[0] || '';
+        for (const item of breadcrumb.itemListElement)
+          assert.ok(
+            nav.includes(item.name.replaceAll('&', '&amp;')),
+            `Visible breadcrumb ${item.name}`,
+          );
+      }
       if (page.path === '/') {
         const sceneIds = [...body.matchAll(/id="(scene-[^"]+)"/g)].map((match) => match[1]);
         assert.deepEqual(sceneIds, ['scene-helper', 'scene-spaces']);
@@ -115,11 +166,35 @@ test(
           );
       }
       if (page.article) {
-        assert.ok(body.includes('<h2>'), `Article HTML: ${page.path}`);
+        assert.ok(/<h2\b/.test(body), `Article HTML: ${page.path}`);
         assert.ok(document.includes('"@type":"Article"'), `Article schema: ${page.path}`);
+        const post = posts.find((p) => p.href === page.path)!;
+        for (const heading of post.headings) {
+          assert.ok(body.includes(`href="#${heading.id}"`));
+          assert.ok(body.includes(`id="${heading.id}"`));
+        }
+        assert.match(body, /핵심 요약/);
+        assert.match(body, /<table>/);
+        assert.match(body, /상담 전에 준비할 내용/);
+        assert.match(body, /이 링크를 통한 신청으로 운영자에게 수수료가 발생할 수 있습니다/);
+        assert.match(document, /"dateModified"/);
+        assert.match(document, /"image"/);
       }
     }
     assert.equal(new Set(canonicalUrls).size, pages.length);
+    const sitemap = await (await fetch(new URL('/sitemap.xml', origin))).text();
+    assert.equal(
+      (sitemap.match(/<url>/g) || []).length,
+      process.env.SEO_EXPECT_INDEXABLE === 'true' ? 19 : 0,
+    );
+    const robots = await (await fetch(new URL('/robots.txt', origin))).text();
+    assert.match(
+      robots,
+      process.env.SEO_EXPECT_INDEXABLE === 'true' ? /Allow: \// : /Disallow: \//,
+    );
+    const missing = await fetch(new URL('/guides/companies/not-a-real-guide', origin));
+    assert.equal(missing.status, 404);
+    assert.match(await missing.text(), /noindex/);
     const saved = await fetch(new URL('/saved', origin), { redirect: 'manual' });
     assert.equal(saved.status, 307, 'Existing saved bookmarks redirect to the helper');
     assert.equal(saved.headers.get('location'), '/?view=saved#helper');

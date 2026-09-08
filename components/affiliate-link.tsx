@@ -1,7 +1,7 @@
 'use client';
 import { AnchorHTMLAttributes } from 'react';
 import { usePathname } from 'next/navigation';
-import { sessionId } from '@/lib/analytics-client';
+import { sessionId, landingPath } from '@/lib/analytics-client';
 export function AffiliateLink({
   cta = 'home-direct',
   category,
@@ -22,6 +22,8 @@ export function AffiliateLink({
         const url = new URL(e.currentTarget.href);
         url.searchParams.set('clickid', crypto.randomUUID());
         url.searchParams.set('sessionId', sessionId());
+        const landing = landingPath();
+        if (landing) url.searchParams.set('landingPath', landing);
         e.currentTarget.href = url.toString();
       }}
     >

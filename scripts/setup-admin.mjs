@@ -50,12 +50,15 @@ try {
   if (password !== again) throw new Error('비밀번호가 일치하지 않습니다.');
   const salt = randomBytes(32);
   const hash = `scrypt$${salt.toString('hex')}$${scryptSync(password, salt, 64).toString('hex')}`;
-  // Escape dollar signs for Next.js dotenv expansion. Keep both values server-only.
+  const vercel = process.argv.includes('--vercel');
+  // Escape dollar signs only for dotenv files, never for the Vercel settings UI.
   stdout.write(
-    '\n아래 두 줄을 .env.local에 저장하고 서버를 재시작하세요. 출력값도 비밀로 보관하세요.\n\n',
+    vercel
+      ? '\nVercel Production 환경에 아래 두 값을 Secret으로 직접 저장하세요. 출력값도 비밀로 보관하세요.\n\n'
+      : '\n아래 두 줄을 .env.local에 저장하고 서버를 재시작하세요. 출력값도 비밀로 보관하세요.\n\n',
   );
   stdout.write(
-    `ADMIN_PASSWORD_HASH=${hash.replaceAll('$', '\\$')}\nADMIN_SESSION_SECRET=${randomBytes(48).toString('hex')}\n`,
+    `ADMIN_PASSWORD_HASH=${vercel ? hash : hash.replaceAll('$', '\\$')}\nADMIN_SESSION_SECRET=${randomBytes(48).toString('hex')}\n`,
   );
 } catch (error) {
   process.stderr.write(`${error.message}\n`);

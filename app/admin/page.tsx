@@ -2,46 +2,79 @@ import { site } from '@/lib/site';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { authConfigured, SESSION_COOKIE, verifySession } from '@/lib/auth';
+import { kstDay, parseDateRange } from '@/lib/analytics-server';
 import {
-  getAnalyticsStore,
-  parseDateRange,
-  type AnalyticsReport,
-  type BreakdownRow,
-} from '@/lib/analytics-server';
-import type { EventName } from '@/lib/types';
+  getRuntimeStore,
+  percent,
+  resultSummary,
+  type DashboardReport,
+  type DailyResult,
+  type PerformanceRow,
+} from '@/lib/analytics-store';
+import { siteTrackingConfig } from '@/lib/tracking';
+import { AdminResults } from '@/components/admin-results';
+import { categories, getPosts } from '@/lib/content';
 
-const labels: Record<EventName, string> = {
-  page_view: '페이지 조회',
-  helper_start: '도우미 시작',
-  helper_complete: '추천 결과 확인',
-  quote_save: '요청서 저장',
-  pdf_generated: 'PDF 생성 성공',
-  affiliate_outbound: '제휴 문의 이동',
+const sourceNames: Record<string, string> = {
+  direct: '직접 방문·출처 없음',
+  google: 'Google',
+  naver: '네이버',
+  external: '외부 사이트',
+  internal: '사이트 내부',
+  미확인: '미확인',
 };
-function Breakdown({ title, rows }: { title: string; rows: BreakdownRow[] }) {
+function Performance({
+  title,
+  rows,
+  names = {},
+  daily = false,
+}: {
+  title: string;
+  rows: PerformanceRow[];
+  names?: Record<string, string>;
+  daily?: boolean;
+}) {
+  const max = Math.max(1, ...rows.map((row) => row.visits));
   return (
     <section className="admin-panel">
       <h2>{title}</h2>
-      <div className="admin-table-scroll">
+      <p className="admin-caption">
+        {daily
+          ? '막대는 방문수입니다. 표 안에서 스크롤해 날짜와 항목을 확인하세요.'
+          : '표는 좌우로 스크롤할 수 있습니다.'}
+      </p>
+      <div
+        className={`admin-table-scroll ${daily ? 'admin-daily-scroll' : ''}`}
+        tabIndex={0}
+        role="region"
+        aria-label={title}
+      >
         <table>
           <thead>
             <tr>
-              <th>항목</th>
-              <th>조회</th>
-              <th>시작</th>
-              <th>결과</th>
-              <th>문의 이동</th>
+              <th>{daily ? '날짜' : '항목'}</th>
+              <th>방문수</th>
+              <th>페이지 조회</th>
+              <th>문의 클릭수</th>
+              <th>문의 클릭률</th>
             </tr>
           </thead>
           <tbody>
             {rows.length ? (
               rows.map((row) => (
                 <tr key={row.label}>
-                  <th scope="row">{row.label}</th>
+                  <th scope="row">
+                    {names[row.label] || row.label}
+                    {daily && (
+                      <span className="admin-trend" aria-hidden="true">
+                        <span style={{ width: `${(100 * row.visits) / max}%` }} />
+                      </span>
+                    )}
+                  </th>
+                  <td>{row.visits}</td>
                   <td>{row.views}</td>
-                  <td>{row.starts}</td>
-                  <td>{row.completed}</td>
-                  <td>{row.outbound}</td>
+                  <td>{row.clicks}</td>
+                  <td>{percent(row.clickedSessions, row.visits)}</td>
                 </tr>
               ))
             ) : (
@@ -55,39 +88,51 @@ function Breakdown({ title, rows }: { title: string; rows: BreakdownRow[] }) {
     </section>
   );
 }
-function percent(numerator: number, denominator: number) {
-  return denominator ? `${((100 * numerator) / denominator).toFixed(1)}%` : '—';
-}
-
 export default async function AdminPage({
   searchParams,
 }: {
-  searchParams: Promise<{ from?: string; to?: string }>;
+  searchParams: Promise<{ from?: string; to?: string; period?: string }>;
 }) {
   if (!authConfigured() || !verifySession((await cookies()).get(SESSION_COOKIE)?.value))
     redirect('/admin/login');
   const params = await searchParams;
   const requested = parseDateRange(
-    new URLSearchParams({
-      ...(typeof params.from === 'string' ? { from: params.from } : {}),
-      ...(typeof params.to === 'string' ? { to: params.to } : {}),
-    }),
+    new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params).filter(
+          ([key, value]) => ['from', 'to', 'period'].includes(key) && typeof value === 'string',
+        ),
+      ) as Record<string, string>,
+    ),
   );
   const range = requested || parseDateRange(new URLSearchParams())!;
-  let report: AnalyticsReport | undefined;
-  try {
-    report = getAnalyticsStore().report(range);
-  } catch {
-    /* A database failure must leave the rest of the site operational. */
-  }
-  const exportUrl = `/api/admin/export?from=${range.from}&to=${range.to}`;
+  let report: DashboardReport | undefined;
+  let results: DailyResult[] | undefined;
+  const outcomes = await Promise.allSettled([
+    (async () => (await getRuntimeStore()).report(range))(),
+    (async () => (await getRuntimeStore()).results(range))(),
+  ]);
+  if (outcomes[0].status === 'fulfilled') report = outcomes[0].value;
+  if (outcomes[1].status === 'fulfilled') results = outcomes[1].value;
+  const config = siteTrackingConfig();
+  const today = kstDay();
+  const summaries = (config ? (['shared', 'site'] as const) : (['shared'] as const)).map(
+    (scope) => ({ scope, ...resultSummary(results || [], scope, range, report?.visits, today) }),
+  );
+  const names: Record<string, string> = {
+    '/': '홈',
+    '/guides': '커튼 가이드',
+    '/about': '서비스 안내',
+    ...Object.fromEntries(categories.map((c) => [`/guides/${c.slug}`, c.navTitle])),
+    ...Object.fromEntries((await getPosts()).map((p) => [p.href, p.title])),
+  };
   return (
-    <main className="admin-dashboard">
+    <main id="main" className="admin-dashboard">
       <div className="admin-top">
         <div>
-          <div className="admin-eyebrow">{site.name} · ANALYTICS</div>
+          <div className="admin-eyebrow">{site.name}</div>
           <h1>고객 여정 한눈에 보기</h1>
-          <p>내부 행동과 제휴 문의 이동 기록 · 날짜 기준 UTC</p>
+          <p>방문부터 문의 클릭까지 · 한국 시간 (KST, UTC+9)</p>
         </div>
         <form action="/api/admin/logout" method="post">
           <button type="submit" className="admin-button admin-secondary">
@@ -95,6 +140,25 @@ export default async function AdminPage({
           </button>
         </form>
       </div>
+      <nav className="admin-periods" aria-label="통계 기간">
+        {[
+          ['today', '오늘'],
+          ['7', '최근 7일'],
+          ['28', '최근 28일'],
+          ['90', '최근 90일'],
+        ].map(([value, label]) => (
+          <a
+            className="admin-button admin-secondary"
+            key={value}
+            href={`/admin?period=${value}`}
+            aria-current={
+              !params.from && !params.to && (params.period || '28') === value ? 'page' : undefined
+            }
+          >
+            {label}
+          </a>
+        ))}
+      </nav>
       <div className="admin-toolbar">
         <form action="/admin" method="get" className="admin-filter">
           <label>
@@ -105,97 +169,148 @@ export default async function AdminPage({
             종료일
             <input type="date" name="to" defaultValue={range.to} required />
           </label>
-          <button className="admin-button" type="submit">
-            조회
-          </button>
+          <button className="admin-button">조회</button>
         </form>
-        <a href={exportUrl} className="admin-button admin-secondary">
+        <a
+          className="admin-button admin-secondary"
+          href={`/api/admin/export?from=${range.from}&to=${range.to}`}
+        >
           CSV 다운로드 ↓
         </a>
       </div>
       {!requested && (
         <p className="admin-error" role="alert">
-          날짜를 90일 이내의 유효한 범위로 선택해 주세요. 최근 30일을 표시합니다.
+          90일 이내의 유효한 날짜 범위를 선택해 주세요. 최근 28일을 표시합니다.
         </p>
       )}
       <p className="admin-caption">
-        최근 180일 기록을 보관하며 한 번에 최대 90일을 조회합니다. 이벤트와 세션 수는 집계 방식이
-        다릅니다.
+        {range.from} ~ {range.to} · 최근 180일의 방문 기록을 보관합니다. 오늘 실적은 집계 중이며,
+        일별 방문수를 더한 값과 기간 전체의 중복 제거 방문수는 다를 수 있습니다.
       </p>
       {!report ? (
         <div className="admin-notice" role="alert">
-          <h2>통계 저장소에 연결할 수 없습니다</h2>
+          <h2>통계 조회에 실패했습니다</h2>
           <p>
-            서버의 DATABASE_PATH와 쓰기 권한을 확인해 주세요. 고객의 견적 문의 이동은 계속
+            운영 DB 연결과 설정을 확인하고 다시 조회해 주세요. 견적 신청 페이지 이동은 계속
             작동합니다.
           </p>
         </div>
       ) : (
         <>
-          <section className="admin-metrics" aria-label="전체 이벤트 통계">
-            {(Object.keys(labels) as EventName[]).map((type) => {
-              const count = report!.counts.find((row) => row.type === type);
-              return (
-                <div className="admin-metric" key={type}>
-                  <span>{labels[type]}</span>
-                  <strong>{(count?.events || 0).toLocaleString('ko-KR')}</strong>
-                  <small>{count?.sessions || 0}개 익명 세션</small>
-                </div>
-              );
-            })}
-          </section>
-          <section className="admin-panel">
-            <h2>도우미 전환 흐름</h2>
-            <p className="admin-caption">
-              같은 익명 세션에서 시작 → 결과 → 문의 이동 순으로 발생한 기록입니다. 선택한 기간 안의
-              시작 세션을 기준으로 합니다.
+          {!report.visits && !report.clicks && !report.starts && (
+            <p className="admin-notice">
+              선택한 기간의 방문·문의 기록이 없습니다. 기록이 없는 상태이며 조회 실패가 아닙니다.
             </p>
-            <div className="admin-funnel">
-              <div>
-                <span>도우미 시작</span>
-                <strong>{report.startedSessions}</strong>
+          )}
+          <section className="admin-metrics" aria-label="방문·문의 핵심 통계">
+            {[
+              ['방문수', report.visits.toLocaleString('ko-KR'), '페이지를 조회한 익명 세션'],
+              ['페이지 조회', report.views.toLocaleString('ko-KR'), '페이지 조회 이벤트 수'],
+              ['문의 클릭수', report.clicks.toLocaleString('ko-KR'), '신청 페이지로 이동한 횟수'],
+              [
+                '문의 클릭률',
+                percent(report.clickedSessions, report.visits),
+                `${report.visits}개 방문 세션 중 ${report.clickedSessions}개 문의`,
+              ],
+              [
+                '도우미 완료율',
+                percent(report.completed, report.starts),
+                `${report.starts}개 시작 세션 중 ${report.completed}개 완료`,
+              ],
+            ].map(([label, value, note]) => (
+              <div className="admin-metric" key={label}>
+                <span>{label}</span>
+                <strong>{value}</strong>
+                <small>{note}</small>
               </div>
-              <b>→</b>
-              <div>
-                <span>결과 확인</span>
-                <strong>{report.completedStartedSessions}</strong>
-                <small>
-                  완료율 {percent(report.completedStartedSessions, report.startedSessions)}
-                </small>
-              </div>
-              <b>→</b>
-              <div>
-                <span>제휴 문의 이동</span>
-                <strong>{report.outboundCompletedSessions}</strong>
-                <small>
-                  결과 이후 이동률{' '}
-                  {percent(report.outboundCompletedSessions, report.completedStartedSessions)}
-                </small>
-              </div>
-            </div>
+            ))}
           </section>
-          <div className="admin-notice">
-            <strong>문의 이동은 신청 완료가 아닙니다.</strong>
-            <p>
-              외부 제휴 양식의 신청·상담 완료는 수집하지 않습니다. PDF는 생성 성공을 측정하며 기기에
-              실제 저장했는지는 확인하지 않습니다. 알려진 봇과 사전 로딩 요청은 제외하지만 자동
-              트래픽을 모두 판별할 수는 없습니다.
-            </p>
-          </div>
-          <Breakdown title="페이지별 이벤트" rows={report.byPath} />
-          <div className="admin-columns">
-            <Breakdown title="카테고리별 이벤트" rows={report.byCategory} />
-            <Breakdown title="버튼 위치별 이벤트" rows={report.byCta} />
-          </div>
-          <Breakdown title="유입 구분별 이벤트" rows={report.bySource} />
           <p className="admin-caption">
-            유입 구분은 브라우저가 제공한 방문 출처입니다. 문의 이동은 같은 세션의 첫 출처 기록을
-            참고합니다. 실제 검색어·검색 순위·노출은 Google Search Console과 네이버
-            서치어드바이저에서 확인하세요. CSV에는 날짜별 집계만 포함되며 세션 ID와 고객의 치수·문서
-            내용은 포함하지 않습니다.
+            문의 클릭률은 해당 기간에 페이지를 조회한 세션 중 문의를 클릭한 세션의 비율입니다. 여러
+            번 클릭해도 분자에는 한 번만 포함합니다. 도우미 완료율은 같은 기간·세션에서 시작 이후
+            완료한 비율입니다. 분모가 없으면 —로 표시합니다.
+          </p>
+          <Performance title="일별 추이" rows={report.daily} daily />
+          <Performance title="유입 경로" rows={report.sources} names={sourceNames} />
+          <Performance
+            title="첫 방문 페이지별 문의 성과"
+            rows={report.landingPages}
+            names={names}
+          />
+          <p className="admin-caption">
+            첫 방문 페이지와 유입 경로는 세션의 첫 기록을 기준으로 합니다. 페이지를 조회하지 않은
+            이동(예: JavaScript 비활성)은 문의 클릭수에는 포함될 수 있지만 방문 기반 클릭률에서는
+            제외합니다. 세션은 브라우저 탭의 익명 식별자 기준이며 저장이 차단된 환경에서는 정확도가
+            낮아질 수 있습니다. 알려진 봇과 사전 로딩을 제외하되 모든 자동 트래픽을 판별하지는
+            못합니다.
           </p>
         </>
       )}
+      <section className="admin-panel">
+        <h2>신청·승인 실적</h2>
+        <div className="admin-notice">
+          <strong>문의 클릭은 신청 완료가 아닙니다.</strong>
+          <p>
+            현재 공유 링크 실적은 다른 채널을 포함한 전체 채널 신청 실적입니다. 이 값으로 이
+            사이트의 신청 전환율이나 페이지별 신청 성과를 계산하지 않습니다.
+          </p>
+          {!config && (
+            <p>
+              공식 사이트 전용 추적 링크와 적용 시작일을 설정한 이후부터 사이트 실적을 구분할 수
+              있습니다.
+            </p>
+          )}
+        </div>
+        {results === undefined ? (
+          <p role="alert" className="admin-error">
+            실적 조회에 실패했습니다. 조회되지 않은 실적을 0건으로 표시하지 않습니다. 새로고침 후
+            다시 확인해 주세요.
+          </p>
+        ) : (
+          <>
+            <div className="admin-result-summaries">
+              {summaries.map((summary) => (
+                <div key={summary.scope} className="admin-notice">
+                  <h3>
+                    {summary.scope === 'shared' ? '전체 채널 신청 실적' : '사이트 전용 신청 실적'}
+                  </h3>
+                  <p>
+                    {summary.enteredDays
+                      ? `신청 ${summary.applications}건 · 승인 ${summary.approvals}건${summary.complete ? '' : ' (입력된 날짜의 부분 합계)'}`
+                      : '실적 미입력'}
+                  </p>
+                  <p>
+                    {summary.enteredDays} / {summary.days}일 입력 · 미입력 날짜는 0건으로 간주하지
+                    않습니다.
+                  </p>
+                  <p>
+                    마지막 입력:{' '}
+                    {summary.lastUpdated
+                      ? new Date(summary.lastUpdated).toLocaleString('ko-KR', {
+                          timeZone: 'Asia/Seoul',
+                          hour12: false,
+                        })
+                      : '입력 이력 없음'}
+                  </p>
+                  {summary.scope === 'site' && (
+                    <p>
+                      기간 기준 신청 전환율: {summary.conversionRate ?? '집계 조건 미충족'} · 전용
+                      링크 적용일 이후의 종료된 기간 전체를 입력하고 방문수가 조회된 경우에만
+                      제공합니다. 방문일과 신청일의 개별 연결을 의미하지 않습니다.
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+            <AdminResults rows={results} today={today} siteFrom={config?.from} />
+          </>
+        )}
+      </section>
+      <p className="admin-caption">
+        실제 검색어·검색결과 클릭률은 Google Search Console과 네이버 자료에서 확인하세요. 신청자의
+        이름·연락처·주소는 이 통계에 수집하지 않습니다. CSV에는 한국 시간 기준 날짜별 집계만
+        포함되며 세션 식별자는 포함되지 않습니다.
+      </p>
     </main>
   );
 }

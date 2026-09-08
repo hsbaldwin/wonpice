@@ -1,7 +1,7 @@
+import { getRuntimeStore } from '@/lib/analytics-store';
 import { analyticsEnabled } from '@/lib/analytics-config';
 import {
   consumeLimit,
-  getAnalyticsStore,
   isAutomatedRequest,
   parseEvent,
   readLimitedBody,
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
   if (!consumeLimit(`events-session:${event.sessionId}`, 90))
     return Response.json({ error: 'Rate limited' }, { status: 429, headers });
   try {
-    const inserted = getAnalyticsStore().record(event);
+    const inserted = await (await getRuntimeStore()).record(event);
     return Response.json({ accepted: true, duplicate: !inserted }, { status: 200, headers });
   } catch {
     console.error('Analytics write failed');

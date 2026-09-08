@@ -53,6 +53,7 @@ export type EventName =
   | 'pdf_generated'
   | 'affiliate_outbound';
 export interface AnalyticsEvent {
+  landingPath?: string;
   eventId: string;
   sessionId: string;
   type: EventName;

@@ -46,21 +46,27 @@ test('published SEO metadata uses unique canonical URLs and only public sitemap 
   const result = inspectPublication(true);
   assert.equal(result.robots.rules.allow, '/');
   assert.equal(result.robots.sitemap, 'https://curtain.example/sitemap.xml');
-  assert.equal(result.sitemap.length, 17);
-  assert.equal(new Set(result.sitemap.map((item: { url: string }) => item.url)).size, 17);
+  assert.equal(result.sitemap.length, 19);
+  assert.equal(new Set(result.sitemap.map((item: { url: string }) => item.url)).size, 19);
   assert.ok(
     result.sitemap.every(
       (item: { url: string }) => !/\/(saved|admin|api|go)(\/|$)/.test(new URL(item.url).pathname),
     ),
   );
-  assert.equal(result.entries.length, 14);
+  assert.equal(result.entries.length, 16);
   for (const entry of result.entries) {
     const expected = `https://curtain.example${entry.path}`;
     assert.equal(entry.metadata.alternates.canonical, expected);
     assert.equal(entry.metadata.openGraph.url, expected);
-    assert.ok(entry.metadata.title.length > 5);
+    assert.ok(entry.metadata.title.absolute.length > 5);
     assert.ok(entry.metadata.description.length > 15);
     assert.equal(entry.metadata.keywords, undefined);
+    assert.equal(entry.metadata.twitter.title, entry.metadata.title.absolute);
+    assert.equal(entry.metadata.twitter.description, entry.metadata.description);
+    assert.equal(entry.metadata.openGraph.siteName, '커튼 견적 도우미');
+    assert.equal(entry.metadata.openGraph.locale, 'ko_KR');
+    assert.equal(entry.metadata.robots.index, true);
+    assert.doesNotMatch(JSON.stringify(entry.metadata), /제휴/);
     assert.ok(result.sitemap.some((item: { url: string }) => item.url === expected));
   }
 });

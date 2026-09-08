@@ -31,10 +31,10 @@ export function Breadcrumbs({ items }: { items: { name: string; href: string }[]
   return (
     <nav aria-label="현재 위치" className="guide-breadcrumb">
       <ol>
-        {items.map((item, i) => (
+        {[{ name: '홈', href: '/' }, ...items].map((item, i) => (
           <li key={item.href}>
             {i > 0 && <ChevronRight size={12} aria-hidden="true" />}
-            {i === items.length - 1 ? (
+            {i === items.length ? (
               <span aria-current="page">{item.name}</span>
             ) : (
               <Link href={item.href}>{item.name}</Link>
@@ -59,7 +59,7 @@ export function GuideStructuredData({
     {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
-      itemListElement: items.map((item, i) => ({
+      itemListElement: [{ name: '홈', href: '/' }, ...items].map((item, i) => ({
         '@type': 'ListItem',
         position: i + 1,
         name: item.name,
@@ -73,8 +73,9 @@ export function GuideStructuredData({
       '@type': 'Article',
       headline: article.title,
       description: article.description,
-      datePublished: article.date,
-      dateModified: article.date,
+      datePublished: `${article.date}T00:00:00+09:00`,
+      dateModified: `${article.dateModified || article.date}T00:00:00+09:00`,
+      image: absoluteUrl(article.image || '/images/curtain-natural.webp'),
       inLanguage: 'ko-KR',
       mainEntityOfPage: absoluteUrl(article.href),
       author: { '@type': 'Organization', name: site.name, url: absoluteUrl('/about') },
@@ -103,8 +104,19 @@ export function CategoryCard({ category, count }: { category: GuideCategory; cou
       <span className="guide-icon">
         <GuideIcon category={category.slug} />
       </span>
-      <h2>{category.navTitle}</h2>
-      <p>{category.lead}</p>
+      <h3>{category.navTitle}</h3>
+      <p>
+        {
+          {
+            installation: '창 크기와 레일, 설치 전에 무엇을 확인해야 할까요?',
+            companies: '견적 금액이 다르면 어떤 항목부터 비교해야 할까요?',
+            interior: '쉬폰·암막·블라인드 중 어떤 구성이 맞을까요?',
+            'living-room': '채광·TV 반사·외부 시선을 어떻게 조절할까요?',
+            bedroom: '수면 시간에 맞는 암막과 빛샘 대책은 무엇일까요?',
+            'newlywed-home': '방별 요구사항과 입주 일정을 어떻게 준비할까요?',
+          }[category.slug]
+        }
+      </p>
       <span className="guide-card-bottom">
         <span>{count !== undefined ? `${count}개의 가이드` : '선택 기준 살펴보기'}</span>
         <ArrowRight size={18} aria-hidden="true" />
@@ -142,37 +154,58 @@ export function GuideCta({
   intent?: 'helper' | 'apply';
   preset?: GuideCategory['helperPreset'];
 }) {
-  const apply = (intent ?? category.ctaIntent) === 'apply';
+  const bottom = placement.endsWith('bottom');
   return (
-    <section className="guide-cta" aria-label={apply ? '견적 문의 안내' : '견적 도우미 안내'}>
+    <section
+      className={`guide-cta ${bottom ? '' : 'guide-cta-compact'}`}
+      aria-label="견적 신청 안내"
+    >
       <div>
-        <h2>{apply ? '준비한 조건으로, 견적 문의.' : '이제 우리 집 창에 맞춰볼까요?'}</h2>
-        <p>
-          {apply
-            ? '제휴 신청 페이지에서 양식을 작성하고 상담을 이어가세요.'
-            : '창 크기와 원하는 느낌을 입력하면 추천을 정리해 드려요.'}
+        <h2>{bottom ? '준비한 내용으로 상담을 이어가세요' : '필요한 조건을 정리했다면'}</h2>
+        <p>견적 신청 페이지로 이동합니다.</p>
+        <p className="guide-cta-note">이름·연락처·제품 종류·창문 개수·설치 주소를 준비하세요.</p>
+        <p className="guide-cta-note">
+          입력한 치수와 요구사항은 신청 양식에 자동 전달되지 않습니다. 상담할 때 직접 공유하세요.
         </p>
+        {bottom && (
+          <p className="guide-cta-note">
+            이 링크를 통한 신청으로 운영자에게 수수료가 발생할 수 있습니다.
+          </p>
+        )}
       </div>
       <div className="guide-cta-actions">
-        {apply ? (
-          <AffiliateLink className="button button-primary" cta={placement} category={category.slug}>
-            견적 문의로 이동 <ArrowRight size={18} aria-hidden="true" />
-          </AffiliateLink>
-        ) : (
-          <Link
-            className="button button-primary"
-            href={helperHref(preset ?? category.helperPreset)}
-          >
-            내 공간으로 추천받기 <ArrowRight size={18} aria-hidden="true" />
-          </Link>
-        )}
-        <small>
-          {apply
-            ? '제휴 링크 · 요청서는 자동 전송되지 않습니다.'
-            : '회원가입 없이 · 이 브라우저에 자동 저장'}
-        </small>
+        <AffiliateLink className="button button-primary" cta={placement} category={category.slug}>
+          무료 견적 신청 <ArrowRight size={18} aria-hidden="true" />
+        </AffiliateLink>
+        <Link className="guide-simple-link" href={helperHref(preset ?? category.helperPreset)}>
+          치수 먼저 정리하기 <ArrowRight size={16} aria-hidden="true" />
+        </Link>
       </div>
     </section>
+  );
+}
+
+export function GuideToc({ post, mobile = false }: { post: ContentPost; mobile?: boolean }) {
+  if (post.headings.length < 3) return null;
+  const links = (
+    <ol>
+      {post.headings.map((heading) => (
+        <li key={heading.id}>
+          <a href={`#${heading.id}`}>{heading.text}</a>
+        </li>
+      ))}
+    </ol>
+  );
+  return mobile ? (
+    <details className="guide-toc guide-toc-mobile">
+      <summary>이 글의 목차</summary>
+      <nav aria-label="글 목차">{links}</nav>
+    </details>
+  ) : (
+    <nav className="guide-toc" aria-label="글 목차">
+      <h2>이 글의 목차</h2>
+      {links}
+    </nav>
   );
 }
 
@@ -217,15 +250,15 @@ export function MeasurementSketch() {
           strokeWidth="1.5"
         />
         <rect x="177" y="12" width="36" height="19" rx="8" fill="#f0f3f5" />
-        <text x="195" y="25" textAnchor="middle" fontSize="13" fill="#3a647e">
+        <text x="195" y="25" textAnchor="middle" fontSize="14" fill="#3a647e">
           가로
         </text>
         <rect x="334" y="115" width="25" height="20" rx="6" fill="#f0f3f5" />
-        <text x="346" y="129" textAnchor="middle" fontSize="13" fill="#3a647e">
+        <text x="346" y="129" textAnchor="middle" fontSize="14" fill="#3a647e">
           세로
         </text>
         <path d="M59 208h272" stroke="#bac6ce" />
-        <text x="195" y="223" textAnchor="middle" fontSize="12" fill="#687d8d">
+        <text x="195" y="223" textAnchor="middle" fontSize="14" fill="#687d8d">
           측정 방향을 보여주는 예시 · 제작 치수 아님
         </text>
       </svg>

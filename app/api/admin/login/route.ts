@@ -32,11 +32,12 @@ export async function POST(request: Request) {
       return new Response('Payload too large', { status: 413, headers: privateHeaders });
   }
   if (!verifyPassword(password))
-    return NextResponse.redirect(new URL('/admin/login?error=1', request.url), {
+    return NextResponse.redirect(new URL('/admin/login?error=1', request.headers.get('origin')!), {
       status: 303,
       headers: privateHeaders,
     });
-  const response = NextResponse.redirect(new URL('/admin', request.url), {
+  // sameOrigin validated this browser origin; request.url may name an internal proxy host.
+  const response = NextResponse.redirect(new URL('/admin', request.headers.get('origin')!), {
     status: 303,
     headers: privateHeaders,
   });

@@ -3,11 +3,13 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowRight, Ruler } from 'lucide-react';
 import { getCategory, getPost, getPosts, getRelatedPosts, helperHref } from '@/lib/content';
-import { absoluteUrl } from '@/lib/site';
+import { site } from '@/lib/site';
+import { pageMetadata } from '@/lib/seo';
 import {
   Breadcrumbs,
   Checklist,
   GuideCta,
+  GuideToc,
   GuideStructuredData,
   MeasurementSketch,
   PostCard,
@@ -22,20 +24,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, slug } = await params;
   const post = await getPost(category, slug);
   if (!post) return {};
-  return {
+  return pageMetadata({
     title: post.title,
     description: post.description,
-    alternates: { canonical: absoluteUrl(post.href) },
-    openGraph: {
-      type: 'article',
-      title: post.title,
-      description: post.description,
-      url: absoluteUrl(post.href),
-      publishedTime: post.date,
-      modifiedTime: post.date,
-      images: ['/images/curtain-natural.webp'],
-    },
-  };
+    path: post.href,
+    image: post.image,
+    published: post.date,
+    modified: post.dateModified,
+  });
 }
 export default async function PostPage({ params }: Props) {
   const { category: categorySlug, slug } = await params;
@@ -59,33 +55,58 @@ export default async function PostPage({ params }: Props) {
           <h1>{post.title}</h1>
           <p>{post.description}</p>
           <div className="guide-article-meta">
-            <span>마스터즈 커튼 가이드</span>
+            <Link href="/about">{site.name} 편집</Link>
             <span aria-hidden="true">·</span>
-            <time dateTime={post.date}>{post.date.replaceAll('-', '.')} 작성</time>
+            <time dateTime={post.date}>{post.date.replaceAll('-', '.')} 발행</time>
+            {post.dateModified && (
+              <time dateTime={post.dateModified}>
+                {post.dateModified.replaceAll('-', '.')} 수정
+              </time>
+            )}
           </div>
         </header>
+        <section className="guide-summary" aria-label="핵심 요약">
+          <h2>핵심 요약</h2>
+          <Checklist items={post.summary} />
+        </section>
+        <GuideCta
+          category={category}
+          from={post.href}
+          placement="post-top"
+          preset={post.helperPreset}
+        />
         <div className="guide-article-layout">
           <article className="guide-article" aria-label={post.title}>
+            <GuideToc post={post} mobile />
             {slug === 'measurement-basics' && <MeasurementSketch />}
             <div className="guide-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+            <section className="guide-preparation">
+              <h2>상담 전에 준비할 내용</h2>
+              <Checklist items={post.preparation} />
+            </section>
             <div className="guide-article-footnote">
-              <Ruler size={17} />
-              <p>
-                도우미의 추천과 치수는 상담 준비용입니다. 제작 규격·금액·설치 조건은 제휴 상담에서
-                확정하세요.
-              </p>
+              <Ruler size={17} aria-hidden="true" />
+              <div>
+                <p>
+                  입력 치수는 상담 준비용입니다. 제작 규격·원단·금액·설치 조건은 실측 및 견적
+                  상담에서 확정하세요.
+                </p>
+                <p>
+                  자료: {site.name} 편집 자료. 비교표·작성 예시는 선택과 상담 준비를 위한 자체
+                  자료입니다. 제품별 사양과 현장 조건을 확인하세요.
+                </p>
+                <p>
+                  신청 항목·절차는 연결된 신청 양식을 참고했습니다.{' '}
+                  <Link href="/about#application-process">서비스 범위와 참고 출처</Link>
+                </p>
+              </div>
             </div>
           </article>
           <aside className="guide-article-sidebar">
             <div className="guide-sidebar-sticky">
-              <h2>
-                읽은 내용을
-                <br />
-                우리 집에 적용해요.
-              </h2>
-              <Checklist items={['창 크기 입력', '원하는 느낌 선택', '추천을 요청서로 저장']} />
+              <GuideToc post={post} />
               <Link href={helperHref(post.helperPreset)} className="button button-secondary">
-                도우미 시작 <ArrowRight size={17} />
+                치수 먼저 정리하기 <ArrowRight size={17} aria-hidden="true" />
               </Link>
               <Link href={`/guides/${category.slug}`} className="guide-sidebar-category">
                 {category.navTitle} 한눈에 보기 <ArrowRight size={14} />

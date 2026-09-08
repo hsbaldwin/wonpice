@@ -2,7 +2,7 @@ export const site = {
   name: '커튼 견적 도우미',
   shortName: '커튼 견적 도우미',
   description:
-    '우리 집 창 크기로 시작하는 맞춤커튼 견적 도우미. 공간에 맞는 스타일을 찾고 견적 요청서를 준비하세요.',
+    '창 크기와 필요한 기능을 정리하고, 맞춤커튼 상담에 필요한 내용을 준비하세요. 실측·원단·설치·견적 가이드를 함께 확인할 수 있습니다.',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
   indexable: process.env.SITE_INDEXABLE === 'true',
   // Commission attribution depends on this tracking link. Do not bypass it

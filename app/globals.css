@@ -1707,3 +1707,16 @@ summary {
     transition: none !important;
   }
 }
+
+.header-nojs-nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+.header-nojs-nav a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+}

@@ -11,7 +11,7 @@ export function SiteFooter({ compact = false }: { compact?: boolean }) {
         <nav className="footer-nav" aria-label="하단 메뉴">
           <Link href="/">홈</Link>
           <Link href="/guides">커튼 가이드</Link>
-          <Link href="/about">서비스·제휴 안내</Link>
+          <Link href="/about">서비스 안내</Link>
         </nav>
       </div>
     </footer>

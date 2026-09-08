@@ -1,5 +1,6 @@
+import { getRuntimeStore } from '@/lib/analytics-store';
 import { authorized, privateHeaders } from '@/lib/auth';
-import { getAnalyticsStore, parseDateRange, toCsv } from '@/lib/analytics-server';
+import { parseDateRange, toCsv } from '@/lib/analytics-server';
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 export async function GET(request: Request) {
@@ -12,7 +13,7 @@ export async function GET(request: Request) {
       { status: 400, headers: privateHeaders },
     );
   try {
-    return new Response(toCsv(getAnalyticsStore().exportRows(range)), {
+    return new Response(toCsv(await (await getRuntimeStore()).exportRows(range)), {
       headers: {
         ...privateHeaders,
         'Content-Type': 'text/csv; charset=utf-8',

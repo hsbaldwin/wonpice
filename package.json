@@ -11,9 +11,12 @@
     "admin:setup": "node scripts/setup-admin.mjs",
     "test:pdf": "node scripts/run-pdf-qa.mjs",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "analytics:setup": "node --import tsx scripts/setup-analytics.ts",
+    "release:check": "node --import tsx scripts/check-release.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
     "@react-pdf/renderer": "^4.3.0",
     "better-sqlite3": "^12.4.1",
     "gray-matter": "^4.0.3",
@@ -22,9 +25,11 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "remark": "^15.0.1",
+    "remark-gfm": "^4.0.1",
     "remark-html": "^16.0.1"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
     "@types/better-sqlite3": "^7.6.13",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",

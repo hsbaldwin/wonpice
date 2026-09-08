@@ -3,6 +3,20 @@ import type { AnalyticsEvent, EventName } from './types';
 const SESSION = 'masters:analytics-session';
 const QUEUE = 'masters:analytics-queue';
 const SOURCE = 'masters:analytics-source';
+const LANDING = 'masters:analytics-landing';
+let memoryLanding = '';
+export function landingPath() {
+  if (!analyticsEnabled() || typeof window === 'undefined') return '';
+  try {
+    const existing = sessionStorage.getItem(LANDING);
+    if (existing) return existing;
+    const path = location.pathname;
+    sessionStorage.setItem(LANDING, path);
+    return path;
+  } catch {
+    return (memoryLanding ||= location.pathname);
+  }
+}
 let memorySession = '';
 let flushing = false;
 let memorySource = '';
@@ -87,6 +101,7 @@ export function track(
     type,
     path: location.pathname,
     source: source(),
+    landingPath: landingPath(),
     ...extra,
   });
   queue = queue.slice(-60);

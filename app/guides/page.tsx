@@ -1,22 +1,15 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, Ruler } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { categories, getPosts } from '@/lib/content';
-import { absoluteUrl } from '@/lib/site';
+import { pageMetadata } from '@/lib/seo';
 import { Breadcrumbs, CategoryCard, GuideStructuredData, PostCard } from '@/components/guide-ui';
 
-export const metadata: Metadata = {
-  title: '커튼 가이드 | 실측·스타일·견적 한눈에',
+export const metadata = pageMetadata({
+  title: '커튼 가이드 | 선택부터 견적 준비까지',
   description:
-    '맞춤커튼부터 커튼설치, 거실커튼, 침실커튼, 신혼집커튼까지. 공간별 선택 기준과 견적 준비를 짧고 쉽게 확인하세요.',
-  alternates: { canonical: absoluteUrl('/guides') },
-  openGraph: {
-    title: '공간을 바꾸는 커튼 가이드',
-    description: '실측부터 스타일, 견적까지. 필요한 것부터 가볍게.',
-    url: absoluteUrl('/guides'),
-    images: ['/images/curtain-natural.webp'],
-  },
-};
+    '커튼 실측·설치·원단 구성·견적 확인사항과 거실·침실·신혼집 선택 기준을 확인하세요. 필요한 질문부터 찾아보는 실용 가이드입니다.',
+  path: '/guides',
+});
 
 export default async function GuidesPage() {
   const posts = await getPosts();
@@ -27,42 +20,49 @@ export default async function GuidesPage() {
         <header className="guide-hub-heading">
           <span className="eyebrow">커튼 가이드</span>
           <h1>
-            내 공간을 이해하는
+            커튼 선택부터
             <br />
-            <em>조금 더 쉬운 선택.</em>
+            <em>견적 준비까지</em>
           </h1>
-          <p>
-            실측부터 스타일, 견적까지.
-            <br className="guide-mobile-break" /> 지금 필요한 것부터 살펴보세요.
-          </p>
+          <p>지금 궁금한 질문부터 찾아보고, 우리 집에 필요한 조건을 정리하세요.</p>
         </header>
-        <div className="guide-hub-shortcut">
-          <span className="guide-shortcut-icon">
-            <Ruler size={23} strokeWidth={1.6} />
-          </span>
-          <div>
-            <strong>읽기 전에, 우리 집부터 맞춰볼까요?</strong>
-            <p>창 크기 두 개로 시작하는 맞춤커튼 도우미</p>
-          </div>
-          <Link className="text-link" href="/#helper">
-            도우미 시작 <ArrowRight size={17} />
+        <nav className="guide-shortcuts" aria-label="자주 찾는 정보">
+          <Link href="/guides/installation/measurement-basics">
+            치수 재는 법 <ArrowRight size={18} aria-hidden="true" />
           </Link>
-        </div>
-        <section aria-label="주제별 커튼 가이드" className="guide-category-grid">
-          {categories.map((category) => (
-            <CategoryCard
-              key={category.slug}
-              category={category}
-              count={posts.filter((post) => post.category === category.slug).length}
-            />
-          ))}
-        </section>
+          <Link href="/guides/interior/fabric-layers">
+            원단 구성 비교 <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+          <Link href="/guides/companies/quote-comparison">
+            견적 확인사항 <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </nav>
+        {[
+          { title: '준비할 내용으로 찾기', slugs: ['installation', 'companies', 'interior'] },
+          { title: '공간으로 찾기', slugs: ['living-room', 'bedroom', 'newlywed-home'] },
+        ].map((group) => (
+          <section className="guide-category-group" key={group.title}>
+            <h2>{group.title}</h2>
+            <div className="guide-category-grid">
+              {group.slugs.map((slug) => {
+                const category = categories.find((c) => c.slug === slug)!;
+                return (
+                  <CategoryCard
+                    key={slug}
+                    category={category}
+                    count={posts.filter((p) => p.category === slug).length}
+                  />
+                );
+              })}
+            </div>
+          </section>
+        ))}
         <section className="guide-hub-posts">
           <div className="guide-section-title">
             <div>
               <h2>하나씩 알면, 선택이 쉬워져요.</h2>
             </div>
-            <span className="guide-count">8개의 실용 가이드</span>
+            <span className="guide-count">{posts.length}개의 실용 가이드</span>
           </div>
           <div className="guide-post-grid">
             {posts.map((post) => (
@@ -70,6 +70,15 @@ export default async function GuidesPage() {
             ))}
           </div>
         </section>
+        <div className="guide-hub-shortcut">
+          <div>
+            <strong>읽은 내용을 우리 집에 적용해 보세요</strong>
+            <p>창 크기와 필요한 기능을 정리해 상담을 준비할 수 있습니다.</p>
+          </div>
+          <Link className="guide-simple-link" href="/#helper">
+            치수 먼저 정리하기 <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        </div>
         <GuideStructuredData
           items={[{ name: '커튼 가이드', href: '/guides' }]}
           collection={{

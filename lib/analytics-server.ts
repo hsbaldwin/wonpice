@@ -103,7 +103,17 @@ export function parseEvent(input: unknown, allowOutbound = false): AnalyticsEven
   const value = input as Record<string, unknown>;
   if (
     Object.keys(value).some(
-      (key) => !['eventId', 'sessionId', 'type', 'path', 'category', 'cta', 'source'].includes(key),
+      (key) =>
+        ![
+          'eventId',
+          'sessionId',
+          'type',
+          'path',
+          'category',
+          'cta',
+          'source',
+          'landingPath',
+        ].includes(key),
     )
   )
     return null;
@@ -114,6 +124,7 @@ export function parseEvent(input: unknown, allowOutbound = false): AnalyticsEven
   if (value.category !== undefined && !member(value.category, CATEGORIES)) return null;
   if (value.cta !== undefined && !member(value.cta, CTA_PLACEMENTS)) return null;
   if (value.source !== undefined && !member(value.source, SOURCES)) return null;
+  if (value.landingPath !== undefined && !validPublicPath(value.landingPath)) return null;
   const category = categoryForPath(value.path);
   return { ...value, ...(category ? { category } : {}) } as unknown as AnalyticsEvent;
 }
@@ -133,6 +144,9 @@ export function outboundEvent(
     eventId: isUuid(params.get('clickid')) ? params.get('clickid')! : randomUUID(),
     sessionId: isUuid(params.get('sessionId')) ? params.get('sessionId')! : fallbackSessionId,
     type: 'affiliate_outbound',
+    ...(validPublicPath(params.get('landingPath'))
+      ? { landingPath: params.get('landingPath')! }
+      : {}),
     path: safePath,
     cta: member(cta, CTA_PLACEMENTS) ? cta! : 'direct',
     ...(category ? { category } : {}),
@@ -224,9 +238,17 @@ export interface DateRange {
   start: string;
   end: string;
 }
+export function kstDay(now = new Date()) {
+  return new Date(now.getTime() + 9 * 3600_000).toISOString().slice(0, 10);
+}
 export function parseDateRange(params: URLSearchParams, now = new Date()): DateRange | null {
-  const today = now.toISOString().slice(0, 10);
-  const defaultFrom = new Date(now.getTime() - 29 * 86400_000).toISOString().slice(0, 10);
+  const today = kstDay(now);
+  const period = params.get('period') || '28';
+  if (!['today', '7', '28', '90'].includes(period)) return null;
+  const days = period === 'today' ? 1 : Number(period);
+  const defaultFrom = new Date(Date.parse(today) - (days - 1) * 86400_000)
+    .toISOString()
+    .slice(0, 10);
   const from = params.get('from') || defaultFrom;
   const to = params.get('to') || today;
   if (
@@ -243,8 +265,8 @@ export function parseDateRange(params: URLSearchParams, now = new Date()): DateR
   return {
     from,
     to,
-    start: `${from}T00:00:00.000Z`,
-    end: new Date(Date.parse(to) + 86400_000).toISOString(),
+    start: new Date(Date.parse(from) - 9 * 3600_000).toISOString(),
+    end: new Date(Date.parse(to) + 15 * 3600_000).toISOString(),
   };
 }
 
@@ -291,13 +313,32 @@ export function createAnalyticsStore(filename: string) {
     path TEXT NOT NULL, category TEXT, cta TEXT, source TEXT, received_at TEXT NOT NULL
   ); CREATE INDEX IF NOT EXISTS events_received_at ON events(received_at);
   CREATE INDEX IF NOT EXISTS events_session ON events(session_id, type, received_at);`);
+  if (
+    !(db.prepare('PRAGMA table_info(events)').all() as { name: string }[]).some(
+      (column) => column.name === 'landing_path',
+    )
+  )
+    db.exec('ALTER TABLE events ADD COLUMN landing_path TEXT');
+  db.exec(`CREATE TABLE IF NOT EXISTS affiliate_results (
+    date TEXT NOT NULL, scope TEXT NOT NULL CHECK(scope IN ('shared','site')),
+    applications INTEGER NOT NULL CHECK(applications >= 0), approvals INTEGER NOT NULL CHECK(approvals >= 0),
+    updated_at TEXT NOT NULL, PRIMARY KEY(date,scope)
+  )`);
   const insert = db.prepare(
-    'INSERT OR IGNORE INTO events (event_id, session_id, type, path, category, cta, source, received_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    'INSERT OR IGNORE INTO events (event_id, session_id, type, path, category, cta, source, received_at, landing_path) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
   );
   const sessionSource = db.prepare(
     'SELECT source FROM events WHERE session_id = ? AND source IS NOT NULL ORDER BY received_at ASC LIMIT 1',
   );
   return {
+    query(statement: string, values: (string | number | null)[] = []) {
+      const ordered: (string | number | null)[] = [];
+      const sql = statement.replace(/\$(\d+)/g, (_, index) => {
+        ordered.push(values[Number(index) - 1]);
+        return '?';
+      });
+      return db.prepare(sql).all(...ordered) as Record<string, unknown>[];
+    },
     record(event: AnalyticsEvent, receivedAt = new Date().toISOString()) {
       const safe = parseEvent(event, true);
       if (!safe) throw new Error('Invalid analytics event');
@@ -315,6 +356,7 @@ export function createAnalyticsStore(filename: string) {
           safe.cta ?? null,
           safe.source ?? inheritedSource ?? null,
           receivedAt,
+          safe.landingPath ?? null,
         ).changes === 1
       );
     },

@@ -25,7 +25,7 @@ test('each supporting target keyword has one canonical representative and origin
   assert.equal(assigned.length, expected.length);
   assert.equal(new Set(categories.map((category) => category.slug)).size, 6);
   const posts = await getPosts();
-  assert.equal(posts.length, 8);
+  assert.equal(posts.length, 10);
   for (const category of categories) {
     assert.ok(posts.some((post) => post.category === category.slug));
     assert.equal(category.comparison.columns.length, 3);
@@ -39,8 +39,17 @@ test('all Markdown posts render searchable HTML and resolve valid related conten
   assert.equal(new Set(posts.map((post) => post.title)).size, posts.length);
   assert.equal(new Set(posts.map((post) => post.description)).size, posts.length);
   for (const post of posts) {
-    assert.match(post.html, /<h2>/);
+    assert.match(post.html, /<h2 id="section-\d+">/);
     assert.match(post.html, /<p>/);
+    assert.match(post.html, /<table>/);
+    assert.equal(post.summary.length, 3);
+    assert.equal(post.preparation.length, 3);
+    assert.ok(post.headings.length >= 3);
+    assert.equal(new Set(post.headings.map((h) => h.id)).size, post.headings.length);
+    for (const heading of post.headings) assert.ok(post.html.includes(`id="${heading.id}"`));
+    assert.ok(post.image?.startsWith('/images/'));
+    assert.ok(post.dateModified && post.dateModified >= post.date);
+    assert.doesNotMatch(post.html, /제휴/);
     assert.ok(!post.html.includes('<script'));
     assert.ok(post.html.length > 200);
     assert.ok(!Number.isNaN(Date.parse(post.date)));

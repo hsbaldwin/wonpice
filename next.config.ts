@@ -3,8 +3,7 @@ const config: NextConfig = {
   // Vercel's adapter packages functions; standalone is only for self-hosting.
   output: process.env.VERCEL === '1' ? undefined : 'standalone',
   env: {
-    NEXT_PUBLIC_ANALYTICS_ENABLED:
-      process.env.VERCEL === '1' ? 'false' : (process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'true'),
+    NEXT_PUBLIC_ANALYTICS_ENABLED: process.env.NEXT_PUBLIC_ANALYTICS_ENABLED ?? 'true',
   },
   serverExternalPackages: ['better-sqlite3'],
   poweredByHeader: false,

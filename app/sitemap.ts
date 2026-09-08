@@ -15,7 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
     ...posts.map((post) => ({
       url: absoluteUrl(post.href),
-      lastModified: post.date,
+      lastModified: post.dateModified || post.date,
       changeFrequency: 'monthly' as const,
       priority: 0.6,
     })),

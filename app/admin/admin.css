@@ -284,3 +284,121 @@
     align-items: flex-start;
   }
 }
+.admin-periods {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+.admin-periods [aria-current='page'] {
+  background: #365e82;
+  color: white !important;
+}
+.admin-metrics {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+.admin-metric {
+  padding: 20px 16px;
+}
+.admin-result-form {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 22px 0;
+}
+.admin-result-form label {
+  flex: 1 1 140px;
+}
+.admin-shell select {
+  min-height: 44px;
+  border: 1px solid #b9c6ce;
+  border-radius: 7px;
+  padding: 9px;
+  background: white;
+  color: inherit;
+  font: inherit;
+  min-width: 0;
+}
+.admin-shell :is(select, [tabindex]):focus-visible {
+  outline: 3px solid #76a7d4;
+  outline-offset: 3px;
+}
+.admin-shell
+  :is(
+    .admin-caption,
+    .admin-error,
+    .admin-notice p,
+    label,
+    .admin-metric span,
+    .admin-metric small,
+    table,
+    thead th
+  ) {
+  font-size: 14px;
+}
+.admin-trend {
+  display: block;
+  height: 5px;
+  width: 120px;
+  background: #e6eef3;
+  margin-top: 8px;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.admin-trend > span {
+  height: 100%;
+  display: block;
+  background: #557f9d;
+}
+.admin-shell tbody th {
+  position: sticky;
+  left: 0;
+  background: white;
+  min-width: 120px;
+  max-width: 320px;
+  box-shadow: 1px 0 #e0e5e8;
+}
+.admin-result-summaries {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: 16px;
+}
+.admin-result-summaries .admin-notice {
+  margin: 12px 0;
+}
+.admin-shell button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+@media (max-width: 1000px) {
+  .admin-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (max-width: 640px) {
+  .admin-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .admin-top {
+    flex-wrap: wrap;
+  }
+  .admin-metric strong {
+    font-size: 26px;
+  }
+}
+@media (max-width: 360px) {
+  .admin-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+.admin-daily-scroll {
+  max-height: 360px;
+  overscroll-behavior: contain;
+}
+.admin-daily-scroll thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
