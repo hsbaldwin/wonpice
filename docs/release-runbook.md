@@ -13,7 +13,10 @@
 - `npm audit --omit=dev`: 알려진 운영 의존성 취약점 0건. 이는 모든 보안 문제의 부재를 보증하지 않습니다.
 - 공개 점검 명령의 정상 공개·정상 검토·잘못된 canonical·DB 누락·잘못된 인증·불완전한 추적 설정 6개 시나리오 확인.
 - 관리자 인증 값 두 개의 Production Secret 등록 확인. 통계 플래그는 Config로 교체해 Production=true, Preview=false 저장 완료.
-- 커밋 `bfdcfa6`은 승인 후 원격 main에 반영됐으나 Vercel이 로컬 작성자 이메일 형식을 이유로 배포를 차단함. 실제 운영 앱은 아직 이전 버전이며 검색 차단 유지. 작성자 설정 수정 후 새 배포와 HTTP·DB·로그인 검증 필요.
+- 작성자 설정을 확인된 GitHub 공개 noreply 주소로 수정한 커밋 `486524f`의 Vercel 배포 `FaUPb12qnCsPE1sxaxZLM1yH35us`가 Ready이며 운영 도메인에 반영됨. 기존 Git 기록은 보존함.
+- 운영 도메인의 19페이지 HTTP·메타데이터·링크·구조화 데이터와 검색 차단 상태 검증 통과. 관리자 실제 로그인, Neon 방문 기록, 도우미 시작·완료, 문의 클릭 집계 확인. 홈 240×180cm 및 기능 선택의 저장·새로고침 복원 확인.
+- `/go/quote`의 공식 URL 302, 비로그인 실적·CSV API의 401 확인. 실제 문의 버튼으로 공식 양식까지 이동했으나 제출하지 않음. 이번 운영 점검 방문·완료·클릭이 초기 통계에 포함되므로 성과 자료로 해석하지 않음.
+- 사용자 검색 공개 승인에 따라 Production `SITE_INDEXABLE=true`, Preview `SITE_INDEXABLE=false`로 분리 저장. 새 공개 빌드 후 사이트맵 19개·robots·index 메타데이터 재검증 필요. Search Console·네이버 등록 및 실제 색인은 아직 확인하지 않음.
 
 ### 실행 순서
 
