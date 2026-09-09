@@ -32,13 +32,25 @@ export interface JourneyReport {
 }
 const count = (row: Record<string, unknown>, key: string) => Number(row[key] || 0);
 
-export async function journeyReport(query: SqlQuery, range: DateRange): Promise<JourneyReport> {
+export async function journeyReport(
+  query: SqlQuery,
+  range: DateRange,
+  sections?: (keyof JourneyReport)[],
+): Promise<JourneyReport> {
+  const read = (section: keyof JourneyReport, sql: string, values?: (string | number | null)[]) =>
+    !sections || sections.includes(section)
+      ? query(sql, values)
+      : Promise.resolve([] as Record<string, unknown>[]);
   const values = [range.start, range.end];
   const filtered =
     'WITH filtered AS (SELECT * FROM events WHERE received_at >= $1 AND received_at < $2)';
   const [first, pages, ctas, funnel, actions, transitions] = await Promise.all([
-    query("SELECT MIN(received_at) AS first FROM events WHERE type='page_engagement_start'"),
-    query(
+    read(
+      'firstMeasuredAt',
+      "SELECT MIN(received_at) AS first FROM events WHERE type='page_engagement_start'",
+    ),
+    read(
+      'pages',
       `${filtered}, per_page AS (
       SELECT path,session_id,
       SUM(CASE WHEN type='page_view' THEN 1 ELSE 0 END) AS views,
@@ -54,7 +66,8 @@ export async function journeyReport(query: SqlQuery, range: DateRange): Promise<
       SUM(clicks) AS clicks FROM per_page GROUP BY path ORDER BY visits DESC,path`,
       values,
     ),
-    query(
+    read(
+      'ctas',
       `${filtered}, buttons AS (
       SELECT path,COALESCE(cta,'direct') AS cta,session_id,
       MIN(CASE WHEN type='quote_cta_view' THEN received_at END) AS shown_at,
@@ -67,7 +80,8 @@ export async function journeyReport(query: SqlQuery, range: DateRange): Promise<
       FROM buttons GROUP BY path,cta ORDER BY clicks DESC,shown DESC,path,cta`,
       values,
     ),
-    query(
+    read(
+      'funnel',
       `${filtered}, sizes AS (
       SELECT session_id,MIN(received_at) AS at FROM filtered WHERE type='helper_step_size' GROUP BY session_id),
       needs AS (SELECT s.session_id,MIN(e.received_at) AS at FROM sizes s JOIN filtered e
@@ -80,13 +94,15 @@ export async function journeyReport(query: SqlQuery, range: DateRange): Promise<
         (SELECT COUNT(*) FROM results) AS results,(SELECT COUNT(*) FROM outbound) AS outbound`,
       values,
     ),
-    query(
+    read(
+      'actions',
       `${filtered} SELECT type,COUNT(*) AS events,COUNT(DISTINCT session_id) AS sessions
       FROM filtered WHERE type IN ('helper_size_error','helper_needs_error','quote_save','quote_restore',
       'quote_storage_error','helper_reset','pdf_generated') GROUP BY type ORDER BY type`,
       values,
     ),
-    query(
+    read(
+      'transitions',
       `${filtered}, ordered AS (
       SELECT path,session_id,LAG(path) OVER (PARTITION BY session_id ORDER BY received_at,event_id) AS previous
       FROM filtered WHERE type='page_view')
@@ -126,7 +142,7 @@ export async function journeyReport(query: SqlQuery, range: DateRange): Promise<
       clicked: count(row, 'clicked'),
       clickedShown: count(row, 'matched'),
     })),
-    funnel: ['sizes', 'needs', 'results', 'outbound'].map((key) => count(funnel[0], key)),
+    funnel: ['sizes', 'needs', 'results', 'outbound'].map((key) => count(funnel[0] || {}, key)),
     actions: actions.map((row) => ({
       type: String(row.type),
       events: count(row, 'events'),

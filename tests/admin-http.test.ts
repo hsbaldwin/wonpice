@@ -45,6 +45,8 @@ test(
         NEXT_PUBLIC_SITE_URL: publicOrigin,
         ADMIN_PASSWORD_HASH: hash,
         ADMIN_SESSION_SECRET: randomBytes(48).toString('hex'),
+        DATABASE_URL: '',
+        VERCEL: '',
         DATABASE_PATH: join(directory, 'analytics.sqlite'),
         TRUST_PROXY: 'false',
       },
@@ -188,13 +190,27 @@ test(
           assert.match(response.headers.get('cache-control') || '', /no-store/);
           assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
           const html = await response.text();
-          assert.match(html, /고객 여정 한눈에 보기/);
+          assert.match(html, /사이트 운영 통계/);
           assert.match(html, /도우미 완료율/);
-          assert.match(html, /도우미 단계별 진행/);
-          assert.match(html, /페이지별 읽기·문의/);
-          assert.match(html, /신청 버튼 위치별 성과/);
+          assert.match(html, /어제 같은 시각까지와 비교/);
+          assert.match(html, /최근 7일 추이/);
+          assert.match(html, /선택 기간 전체 CSV/);
+          assert.match(html, /view=content&amp;period=today/);
           assert.match(html, /한국 시간/);
-          assert.doesNotMatch(html, /통계 조회에 실패했습니다/);
+          assert.doesNotMatch(html, /조회에 실패했습니다/);
+          for (const [view, headings] of [
+            ['content', ['유입 경로', '첫 방문 페이지별 문의 성과', '페이지별 읽기·문의']],
+            ['journey', ['도우미 단계별 진행', '신청 버튼 위치별 성과', '다음 단계 미진행']],
+          ] as const) {
+            const detail = await fetch(`${origin}/admin?view=${view}&period=7`, {
+              headers: { Cookie: cookie },
+            });
+            assert.equal(detail.status, 200);
+            const body = await detail.text();
+            for (const heading of headings) assert.ok(body.includes(heading), heading);
+            assert.match(body, /view=summary&amp;period=7/);
+            assert.doesNotMatch(body, /조회에 실패했습니다/);
+          }
           const csv = await fetch(`${origin}/api/admin/export`, { headers: { Cookie: cookie } });
           assert.equal(csv.status, 200);
           assert.match(csv.headers.get('content-type') || '', /text\/csv/);
@@ -204,6 +220,15 @@ test(
           assert.match(text, /"helper_start"/);
           assert.match(text, /"naver"/);
           assert.doesNotMatch(text, new RegExp(payload.sessionId));
+          const readable = await fetch(`${origin}/api/admin/export?period=today&format=readable`, {
+            headers: { Cookie: cookie },
+          });
+          assert.equal(readable.status, 200);
+          const readableText = await readable.text();
+          assert.match(readableText, /날짜\(한국 시간\)/);
+          assert.match(readableText, /네이버/);
+          assert.match(readableText, /"홈"/);
+          assert.doesNotMatch(readableText, new RegExp(payload.sessionId));
           const invalidRange = await fetch(
             `${origin}/api/admin/export?from=2026-01-01&to=2026-12-31`,
             { headers: { Cookie: cookie } },
@@ -250,11 +275,22 @@ test(
           assert.equal(data.results[0].applications, 0);
           assert.equal(data.results[0].approvals, 5);
           const html = await (
-            await fetch(`${origin}/admin?period=today`, { headers: { Cookie: cookie } })
+            await fetch(`${origin}/admin?view=results&period=today`, {
+              headers: { Cookie: cookie },
+            })
           ).text();
           assert.match(html, /전체 채널 신청 실적/);
           assert.doesNotMatch(html, /기간 기준 신청 전환율:/);
           assert.doesNotMatch(html, /제휴/);
+          assert.match(html, /입력된 실적 수정/);
+          assert.match(html, /신청 건수<input[^>]+value="0"/);
+          assert.match(html, /승인 건수<input[^>]+value="5"/);
+          assert.match(html, /선택 기간 입력 완료/);
+          const missing = await (
+            await fetch(`${origin}/admin?view=results&period=7`, { headers: { Cookie: cookie } })
+          ).text();
+          assert.match(missing, /미입력 날짜/);
+          assert.match(missing, /입력된 날짜의 부분 합계/);
         },
       );
 

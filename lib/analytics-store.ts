@@ -10,6 +10,9 @@ import {
 import { siteTrackingConfig } from './tracking';
 import type { AnalyticsEvent } from './types';
 import { journeyReport, type JourneyReport } from './analytics-journey';
+import { createAdminReports } from './analytics-reporting';
+import { percent } from './admin-format';
+export { percent } from './admin-format';
 
 export type SqlQuery = (
   sql: string,
@@ -41,9 +44,6 @@ export interface DashboardReport {
   daily: PerformanceRow[];
   sources: PerformanceRow[];
   landingPages: PerformanceRow[];
-}
-export function percent(numerator: number, denominator: number) {
-  return denominator > 0 ? `${((100 * numerator) / denominator).toFixed(1)}%` : '—';
 }
 export function parseResult(
   input: unknown,
@@ -108,21 +108,20 @@ export function resultSummary(
   };
 }
 const number = (row: Record<string, unknown>, key: string) => Number(row[key] || 0);
-function performance(row: Record<string, unknown>): PerformanceRow {
-  return {
-    label: String(row.label),
-    visits: number(row, 'visits'),
-    views: number(row, 'views'),
-    clicks: number(row, 'clicks'),
-    clickedSessions: number(row, 'clickedSessions'),
-  };
-}
 export function createRuntimeStore(query: SqlQuery, dialect: 'postgres' | 'sqlite') {
+  const reports = createAdminReports(query, dialect);
   const day =
     dialect === 'postgres'
       ? "(received_at::timestamptz AT TIME ZONE 'Asia/Seoul')::date::text"
       : "strftime('%Y-%m-%d', received_at, '+9 hours')";
   return {
+    ...reports,
+    async journey<S extends keyof JourneyReport>(
+      range: DateRange,
+      section: S,
+    ): Promise<JourneyReport[S]> {
+      return (await journeyReport(query, range, [section]))[section];
+    },
     async record(event: AnalyticsEvent, receivedAt = new Date().toISOString()) {
       const safe = parseEvent(event, true);
       if (!safe) throw new Error('Invalid analytics event');
@@ -145,63 +144,14 @@ export function createRuntimeStore(query: SqlQuery, dialect: 'postgres' | 'sqlit
       return rows.length === 1;
     },
     async report(range: DateRange): Promise<DashboardReport> {
-      const values = [range.start, range.end];
-      const base = `WITH filtered AS (SELECT * FROM events WHERE received_at >= $1 AND received_at < $2),
-        sessions AS (SELECT session_id,
-          SUM(CASE WHEN type='page_view' THEN 1 ELSE 0 END) AS views,
-          SUM(CASE WHEN type='affiliate_outbound' THEN 1 ELSE 0 END) AS clicks,
-          MIN(CASE WHEN type='helper_start' THEN received_at END) AS started
-          FROM filtered GROUP BY session_id),
-        visits AS (SELECT s.*,
-          COALESCE((SELECT COALESCE(e.landing_path,e.path) FROM events e WHERE e.session_id=s.session_id AND e.type='page_view' ORDER BY e.received_at,e.event_id LIMIT 1),'미확인') AS landing,
-          COALESCE((SELECT e.source FROM events e WHERE e.session_id=s.session_id AND e.source IS NOT NULL ORDER BY e.received_at,e.event_id LIMIT 1),'미확인') AS source
-          FROM sessions s WHERE s.views > 0)`;
-      const [journey, totals, funnel, sources, landing, daily] = await Promise.all([
+      const [metrics, journey, sources, landingPages, daily] = await Promise.all([
+        reports.metrics(range),
         journeyReport(query, range),
-        query(
-          `${base} SELECT COUNT(*) AS visits, COALESCE(SUM(views),0) AS views,
-          (SELECT COUNT(*) FROM filtered WHERE type='affiliate_outbound') AS clicks,
-          COALESCE(SUM(CASE WHEN clicks>0 THEN 1 ELSE 0 END),0) AS "clickedSessions" FROM visits`,
-          values,
-        ),
-        query(
-          `${base} SELECT COUNT(*) AS starts, COALESCE(SUM(CASE WHEN EXISTS(SELECT 1 FROM filtered e WHERE e.session_id=s.session_id AND e.type='helper_complete' AND e.received_at>=s.started) THEN 1 ELSE 0 END),0) AS completed FROM sessions s WHERE started IS NOT NULL`,
-          values,
-        ),
-        ...['source', 'landing'].map((column) =>
-          query(
-            `${base} SELECT ${column} AS label, COUNT(*) AS visits, SUM(views) AS views, SUM(clicks) AS clicks, SUM(CASE WHEN clicks>0 THEN 1 ELSE 0 END) AS "clickedSessions" FROM visits GROUP BY ${column} ORDER BY visits DESC, label`,
-            values,
-          ),
-        ),
-        query(
-          `WITH daily AS (SELECT ${day} AS label,session_id,
-          SUM(CASE WHEN type='page_view' THEN 1 ELSE 0 END) AS views,
-          SUM(CASE WHEN type='affiliate_outbound' THEN 1 ELSE 0 END) AS clicks
-          FROM events WHERE received_at >= $1 AND received_at < $2 GROUP BY ${day},session_id)
-          SELECT label, SUM(CASE WHEN views>0 THEN 1 ELSE 0 END) AS visits, SUM(views) AS views, SUM(clicks) AS clicks,
-          SUM(CASE WHEN views>0 AND clicks>0 THEN 1 ELSE 0 END) AS "clickedSessions" FROM daily GROUP BY label ORDER BY label`,
-          values,
-        ),
+        reports.performance(range, 'source'),
+        reports.performance(range, 'landing'),
+        reports.daily(range),
       ]);
-      const filled: PerformanceRow[] = [];
-      for (let date = Date.parse(range.from); date <= Date.parse(range.to); date += 86400_000) {
-        const label = new Date(date).toISOString().slice(0, 10);
-        filled.push(
-          daily.find((row) => row.label === label)
-            ? performance(daily.find((row) => row.label === label)!)
-            : { label, visits: 0, views: 0, clicks: 0, clickedSessions: 0 },
-        );
-      }
-      return {
-        journey,
-        ...performance({ ...totals[0], label: '' }),
-        starts: number(funnel[0], 'starts'),
-        completed: number(funnel[0], 'completed'),
-        daily: filled,
-        sources: sources.map(performance),
-        landingPages: landing.map(performance),
-      };
+      return { ...metrics, journey, sources, landingPages, daily };
     },
     async exportRows(range: DateRange): Promise<ExportRow[]> {
       const rows = await query(
