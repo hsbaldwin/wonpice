@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { initAnalytics, track } from '@/lib/analytics-client';
+import { observePageEngagement } from '@/lib/analytics-engagement';
 export function Analytics() {
   const path = usePathname();
   const last = useRef('');
@@ -12,5 +13,6 @@ export function Analytics() {
       track('page_view', { category: path.split('/')[2] || undefined });
     }
   }, [path]);
+  useEffect(() => observePageEngagement(path), [path]);
   return null;
 }

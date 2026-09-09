@@ -6,14 +6,8 @@ import { dirname, join } from 'node:path';
 import matter from 'gray-matter';
 import type { AnalyticsEvent, EventName } from './types';
 
-export const EVENT_NAMES = [
-  'page_view',
-  'helper_start',
-  'helper_complete',
-  'quote_save',
-  'pdf_generated',
-  'affiliate_outbound',
-] as const;
+import { EVENT_NAMES } from './analytics-events';
+export { EVENT_NAMES } from './analytics-events';
 export const CATEGORIES = [
   'installation',
   'companies',

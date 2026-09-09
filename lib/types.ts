@@ -45,13 +45,7 @@ export interface QuoteDocument {
   inquiry?: QuoteInquiry;
   recommendations?: Recommendation[];
 }
-export type EventName =
-  | 'page_view'
-  | 'helper_start'
-  | 'helper_complete'
-  | 'quote_save'
-  | 'pdf_generated'
-  | 'affiliate_outbound';
+export type EventName = keyof typeof import('./analytics-events').EVENT_LABELS;
 export interface AnalyticsEvent {
   landingPath?: string;
   eventId: string;

@@ -206,6 +206,20 @@
 .admin-table-scroll {
   overflow: auto;
 }
+.admin-definition {
+  margin-bottom: 12px;
+}
+.admin-definition summary {
+  min-height: 44px;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--admin-blue);
+}
+.admin-definition summary:focus-visible {
+  outline: 3px solid #76a7d4;
+  outline-offset: 3px;
+}
 .admin-shell table {
   width: 100%;
   border-collapse: collapse;

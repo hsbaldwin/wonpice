@@ -93,13 +93,15 @@ export async function flushEvents() {
 export function track(
   type: Exclude<EventName, 'affiliate_outbound'>,
   extra: { category?: string; cta?: string } = {},
+  path?: string,
 ) {
   if (!analyticsEnabled() || typeof window === 'undefined') return;
+  if ((path || location.pathname).startsWith('/admin')) return;
   queue.push({
     eventId: crypto.randomUUID(),
     sessionId: sessionId(),
     type,
-    path: location.pathname,
+    path: path || location.pathname,
     source: source(),
     landingPath: landingPath(),
     ...extra,

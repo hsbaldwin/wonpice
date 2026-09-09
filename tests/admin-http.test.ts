@@ -190,6 +190,9 @@ test(
           const html = await response.text();
           assert.match(html, /고객 여정 한눈에 보기/);
           assert.match(html, /도우미 완료율/);
+          assert.match(html, /도우미 단계별 진행/);
+          assert.match(html, /페이지별 읽기·문의/);
+          assert.match(html, /신청 버튼 위치별 성과/);
           assert.match(html, /한국 시간/);
           assert.doesNotMatch(html, /통계 조회에 실패했습니다/);
           const csv = await fetch(`${origin}/api/admin/export`, { headers: { Cookie: cookie } });

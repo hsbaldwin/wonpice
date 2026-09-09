@@ -13,6 +13,7 @@ import {
 } from '@/lib/analytics-store';
 import { siteTrackingConfig } from '@/lib/tracking';
 import { AdminResults } from '@/components/admin-results';
+import { AdminJourney } from '@/components/admin-journey';
 import { categories, getPosts } from '@/lib/content';
 
 const sourceNames: Record<string, string> = {
@@ -237,6 +238,7 @@ export default async function AdminPage({
             rows={report.landingPages}
             names={names}
           />
+          <AdminJourney report={report.journey} names={names} />
           <p className="admin-caption">
             첫 방문 페이지와 유입 경로는 세션의 첫 기록을 기준으로 합니다. 페이지를 조회하지 않은
             이동(예: JavaScript 비활성)은 문의 클릭수에는 포함될 수 있지만 방문 기반 클릭률에서는

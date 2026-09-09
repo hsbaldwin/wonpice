@@ -9,6 +9,7 @@ import {
 } from './analytics-server';
 import { siteTrackingConfig } from './tracking';
 import type { AnalyticsEvent } from './types';
+import { journeyReport, type JourneyReport } from './analytics-journey';
 
 export type SqlQuery = (
   sql: string,
@@ -30,6 +31,7 @@ export interface PerformanceRow {
   clickedSessions: number;
 }
 export interface DashboardReport {
+  journey: JourneyReport;
   visits: number;
   views: number;
   clicks: number;
@@ -154,7 +156,8 @@ export function createRuntimeStore(query: SqlQuery, dialect: 'postgres' | 'sqlit
           COALESCE((SELECT COALESCE(e.landing_path,e.path) FROM events e WHERE e.session_id=s.session_id AND e.type='page_view' ORDER BY e.received_at,e.event_id LIMIT 1),'미확인') AS landing,
           COALESCE((SELECT e.source FROM events e WHERE e.session_id=s.session_id AND e.source IS NOT NULL ORDER BY e.received_at,e.event_id LIMIT 1),'미확인') AS source
           FROM sessions s WHERE s.views > 0)`;
-      const [totals, funnel, sources, landing, daily] = await Promise.all([
+      const [journey, totals, funnel, sources, landing, daily] = await Promise.all([
+        journeyReport(query, range),
         query(
           `${base} SELECT COUNT(*) AS visits, COALESCE(SUM(views),0) AS views,
           (SELECT COUNT(*) FROM filtered WHERE type='affiliate_outbound') AS clicks,
@@ -191,6 +194,7 @@ export function createRuntimeStore(query: SqlQuery, dialect: 'postgres' | 'sqlit
         );
       }
       return {
+        journey,
         ...performance({ ...totals[0], label: '' }),
         starts: number(funnel[0], 'starts'),
         completed: number(funnel[0], 'completed'),

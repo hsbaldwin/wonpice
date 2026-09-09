@@ -96,6 +96,15 @@ export function QuoteHelper() {
     return () => media.removeEventListener('change', update);
   }, []);
   const started = useRef(false);
+  const tracked = useRef(new Set<string>());
+  const dirty = useRef(false);
+  const observedStep = useRef<number | null>(null);
+  function milestone(type: 'quote_save' | 'quote_restore' | 'quote_storage_error') {
+    if (!tracked.current.has(type)) {
+      tracked.current.add(type);
+      track(type);
+    }
+  }
   const panel = useRef<HTMLDivElement>(null);
   const focusStep = useRef(false);
   const invalidFocus = useRef<string | null>(null);
@@ -119,6 +128,8 @@ export function QuoteHelper() {
       : undefined;
     const restored = readSingleQuote(() => localStorage);
     const current = prepareMeasurementQuote(restored.document || newQuote(preset));
+    if (restored.document && hasQuoteInput(restored.document)) milestone('quote_restore');
+    if (restored.blocked) milestone('quote_storage_error');
     setDoc(current);
     if (!restored.blocked && current.step === 3) setEntered(true);
     setBlocked(restored.blocked);
@@ -174,6 +185,13 @@ export function QuoteHelper() {
   }, [doc.step, errors, active, activeWindow, entered]);
 
   const step = doc.step;
+  useEffect(() => {
+    if (!ready || !entered || observedStep.current === step) return;
+    observedStep.current = step;
+    track(
+      ({ 1: 'helper_step_size', 2: 'helper_step_needs', 3: 'helper_step_result' } as const)[step],
+    );
+  }, [ready, entered, step]);
   const room = doc.rooms[active] || doc.rooms[0];
   const windowIndex = clampWindowIndex(activeWindow, room.windows.length);
   const measurement = room.windows[windowIndex];
@@ -183,6 +201,7 @@ export function QuoteHelper() {
   function restoreCurrentQuote() {
     const restored = readSingleQuote(() => localStorage);
     if (restored.blocked) {
+      milestone('quote_storage_error');
       setBlocked(true);
       setStorageError('저장된 견적을 읽지 못했어요. 새로 작성으로 다시 시작할 수 있어요.');
       return;
@@ -206,9 +225,14 @@ export function QuoteHelper() {
     const latest = latestQuote.current;
     const result = writeSingleQuote(() => localStorage, latest.doc, latest);
     if (result === 'outdated') restoreCurrentQuote();
-    else if (result === 'unavailable')
+    else if (result === 'unavailable') {
+      milestone('quote_storage_error');
       setStorageError('자동 저장을 사용할 수 없어요. 브라우저 저장 공간을 확인해주세요.');
-    else if (result === 'saved') setStorageError('');
+    } else if (result === 'saved') {
+      if (dirty.current && hasQuoteInput(latest.doc)) milestone('quote_save');
+      dirty.current = false;
+      setStorageError('');
+    }
   }
   function transitionHelper(update: () => void) {
     if (activeTransition.current) return;
@@ -258,6 +282,7 @@ export function QuoteHelper() {
   function change(updater: (value: QuoteDocument) => QuoteDocument) {
     if (!ready) return;
     ensureStarted();
+    dirty.current = true;
     setDoc((value) => ({
       ...updater(value),
       updatedAt: nextQuoteUpdatedAt(value),
@@ -272,6 +297,7 @@ export function QuoteHelper() {
   }
   function move(step: QuoteDocument['step']) {
     transitionHelper(() => {
+      dirty.current = true;
       focusStep.current = true;
       setDoc((value) => ({ ...value, step, updatedAt: nextQuoteUpdatedAt(value) }));
     });
@@ -280,6 +306,7 @@ export function QuoteHelper() {
     const validation = validateRooms(doc.rooms);
     setErrors(validation);
     if (Object.keys(validation).length) {
+      track('helper_size_error');
       const invalid = firstInvalidMeasurement(doc.rooms, validation);
       if (invalid) {
         setActive(invalid.roomIndex);
@@ -321,6 +348,7 @@ export function QuoteHelper() {
         [`${missingRoom.id}-needs`]: '필요한 기능을 하나 이상 선택해주세요.',
       });
       invalidFocus.current = `${missingRoom.id}-need-daylight`;
+      track('helper_needs_error');
       return;
     }
     ensureStarted();
@@ -330,6 +358,7 @@ export function QuoteHelper() {
   function reset() {
     if (!ready) return;
     transitionHelper(() => {
+      track('helper_reset');
       const fresh = newQuote();
       fresh.updatedAt = nextQuoteUpdatedAt(doc, readSingleQuote(() => localStorage).document);
       const saved = writeSingleQuote(() => localStorage, fresh, {
