@@ -84,9 +84,9 @@ const faq = [
       '현재 견적 하나를 이 브라우저에 저장합니다. 같은 브라우저로 다시 방문하면 이어서 확인할 수 있습니다. 다른 기기와 자동으로 동기화되지 않으며 브라우저 데이터를 삭제하면 기록이 사라질 수 있습니다.',
   },
   {
-    question: '정리한 내용이 신청서에 자동으로 전달되나요?',
+    question: '견적 신청은 어떻게 하나요?',
     answer:
-      '자동으로 전달되지 않습니다. 정리 결과를 복사하거나 메모해 상담할 때 직접 공유하세요. 복사하지 않아도 견적 신청 페이지로 이동할 수 있습니다.',
+      '무료 견적 신청 버튼을 누르면 외부 신청 페이지로 이동합니다. 해당 페이지에서 신청 정보와 동의 내용을 확인하면 됩니다. 치수 도우미를 사용하지 않아도 바로 신청할 수 있습니다.',
   },
   {
     question: '무료 견적 신청 후 어떤 내용을 확인하나요?',
@@ -246,7 +246,7 @@ export default function Home() {
               ],
               [
                 '제품·금액·일정 상담',
-                '정리한 내용을 직접 공유하고 최종 규격, 설치비 포함 여부와 일정을 확인하세요.',
+                '상담에서 원단과 최종 규격, 설치비 포함 여부와 일정을 확인하세요.',
               ],
             ].map(([title, description], i) => (
               <li key={title}>
@@ -257,8 +257,8 @@ export default function Home() {
             ))}
           </ol>
           <p className="home-process-note">
-            <Check size={17} aria-hidden="true" /> 도우미에 입력한 내용은 신청 양식으로 자동
-            전송되지 않습니다.
+            <Check size={17} aria-hidden="true" /> 치수를 입력하지 않아도 바로 견적을 신청할 수
+            있습니다.
           </p>
         </section>
         <section id="home-faq" className="home-section home-faq" aria-labelledby="faq-title">

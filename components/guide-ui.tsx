@@ -235,7 +235,7 @@ export function GuideCta({
           <p className="guide-cta-note">이름·연락처·제품 종류·창문 개수·설치 주소를 준비하세요.</p>
         )}
         <p className="guide-cta-note">
-          입력한 치수와 요구사항은 신청 양식에 자동 전달되지 않습니다. 상담할 때 직접 공유하세요.
+          신청 페이지에서 정보를 입력하면 이후 상담에서 제품과 설치 조건을 확인할 수 있습니다.
         </p>
         {bottom && (
           <p className="guide-cta-note">

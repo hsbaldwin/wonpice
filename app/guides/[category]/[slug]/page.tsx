@@ -8,7 +8,6 @@ import { pageMetadata } from '@/lib/seo';
 import { GuideDiagram } from '@/components/guide-diagrams';
 import { GuideImage } from '@/components/guide-image';
 import { getImageBySrc } from '@/lib/guide-images';
-import { ConsultationCopy } from '@/components/consultation-copy';
 import {
   Breadcrumbs,
   Checklist,
@@ -128,12 +127,6 @@ export default async function PostPage({ params }: Props) {
                 </p>
               </div>
             </div>
-            <ConsultationCopy
-              text={post.consultation.template}
-              title={post.consultation.title}
-              cta="post-copy"
-              category={category.slug}
-            />
           </article>
           <aside className="guide-article-sidebar">
             <div className="guide-sidebar-sticky">

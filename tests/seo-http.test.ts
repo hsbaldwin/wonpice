@@ -77,6 +77,7 @@ test(
       descriptions = new Set<string>(),
       imageUrls = new Set<string>();
     const linkedAnchors: { from: string; path: string; hash: string }[] = [];
+    const inquiryLinks = new Set<string>();
     for (const page of pages) {
       const response = await fetch(new URL(page.path, origin), { redirect: 'manual' });
       assert.equal(response.status, 200, page.path);
@@ -95,6 +96,7 @@ test(
       );
       const body = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];
       assert.ok(body, `Main SSR content: ${page.path}`);
+      assert.doesNotMatch(body, /consultation-copy|상담 문구 복사|상담에 전달할 문구|<textarea\b/);
       const headings = [...body.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/g)];
       assert.equal(headings.length, 1, `One main heading: ${page.path}`);
       for (const keyword of page.keywords)
@@ -136,6 +138,7 @@ test(
         const link = new URL(anchor.href, expectedCanonical);
         if (link.origin !== new URL(canonicalOrigin).origin) continue;
         if (link.pathname === '/go/quote') {
+          inquiryLinks.add(link.pathname + link.search);
           assert.match(anchor.rel || '', /\bsponsored\b/, `Qualified CTA: ${page.path}`);
           const cta = link.searchParams.get('cta') || link.searchParams.get('placement');
           assert.ok(
@@ -260,13 +263,6 @@ test(
           post.bodyBlocks.filter((block) => block.type === 'visual').map((block) => block.id),
           `All article diagrams appear once in content order: ${page.path}`,
         );
-        const templates = [...body.matchAll(/<textarea\b([^>]*)>([\s\S]*?)<\/textarea>/g)]
-          .filter((m) => /\breadonly(?:\s|=|$)/i.test(m[1]))
-          .map((m) => decode(m[2]).trim());
-        assert.ok(
-          templates.includes(post.consultation.template),
-          `Consultation template is readable before hydration: ${page.path}`,
-        );
         assert.ok(body.includes('post-middle') && body.includes('post-bottom'));
         for (const heading of post.headings) {
           assert.ok(body.includes(`href="#${heading.id}"`));
@@ -311,6 +307,18 @@ test(
         documents.get(anchor.path)?.includes(`id="${anchor.hash}"`),
         `Working cross-page anchor ${anchor.path}#${anchor.hash} from ${anchor.from}`,
       );
+    assert.ok(inquiryLinks.size >= 19, 'Public pages have inquiry entry points');
+    for (const path of inquiryLinks) {
+      const response = await fetch(new URL(path, origin), { method: 'HEAD', redirect: 'manual' });
+      assert.equal(response.status, 302, `Inquiry redirect: ${path}`);
+      assert.equal(
+        response.headers.get('location'),
+        site.affiliateUrl,
+        `Exact affiliate link: ${path}`,
+      );
+      assert.match(response.headers.get('cache-control') || '', /no-store/);
+      assert.match(response.headers.get('x-robots-tag') || '', /noindex/);
+    }
     for (const image of imageUrls) {
       const url = new URL(image);
       const response = await fetch(new URL(url.pathname + url.search, origin), {

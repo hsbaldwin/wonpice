@@ -240,7 +240,7 @@ test('outbound route continues to the exact affiliate URL on database failure wi
     assert.equal(response.status, 302);
     assert.equal(
       response.headers.get('location'),
-      'https://dbdbdeep.com/ma/link.php?lncd=S00281518OC06031025V',
+      'http://tnr.kr/ma/link.php?lncd=S00281518OC06031025V',
     );
     assert.match(response.headers.get('cache-control') || '', /no-store/);
     const headResponse = await HEAD();

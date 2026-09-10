@@ -43,9 +43,7 @@ test('all Markdown posts render searchable HTML and resolve valid related conten
   const usedVisuals = new Set<string>();
   for (const post of posts) {
     assert.ok(post.answer.trim().length > 20);
-    assert.ok(post.consultation.title.trim());
-    assert.match(post.consultation.template, /질문:/);
-    assert.doesNotMatch(post.consultation.template, /이름:|연락처:|전화번호:|설치 주소:|이메일:/);
+    assert.equal('consultation' in post, false);
     assert.equal(post.bodyBlocks.filter((block) => block.type === 'cta').length, 1);
     const visuals = post.bodyBlocks.filter((block) => block.type === 'visual');
     assert.ok(visuals.length >= 1);

@@ -1,5 +1,7 @@
 /** A different, officially issued link is required before any site-only reporting. */
-export const sharedTrackingUrl = 'https://dbdbdeep.com/ma/link.php?lncd=S00281518OC06031025V';
+export const sharedTrackingUrl = 'http://tnr.kr/ma/link.php?lncd=S00281518OC06031025V';
+const sharedTrackingCode = new URL(sharedTrackingUrl).searchParams.get('lncd');
+const trackingOrigins = new Set(['http://tnr.kr', 'https://tnr.kr', 'https://dbdbdeep.com']);
 export function siteTrackingConfig() {
   const value = process.env.SITE_TRACKING_URL;
   const from = process.env.SITE_TRACKING_FROM;
@@ -7,14 +9,15 @@ export function siteTrackingConfig() {
   try {
     const url = new URL(value);
     if (
-      url.origin !== 'https://dbdbdeep.com' ||
+      !trackingOrigins.has(url.origin) ||
       url.pathname !== '/ma/link.php' ||
       !/^[a-zA-Z0-9]+$/.test(url.searchParams.get('lncd') || '') ||
       url.searchParams.size !== 1 ||
       url.username ||
       url.password ||
       url.hash ||
-      value === sharedTrackingUrl ||
+      // tnr.kr redirects to dbdbdeep.com. A host change does not create a site-only code.
+      url.searchParams.get('lncd') === sharedTrackingCode ||
       !/^\d{4}-\d{2}-\d{2}$/.test(from) ||
       new Date(from).toISOString().slice(0, 10) !== from
     )

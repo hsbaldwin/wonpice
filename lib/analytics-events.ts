@@ -19,7 +19,8 @@ export const EVENT_LABELS = {
   quote_save: '자동 저장 성공',
   quote_restore: '저장 내용 복원',
   quote_storage_error: '브라우저 저장 오류',
-  consultation_copy: '상담 준비 내용 복사 성공',
+  // Kept for historical records and already-open clients; the copy UI is retired.
+  consultation_copy: '이전 상담 문구 복사',
   pdf_generated: 'PDF 생성 성공',
   quote_cta_view: '신청 버튼 화면 노출',
   affiliate_outbound: '견적 신청 페이지 이동',

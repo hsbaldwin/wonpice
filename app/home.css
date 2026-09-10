@@ -474,9 +474,6 @@
 .home-helper .inquiry-final-actions {
   flex-wrap: wrap;
 }
-.home-helper .inquiry-body > .consultation-copy {
-  margin-top: 20px;
-}
 .home-helper .helper-transfer-note {
   margin: 20px 0 0;
   font-size: 14px;

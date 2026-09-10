@@ -176,6 +176,27 @@ test('site-specific conversion is gated by official tracking, date, full input c
     assert.equal(resultSummary([], 'site', range, 10, '2026-09-03').conversionRate, null);
     process.env.SITE_TRACKING_URL = sharedTrackingUrl;
     assert.equal(siteTrackingConfig(), null);
+    // Redirect aliases with the shared code cannot become site-only attribution.
+    for (const host of ['https://dbdbdeep.com', 'http://tnr.kr', 'https://tnr.kr']) {
+      process.env.SITE_TRACKING_URL = `${host}/ma/link.php?lncd=S00281518OC06031025V`;
+      assert.equal(siteTrackingConfig(), null);
+      assert.equal(trackingUrl(now), sharedTrackingUrl);
+    }
+    process.env.SITE_TRACKING_URL = 'http://tnr.kr/ma/link.php?lncd=TESTSITEONLY';
+    assert.ok(siteTrackingConfig());
+    assert.equal(trackingUrl(now), process.env.SITE_TRACKING_URL);
+    for (const value of [
+      'http://tnr.kr.evil.invalid/ma/link.php?lncd=TESTSITEONLY',
+      'http://tnr.kr/ma/link.php?lncd=TESTSITEONLY&url=https://evil.invalid',
+      'http://tnr.kr/ma/link.php?lncd=TESTSITEONLY#fragment',
+      'http://user:password@tnr.kr/ma/link.php?lncd=TESTSITEONLY',
+      'http://tnr.kr:8080/ma/link.php?lncd=TESTSITEONLY',
+    ]) {
+      process.env.SITE_TRACKING_URL = value;
+      assert.equal(siteTrackingConfig(), null);
+      assert.equal(trackingUrl(now), sharedTrackingUrl);
+    }
+    delete process.env.SITE_TRACKING_URL;
     for (const input of [
       { ...result, scope: 'shared', phone: '010' },
       { ...result, scope: 'shared', applications: -1 },

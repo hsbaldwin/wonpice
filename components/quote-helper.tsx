@@ -10,7 +10,6 @@ import { track } from '@/lib/analytics-client';
 import { AffiliateLink } from './affiliate-link';
 import { SelectMenu } from './select-menu';
 import { MeasurementKeypad } from './measurement-keypad';
-import { ConsultationCopy } from './consultation-copy';
 import {
   SINGLE_QUOTE_KEY,
   hasQuoteInput,
@@ -431,24 +430,6 @@ export function QuoteHelper() {
       </div>
     ) : null;
 
-  const consultationText = [
-    '커튼 견적 상담 준비 내용',
-    ...doc.rooms.flatMap((item) => [
-      `공간: ${item.name || roomLabels[item.type]}`,
-      ...item.windows.map(
-        (window, index) =>
-          `창 ${index + 1}: ${window.width} × ${window.height} cm / ${window.basis === 'window' ? '창문 기준' : '설치 범위'} / ${window.accuracy === 'measured' ? '직접 실측' : '대략값'}`,
-      ),
-      `필요한 기능: ${
-        selectedNeeds(item)
-          .map((need) => goalLabels[need])
-          .join(', ') || '상담에서 결정'
-      }`,
-    ]),
-    '확인할 내용: 제작 규격, 원단, 레일, 설치비 포함 여부, 가능한 일정',
-    '입력 치수는 상담 참고용이며 최종 제작 규격과 금액은 실측·상담에서 확정합니다.',
-  ].join('\n');
-
   return (
     <section
       id="helper"
@@ -718,15 +699,9 @@ export function QuoteHelper() {
                     </dd>
                   </div>
                 </dl>
-                <ConsultationCopy
-                  title="상담할 때 참고하세요"
-                  text={consultationText}
-                  cta="home-result-copy"
-                  compact
-                />
                 <p className="helper-transfer-note">
-                  치수와 요구사항은 신청 양식에 자동 전달되지 않습니다. 복사하거나 메모해 상담할 때
-                  직접 공유하세요.
+                  아래 견적 문의 버튼을 누르면 신청 페이지로 이동합니다. 제품과 설치 조건은 상담에서
+                  확인하세요.
                 </p>
               </div>
               <div className="inquiry-actions inquiry-final-actions">

@@ -321,7 +321,6 @@ export interface ContentPost {
   title: string;
   description: string;
   answer: string;
-  consultation: { title: string; template: string };
   primaryKeyword: string;
   relatedKeywords: string[];
   category: string;
@@ -463,14 +462,6 @@ async function loadPosts(): Promise<ContentPost[]> {
         if (typeof data[field] !== 'string' || !data[field])
           throw new Error(`Missing ${field}: ${file}`);
       }
-      if (
-        !data.consultation ||
-        typeof data.consultation.title !== 'string' ||
-        !data.consultation.title.trim() ||
-        typeof data.consultation.template !== 'string' ||
-        !data.consultation.template.trim()
-      )
-        throw new Error(`Missing consultation title or template: ${file}`);
       if (!Array.isArray(data.relatedKeywords) || !Array.isArray(data.relatedPosts))
         throw new Error(`Missing related content: ${file}`);
       if (!['living', 'bedroom', 'newlywed', 'other'].includes(data.helperPreset))
@@ -512,10 +503,6 @@ async function loadPosts(): Promise<ContentPost[]> {
         title: data.title,
         description: data.description,
         answer: data.answer,
-        consultation: {
-          title: data.consultation.title,
-          template: data.consultation.template.trim(),
-        },
         primaryKeyword: data.primaryKeyword,
         relatedKeywords: data.relatedKeywords,
         category: category.slug,

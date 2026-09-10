@@ -1,3 +1,5 @@
+import { sharedTrackingUrl } from './tracking';
+
 /** Public builds must never publish a development or malformed canonical origin. */
 export function resolveSiteUrl(value: string | undefined, indexable: boolean): string {
   if (!indexable) return value || 'http://localhost:3000';
@@ -41,7 +43,7 @@ export const site = {
   indexable,
   // Commission attribution depends on this tracking link. Do not bypass it
   // with a direct landing-page URL, even when affiliate identifiers match.
-  affiliateUrl: 'https://dbdbdeep.com/ma/link.php?lncd=S00281518OC06031025V',
+  affiliateUrl: sharedTrackingUrl,
 };
 export function absoluteUrl(path = '/') {
   return new URL(path, site.url).toString();
