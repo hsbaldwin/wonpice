@@ -332,6 +332,7 @@ export function JourneyPanels({
     'quote_save',
     'quote_restore',
     'quote_storage_error',
+    'consultation_copy',
     'helper_reset',
     'pdf_generated',
   ] as const;
@@ -368,15 +369,15 @@ export function JourneyPanels({
         )}
       </Panel>
       <Panel
-        title="입력·저장 상태"
+        title="입력·저장·복사 상태"
         id="storage"
         result={data.actions}
         href={href}
-        note="입력값이나 오류 문구는 수집하지 않습니다. 자동 저장 성공은 사용자 변경 후 저장 성공 시 도우미를 연 동안 한 번만 기록합니다. 기록 없음은 오류나 실적 미입력과 다릅니다."
+        note="입력값이나 오류 문구는 수집하지 않습니다. 자동 저장 성공은 사용자 변경 후 도우미를 연 동안 한 번만 기록합니다. 상담 내용 복사는 클립보드 저장 성공이며 신청 완료를 뜻하지 않습니다. 기록 없음은 오류나 실적 미입력과 다릅니다."
       >
         {data.actions?.data && (
           <ReportList
-            title="입력·저장 상태"
+            title="입력·저장·복사 상태"
             columns={['발생 횟수', '방문수']}
             rows={actionTypes.map((type) => {
               const row = data.actions?.data?.find((item) => item.type === type);

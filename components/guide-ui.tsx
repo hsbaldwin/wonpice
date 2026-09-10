@@ -13,6 +13,8 @@ import {
 import { getCategory, helperHref, type ContentPost, type GuideCategory } from '@/lib/content';
 import { absoluteUrl, site } from '@/lib/site';
 import { AffiliateLink } from '@/components/affiliate-link';
+import { GuideImage } from '@/components/guide-image';
+import { getImageBySrc } from '@/lib/guide-images';
 
 export function GuideIcon({ category, size = 24 }: { category: string; size?: number }) {
   const Icon =
@@ -101,43 +103,62 @@ export function GuideStructuredData({
 export function CategoryCard({ category, count }: { category: GuideCategory; count?: number }) {
   return (
     <Link href={`/guides/${category.slug}`} className="guide-category-card">
-      <span className="guide-icon">
-        <GuideIcon category={category.slug} />
-      </span>
-      <h3>{category.navTitle}</h3>
-      <p>
-        {
+      <GuideImage
+        category={category.slug}
+        className="guide-card-image"
+        sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 1100px) 44vw, (max-width: 1500px) 29vw, 432px"
+      />
+      <div className="guide-category-card-copy">
+        <div className="guide-category-card-heading">
+          <h3>{category.navTitle}</h3>
+          <GuideIcon category={category.slug} size={21} />
+        </div>
+        <p>
           {
-            installation: '창 크기와 레일, 설치 전에 무엇을 확인해야 할까요?',
-            companies: '견적 금액이 다르면 어떤 항목부터 비교해야 할까요?',
-            interior: '쉬폰·암막·블라인드 중 어떤 구성이 맞을까요?',
-            'living-room': '채광·TV 반사·외부 시선을 어떻게 조절할까요?',
-            bedroom: '수면 시간에 맞는 암막과 빛샘 대책은 무엇일까요?',
-            'newlywed-home': '방별 요구사항과 입주 일정을 어떻게 준비할까요?',
-          }[category.slug]
-        }
-      </p>
-      <span className="guide-card-bottom">
-        <span>{count !== undefined ? `${count}개의 가이드` : '선택 기준 살펴보기'}</span>
-        <ArrowRight size={18} aria-hidden="true" />
-      </span>
+            {
+              installation: '창 크기와 레일, 설치 전에 무엇을 확인해야 할까요?',
+              companies: '견적 금액이 다르면 어떤 항목부터 비교해야 할까요?',
+              interior: '쉬폰·암막·블라인드 중 어떤 구성이 맞을까요?',
+              'living-room': '채광·TV 반사·외부 시선을 어떻게 조절할까요?',
+              bedroom: '수면 시간에 맞는 암막과 빛샘 대책은 무엇일까요?',
+              'newlywed-home': '방별 요구사항과 입주 일정을 어떻게 준비할까요?',
+            }[category.slug]
+          }
+        </p>
+        <span className="guide-card-bottom">
+          <span>{count !== undefined ? `${count}개의 가이드` : '선택 기준 살펴보기'}</span>
+          <ArrowRight size={18} aria-hidden="true" />
+        </span>
+      </div>
     </Link>
   );
 }
 
-export function PostCard({ post }: { post: ContentPost }) {
+export function PostCard({ post, thumbnail = false }: { post: ContentPost; thumbnail?: boolean }) {
   const category = getCategory(post.category)!;
   return (
-    <Link className="guide-post-card" href={post.href}>
-      <div className="guide-post-card-top">
-        <span className="guide-post-category">{category.navTitle}</span>
-        <ArrowRight size={18} aria-hidden="true" />
+    <Link
+      className={`guide-post-card${thumbnail ? ' guide-post-card-with-image' : ''}`}
+      href={post.href}
+    >
+      {thumbnail && post.image && (
+        <GuideImage
+          image={getImageBySrc(post.image)}
+          className="guide-post-thumbnail"
+          sizes="(max-width: 600px) calc(100vw - 48px), (max-width: 1100px) 44vw, 30vw"
+        />
+      )}
+      <div className="guide-post-card-copy">
+        <div className="guide-post-card-top">
+          <span className="guide-post-category">{category.navTitle}</span>
+          <ArrowRight size={18} aria-hidden="true" />
+        </div>
+        <h3>{post.title}</h3>
+        <p>{post.description}</p>
+        <span className="guide-post-intent">
+          {post.ctaIntent === 'helper' ? '선택을 돕는 가이드' : '상담을 준비하는 가이드'}
+        </span>
       </div>
-      <h3>{post.title}</h3>
-      <p>{post.description}</p>
-      <span className="guide-post-intent">
-        {post.ctaIntent === 'helper' ? '선택을 돕는 가이드' : '상담을 준비하는 가이드'}
-      </span>
     </Link>
   );
 }
@@ -147,23 +168,43 @@ export function GuideCta({
   placement = 'guide-bottom',
   intent,
   preset,
+  title,
+  description,
 }: {
   category: GuideCategory;
   from: string;
   placement?: string;
   intent?: 'helper' | 'apply';
   preset?: GuideCategory['helperPreset'];
+  title?: string;
+  description?: string;
 }) {
   const bottom = placement.endsWith('bottom');
+  const action = bottom ? 'apply' : (intent ?? category.ctaIntent);
+  const preparationHref = helperHref(preset ?? category.helperPreset);
   return (
     <section
       className={`guide-cta ${bottom ? '' : 'guide-cta-compact'}`}
       aria-label="견적 신청 안내"
     >
       <div>
-        <h2>{bottom ? '준비한 내용으로 상담을 이어가세요' : '필요한 조건을 정리했다면'}</h2>
-        <p>견적 신청 페이지로 이동합니다.</p>
-        <p className="guide-cta-note">이름·연락처·제품 종류·창문 개수·설치 주소를 준비하세요.</p>
+        <h2>
+          {title ??
+            (bottom
+              ? '준비한 내용으로 상담을 이어가세요'
+              : action === 'helper'
+                ? '읽은 기준을 우리 집 조건으로 정리하세요'
+                : '확인할 조건이 정리됐다면 상담을 이어가세요')}
+        </h2>
+        <p>
+          {description ??
+            (action === 'helper'
+              ? '창 치수와 필요한 기능을 도우미에 기록할 수 있습니다.'
+              : '제품 구성과 설치 조건을 견적 상담에서 확인하세요.')}
+        </p>
+        {action === 'apply' && (
+          <p className="guide-cta-note">이름·연락처·제품 종류·창문 개수·설치 주소를 준비하세요.</p>
+        )}
         <p className="guide-cta-note">
           입력한 치수와 요구사항은 신청 양식에 자동 전달되지 않습니다. 상담할 때 직접 공유하세요.
         </p>
@@ -174,12 +215,23 @@ export function GuideCta({
         )}
       </div>
       <div className="guide-cta-actions">
-        <AffiliateLink className="button button-primary" cta={placement} category={category.slug}>
+        {action === 'helper' && (
+          <Link className="button button-primary" href={preparationHref}>
+            우리 집 치수 정리하기 <ArrowRight size={18} aria-hidden="true" />
+          </Link>
+        )}
+        <AffiliateLink
+          className={action === 'apply' ? 'button button-primary' : 'guide-simple-link'}
+          cta={placement}
+          category={category.slug}
+        >
           무료 견적 신청 <ArrowRight size={18} aria-hidden="true" />
         </AffiliateLink>
-        <Link className="guide-simple-link" href={helperHref(preset ?? category.helperPreset)}>
-          치수 먼저 정리하기 <ArrowRight size={16} aria-hidden="true" />
-        </Link>
+        {action === 'apply' && (
+          <Link className="guide-simple-link" href={preparationHref}>
+            치수 먼저 정리하기 <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+        )}
       </div>
     </section>
   );

@@ -4,5 +4,5 @@ import type { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 
 export function RouteFooter({ children }: { children: ReactNode }) {
-  return usePathname() === '/' ? null : children;
+  return usePathname().startsWith('/admin') ? null : children;
 }

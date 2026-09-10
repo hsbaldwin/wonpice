@@ -4,13 +4,13 @@ import { notFound } from 'next/navigation';
 import { ArrowRight, Plus } from 'lucide-react';
 import { categories, getCategory, getPosts } from '@/lib/content';
 import { pageMetadata } from '@/lib/seo';
+import { getGuideImage } from '@/lib/guide-images';
+import { GuideImage } from '@/components/guide-image';
 import {
   Breadcrumbs,
   Checklist,
   GuideCta,
-  GuideIcon,
   GuideStructuredData,
-  MeasurementSketch,
   PostCard,
 } from '@/components/guide-ui';
 
@@ -23,9 +23,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategory((await params).category);
   if (!category) return {};
   return pageMetadata({
-    title: `${category.keywords.join('·')} 선택·견적 가이드`,
+    title: category.seoTitle,
     description: category.description,
     path: `/guides/${category.slug}`,
+    image: getGuideImage(category.slug).src,
   });
 }
 export default async function CategoryPage({ params }: Props) {
@@ -41,8 +42,9 @@ export default async function CategoryPage({ params }: Props) {
     <main id="main" className="guide-main">
       <div className="container">
         <Breadcrumbs items={breadcrumbs} />
-        <section className="guide-category-hero">
+        <section className="guide-category-hero guide-category-editorial">
           <div className="guide-category-intro">
+            <span className="eyebrow">{category.navTitle} 가이드</span>
             <h1>
               {category.title.split('\n').map((line, i) => (
                 <span key={line} className={i ? 'guide-heading-soft' : undefined}>
@@ -51,24 +53,31 @@ export default async function CategoryPage({ params }: Props) {
               ))}
             </h1>
             <p>{category.lead}</p>
+            <a className="guide-editorial-link" href="#guide-comparison">
+              선택 기준 비교하기 <ArrowRight size={18} aria-hidden="true" />
+            </a>
           </div>
-          <aside className="guide-hero-note">
-            {category.slug === 'installation' ? (
-              <MeasurementSketch />
-            ) : (
-              <>
-                <span className="guide-icon">
-                  <GuideIcon category={category.slug} size={25} />
-                </span>
-                <h2>
-                  이것만 준비해도
-                  <br />
-                  상담이 달라져요.
-                </h2>
-                <Checklist items={category.checklist.slice(0, 3)} />
-              </>
-            )}
-          </aside>
+          <GuideImage
+            category={category.slug}
+            className="guide-category-cover"
+            sizes="(max-width: 800px) calc(100vw - 48px), (max-width: 1500px) 48vw, 700px"
+            preload
+          />
+        </section>
+        <section className="guide-category-reading" aria-labelledby="category-reading-title">
+          <div className="guide-section-title">
+            <div>
+              <h2 id="category-reading-title">지금 궁금한 내용부터 읽어보세요</h2>
+            </div>
+            <Link href="/guides" className="text-link">
+              전체 가이드 <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+          <div className="guide-post-grid">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} thumbnail />
+            ))}
+          </div>
         </section>
         <section aria-label="핵심 선택 기준" className="guide-point-grid">
           {category.points.map((point, index) => (
@@ -132,21 +141,6 @@ export default async function CategoryPage({ params }: Props) {
                 </summary>
                 <p>{item.answer}</p>
               </details>
-            ))}
-          </div>
-        </section>
-        <section className="guide-related">
-          <div className="guide-section-title">
-            <div>
-              <h2>{category.navTitle}, 더 알아보기</h2>
-            </div>
-            <Link href="/guides" className="text-link">
-              전체 가이드 <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="guide-post-grid">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
             ))}
           </div>
         </section>

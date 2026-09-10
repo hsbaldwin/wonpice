@@ -98,7 +98,7 @@ export async function journeyReport(
       'actions',
       `${filtered} SELECT type,COUNT(*) AS events,COUNT(DISTINCT session_id) AS sessions
       FROM filtered WHERE type IN ('helper_size_error','helper_needs_error','quote_save','quote_restore',
-      'quote_storage_error','helper_reset','pdf_generated') GROUP BY type ORDER BY type`,
+      'quote_storage_error','helper_reset','pdf_generated','consultation_copy') GROUP BY type ORDER BY type`,
       values,
     ),
     read(

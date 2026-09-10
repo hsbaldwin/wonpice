@@ -10,6 +10,7 @@ import { track } from '@/lib/analytics-client';
 import { AffiliateLink } from './affiliate-link';
 import { SelectMenu } from './select-menu';
 import { MeasurementKeypad } from './measurement-keypad';
+import { ConsultationCopy } from './consultation-copy';
 import {
   SINGLE_QUOTE_KEY,
   hasQuoteInput,
@@ -77,7 +78,7 @@ function prepareMeasurementQuote(value: QuoteDocument): QuoteDocument {
 export function QuoteHelper() {
   const [doc, setDoc] = useState<QuoteDocument>(initial);
   const [ready, setReady] = useState(false);
-  const [entered, setEntered] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(0);
   const [activeWindow, setActiveWindow] = useState(0);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -131,13 +132,11 @@ export function QuoteHelper() {
     if (restored.document && hasQuoteInput(restored.document)) milestone('quote_restore');
     if (restored.blocked) milestone('quote_storage_error');
     setDoc(current);
-    if (!restored.blocked && current.step === 3) setEntered(true);
     setBlocked(restored.blocked);
     if (restored.blocked)
       setStorageError('저장된 견적을 읽지 못했어요. 새로 작성으로 다시 시작할 수 있어요.');
     // Existing bookmarks now open the one current quote, never an older snapshot.
     if (params.has('open') || params.get('view') === 'saved') {
-      setEntered(true);
       const url = new URL(location.href);
       url.searchParams.delete('open');
       url.searchParams.delete('view');
@@ -174,24 +173,38 @@ export function QuoteHelper() {
   }, []);
   useEffect(() => {
     if (invalidFocus.current) {
-      document.getElementById(invalidFocus.current)?.focus({ preventScroll: true });
+      const field = document.getElementById(invalidFocus.current);
+      field?.focus({ preventScroll: true });
+      field?.scrollIntoView({ block: 'center', behavior: 'instant' });
       invalidFocus.current = null;
     } else if (focusStep.current) {
-      panel.current
-        ?.querySelector<HTMLElement>('[data-step-heading]')
-        ?.focus({ preventScroll: true });
+      const heading = panel.current?.querySelector<HTMLElement>('[data-step-heading]');
+      heading?.focus({ preventScroll: true });
+      heading?.scrollIntoView({ block: 'start', behavior: 'instant' });
       focusStep.current = false;
     }
-  }, [doc.step, errors, active, activeWindow, entered]);
+  }, [doc.step, errors, active, activeWindow]);
+
+  useEffect(() => {
+    if (!panel.current || !window.IntersectionObserver) {
+      setVisible(true);
+      return;
+    }
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), {
+      threshold: 0.15,
+    });
+    observer.observe(panel.current);
+    return () => observer.disconnect();
+  }, []);
 
   const step = doc.step;
   useEffect(() => {
-    if (!ready || !entered || observedStep.current === step) return;
+    if (!ready || !visible || observedStep.current === step) return;
     observedStep.current = step;
     track(
       ({ 1: 'helper_step_size', 2: 'helper_step_needs', 3: 'helper_step_result' } as const)[step],
     );
-  }, [ready, entered, step]);
+  }, [ready, visible, step]);
   const room = doc.rooms[active] || doc.rooms[0];
   const windowIndex = clampWindowIndex(activeWindow, room.windows.length);
   const measurement = room.windows[windowIndex];
@@ -211,8 +224,15 @@ export function QuoteHelper() {
     if (
       (!latest.blocked || hasQuoteInput(latest.doc)) &&
       Date.parse(current.updatedAt) < Date.parse(latest.doc.updatedAt)
-    )
+    ) {
+      // A valid storage event can recover access without replacing newer local input.
+      if (latest.blocked) {
+        latestQuote.current = { ...latest, blocked: false };
+        setBlocked(false);
+        setStorageError('');
+      }
       return;
+    }
     latestQuote.current = { doc: current, ready: true, blocked: false };
     setDoc(current);
     setBlocked(false);
@@ -262,16 +282,6 @@ export function QuoteHelper() {
       document.documentElement.removeAttribute('data-helper-transition');
       update();
     }
-  }
-  function enterHelper() {
-    if (!ready || entered) return;
-    transitionHelper(() => {
-      setActive(0);
-      setActiveWindow(0);
-      focusStep.current = true;
-      setEntered(true);
-      ensureStarted();
-    });
   }
   function ensureStarted() {
     if (!started.current) {
@@ -370,7 +380,6 @@ export function QuoteHelper() {
       setBlocked(false);
       setStorageError(saved === 'saved' ? '' : '브라우저 저장을 사용할 수 없어요.');
       setDoc(fresh);
-      setEntered(true);
       setActive(0);
       setActiveWindow(0);
       setErrors({});
@@ -422,319 +431,325 @@ export function QuoteHelper() {
       </div>
     ) : null;
 
+  const consultationText = [
+    '커튼 견적 상담 준비 내용',
+    ...doc.rooms.flatMap((item) => [
+      `공간: ${item.name || roomLabels[item.type]}`,
+      ...item.windows.map(
+        (window, index) =>
+          `창 ${index + 1}: ${window.width} × ${window.height} cm / ${window.basis === 'window' ? '창문 기준' : '설치 범위'} / ${window.accuracy === 'measured' ? '직접 실측' : '대략값'}`,
+      ),
+      `필요한 기능: ${
+        selectedNeeds(item)
+          .map((need) => goalLabels[need])
+          .join(', ') || '상담에서 결정'
+      }`,
+    ]),
+    '확인할 내용: 제작 규격, 원단, 레일, 설치비 포함 여부, 가능한 일정',
+    '입력 치수는 상담 참고용이며 최종 제작 규격과 금액은 실측·상담에서 확정합니다.',
+  ].join('\n');
+
   return (
     <section
       id="helper"
-      className={`helper-fit inquiry-helper${!entered ? ' is-welcome' : ''}`}
+      className="helper-fit inquiry-helper home-helper"
       aria-label="커튼·블라인드 견적 도우미"
     >
-      {entered && (
-        <div className="inquiry-toolbar">
-          <button
-            type="button"
-            className="button inquiry-home"
-            disabled={!ready}
-            onClick={() => {
-              transitionHelper(() => {
-                focusStep.current = true;
-                setErrors({});
-                setEntered(false);
-              });
-            }}
-          >
-            <ArrowLeft size={16} aria-hidden="true" /> 처음으로
-          </button>
-        </div>
-      )}
-      {!entered ? (
-        <div id="helper-panel-draft" className="inquiry-panel inquiry-welcome" ref={panel}>
-          <div className="inquiry-welcome-copy">
-            <p className="inquiry-step">맞춤커튼, 문의 전 간단한 준비</p>
-            <h1 tabIndex={-1} data-step-heading>
-              우리 집 견적을 <br />
-              미리 정리해보세요.
-            </h1>
-            <button
-              type="button"
-              className="button button-primary inquiry-start"
-              disabled={!ready}
-              onClick={enterHelper}
+      <ol className="helper-progress" aria-label="상담 준비 단계">
+        {['창 치수', '필요한 기능', '정리와 문의'].map((label, index) => (
+          <li key={label} aria-current={step === index + 1 ? 'step' : undefined}>
+            <span aria-hidden="true">0{index + 1}</span> {label}
+          </li>
+        ))}
+      </ol>
+      <div id="helper-panel-draft" className="inquiry-panel" ref={panel}>
+        <header className="inquiry-heading">
+          <h2 tabIndex={-1} data-step-heading>
+            {copy.title}
+          </h2>
+          {step === 1 && measurementErrors.length > 0 ? (
+            <p id="measurement-error" className="inquiry-error" role="alert">
+              {measurementErrors.length > 1
+                ? '가로·세로를 cm 단위의 숫자로 입력해주세요.'
+                : errors[`${measurement.id}-${measurementErrors[0]}`]}
+            </p>
+          ) : (
+            <p>{copy.description}</p>
+          )}
+          <p className="helper-direct-note">
+            치수를 아직 모르셔도 괜찮아요.
+            <AffiliateLink cta="home-helper-direct">
+              바로 견적 상담하기 <ArrowUpRight size={15} aria-hidden="true" />
+            </AffiliateLink>
+          </p>
+        </header>
+        <div className={`inquiry-content step-${step}`}>
+          {step === 1 ? (
+            <form
+              key="measurements"
+              className="inquiry-screen"
+              noValidate
+              onSubmit={(e) => {
+                e.preventDefault();
+                // Some virtual keyboards submit without sending a keydown.
+                if (!finishMeasurementInput()) next();
+              }}
             >
-              시작하기 <ArrowRight size={16} />
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div id="helper-panel-draft" className="inquiry-panel" ref={panel}>
-          <header className="inquiry-heading">
-            <h1 tabIndex={-1} data-step-heading>
-              {copy.title}
-            </h1>
-            {step === 1 && measurementErrors.length > 0 ? (
-              <p id="measurement-error" className="inquiry-error" role="alert">
-                {measurementErrors.length > 1
-                  ? '가로·세로를 cm 단위의 숫자로 입력해주세요.'
-                  : errors[`${measurement.id}-${measurementErrors[0]}`]}
-              </p>
-            ) : (
-              <p>{copy.description}</p>
-            )}
-          </header>
-          <div className={`inquiry-content step-${step}`}>
-            {step === 1 ? (
-              <form
-                key="measurements"
-                className="inquiry-screen"
-                noValidate
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  // Some virtual keyboards submit without sending a keydown.
-                  if (!finishMeasurementInput()) next();
-                }}
-              >
-                <div className="inquiry-body">
-                  {windowPicker}
-                  <div className="inquiry-measure-settings">
-                    {(
-                      [
-                        {
-                          key: 'basis',
-                          label: '측정 기준',
-                          options: [
-                            { value: 'window', label: '창문 기준' },
-                            { value: 'installation', label: '설치 범위' },
-                          ],
-                        },
-                        {
-                          key: 'accuracy',
-                          label: '측정 상태',
-                          options: [
-                            { value: 'approximate', label: '대략값' },
-                            { value: 'measured', label: '실측값' },
-                          ],
-                        },
-                      ] as const
-                    ).map((setting) => (
-                      <fieldset
-                        className="inquiry-measure-choice"
-                        key={setting.key}
-                        disabled={!ready}
-                      >
-                        <legend>{setting.label}</legend>
-                        <div className="inquiry-segments">
-                          {setting.options.map((option) => (
-                            <label className="inquiry-segment" key={option.value}>
-                              <input
-                                type="radio"
-                                name={`${measurement.id}-${setting.key}`}
-                                value={option.value}
-                                checked={measurement[setting.key] === option.value}
-                                onChange={() =>
-                                  patchRoom({
-                                    windows: room.windows.map((w) =>
-                                      w.id === measurement.id
-                                        ? {
-                                            ...w,
-                                            ...(setting.key === 'basis'
-                                              ? { basis: option.value as 'window' | 'installation' }
-                                              : {
-                                                  accuracy: option.value as
-                                                    'approximate' | 'measured',
-                                                }),
-                                          }
-                                        : w,
-                                    ),
-                                  })
-                                }
-                              />
-                              <span>{option.label}</span>
-                            </label>
-                          ))}
-                        </div>
-                      </fieldset>
-                    ))}
-                  </div>
-                  <div className="inquiry-size-fields" key={measurement.id}>
-                    {(['width', 'height'] as const).map((key) => (
-                      <div key={key} className="inquiry-size-field">
-                        <div className="inquiry-size-label">
-                          <label htmlFor={`${measurement.id}-${key}`}>
-                            {key === 'width' ? '가로' : '세로'}
-                          </label>
-                        </div>
-                        <div
-                          className={`inquiry-size-input${errors[`${measurement.id}-${key}`] ? ' invalid' : ''}`}
-                        >
-                          <input
-                            id={`${measurement.id}-${key}`}
-                            aria-label={`${key === 'width' ? '가로' : '세로'} cm`}
-                            inputMode={useKeypad ? 'none' : 'decimal'}
-                            readOnly={useKeypad}
-                            aria-haspopup={useKeypad ? 'dialog' : undefined}
-                            onClick={() => {
-                              if (useKeypad) setKeypadField(key);
-                            }}
-                            enterKeyHint={key === 'width' ? 'next' : 'done'}
-                            autoComplete="off"
-                            maxLength={20}
-                            placeholder={key === 'width' ? '예: 360' : '예: 240'}
-                            onKeyDown={(event) => {
-                              if (useKeypad && (event.key === 'Enter' || event.key === ' ')) {
-                                event.preventDefault();
-                                setKeypadField(key);
-                                return;
+              <div className="inquiry-body">
+                {windowPicker}
+                <div className="inquiry-measure-settings">
+                  {(
+                    [
+                      {
+                        key: 'basis',
+                        label: '측정 기준',
+                        options: [
+                          { value: 'window', label: '창문 기준' },
+                          { value: 'installation', label: '설치 범위' },
+                        ],
+                      },
+                      {
+                        key: 'accuracy',
+                        label: '측정 상태',
+                        options: [
+                          { value: 'approximate', label: '대략값' },
+                          { value: 'measured', label: '실측값' },
+                        ],
+                      },
+                    ] as const
+                  ).map((setting) => (
+                    <fieldset
+                      className="inquiry-measure-choice"
+                      key={setting.key}
+                      disabled={!ready}
+                    >
+                      <legend>{setting.label}</legend>
+                      <div className="inquiry-segments">
+                        {setting.options.map((option) => (
+                          <label className="inquiry-segment" key={option.value}>
+                            <input
+                              type="radio"
+                              name={`${measurement.id}-${setting.key}`}
+                              value={option.value}
+                              checked={measurement[setting.key] === option.value}
+                              onChange={() =>
+                                patchRoom({
+                                  windows: room.windows.map((w) =>
+                                    w.id === measurement.id
+                                      ? {
+                                          ...w,
+                                          ...(setting.key === 'basis'
+                                            ? { basis: option.value as 'window' | 'installation' }
+                                            : {
+                                                accuracy: option.value as
+                                                  'approximate' | 'measured',
+                                              }),
+                                        }
+                                      : w,
+                                  ),
+                                })
                               }
-                              if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
-                              event.preventDefault();
-                              finishMeasurementInput();
-                            }}
-                            value={measurement[key]}
-                            disabled={!ready}
-                            aria-invalid={Boolean(errors[`${measurement.id}-${key}`])}
-                            aria-describedby={
-                              errors[`${measurement.id}-${key}`] ? 'measurement-error' : undefined
-                            }
-                            onChange={(e) => {
-                              patchRoom({
-                                windows: room.windows.map((w) =>
-                                  w.id === measurement.id ? { ...w, [key]: e.target.value } : w,
-                                ),
-                              });
-                              setErrors({});
-                            }}
-                          />
-                          <span>cm</span>
-                        </div>
+                            />
+                            <span>{option.label}</span>
+                          </label>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </fieldset>
+                  ))}
                 </div>
-                <div className="inquiry-actions">
-                  <button
-                    className="button button-primary"
-                    disabled={!ready}
-                    type="submit"
-                    onClick={(event) => {
-                      event.preventDefault();
-                      // An implicit submit can also activate the default button.
-                      // A real tap/click continues even if the browser keeps input focus.
-                      if (event.detail === 0 && finishMeasurementInput()) return;
-                      next();
-                    }}
-                  >
-                    다음 <ArrowRight size={16} />
-                  </button>
-                </div>
-              </form>
-            ) : step === 2 ? (
-              <form
-                key="needs"
-                className="inquiry-screen"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  result();
-                }}
-              >
-                <div className="inquiry-body">
-                  {needsRoomPicker}
-                  <fieldset
-                    className="inquiry-needs-field"
-                    aria-describedby={errors[`${room.id}-needs`] ? 'needs-error' : undefined}
-                    aria-invalid={Boolean(errors[`${room.id}-needs`])}
-                  >
-                    <legend>
-                      필요한 기능 <span>필수 · 1개 이상 선택</span>
-                    </legend>
-                    <div className="inquiry-options inquiry-needs-options">
-                      {needsOptions.map((option) => (
-                        <label
-                          key={option.id}
-                          className={needs.includes(option.id) ? 'selected' : ''}
-                        >
-                          <input
-                            id={`${room.id}-need-${option.id}`}
-                            type="checkbox"
-                            checked={needs.includes(option.id)}
-                            onChange={() => {
-                              patchRoom({
-                                needs: needs.includes(option.id)
-                                  ? needs.filter((need) => need !== option.id)
-                                  : [...needs, option.id],
-                              });
-                              setErrors({});
-                            }}
-                          />
-                          <span>
-                            <strong>{goalLabels[option.id]}</strong>
-                          </span>
+                <div className="inquiry-size-fields" key={measurement.id}>
+                  {(['width', 'height'] as const).map((key) => (
+                    <div key={key} className="inquiry-size-field">
+                      <div className="inquiry-size-label">
+                        <label htmlFor={`${measurement.id}-${key}`}>
+                          {key === 'width' ? '가로' : '세로'}
                         </label>
-                      ))}
+                      </div>
+                      <div
+                        className={`inquiry-size-input${errors[`${measurement.id}-${key}`] ? ' invalid' : ''}`}
+                      >
+                        <input
+                          id={`${measurement.id}-${key}`}
+                          aria-label={`${key === 'width' ? '가로' : '세로'} cm`}
+                          inputMode={useKeypad ? 'none' : 'decimal'}
+                          readOnly={useKeypad}
+                          aria-haspopup={useKeypad ? 'dialog' : undefined}
+                          onClick={() => {
+                            if (useKeypad) setKeypadField(key);
+                          }}
+                          enterKeyHint={key === 'width' ? 'next' : 'done'}
+                          autoComplete="off"
+                          maxLength={20}
+                          placeholder={key === 'width' ? '예: 360' : '예: 240'}
+                          onKeyDown={(event) => {
+                            if (useKeypad && (event.key === 'Enter' || event.key === ' ')) {
+                              event.preventDefault();
+                              setKeypadField(key);
+                              return;
+                            }
+                            if (event.key !== 'Enter' || event.nativeEvent.isComposing) return;
+                            event.preventDefault();
+                            finishMeasurementInput();
+                          }}
+                          value={measurement[key]}
+                          disabled={!ready}
+                          aria-invalid={Boolean(errors[`${measurement.id}-${key}`])}
+                          aria-describedby={
+                            errors[`${measurement.id}-${key}`] ? 'measurement-error' : undefined
+                          }
+                          onChange={(e) => {
+                            patchRoom({
+                              windows: room.windows.map((w) =>
+                                w.id === measurement.id ? { ...w, [key]: e.target.value } : w,
+                              ),
+                            });
+                            setErrors({});
+                          }}
+                        />
+                        <span>cm</span>
+                      </div>
                     </div>
-                  </fieldset>
-                  {errors[`${room.id}-needs`] && (
-                    <p id="needs-error" className="inquiry-error" role="alert">
-                      {errors[`${room.id}-needs`]}
-                    </p>
-                  )}
-                </div>
-                <div className="inquiry-actions">
-                  <button type="button" className="button button-secondary" onClick={() => move(1)}>
-                    <ArrowLeft size={16} /> 이전
-                  </button>
-                  <button className="button button-primary" type="submit">
-                    저장 <ArrowRight size={16} />
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <div className="inquiry-screen inquiry-result">
-                <div className="inquiry-body">
-                  {windowPicker}
-                  <dl className="inquiry-overview">
-                    <div>
-                      <dt>창 크기</dt>
-                      <dd>
-                        <strong>
-                          {measurement.width && measurement.height
-                            ? `${measurement.width} × ${measurement.height} cm`
-                            : '치수 기록 없음'}
-                        </strong>
-                        <small>
-                          {measurement.width && measurement.height
-                            ? `${measurement.basis === 'window' ? '창문 기준' : '설치 범위'} · ${measurement.accuracy === 'measured' ? '직접 실측' : '대략적인 치수'}`
-                            : '상담에서 치수를 확인해주세요.'}
-                        </small>
-                      </dd>
-                    </div>
-                    <div>
-                      <dt>필요한 기능</dt>
-                      <dd>
-                        {needs.length
-                          ? needs.map((need) => goalLabels[need]).join(' · ')
-                          : '상담에서 결정'}
-                      </dd>
-                    </div>
-                  </dl>
-                </div>
-                <div className="inquiry-actions inquiry-final-actions">
-                  <button
-                    type="button"
-                    className="button inquiry-restart"
-                    disabled={!ready}
-                    onClick={reset}
-                  >
-                    <RotateCcw size={16} aria-hidden="true" /> 새로 작성
-                  </button>
-                  <AffiliateLink cta="home-result" className="button button-primary">
-                    견적 문의 <ArrowUpRight size={16} />
-                  </AffiliateLink>
+                  ))}
                 </div>
               </div>
-            )}
-          </div>
+              <div className="inquiry-actions">
+                <button
+                  className="button button-primary"
+                  disabled={!ready}
+                  type="submit"
+                  onClick={(event) => {
+                    event.preventDefault();
+                    // An implicit submit can also activate the default button.
+                    // A real tap/click continues even if the browser keeps input focus.
+                    if (event.detail === 0 && finishMeasurementInput()) return;
+                    next();
+                  }}
+                >
+                  다음 <ArrowRight size={16} />
+                </button>
+              </div>
+            </form>
+          ) : step === 2 ? (
+            <form
+              key="needs"
+              className="inquiry-screen"
+              onSubmit={(e) => {
+                e.preventDefault();
+                result();
+              }}
+            >
+              <div className="inquiry-body">
+                {needsRoomPicker}
+                <fieldset
+                  className="inquiry-needs-field"
+                  aria-describedby={errors[`${room.id}-needs`] ? 'needs-error' : undefined}
+                  aria-invalid={Boolean(errors[`${room.id}-needs`])}
+                >
+                  <legend>
+                    필요한 기능 <span>필수 · 1개 이상 선택</span>
+                  </legend>
+                  <div className="inquiry-options inquiry-needs-options">
+                    {needsOptions.map((option) => (
+                      <label
+                        key={option.id}
+                        className={needs.includes(option.id) ? 'selected' : ''}
+                      >
+                        <input
+                          id={`${room.id}-need-${option.id}`}
+                          type="checkbox"
+                          checked={needs.includes(option.id)}
+                          onChange={() => {
+                            patchRoom({
+                              needs: needs.includes(option.id)
+                                ? needs.filter((need) => need !== option.id)
+                                : [...needs, option.id],
+                            });
+                            setErrors({});
+                          }}
+                        />
+                        <span>
+                          <strong>{goalLabels[option.id]}</strong>
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </fieldset>
+                {errors[`${room.id}-needs`] && (
+                  <p id="needs-error" className="inquiry-error" role="alert">
+                    {errors[`${room.id}-needs`]}
+                  </p>
+                )}
+              </div>
+              <div className="inquiry-actions">
+                <button type="button" className="button button-secondary" onClick={() => move(1)}>
+                  <ArrowLeft size={16} /> 이전
+                </button>
+                <button className="button button-primary" type="submit">
+                  저장 <ArrowRight size={16} />
+                </button>
+              </div>
+            </form>
+          ) : (
+            <div className="inquiry-screen inquiry-result">
+              <div className="inquiry-body">
+                {windowPicker}
+                <dl className="inquiry-overview">
+                  <div>
+                    <dt>창 크기</dt>
+                    <dd>
+                      <strong>
+                        {measurement.width && measurement.height
+                          ? `${measurement.width} × ${measurement.height} cm`
+                          : '치수 기록 없음'}
+                      </strong>
+                      <small>
+                        {measurement.width && measurement.height
+                          ? `${measurement.basis === 'window' ? '창문 기준' : '설치 범위'} · ${measurement.accuracy === 'measured' ? '직접 실측' : '대략적인 치수'}`
+                          : '상담에서 치수를 확인해주세요.'}
+                      </small>
+                    </dd>
+                  </div>
+                  <div>
+                    <dt>필요한 기능</dt>
+                    <dd>
+                      {needs.length
+                        ? needs.map((need) => goalLabels[need]).join(' · ')
+                        : '상담에서 결정'}
+                    </dd>
+                  </div>
+                </dl>
+                <ConsultationCopy
+                  title="상담할 때 참고하세요"
+                  text={consultationText}
+                  cta="home-result-copy"
+                  compact
+                />
+                <p className="helper-transfer-note">
+                  치수와 요구사항은 신청 양식에 자동 전달되지 않습니다. 복사하거나 메모해 상담할 때
+                  직접 공유하세요.
+                </p>
+              </div>
+              <div className="inquiry-actions inquiry-final-actions">
+                <button
+                  type="button"
+                  className="button inquiry-restart"
+                  disabled={!ready}
+                  onClick={reset}
+                >
+                  <RotateCcw size={16} aria-hidden="true" /> 새로 작성
+                </button>
+                <button type="button" className="button button-secondary" onClick={() => move(1)}>
+                  치수 수정
+                </button>
+                <AffiliateLink cta="home-result" className="button button-primary">
+                  견적 문의 <ArrowUpRight size={16} />
+                </AffiliateLink>
+              </div>
+            </div>
+          )}
         </div>
-      )}
-      {entered && step === 1 && keypadField && (
+      </div>
+      {step === 1 && keypadField && (
         <MeasurementKeypad
           field={keypadField}
           values={{ width: measurement.width, height: measurement.height }}
@@ -758,12 +773,22 @@ export function QuoteHelper() {
           onClose={() => setKeypadField(null)}
         />
       )}
-      {entered && storageError && (
+      {storageError && (
         <div className="inquiry-status" role="status">
           <span>
             <span className="status-dot warning" />
             {storageError}
           </span>
+          {blocked && (
+            <button
+              type="button"
+              className="button button-secondary"
+              onClick={reset}
+              disabled={!ready}
+            >
+              새로 작성
+            </button>
+          )}
         </div>
       )}
       <noscript>

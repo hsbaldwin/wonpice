@@ -63,16 +63,64 @@ function source() {
   return memorySource;
 }
 let queue: AnalyticsEvent[] = [];
+const RETRY_DELAYS = [2000, 4000, 8000, 16000, 30000];
+let retryTimer: ReturnType<typeof setTimeout> | undefined;
+let retryCount = 0;
+let retryPaused = false;
+let stopped = false;
+let lifecycle = 0;
+
+function clearRetry() {
+  if (retryTimer !== undefined) clearTimeout(retryTimer);
+  retryTimer = undefined;
+}
+
+function retryDelay(response?: Response) {
+  const header = response?.headers.get('retry-after')?.trim();
+  if (header) {
+    const seconds = /^\d+(?:\.\d+)?$/.test(header) ? Number(header) : undefined;
+    const milliseconds = seconds === undefined ? Date.parse(header) - Date.now() : seconds * 1000;
+    if (Number.isFinite(milliseconds)) return Math.min(60_000, Math.max(0, milliseconds));
+  }
+  return RETRY_DELAYS[retryCount];
+}
+
+function scheduleRetry(response?: Response) {
+  if (stopped || retryTimer !== undefined || !queue.length) return;
+  if (retryCount >= RETRY_DELAYS.length) {
+    retryPaused = true;
+    return;
+  }
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
+  if (typeof document !== 'undefined' && document.visibilityState === 'hidden') return;
+  const delay = retryDelay(response);
+  retryCount += 1;
+  retryTimer = setTimeout(() => {
+    retryTimer = undefined;
+    void flushEvents();
+  }, delay);
+}
+
 function persist() {
   try {
     sessionStorage.setItem(QUEUE, JSON.stringify(queue.slice(-60)));
   } catch {}
 }
 export async function flushEvents() {
-  if (!analyticsEnabled() || flushing || !queue.length) return;
+  if (
+    !analyticsEnabled() ||
+    stopped ||
+    flushing ||
+    retryTimer !== undefined ||
+    retryPaused ||
+    !queue.length ||
+    (typeof navigator !== 'undefined' && navigator.onLine === false)
+  )
+    return;
   flushing = true;
+  const run = lifecycle;
   try {
-    while (queue.length) {
+    while (queue.length && !stopped && run === lifecycle) {
       const event = queue[0];
       const response = await fetch('/api/events', {
         method: 'POST',
@@ -80,14 +128,22 @@ export async function flushEvents() {
         body: JSON.stringify(event),
         keepalive: true,
       });
+      if (stopped || run !== lifecycle) return;
       if (response.ok || [400, 403, 413].includes(response.status)) {
         queue = queue.filter((e) => e.eventId !== event.eventId);
+        retryCount = 0;
+        retryPaused = false;
         persist();
-      } else break;
+      } else {
+        scheduleRetry(response);
+        break;
+      }
     }
   } catch {
+    if (!stopped && run === lifecycle) scheduleRetry();
   } finally {
     flushing = false;
+    if (!stopped && run !== lifecycle) void flushEvents();
   }
 }
 export function track(
@@ -112,28 +168,46 @@ export function track(
 }
 export function initAnalytics() {
   if (!analyticsEnabled()) return;
+  stopped = false;
+  lifecycle += 1;
+  clearRetry();
+  retryCount = 0;
+  retryPaused = false;
   try {
     const previous = JSON.parse(sessionStorage.getItem(QUEUE) || '[]');
     if (Array.isArray(previous))
-      queue = previous
-        .filter((e) => e && typeof e.eventId === 'string' && typeof e.type === 'string')
-        .slice(-60);
+      queue = [
+        ...new Map(
+          [...previous, ...queue]
+            .filter((e) => e && typeof e.eventId === 'string' && typeof e.type === 'string')
+            .map((event) => [event.eventId, event]),
+        ).values(),
+      ].slice(-60);
   } catch {}
-  const flush = () => void flushEvents();
+  const resume = () => {
+    clearRetry();
+    retryCount = 0;
+    retryPaused = false;
+    void flushEvents();
+  };
   const visibility = () => {
     if (document.visibilityState === 'hidden') {
+      clearRetry();
       for (const e of queue.slice(0, 10))
         navigator.sendBeacon?.(
           '/api/events',
           new Blob([JSON.stringify(e)], { type: 'application/json' }),
         );
-    } else flush();
+    } else resume();
   };
-  window.addEventListener('online', flush);
+  window.addEventListener('online', resume);
   document.addEventListener('visibilitychange', visibility);
-  flush();
+  resume();
   return () => {
-    window.removeEventListener('online', flush);
+    stopped = true;
+    lifecycle += 1;
+    clearRetry();
+    window.removeEventListener('online', resume);
     document.removeEventListener('visibilitychange', visibility);
   };
 }

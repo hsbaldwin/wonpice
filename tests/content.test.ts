@@ -8,17 +8,18 @@ import {
   helperHref,
   applyHref,
 } from '../lib/content';
+import { guideVisualIds } from '../lib/guide-visuals';
 
 test('each supporting target keyword has one canonical representative and original posts', async () => {
   const expected = [
-    '커튼시공',
-    '커튼설치',
-    '커튼전문점',
-    '커튼업체',
-    '인테리어커튼',
-    '거실커튼',
-    '침실커튼',
-    '신혼집커튼',
+    '커튼 시공',
+    '커튼 설치',
+    '커튼 전문점',
+    '커튼 업체',
+    '인테리어 커튼',
+    '거실 커튼',
+    '침실 커튼',
+    '신혼집 커튼',
   ];
   const assigned = categories.flatMap((category) => category.keywords);
   assert.deepEqual(new Set(assigned), new Set(expected));
@@ -38,7 +39,32 @@ test('all Markdown posts render searchable HTML and resolve valid related conten
   const posts = await getPosts();
   assert.equal(new Set(posts.map((post) => post.title)).size, posts.length);
   assert.equal(new Set(posts.map((post) => post.description)).size, posts.length);
+  assert.equal(new Set(posts.map((post) => post.image)).size, posts.length);
+  const usedVisuals = new Set<string>();
   for (const post of posts) {
+    assert.ok(post.answer.trim().length > 20);
+    assert.ok(post.consultation.title.trim());
+    assert.match(post.consultation.template, /질문:/);
+    assert.doesNotMatch(post.consultation.template, /이름:|연락처:|전화번호:|설치 주소:|이메일:/);
+    assert.equal(post.bodyBlocks.filter((block) => block.type === 'cta').length, 1);
+    const visuals = post.bodyBlocks.filter((block) => block.type === 'visual');
+    assert.ok(visuals.length >= 1);
+    assert.equal(new Set(visuals.map((block) => block.id)).size, visuals.length);
+    for (const visual of visuals) usedVisuals.add(visual.id);
+    const inlineCtaIndex = post.bodyBlocks.findIndex((block) => block.type === 'cta');
+    assert.ok(
+      post.bodyBlocks
+        .slice(0, inlineCtaIndex)
+        .some((block) => block.type === 'html' && block.html.includes('<table>')),
+    );
+    assert.equal(
+      post.html,
+      post.bodyBlocks
+        .filter((block) => block.type === 'html')
+        .map((block) => block.html)
+        .join(''),
+    );
+    assert.doesNotMatch(post.html, /<!--\s*(?:visual|cta)/);
     assert.match(post.html, /<h2 id="section-\d+">/);
     assert.match(post.html, /<p>/);
     assert.match(post.html, /<table>/);
@@ -47,7 +73,7 @@ test('all Markdown posts render searchable HTML and resolve valid related conten
     assert.ok(post.headings.length >= 3);
     assert.equal(new Set(post.headings.map((h) => h.id)).size, post.headings.length);
     for (const heading of post.headings) assert.ok(post.html.includes(`id="${heading.id}"`));
-    assert.ok(post.image?.startsWith('/images/'));
+    assert.equal(post.image, `/images/article-${post.slug}-2026.webp`);
     assert.ok(post.dateModified && post.dateModified >= post.date);
     assert.doesNotMatch(post.html, /제휴/);
     assert.ok(!post.html.includes('<script'));
@@ -57,6 +83,7 @@ test('all Markdown posts render searchable HTML and resolve valid related conten
     assert.equal((await getRelatedPosts(post)).length, post.relatedPosts.length);
     assert.ok(!post.relatedPosts.includes(post.slug));
   }
+  assert.deepEqual(usedVisuals, new Set(guideVisualIds));
   assert.equal(await getPost('installation', '../../package'), undefined);
   assert.equal(await getPost('unknown', 'measurement-basics'), undefined);
 });

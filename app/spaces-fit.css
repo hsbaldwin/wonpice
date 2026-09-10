@@ -35,6 +35,14 @@
   white-space: nowrap;
 }
 
+[data-home-story] .story-spaces .space-image-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
 [data-home-story] .story-spaces .section-heading .text-link {
   min-block-size: 44px;
   flex-shrink: 0;

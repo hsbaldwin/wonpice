@@ -181,6 +181,7 @@ for (const dialect of ['sqlite', 'postgres'] as const) {
       await record(a, 'affiliate_outbound', { cta: 'home-result' });
       await record(a, 'affiliate_outbound', { cta: 'home-result' });
       await record(a, 'quote_save');
+      await record(a, 'consultation_copy', { cta: 'home-result-copy' });
       await record(a, 'page_view', { path: '/guides' });
       await record(a, 'page_view', { path: '/guides/companies' });
       await record(reversed, 'helper_step_needs');
@@ -220,6 +221,7 @@ for (const dialect of ['sqlite', 'postgres'] as const) {
         clickedShown: 1,
       });
       assert.equal(report.actions.find((row) => row.type === 'quote_save')?.sessions, 1);
+      assert.equal(report.actions.find((row) => row.type === 'consultation_copy')?.sessions, 1);
       assert.equal(report.transitions.length, 2);
       assert.ok(report.transitions.some((row) => row.from === '/' && row.to === '/guides'));
       assert.ok(!JSON.stringify(report).includes(a), 'No session identifier exposed in reports');
@@ -251,4 +253,10 @@ test('new events retain strict input privacy and outbound validation', () => {
   assert.equal(parseEvent({ ...value, type: 'arbitrary_input_value' }), null);
   assert.equal(parseEvent({ ...value, path: '/admin' }), null);
   assert.equal(parseEvent({ ...value, type: 'affiliate_outbound' }), null);
+  for (const cta of ['home-result-copy', 'post-copy']) {
+    const copy = { ...value, type: 'consultation_copy', cta };
+    assert.ok(parseEvent(copy));
+    for (const field of ['text', 'copiedText', 'width', 'phone', 'error'])
+      assert.equal(parseEvent({ ...copy, [field]: 'private content' }), null);
+  }
 });

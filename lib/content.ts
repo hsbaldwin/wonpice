@@ -4,13 +4,16 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 import gfm from 'remark-gfm';
-import type { RootContent } from 'mdast';
+import type { Root, RootContent } from 'mdast';
 import type { RoomType } from './types';
+import { getImageBySrc } from './guide-images';
+import { isGuideVisualId, type GuideVisualId } from './guide-visuals';
 
 export type CtaIntent = 'helper' | 'apply';
 export interface GuideCategory {
   slug: string;
   title: string;
+  seoTitle: string;
   navTitle: string;
   description: string;
   primaryKeyword: string;
@@ -32,16 +35,17 @@ export interface GuideCategory {
 export const categories: GuideCategory[] = [
   {
     slug: 'installation',
-    title: '커튼설치·커튼시공,\n준비는 이 세 가지부터.',
+    title: '커튼 설치 준비,\n실측과 시공 조건부터.',
+    seoTitle: '커튼 설치 준비: 실측·레일·시공 전 확인사항',
     navTitle: '설치·시공',
-    primaryKeyword: '커튼설치',
-    keywords: ['커튼설치', '커튼시공'],
+    primaryKeyword: '커튼 설치 준비',
+    keywords: ['커튼 설치', '커튼 시공'],
     eyebrow: 'INSTALLATION',
     description:
-      '창 크기, 레일, 설치면. 커튼설치와 커튼시공 전 확인할 조건을 그림과 체크리스트로 정리하세요.',
+      '커튼 설치 전에 창문 치수, 기존 레일, 커튼박스를 확인하세요. 실측 방법과 커튼 시공 준비사항을 그림·체크리스트로 정리합니다.',
     helperPreset: 'other',
     ctaIntent: 'helper',
-    lead: '정확한 견적의 시작은 창 크기와 설치 조건입니다.',
+    lead: '커튼 설치와 커튼 시공을 준비할 때는 창 치수, 레일, 설치면을 함께 확인하세요.',
     points: [
       { title: '크기', text: '가로·세로와 치수 기준을 함께 기록하세요.' },
       { title: '레일', text: '기존 레일, 커튼박스, 겉커튼·속커튼 구성을 확인하세요.' },
@@ -77,16 +81,17 @@ export const categories: GuideCategory[] = [
   },
   {
     slug: 'companies',
-    title: '커튼전문점·커튼업체,\n같은 조건으로 비교하세요.',
+    title: '커튼 업체 선택,\n견적 조건부터 비교하세요.',
+    seoTitle: '커튼 업체 선택 기준: 전문점 상담과 견적 체크리스트',
     navTitle: '업체·견적',
-    primaryKeyword: '커튼전문점',
-    keywords: ['커튼전문점', '커튼업체'],
+    primaryKeyword: '커튼 업체 선택 기준',
+    keywords: ['커튼 전문점', '커튼 업체'],
     eyebrow: 'QUOTE CHECKLIST',
     description:
-      '커튼전문점과 커튼업체 상담 전, 원단·실측·시공·AS 조건을 같은 기준으로 비교하는 견적 체크리스트.',
+      '커튼 업체를 고를 때 원단·실측·설치비·AS 조건을 같은 기준으로 확인하세요. 커튼 전문점 상담 질문과 견적 비교 방법을 안내합니다.',
     helperPreset: 'other',
     ctaIntent: 'apply',
-    lead: '총액만 보기 전에, 견적에 포함된 범위를 확인하세요.',
+    lead: '커튼 전문점과 상담할 때는 총액과 함께 원단·설치·AS의 포함 범위를 확인하세요.',
     points: [
       { title: '같은 제품', text: '원단·겹수·주름·부자재를 같은 조건으로 맞추세요.' },
       { title: '같은 범위', text: '실측·레일·설치·철거 포함 여부를 확인하세요.' },
@@ -110,7 +115,7 @@ export const categories: GuideCategory[] = [
     ],
     faq: [
       {
-        question: '이곳에서 여러 커튼업체 견적을 비교해 주나요?',
+        question: '이곳에서 여러 커튼 업체 견적을 비교해 주나요?',
         answer:
           '이 사이트는 공간과 요구사항을 정리하는 견적 도우미입니다. 문의 버튼은 연결된 견적 신청 페이지로 이동하며, 여러 업체의 실시간 가격 비교를 제공하지 않습니다.',
       },
@@ -123,13 +128,14 @@ export const categories: GuideCategory[] = [
   },
   {
     slug: 'interior',
-    title: '인테리어커튼,\n빛과 분위기를 함께 고르세요.',
+    title: '인테리어 커튼,\n빛과 분위기를 함께 고르세요.',
+    seoTitle: '인테리어 커튼 선택: 원단·색상·이중 구성 가이드',
     navTitle: '스타일·소재',
-    primaryKeyword: '인테리어커튼',
-    keywords: ['인테리어커튼'],
+    primaryKeyword: '인테리어 커튼 선택',
+    keywords: ['인테리어 커튼'],
     eyebrow: 'STYLE & MATERIAL',
     description:
-      '인테리어커튼의 쉬폰·암막·이중 구성을 비교하고 벽지, 가구, 채광에 맞는 스타일을 찾아보세요.',
+      '인테리어 커튼의 원단과 색상을 벽지·가구·채광에 맞춰 고르세요. 쉬폰·암막·이중 구성과 커튼·블라인드의 선택 기준을 비교합니다.',
     helperPreset: 'other',
     ctaIntent: 'helper',
     lead: '좋아하는 느낌에, 공간에서 필요한 기능을 더하세요.',
@@ -168,13 +174,14 @@ export const categories: GuideCategory[] = [
   },
   {
     slug: 'living-room',
-    title: '거실커튼,\n빛은 들이고 시선은 편안하게.',
+    title: '거실 커튼,\n빛은 들이고 시선은 편안하게.',
+    seoTitle: '거실 커튼 선택: 쉬폰·이중커튼과 채광 가이드',
     navTitle: '거실커튼',
-    primaryKeyword: '거실커튼',
-    keywords: ['거실커튼'],
+    primaryKeyword: '거실 커튼',
+    keywords: ['거실 커튼'],
     eyebrow: 'LIVING ROOM',
     description:
-      '넓은 창, TV 반사, 외부 시선까지. 거실커튼을 채광과 생활 패턴에 맞춰 고르는 간단한 가이드.',
+      '거실 커튼을 채광·TV 반사·외부 시선에 맞춰 선택하세요. 넓은 창과 발코니 동선에 필요한 쉬폰·겉커튼·이중 구성의 확인사항을 안내합니다.',
     helperPreset: 'living',
     ctaIntent: 'helper',
     lead: '낮에 머무는 시간과 창밖 환경부터 살펴보세요.',
@@ -213,13 +220,14 @@ export const categories: GuideCategory[] = [
   },
   {
     slug: 'bedroom',
-    title: '침실커튼,\n내가 쉬는 시간에 맞춰.',
+    title: '침실 커튼,\n내가 쉬는 시간에 맞춰.',
+    seoTitle: '침실 커튼 선택: 안방 암막·빛샘·채광 가이드',
     navTitle: '침실커튼',
-    primaryKeyword: '침실커튼',
-    keywords: ['침실커튼'],
+    primaryKeyword: '침실 커튼',
+    keywords: ['침실 커튼'],
     eyebrow: 'BEDROOM',
     description:
-      '침실커튼의 암막과 빛샘, 낮의 채광을 비교하세요. 수면 시간과 창 크기로 필요한 구성을 정리합니다.',
+      '침실·안방 커튼은 수면 시간과 낮의 채광을 함께 살펴보세요. 암막 원단의 성능과 상단·옆면·하단 빛샘, 필요한 커튼 구성을 정리합니다.',
     helperPreset: 'bedroom',
     ctaIntent: 'helper',
     lead: '잠드는 시간과 일어나는 시간의 빛을 먼저 생각하세요.',
@@ -258,13 +266,14 @@ export const categories: GuideCategory[] = [
   },
   {
     slug: 'newlywed-home',
-    title: '신혼집커튼,\n한 집의 분위기를 연결하세요.',
+    title: '신혼집 커튼,\n한 집의 분위기를 연결하세요.',
+    seoTitle: '신혼집 커튼 선택: 거실·침실 구성과 입주 준비',
     navTitle: '신혼집커튼',
-    primaryKeyword: '신혼집커튼',
-    keywords: ['신혼집커튼'],
+    primaryKeyword: '신혼집 커튼',
+    keywords: ['신혼집 커튼'],
     eyebrow: 'A NEW HOME',
     description:
-      '거실부터 침실까지 신혼집커튼을 공간별로 정리하세요. 통일된 분위기, 각 방의 기능, 입주 준비를 함께 확인합니다.',
+      '신혼집 커튼의 색감은 연결하고 기능은 방마다 정하세요. 거실·침실 구성, 창별 치수 준비와 입주 전 실측·설치 시기를 함께 확인합니다.',
     helperPreset: 'newlywed',
     ctaIntent: 'helper',
     lead: '색감은 이어주고, 기능은 방마다 다르게.',
@@ -304,10 +313,15 @@ export const categories: GuideCategory[] = [
   },
 ];
 
+export type ContentBodyBlock =
+  { type: 'html'; html: string } | { type: 'visual'; id: GuideVisualId } | { type: 'cta' };
+
 export interface ContentPost {
   slug: string;
   title: string;
   description: string;
+  answer: string;
+  consultation: { title: string; template: string };
   primaryKeyword: string;
   relatedKeywords: string[];
   category: string;
@@ -316,11 +330,12 @@ export interface ContentPost {
   relatedPosts: string[];
   date: string;
   dateModified?: string;
-  image?: string;
+  image: string;
   summary: string[];
   preparation: string[];
   headings: { id: string; text: string }[];
   html: string;
+  bodyBlocks: ContentBodyBlock[];
   href: string;
 }
 
@@ -337,6 +352,104 @@ export function applyHref(category: string, placement: string, from: string) {
 const postsDirectory = path.join(process.cwd(), 'content', 'posts');
 let postsPromise: Promise<ContentPost[]> | undefined;
 
+/** Parse the full Markdown tree before splitting so references and heading order stay intact. */
+export async function parseGuideMarkdown(content: string, sourceName = 'Markdown') {
+  const processor = remark().use(gfm).use(html, { sanitize: true });
+  const tree = processor.parse(content);
+  const headings: ContentPost['headings'] = [];
+  const directives = new Map<RootContent, Exclude<ContentBodyBlock, { type: 'html' }>[]>();
+  const seenVisuals = new Set<GuideVisualId>();
+
+  function plain(node: RootContent): string {
+    if ('value' in node) return node.value;
+    if ('children' in node)
+      return node.children.map((child) => plain(child as RootContent)).join('');
+    return '';
+  }
+
+  function inspect(nodes: RootContent[], topLevel: boolean) {
+    for (const node of nodes) {
+      if (node.type === 'heading' && node.depth === 2) {
+        headings.push({ id: `section-${headings.length + 1}`, text: plain(node) });
+      }
+      if (
+        node.type === 'html' &&
+        /<!--\s*(?:visual|cta)\b|<!--\s*[a-z][a-z0-9-]*(?:\s*:|\s*-->)/i.test(node.value)
+      ) {
+        const fail = (reason: string): never => {
+          throw new Error(`${reason} in ${sourceName}:${node.position?.start.line ?? '?'}`);
+        };
+        if (!topLevel) fail('Guide markers must be standalone Markdown blocks');
+        const blocks: Exclude<ContentBodyBlock, { type: 'html' }>[] = [];
+        for (const line of node.value.trim().split(/\r?\n/)) {
+          if (!line.trim()) continue;
+          const visual = /^[ \t]*<!--[ \t]*visual:[ \t]*([a-z0-9-]+)[ \t]*-->[ \t]*$/.exec(line);
+          if (visual) {
+            const id = visual[1];
+            if (isGuideVisualId(id)) {
+              if (seenVisuals.has(id)) fail(`Duplicate guide visual "${id}"`);
+              seenVisuals.add(id);
+              blocks.push({ type: 'visual', id });
+            } else {
+              fail(`Unknown guide visual "${id}"`);
+            }
+          } else if (/^[ \t]*<!--[ \t]*cta[ \t]*-->[ \t]*$/.test(line)) {
+            blocks.push({ type: 'cta' });
+          } else {
+            fail('Unknown or malformed guide marker');
+          }
+        }
+        directives.set(node, blocks);
+      }
+      if ('children' in node) inspect(node.children as RootContent[], false);
+    }
+  }
+  inspect(tree.children, true);
+
+  const definitions = tree.children.filter((node) => node.type === 'definition');
+  const bodyBlocks: ContentBodyBlock[] = [];
+  let pending: RootContent[] = [];
+  let headingIndex = 0;
+
+  async function flush() {
+    if (!pending.length) return;
+    // Definitions do not render, but each segment needs all of them to resolve reference links.
+    const segment: Root = {
+      type: 'root',
+      children: [...pending.filter((node) => node.type !== 'definition'), ...definitions],
+    };
+    const rendered = String(processor.stringify((await processor.run(segment)) as Root))
+      .replace(/<h2>/g, () => `<h2 id="${headings[headingIndex++].id}">`)
+      .replace(
+        /<table>/g,
+        '<p class="guide-scroll-hint">표는 좌우로 스크롤할 수 있습니다.</p><div class="guide-table-wrap" role="region" aria-label="본문 비교표" tabindex="0"><table>',
+      )
+      .replace(/<\/table>/g, '</table></div>')
+      .replace(/<tr>\s*<td>([\s\S]*?)<\/td>/g, '<tr><th scope="row">$1</th>');
+    if (rendered.trim()) bodyBlocks.push({ type: 'html', html: rendered });
+    pending = [];
+  }
+
+  for (const node of tree.children) {
+    const markers = directives.get(node);
+    if (markers) {
+      await flush();
+      bodyBlocks.push(...markers);
+    } else {
+      pending.push(node);
+    }
+  }
+  await flush();
+  return {
+    headings,
+    bodyBlocks,
+    html: bodyBlocks
+      .filter((block) => block.type === 'html')
+      .map((block) => block.html)
+      .join(''),
+  };
+}
+
 async function loadPosts(): Promise<ContentPost[]> {
   const files = (await fs.readdir(postsDirectory)).filter((file) => file.endsWith('.md')).sort();
   const posts = await Promise.all(
@@ -346,10 +459,18 @@ async function loadPosts(): Promise<ContentPost[]> {
       const category = getCategory(data.category);
       if (!category || !['helper', 'apply'].includes(data.ctaIntent))
         throw new Error(`Invalid content category or CTA: ${file}`);
-      for (const field of ['title', 'description', 'primaryKeyword', 'date']) {
+      for (const field of ['title', 'description', 'answer', 'primaryKeyword', 'date', 'image']) {
         if (typeof data[field] !== 'string' || !data[field])
           throw new Error(`Missing ${field}: ${file}`);
       }
+      if (
+        !data.consultation ||
+        typeof data.consultation.title !== 'string' ||
+        !data.consultation.title.trim() ||
+        typeof data.consultation.template !== 'string' ||
+        !data.consultation.template.trim()
+      )
+        throw new Error(`Missing consultation title or template: ${file}`);
       if (!Array.isArray(data.relatedKeywords) || !Array.isArray(data.relatedPosts))
         throw new Error(`Missing related content: ${file}`);
       if (!['living', 'bedroom', 'newlywed', 'other'].includes(data.helperPreset))
@@ -374,42 +495,27 @@ async function loadPosts(): Promise<ContentPost[]> {
       }
       if (data.dateModified && data.dateModified < data.date)
         throw new Error(`Modification precedes publication: ${file}`);
-      if (
-        data.image !== undefined &&
-        (typeof data.image !== 'string' ||
-          !/^\/images\/[a-z0-9-]+\.(webp|png|jpg)$/.test(data.image))
-      )
+      if (!/^\/images\/[a-z0-9-]+\.(webp|png|jpg)$/.test(data.image))
         throw new Error(`Invalid image: ${file}`);
-      const processor = remark().use(gfm).use(html, { sanitize: true });
-      const tree = processor.parse(content);
-      function plain(node: RootContent): string {
-        if ('value' in node) return node.value;
-        if ('children' in node)
-          return node.children.map((child) => plain(child as RootContent)).join('');
-        return '';
-      }
-      const headings: ContentPost['headings'] = [];
-      function collect(nodes: RootContent[]) {
-        for (const node of nodes) {
-          if (node.type === 'heading' && node.depth === 2)
-            headings.push({ id: `section-${headings.length + 1}`, text: plain(node) });
-          if ('children' in node) collect(node.children as RootContent[]);
-        }
-      }
-      collect(tree.children);
-      let index = 0;
-      const rendered = String(await processor.process(content))
-        .replace(/<h2>/g, () => `<h2 id="${headings[index++].id}">`)
-        .replace(
-          /<table>/g,
-          '<p class="guide-scroll-hint">표는 좌우로 스크롤할 수 있습니다.</p><div class="guide-table-wrap" role="region" aria-label="본문 비교표" tabindex="0"><table>',
-        )
-        .replace(/<\/table>/g, '</table></div>')
-        .replace(/<tr>\s*<td>([\s\S]*?)<\/td>/g, '<tr><th scope="row">$1</th>');
+      getImageBySrc(data.image);
+      const imageStat = await fs
+        .stat(path.join(process.cwd(), 'public', data.image))
+        .catch(() => null);
+      if (!imageStat?.isFile()) throw new Error(`Missing image file ${data.image}: ${file}`);
+      const parsed = await parseGuideMarkdown(content, file);
+      if (parsed.bodyBlocks.filter((block) => block.type === 'cta').length !== 1)
+        throw new Error(`Expected one inline CTA: ${file}`);
+      if (!parsed.bodyBlocks.some((block) => block.type === 'visual'))
+        throw new Error(`Missing guide visual: ${file}`);
       return {
         slug,
         title: data.title,
         description: data.description,
+        answer: data.answer,
+        consultation: {
+          title: data.consultation.title,
+          template: data.consultation.template.trim(),
+        },
         primaryKeyword: data.primaryKeyword,
         relatedKeywords: data.relatedKeywords,
         category: category.slug,
@@ -421,8 +527,7 @@ async function loadPosts(): Promise<ContentPost[]> {
         image: data.image,
         summary: data.summary,
         preparation: data.preparation,
-        headings,
-        html: String(rendered),
+        ...parsed,
         href: `/guides/${category.slug}/${slug}`,
       } as ContentPost;
     }),

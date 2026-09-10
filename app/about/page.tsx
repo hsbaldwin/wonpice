@@ -4,12 +4,15 @@ import { Breadcrumbs, GuideStructuredData } from '@/components/guide-ui';
 import { site } from '@/lib/site';
 import { pageMetadata } from '@/lib/seo';
 import { AffiliateLink } from '@/components/affiliate-link';
+import { GuideImage } from '@/components/guide-image';
+import { getGuideImage } from '@/lib/guide-images';
 import '../guides/guides.css';
 
 export const metadata = pageMetadata({
-  title: '서비스 안내 | 이용 방법과 견적 신청',
+  title: '서비스 안내: 커튼 견적 준비와 이용 방법',
   description: `${site.name}의 치수·기능 정리, 브라우저 저장, 견적 신청 절차와 서비스 범위를 안내합니다.`,
   path: '/about',
+  image: getGuideImage('companies').src,
 });
 
 export default function AboutPage() {
@@ -18,16 +21,25 @@ export default function AboutPage() {
       <div className="container">
         <Breadcrumbs items={[{ name: '서비스 안내', href: '/about' }]} />
         <div className="guide-about-content">
-          <header className="guide-about-intro">
-            <h1>
-              막연했던 커튼 선택을,
-              <br />
-              우리 집 이야기로.
-            </h1>
-            <p>
-              {site.name}는 창 크기와 생활 방식으로 커튼 선택을 돕습니다. 필요한 조건을 먼저
-              정리하고, 견적 상담에서 다음 단계를 이어가세요.
-            </p>
+          <header className="guide-about-intro guide-about-editorial">
+            <div className="guide-about-copy">
+              <span className="eyebrow">상담 전, 준비하는 시간</span>
+              <h1>
+                커튼 견적 도우미,
+                <br />
+                이렇게 이용하세요.
+              </h1>
+              <p>
+                {site.name}는 창 치수와 필요한 기능을 정리하는 상담 준비 도구입니다. 실측·원단·설치
+                가이드를 읽고 원하는 조건을 저장한 뒤 견적 신청 페이지에서 상담을 이어가세요.
+              </p>
+            </div>
+            <GuideImage
+              category="companies"
+              className="guide-about-cover"
+              sizes="(max-width: 800px) calc(100vw - 48px), 456px"
+              preload
+            />
           </header>
           <div className="guide-about-panels">
             <section className="guide-about-panel">
@@ -40,9 +52,9 @@ export default function AboutPage() {
             <section className="guide-about-panel">
               <h2>내 브라우저에 저장해요</h2>
               <p>
-                입력한 내용은 이 브라우저에 견적 하나로 자동 저장됩니다. 시작하기를 누르면 마지막
-                작성 내용을 이어서 볼 수 있습니다. 다른 기기와 자동으로 동기화되지 않으며 브라우저
-                데이터를 지우면 사라질 수 있습니다.
+                입력한 내용은 이 브라우저에 견적 하나로 자동 저장됩니다. 홈의 치수·기능 도우미에서
+                마지막 작성 내용을 이어서 볼 수 있습니다. 다른 기기와 자동으로 동기화되지 않으며
+                브라우저 데이터를 지우면 사라질 수 있습니다.
               </p>
             </section>
             <section className="guide-about-panel">
@@ -92,9 +104,10 @@ export default function AboutPage() {
             <p>
               서비스 개선을 위해 방문한 페이지, 첫 방문 페이지, 유입 경로 분류, 화면 활성 시간의
               30초·60초 도달, 스크롤 25·50·75·90% 도달, 도우미 단계 진행, 입력 확인 오류 발생,
-              브라우저 저장 성공·복원·오류, 신청 버튼 노출·클릭을 기록합니다. 브라우저 탭에 저장하는
-              임의의 세션 식별자로 방문을 구분하며, 이름·연락처·주소·입력 치수·자유 입력 내용은
-              통계에 저장하지 않습니다. 전체 유입 주소나 검색어도 저장하지 않습니다.
+              브라우저 저장 성공·복원·오류, 상담 문구 복사 성공, 신청 버튼 노출·클릭을 기록합니다.
+              브라우저 탭에 저장하는 임의의 세션 식별자로 방문을 구분하며, 이름·연락처·주소·입력
+              치수·자유 입력 내용은 통계에 저장하지 않습니다. 복사한 문구의 내용과 전체 유입 주소,
+              검색어도 저장하지 않습니다.
             </p>
             <p>
               방문 이벤트는 최근 180일 범위로 보관하며, 저장소 접근 시 하루 간격으로 오래된 기록을
@@ -110,14 +123,50 @@ export default function AboutPage() {
               시공을 제공하지 않습니다.
             </p>
           </section>
+          <section id="editorial-method" className="guide-about-more">
+            <h2>가이드는 이렇게 편집합니다</h2>
+            <p>
+              실측 준비, 원단 선택, 설치 조건과 견적 상담에서 자주 확인하는 질문을 중심으로 글을
+              구성합니다. 제품에 관한 설명은 해당 제조사·판매자의 안내를 확인하고 본문에 참고 출처를
+              연결합니다. 사례를 설명하기 위해 만든 수치와 양식은 예시임을 표시하며, 검증된 자료
+              없이 평균 가격이나 설치 소요 기간을 제시하지 않습니다.
+            </p>
+            <p>
+              각 글의 발행일과 수정일은 본문 상단에 표시합니다. 제품 사양과 현장 조건이 다른 경우
+              상담에서 최신 안내를 확인하세요. 자료를 고치면 관련 설명과 상담 문구도 함께
+              점검합니다.
+            </p>
+          </section>
+          <section id="image-policy" className="guide-about-more">
+            <h2>이미지와 설명 그림의 기준</h2>
+            <p>
+              공간·원단 이미지는 AI로 만든 스타일 예시이며 이미지 아래에 표시합니다. 실제 고객의 집,
+              직접 시공한 사례, 판매 제품의 사진 또는 측정한 차광 성능을 뜻하지 않습니다. 색과
+              질감은 선택할 제품의 실제 샘플로 확인하세요.
+            </p>
+            <p>
+              측정 시작점, 레일 구성, 빛샘 위치와 준비 순서는 직접 작성한 도해와 표로 설명합니다.
+              예시 수치를 쓰는 경우 적용 범위를 함께 적으며, 제작 치수나 고정 방식은 제품 정보와
+              현장 확인을 통해 확정해야 합니다.
+            </p>
+          </section>
           <div className="guide-cta">
             <div>
-              <h2>우리 집 창에서 시작해 보세요.</h2>
-              <p>공간과 크기, 원하는 느낌만 있으면 됩니다.</p>
+              <h2>준비한 조건으로 상담을 이어가세요.</h2>
+              <p>신청 페이지에서 제품 종류와 설치할 창 정보를 입력할 수 있습니다.</p>
+              <p className="guide-cta-note">
+                입력 내용은 자동 전달되지 않으니 상담 때 직접 공유하세요. 링크를 통한 신청으로
+                운영자에게 수수료가 발생할 수 있습니다.
+              </p>
             </div>
-            <Link href="/#helper" className="button button-primary">
-              도우미 시작 <ArrowRight size={17} />
-            </Link>
+            <div className="guide-cta-actions">
+              <AffiliateLink cta="about-bottom" className="button button-primary">
+                무료 견적 신청 <ArrowRight size={17} aria-hidden="true" />
+              </AffiliateLink>
+              <Link href="/#helper" className="guide-simple-link">
+                치수 먼저 정리하기 <ArrowRight size={17} aria-hidden="true" />
+              </Link>
+            </div>
           </div>
         </div>
         <GuideStructuredData items={[{ name: '서비스 안내', href: '/about' }]} />

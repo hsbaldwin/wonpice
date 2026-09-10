@@ -5,13 +5,16 @@ import { ArrowRight, Ruler } from 'lucide-react';
 import { getCategory, getPost, getPosts, getRelatedPosts, helperHref } from '@/lib/content';
 import { site } from '@/lib/site';
 import { pageMetadata } from '@/lib/seo';
+import { GuideDiagram } from '@/components/guide-diagrams';
+import { GuideImage } from '@/components/guide-image';
+import { getImageBySrc } from '@/lib/guide-images';
+import { ConsultationCopy } from '@/components/consultation-copy';
 import {
   Breadcrumbs,
   Checklist,
   GuideCta,
   GuideToc,
   GuideStructuredData,
-  MeasurementSketch,
   PostCard,
 } from '@/components/guide-ui';
 
@@ -28,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.description,
     path: post.href,
-    image: post.image,
+    image: getImageBySrc(post.image),
     published: post.date,
     modified: post.dateModified,
   });
@@ -48,38 +51,62 @@ export default async function PostPage({ params }: Props) {
     <main id="main" className="guide-main guide-article-main">
       <div className="container">
         <Breadcrumbs items={breadcrumbs} />
-        <header className="guide-article-header">
-          <Link className="guide-post-category" href={`/guides/${category.slug}`}>
-            {category.navTitle}
-          </Link>
-          <h1>{post.title}</h1>
-          <p>{post.description}</p>
-          <div className="guide-article-meta">
-            <Link href="/about">{site.name} 편집</Link>
-            <span aria-hidden="true">·</span>
-            <time dateTime={post.date}>{post.date.replaceAll('-', '.')} 발행</time>
-            {post.dateModified && (
-              <time dateTime={post.dateModified}>
-                {post.dateModified.replaceAll('-', '.')} 수정
-              </time>
-            )}
-          </div>
-        </header>
+        <div className="guide-article-introduction">
+          <header className="guide-article-header">
+            <Link className="guide-post-category" href={`/guides/${category.slug}`}>
+              {category.navTitle}
+            </Link>
+            <h1>{post.title}</h1>
+            <p className="guide-article-answer">{post.answer}</p>
+            <div className="guide-article-meta">
+              <Link href="/about">{site.name} 편집</Link>
+              <span aria-hidden="true">·</span>
+              <time dateTime={post.date}>{post.date.replaceAll('-', '.')} 발행</time>
+              {post.dateModified && (
+                <time dateTime={post.dateModified}>
+                  {post.dateModified.replaceAll('-', '.')} 수정
+                </time>
+              )}
+            </div>
+          </header>
+        </div>
         <section className="guide-summary" aria-label="핵심 요약">
           <h2>핵심 요약</h2>
           <Checklist items={post.summary} />
         </section>
-        <GuideCta
-          category={category}
-          from={post.href}
-          placement="post-top"
-          preset={post.helperPreset}
-        />
         <div className="guide-article-layout">
           <article className="guide-article" aria-label={post.title}>
             <GuideToc post={post} mobile />
-            {slug === 'measurement-basics' && <MeasurementSketch />}
-            <div className="guide-prose" dangerouslySetInnerHTML={{ __html: post.html }} />
+            {post.image && (
+              <GuideImage
+                image={getImageBySrc(post.image)}
+                className="guide-article-cover"
+                sizes="(max-width: 800px) calc(100vw - 48px), 760px"
+              />
+            )}
+            <div className="guide-article-body">
+              {post.bodyBlocks.map((block, index) => {
+                if (block.type === 'html')
+                  return (
+                    <div
+                      key={index}
+                      className="guide-prose"
+                      dangerouslySetInnerHTML={{ __html: block.html }}
+                    />
+                  );
+                if (block.type === 'visual') return <GuideDiagram key={block.id} id={block.id} />;
+                return (
+                  <GuideCta
+                    key={index}
+                    category={category}
+                    from={post.href}
+                    placement="post-middle"
+                    intent={post.ctaIntent}
+                    preset={post.helperPreset}
+                  />
+                );
+              })}
+            </div>
             <section className="guide-preparation">
               <h2>상담 전에 준비할 내용</h2>
               <Checklist items={post.preparation} />
@@ -101,6 +128,12 @@ export default async function PostPage({ params }: Props) {
                 </p>
               </div>
             </div>
+            <ConsultationCopy
+              text={post.consultation.template}
+              title={post.consultation.title}
+              cta="post-copy"
+              category={category.slug}
+            />
           </article>
           <aside className="guide-article-sidebar">
             <div className="guide-sidebar-sticky">
@@ -118,7 +151,7 @@ export default async function PostPage({ params }: Props) {
           category={category}
           from={post.href}
           placement="post-bottom"
-          intent={post.ctaIntent}
+          intent="apply"
           preset={post.helperPreset}
         />
         <section className="guide-related">
@@ -129,7 +162,7 @@ export default async function PostPage({ params }: Props) {
           </div>
           <div className="guide-post-grid">
             {related.map((item) => (
-              <PostCard key={item.slug} post={item} />
+              <PostCard key={item.slug} post={item} thumbnail />
             ))}
           </div>
         </section>

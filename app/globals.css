@@ -230,9 +230,35 @@ summary {
 .site-header {
   height: var(--header-height);
   background: #fff;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 30;
   border-bottom: 1px solid var(--line);
+}
+.header-brand {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #35586a;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+html {
+  scroll-padding-top: calc(var(--header-height) + 20px);
+}
+main :is(section[id], h2[id], h3[id], [tabindex='-1']) {
+  scroll-margin-top: calc(var(--header-height) + 20px);
+}
+@media (max-width: 380px) {
+  .header-brand {
+    max-width: 76px;
+    line-height: 1.45;
+    font-size: 13px;
+  }
+  .header-inner {
+    gap: 6px;
+  }
 }
 .header-inner {
   display: flex;

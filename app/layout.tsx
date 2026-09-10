@@ -2,6 +2,7 @@ import { analyticsEnabled } from '@/lib/analytics-config';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 import './globals.css';
+import '@/components/consultation-copy.css';
 import { site, absoluteUrl } from '@/lib/site';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';

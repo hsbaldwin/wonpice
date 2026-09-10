@@ -32,11 +32,14 @@ export function SiteHeader() {
     };
   }, [open]);
 
-  if (path === '/' || path.startsWith('/admin')) return null;
+  if (path.startsWith('/admin')) return null;
 
   return (
     <header className="site-header" ref={headerRef}>
       <div className="container header-inner">
+        <Link href="/" className="header-brand" aria-label="커튼 견적 도우미 홈">
+          커튼 견적 도우미
+        </Link>
         <button
           ref={toggleRef}
           type="button"
@@ -68,14 +71,14 @@ export function SiteHeader() {
           </Link>
         </nav>
         <noscript>
-          <style>{`.site-header .menu-toggle { display:none; } .site-header .header-inner { flex-wrap:wrap; height:auto; padding-block:12px; }`}</style>
+          <style>{`.site-header { height:auto; position:relative; } .site-header .menu-toggle { display:none; } .site-header .header-inner { flex-wrap:wrap; height:auto; padding-block:12px; }`}</style>
           <nav className="header-nojs-nav" aria-label="주 메뉴">
             <a href="/">홈</a>
             <a href="/guides">커튼 가이드</a>
             <a href="/about">서비스 안내</a>
           </nav>
         </noscript>
-        <AffiliateLink cta="home-header" className="header-apply">
+        <AffiliateLink cta="public-header" className="header-apply">
           무료 견적 신청 <ArrowUpRight size={14} />
         </AffiliateLink>
       </div>
