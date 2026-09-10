@@ -11,7 +11,7 @@ export const metadata = pageMetadata({
   description:
     '커튼 고르는 법부터 사이즈 재는 법, 원단·블라인드 비교와 견적서 확인사항까지. 거실·침실·신혼집에 필요한 커튼 선택 가이드를 찾아보세요.',
   path: '/guides',
-  image: getGuideImage('living-room').src,
+  image: getGuideImage('living-room'),
 });
 
 export default async function GuidesPage() {
@@ -118,6 +118,7 @@ export default async function GuidesPage() {
             name: '커튼 가이드',
             description: '커튼 실측·설치·스타일·공간별 선택과 견적 준비 안내',
             href: '/guides',
+            entries: posts,
           }}
         />
       </div>

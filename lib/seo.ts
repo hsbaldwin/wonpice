@@ -28,7 +28,12 @@ export function pageMetadata({
     title: { absolute: fullTitle },
     description,
     alternates: { canonical: absoluteUrl(path) },
-    robots: { index: site.indexable, follow: true },
+    robots: {
+      index: site.indexable,
+      follow: true,
+      // Permit larger search thumbnails for our original editorial images.
+      ...(site.indexable ? { 'max-image-preview': 'large' as const } : {}),
+    },
     openGraph: {
       title: fullTitle,
       description,

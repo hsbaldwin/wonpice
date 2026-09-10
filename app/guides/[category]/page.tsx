@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: category.seoTitle,
     description: category.description,
     path: `/guides/${category.slug}`,
-    image: getGuideImage(category.slug).src,
+    image: getGuideImage(category.slug),
   });
 }
 export default async function CategoryPage({ params }: Props) {
@@ -151,6 +151,7 @@ export default async function CategoryPage({ params }: Props) {
             name: category.keywords.join('·') + ' 가이드',
             description: category.description,
             href: route,
+            entries: posts,
           }}
         />
       </div>

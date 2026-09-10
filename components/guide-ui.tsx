@@ -55,7 +55,12 @@ export function GuideStructuredData({
 }: {
   items: { name: string; href: string }[];
   article?: ContentPost;
-  collection?: { name: string; description: string; href: string };
+  collection?: {
+    name: string;
+    description: string;
+    href: string;
+    entries: { title: string; href: string }[];
+  };
 }) {
   const data: object[] = [
     {
@@ -73,6 +78,7 @@ export function GuideStructuredData({
     data.push({
       '@context': 'https://schema.org',
       '@type': 'Article',
+      '@id': absoluteUrl(`${article.href}#article`),
       headline: article.title,
       description: article.description,
       datePublished: `${article.date}T00:00:00+09:00`,
@@ -80,17 +86,40 @@ export function GuideStructuredData({
       image: absoluteUrl(article.image || '/images/curtain-natural.webp'),
       inLanguage: 'ko-KR',
       mainEntityOfPage: absoluteUrl(article.href),
-      author: { '@type': 'Organization', name: site.name, url: absoluteUrl('/about') },
-      publisher: { '@type': 'Organization', name: site.name, url: absoluteUrl('/') },
+      isPartOf: { '@id': absoluteUrl('/#website') },
+      author: {
+        '@type': 'Organization',
+        '@id': absoluteUrl('/about#editorial-method'),
+        name: site.editorialName,
+        url: absoluteUrl('/about#editorial-method'),
+      },
+      publisher: {
+        '@type': 'Organization',
+        '@id': absoluteUrl('/#publisher'),
+        name: site.name,
+        url: absoluteUrl('/'),
+      },
     });
   if (collection)
     data.push({
       '@context': 'https://schema.org',
       '@type': 'CollectionPage',
+      '@id': absoluteUrl(`${collection.href}#webpage`),
       name: collection.name,
       description: collection.description,
       url: absoluteUrl(collection.href),
       inLanguage: 'ko-KR',
+      isPartOf: { '@id': absoluteUrl('/#website') },
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: collection.entries.length,
+        itemListElement: collection.entries.map((entry, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: entry.title,
+          url: absoluteUrl(entry.href),
+        })),
+      },
     });
   return (
     <script

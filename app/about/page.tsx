@@ -12,7 +12,7 @@ export const metadata = pageMetadata({
   title: '서비스 안내: 커튼 견적 준비와 이용 방법',
   description: `${site.name}의 치수·기능 정리, 브라우저 저장, 견적 신청 절차와 서비스 범위를 안내합니다.`,
   path: '/about',
-  image: getGuideImage('companies').src,
+  image: getGuideImage('companies'),
 });
 
 export default function AboutPage() {

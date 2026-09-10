@@ -59,7 +59,7 @@ export default async function PostPage({ params }: Props) {
             <h1>{post.title}</h1>
             <p className="guide-article-answer">{post.answer}</p>
             <div className="guide-article-meta">
-              <Link href="/about">{site.name} 편집</Link>
+              <Link href="/about#editorial-method">{site.editorialName}</Link>
               <span aria-hidden="true">·</span>
               <time dateTime={post.date}>{post.date.replaceAll('-', '.')} 발행</time>
               {post.dateModified && (

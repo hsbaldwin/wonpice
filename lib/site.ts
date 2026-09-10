@@ -30,11 +30,13 @@ export function resolveSiteUrl(value: string | undefined, indexable: boolean): s
 }
 
 const indexable = process.env.SITE_INDEXABLE === 'true';
+const siteName = '커튼 견적 도우미';
 export const site = {
-  name: '커튼 견적 도우미',
-  shortName: '커튼 견적 도우미',
+  name: siteName,
+  shortName: siteName,
+  editorialName: `${siteName} 편집`,
   description:
-    '맞춤커튼 견적 전에 창 치수와 필요한 기능을 정리하세요. 커튼 실측 방법, 원단 선택, 설치 조건과 견적서 확인사항을 살펴보고 상담을 준비할 수 있습니다.',
+    '커튼 견적 상담에 필요한 창 치수와 원단·설치 조건을 정리하세요. 맞춤커튼 가격이 달라지는 이유와 견적 비교 방법을 확인하고 무료 견적 신청으로 상담을 이어갈 수 있습니다.',
   url: resolveSiteUrl(process.env.NEXT_PUBLIC_SITE_URL, indexable),
   indexable,
   // Commission attribution depends on this tracking link. Do not bypass it

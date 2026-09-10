@@ -11,10 +11,10 @@ import './helper-fit.css';
 import './home.css';
 
 export const metadata = pageMetadata({
-  title: '맞춤커튼 견적 준비: 창 치수와 필요한 기능 정리',
+  title: '커튼 견적 상담 준비: 치수·원단·설치 조건 정리',
   description: site.description,
   path: '/',
-  image: getGuideImage('living-room').src,
+  image: getGuideImage('living-room'),
 });
 const spaces = [
   {
@@ -40,21 +40,29 @@ const essentials = [
   {
     icon: Ruler,
     label: '01 · 실측',
-    title: '어디서부터 어디까지 재나요?',
+    title: '커튼 사이즈 재는 법',
     description: '창문 크기와 커튼이 덮을 범위, 제작 치수를 구분하세요.',
     href: '/guides/installation/measurement-basics',
   },
   {
     icon: Layers3,
     label: '02 · 원단',
-    title: '쉬폰과 암막, 함께 써야 할까요?',
+    title: '쉬폰·암막·이중커튼 비교',
     description: '낮의 채광과 밤의 비침을 비교하고 필요한 구성을 살펴보세요.',
     href: '/guides/interior/fabric-layers',
   },
   {
     icon: ClipboardCheck,
-    label: '03 · 견적',
-    title: '견적 금액이 다른 이유는 뭘까요?',
+    label: '03 · 가격 조건',
+    title: '맞춤커튼 가격이 달라지는 이유',
+    description:
+      '창 크기와 원단, 주름·겹수, 부자재와 설치 범위가 금액에 어떻게 반영되는지 확인하세요.',
+    href: '/guides/companies/curtain-cost-factors',
+  },
+  {
+    icon: ClipboardCheck,
+    label: '04 · 견적 비교',
+    title: '커튼 견적 비교 방법',
     description: '원단·레일·설치비의 포함 여부를 같은 조건으로 확인하세요.',
     href: '/guides/companies/quote-comparison',
   },
@@ -106,15 +114,14 @@ export default function Home() {
         <div className="container home-hero-content">
           <span className="home-eyebrow">우리 집 창에서 시작하는 선택</span>
           <h1 id="home-title">
-            맞춤커튼 견적,
+            커튼 견적,
             <br />
             필요한 조건부터
             <br className="home-mobile-break" /> 정리해보세요.
           </h1>
           <p className="home-hero-description">
-            창 치수와 빛, 생활하는 방식까지.
-            <br />
-            커튼 선택 기준을 알아보고 우리 집에 맞는 상담을 준비하세요.
+            맞춤커튼 견적은 창 크기와 원단, 겹수, 레일·설치 범위에 따라 달라집니다. 필요한 조건을
+            정리하고 우리 집에 맞는 상담을 준비하세요.
           </p>
           <div className="home-actions">
             <AffiliateLink cta="home-hero" className="button button-primary">
@@ -193,8 +200,8 @@ export default function Home() {
         <section id="home-essentials" className="home-section" aria-labelledby="essentials-title">
           <div className="home-section-heading">
             <div>
-              <span className="home-eyebrow">처음이라면, 이 세 가지부터</span>
-              <h2 id="essentials-title">견적 전에 알아두면 좋은 기준</h2>
+              <span className="home-eyebrow">실측·원단·가격·견적 비교</span>
+              <h2 id="essentials-title">커튼 견적 전에 확인할 네 가지</h2>
             </div>
           </div>
           <div className="home-essential-grid">
@@ -309,10 +316,17 @@ export default function Home() {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
+            '@id': absoluteUrl('/#website'),
             name: site.name,
             url: absoluteUrl(),
             description: site.description,
             inLanguage: 'ko-KR',
+            publisher: {
+              '@type': 'Organization',
+              '@id': absoluteUrl('/#publisher'),
+              name: site.name,
+              url: absoluteUrl('/'),
+            },
           }).replace(/</g, '\\u003c'),
         }}
       />
