@@ -19,7 +19,7 @@ export default function Footer() {
             </div>
 
             <p className="text-[#5f6368] text-xs leading-relaxed max-w-md">
-              WonPice는 땀 흘려 농사지은 농산물이 최저가 출혈 경쟁이나 공판장 헐값 시세에 휘둘리지 않고, 
+              WonPice는 땀 흘려 농사지은 농산물이 최저가 출혈 경쟁에 휘둘리지 않고, 
               정당한 제값과 평생 단골을 확보할 수 있도록 <strong>‘올바른 선택에 의한 승리’</strong>를 돕는 실전 가이드 센터입니다.
             </p>
 
@@ -35,23 +35,23 @@ export default function Footer() {
             </div>
             <ul className="space-y-2 text-[#5f6368]">
               <li>
-                <a href="#calculator" className="hover:text-[#202124] transition-colors">
-                  수수료 &amp; 순익 시뮬레이터
+                <a href="#philosophy" className="hover:text-[#202124] transition-colors">
+                  가치와 철학
                 </a>
               </li>
               <li>
-                <a href="#roadmap" className="hover:text-[#202124] transition-colors">
-                  직거래 4단계 로드맵 (상자 편지)
+                <a href="#connection" className="hover:text-[#202124] transition-colors">
+                  단골 연결 공식 (4단계)
                 </a>
               </li>
               <li>
-                <a href="#diagnostic" className="hover:text-[#202124] transition-colors">
-                  1분 판로 독립 자가진단기
+                <a href="#showcase" className="hover:text-[#202124] transition-colors">
+                  '제철곳간' 쇼핑몰 쇼케이스
                 </a>
               </li>
               <li>
-                <a href="#features" className="hover:text-[#202124] transition-colors">
-                  농가 쇼핑몰 3대 필수 기능
+                <a href="#support" className="hover:text-[#202124] transition-colors">
+                  2026 선착순 50% 지원 혜택
                 </a>
               </li>
               <li>
@@ -102,7 +102,7 @@ export default function Footer() {
           <div className="flex items-center gap-3">
             <span>농가 D2C 직거래</span>
             <span>•</span>
-            <span>수수료 절감 시뮬레이션</span>
+            <span>평생 단골 구축</span>
             <span>•</span>
             <span>구글 스토어 에디션</span>
           </div>
