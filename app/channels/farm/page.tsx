@@ -1,8 +1,16 @@
-import WebAppContainer from "@/components/WebAppContainer";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import FarmMarginCalculator from "@/components/FarmMarginCalculator";
+import FarmD2cGuide from "@/components/FarmD2cGuide";
+import FarmFeaturesShowcase from "@/components/FarmFeaturesShowcase";
+import FarmReadinessDiagnostic from "@/components/FarmReadinessDiagnostic";
+import PromotionBridge from "@/components/PromotionBridge";
+import FarmFaq from "@/components/FarmFaq";
+import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "농가·산지직송 온라인 판로 개척 가이드 — 자사몰 구축비 50% 지원 활용법 | WonPice",
+  title: "농가·산지직송 온라인 직거래 쇼핑몰 제작 가이드 | WonPice",
   description:
     "공판장 헐값 경매와 스마트스토어 수수료를 넘어, 내 농산물의 제값을 받는 농가 직거래 온라인 판로 개척 실전 가이드. 선착순 농가 자사몰 50% 프로모션 안내.",
   keywords: [
@@ -17,5 +25,19 @@ export const metadata: Metadata = {
 };
 
 export default function FarmChannelPage() {
-  return <WebAppContainer initialTab="farm" />;
+  return (
+    <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 font-sans">
+      <Navbar />
+      <main className="flex-1">
+        <Hero />
+        <FarmMarginCalculator />
+        <FarmD2cGuide />
+        <FarmFeaturesShowcase />
+        <FarmReadinessDiagnostic />
+        <PromotionBridge />
+        <FarmFaq />
+      </main>
+      <Footer />
+    </div>
+  );
 }
