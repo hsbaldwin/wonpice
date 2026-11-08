@@ -43,46 +43,46 @@ export default function FarmFaq() {
   };
 
   return (
-    <section id="faq" className="py-20 sm:py-28 bg-white border-b border-[#e8eaed]">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+    <section id="faq" className="py-24 sm:py-32 lg:py-36 bg-white border-b border-[#e8eaed]">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-medium mb-4">
-            <HelpCircle className="w-3.5 h-3.5 text-[#1e8e3e]" />
+        <div className="text-center max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-medium mb-6">
+            <HelpCircle className="w-4 h-4 text-[#1e8e3e]" />
             <span>농업인을 위한 실무 FAQ</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl font-normal text-[#202124] tracking-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#202124] tracking-tight mb-6 leading-tight">
             자주 묻는 질문과 실전 답변
           </h2>
-          <p className="text-sm text-[#5f6368] leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed">
             농가 직거래 쇼핑몰을 준비하시는 대표님들이 가장 많이 궁금해하시는 질문을 모았습니다.
           </p>
         </div>
 
-        {/* FAQ Accordion List (Google Help Center style) */}
-        <div className="space-y-3.5">
+        {/* FAQ Accordion List in Generous Scale */}
+        <div className="space-y-4">
           {faqs.map((faq, idx) => {
             const isOpen = openIndex === idx;
             return (
               <div
                 key={faq.q}
-                className={`rounded-2xl border transition-all ${
+                className={`rounded-[28px] border transition-all ${
                   isOpen ? "bg-white border-[#202124] shadow-xs" : "bg-[#f8f9fa] border-[#dadce0]"
                 }`}
               >
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full p-5 sm:p-6 text-left flex items-center justify-between gap-4 cursor-pointer"
+                  className="w-full p-6 sm:p-8 text-left flex items-center justify-between gap-5 cursor-pointer"
                 >
-                  <span className="font-medium text-[#202124] text-sm sm:text-base flex items-center gap-3">
-                    <span className="text-[#137333] font-medium text-sm sm:text-base shrink-0">
+                  <span className="font-medium text-[#202124] text-base sm:text-lg flex items-center gap-3.5">
+                    <span className="text-[#137333] font-medium text-base sm:text-lg shrink-0">
                       Q{idx + 1}.
                     </span>
                     <span>{faq.q}</span>
                   </span>
                   <ChevronDown
-                    className={`w-5 h-5 text-[#5f6368] shrink-0 transition-transform duration-200 ${
+                    className={`w-6 h-6 text-[#5f6368] shrink-0 transition-transform duration-200 ${
                       isOpen ? "rotate-180 text-[#202124]" : ""
                     }`}
                   />
@@ -90,7 +90,7 @@ export default function FarmFaq() {
 
                 {/* Pre-rendered content for crawler SEO */}
                 <div
-                  className={`px-5 sm:px-6 pb-6 pt-1 text-xs sm:text-sm text-[#5f6368] leading-relaxed border-t border-[#f1f3f4] ${
+                  className={`px-6 sm:px-8 pb-8 pt-2 text-sm sm:text-base text-[#5f6368] leading-relaxed border-t border-[#f1f3f4] ${
                     isOpen ? "block bg-white" : "hidden"
                   }`}
                 >
@@ -101,13 +101,13 @@ export default function FarmFaq() {
           })}
         </div>
 
-        {/* Support Bridge (Google Card) */}
-        <div className="mt-12 p-7 rounded-3xl bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-5">
+        {/* Support Bridge in Large Scale */}
+        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <div className="font-medium text-[#202124] text-sm sm:text-base mb-1">
+            <div className="font-medium text-[#202124] text-lg sm:text-xl mb-1.5">
               더 궁금한 점이 있으시거나 내 농장 맞춤 상담이 필요하신가요?
             </div>
-            <div className="text-xs text-[#5f6368]">
+            <div className="text-sm text-[#5f6368]">
               가게지기 전문 상담팀이 농장 규모와 출하 품목에 맞추어 친절히 안내해 드립니다.
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function FarmFaq() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_faq_bottom"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-6 py-3 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-xs shrink-0 shadow-xs transition-all"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shrink-0 shadow-xs transition-all"
           >
             <span>1:1 상담 신청서 작성 ↗</span>
           </a>
