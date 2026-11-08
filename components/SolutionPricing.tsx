@@ -17,6 +17,9 @@ export default function SolutionPricing() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
+          <p className="text-xs uppercase font-mono tracking-widest text-[#1a73e8] font-medium mb-3">
+            The Trinity of Scale · 3단계 성장 구조
+          </p>
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#137333] border border-[#ceead6] text-xs sm:text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4 text-[#1e8e3e]" />
             <span>2026 자사몰 구축 프로모션</span>
@@ -39,10 +42,15 @@ export default function SolutionPricing() {
             className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
-                  스타터
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
+                    스타터
+                  </span>
+                  <span className="text-[11px] font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                    Stage I · 씨앗 (Seed)
+                  </span>
+                </div>
                 <span className="text-xs text-[#5f6368]">처음 자사몰을 여는 브랜드</span>
               </div>
 
@@ -111,10 +119,15 @@ export default function SolutionPricing() {
             </div>
 
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs sm:text-sm font-medium text-[#137333] bg-[#e6f4ea] px-4 py-1.5 rounded-full border border-[#ceead6]">
-                  비즈니스
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm font-medium text-[#137333] bg-[#e6f4ea] px-4 py-1.5 rounded-full border border-[#ceead6]">
+                    비즈니스
+                  </span>
+                  <span className="text-[11px] font-mono font-medium text-[#137333] bg-[#ceead6] px-2.5 py-0.5 rounded-full">
+                    Stage II · 도약 (Core)
+                  </span>
+                </div>
                 <span className="text-xs text-[#5f6368]">스마트스토어 탈플랫폼 브랜드</span>
               </div>
 
@@ -180,10 +193,15 @@ export default function SolutionPricing() {
             className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
           >
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
-                  맞춤
-                </span>
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
+                    맞춤
+                  </span>
+                  <span className="text-[11px] font-mono font-medium text-[#5f6368] bg-[#f1f3f4] px-2.5 py-0.5 rounded-full">
+                    Stage III · 무한 (Infinity)
+                  </span>
+                </div>
                 <span className="text-xs text-[#5f6368]">엔터프라이즈 / 기업</span>
               </div>
 

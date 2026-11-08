@@ -17,11 +17,11 @@ export default function SolutionInfrastructure() {
   return (
     <section id="infrastructure" className="py-24 sm:py-32 lg:py-36 bg-white border-b border-[#e8eaed]">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
-        {/* Header */}
+        {/* Header with Numerological Storytelling (The Tetrad of Foundation) */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-medium mb-6">
             <Server className="w-4 h-4 text-[#1a73e8]" />
-            <span>원스톱 솔루션 인프라</span>
+            <span className="font-mono">The Tetrad of Foundation · 4대 인프라 기반</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#202124] tracking-tight mb-6 leading-tight">
             쇼핑몰 오픈에 필요한 모든 기술을 원스톱으로 제공합니다
@@ -29,7 +29,7 @@ export default function SolutionInfrastructure() {
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed">
             복잡한 PG사 가맹 계약, 도메인 DNS 설정, 상품 100개 등록, 일일 백업까지.
             <br className="hidden sm:inline" />
-            대표님은 판매에만 집중하실 수 있도록 기술적인 모든 과정을 솔루션이 책임집니다.
+            대표님은 판매에만 집중하실 수 있도록 사각(四角)의 흔들림 없는 4대 인프라 토대를 솔루션이 책임집니다.
           </p>
         </div>
 
@@ -39,8 +39,13 @@ export default function SolutionInfrastructure() {
           <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-[#f8f9fa] p-8 sm:p-9 lg:p-10 rounded-[32px] border border-[#dadce0] shadow-xs flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
-                  <Layers className="w-6 h-6" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
+                    <Layers className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc]">
+                    Foundation I · 데이터 (Data)
+                  </span>
                 </div>
                 <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
                   기존 상품 100개 등록 대행
@@ -125,8 +130,13 @@ export default function SolutionInfrastructure() {
           <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-[#f8f9fa] p-8 sm:p-9 lg:p-10 rounded-[32px] border border-[#dadce0] shadow-xs flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
-                  <CreditCard className="w-6 h-6" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
+                    <CreditCard className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6]">
+                    Foundation II · 결제 (Exchange)
+                  </span>
                 </div>
                 <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
                   토스페이먼츠 간편결제 연동
@@ -192,8 +202,13 @@ export default function SolutionInfrastructure() {
           <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-[#f8f9fa] p-8 sm:p-9 lg:p-10 rounded-[32px] border border-[#dadce0] shadow-xs flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
-                  <Globe className="w-6 h-6" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
+                    <Globe className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-medium text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3]">
+                    Foundation III · 정체성 (Identity)
+                  </span>
                 </div>
                 <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
                   브랜드 전용 독립 도메인 연결
@@ -242,8 +257,13 @@ export default function SolutionInfrastructure() {
           <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-[#f8f9fa] p-8 sm:p-9 lg:p-10 rounded-[32px] border border-[#dadce0] shadow-xs flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-[#fce8e6] text-[#d93025] flex items-center justify-center shrink-0">
-                  <Server className="w-6 h-6" />
+                <div className="flex items-center justify-between">
+                  <div className="w-12 h-12 rounded-2xl bg-[#fce8e6] text-[#d93025] flex items-center justify-center shrink-0">
+                    <Server className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs font-mono font-medium text-[#d93025] bg-[#fce8e6] px-3 py-1 rounded-full border border-[#fad2cf]">
+                    Foundation IV · 영속성 (Continuity)
+                  </span>
                 </div>
                 <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
                   3중 모니터링 &amp; 1:1 교육
@@ -325,6 +345,61 @@ export default function SolutionInfrastructure() {
             <div className="text-xs font-medium text-[#d93025] pt-4 border-t border-[#fad2cf] flex items-center justify-between">
               <span>기술 걱정 없는 안정적 운영</span>
               <span className="text-[#5f6368] font-normal">24/7 장애 자동 감시</span>
+            </div>
+          </div>
+        </div>
+
+        {/* The Heptad of Completion (7대 완성 프로세스 로드맵) */}
+        <div className="pt-6 sm:pt-10">
+          <div className="bg-[#f8f9fa] rounded-[36px] border border-[#dadce0] p-8 sm:p-12 shadow-xs space-y-8">
+            <div className="text-center max-w-2xl mx-auto space-y-2">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-[#dadce0] text-xs font-mono text-[#3c4043] font-medium shadow-xs">
+                The Heptad of Completion · 7대 완성 주기
+              </span>
+              <h3 className="text-xl sm:text-2xl font-normal text-[#202124]">
+                신청부터 자립까지 이어지는 7단계 런칭 아키텍처
+              </h3>
+              <p className="text-xs sm:text-sm text-[#5f6368]">
+                체계적인 7단계 절차를 통해 시행착오 없이 3~5주 만에 견고한 자사몰을 완성합니다.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap lg:flex-nowrap gap-3 sm:gap-4">
+              {[
+                { step: "01", title: "업종 진단", desc: "농식품/패션 데이터 분석", tag: "Analysis" },
+                { step: "02", title: "테마 설정", desc: "업종 특화 룩북/옵션 세팅", tag: "Design" },
+                { step: "03", title: "결제 접수", desc: "토스 PG 직접 가맹 대행", tag: "Payment" },
+                { step: "04", title: "상품 이관", desc: "기본 100개 규격 자동 매핑", tag: "Catalog" },
+                { step: "05", title: "보안 도메인", desc: "독립 도메인 & TLS 세팅", tag: "Security" },
+                { step: "06", title: "실무 전수", desc: "1:1 원격 관리자 교육", tag: "Mastery" },
+                { step: "07", title: "그랜드 오픈", desc: "24/7 글로벌 가동 감시", tag: "Continuity" },
+              ].map((item, idx) => (
+                <div
+                  key={item.step}
+                  className="flex-1 min-w-[200px] lg:min-w-0 bg-white rounded-2xl border border-[#dadce0] p-4 flex flex-col justify-between shadow-xs hover:border-[#1a73e8]/40 transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-2">
+                      <span className="font-mono text-xs font-semibold text-[#1a73e8]">
+                        Step {item.step}
+                      </span>
+                      <span className="text-[10px] font-mono text-[#5f6368] bg-[#f8f9fa] px-1.5 py-0.5 rounded">
+                        {item.tag}
+                      </span>
+                    </div>
+                    <div className="font-medium text-[#202124] text-sm mb-1">
+                      {item.title}
+                    </div>
+                    <div className="text-[11px] text-[#5f6368] leading-tight">
+                      {item.desc}
+                    </div>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-[#f1f3f4] flex items-center justify-between text-[10px] text-[#9aa0a6]">
+                    <span>Phase {idx + 1}</span>
+                    <span>완료 보장</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

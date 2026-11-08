@@ -198,39 +198,81 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* 3 Core Value Pillars */}
+        {/* 3 Core Value Pillars with Numerological Storytelling (The Trinity of Growth) */}
+        <div className="text-center max-w-2xl mx-auto mb-10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-mono font-medium mb-3">
+            <span>The Trinity of Growth · 3대 본질 기둥</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-normal text-[#202124] tracking-tight">
+            성장과 자립을 완성하는 3가지 본질적 조화
+          </h2>
+        </div>
+
         <div
           id="features"
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto text-left scroll-mt-24 sm:scroll-mt-28"
         >
-          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0]">
-            <div className="w-12 h-12 rounded-full bg-[#e6f4ea] text-[#137333] flex items-center justify-center mb-6">
-              <Zap className="w-6 h-6" />
+          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#e6f4ea] text-[#137333] flex items-center justify-center">
+                  <Zap className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6]">
+                  Pillar I · 독립 (The Monad)
+                </span>
+              </div>
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">플랫폼 중개 수수료 0%</h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+                오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
+              </p>
             </div>
-            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">플랫폼 중개 수수료 0%</h3>
-            <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
-            </p>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
+              <span className="font-mono text-[#137333] font-medium">01</span>
+              <span>수수료 종속 탈피와 마진의 온전한 회복</span>
+            </div>
           </div>
 
-          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0]">
-            <div className="w-12 h-12 rounded-full bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center mb-6">
-              <Users className="w-6 h-6" />
+          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center">
+                  <Users className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc]">
+                  Pillar II · 소유 (The Dyad)
+                </span>
+              </div>
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">고객 DB 직접 소유</h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+                플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
+              </p>
             </div>
-            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">고객 DB 직접 소유</h3>
-            <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
-            </p>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
+              <span className="font-mono text-[#1a73e8] font-medium">02</span>
+              <span>단골 고객과의 1:1 직접 관계 자산화</span>
+            </div>
           </div>
 
-          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0]">
-            <div className="w-12 h-12 rounded-full bg-[#fef7e0] text-[#b06000] flex items-center justify-center mb-6">
-              <ShieldCheck className="w-6 h-6" />
+          <div className="bg-[#f8f9fa] p-9 sm:p-11 rounded-[36px] border border-[#e8eaed] transition-all hover:border-[#dadce0] flex flex-col justify-between">
+            <div>
+              <div className="flex items-center justify-between mb-6">
+                <div className="w-12 h-12 rounded-full bg-[#fef7e0] text-[#b06000] flex items-center justify-center">
+                  <ShieldCheck className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono font-medium text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3]">
+                  Pillar III · 영속 (The Triad)
+                </span>
+              </div>
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">체계적인 인프라 운영 관리</h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+                매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
+              </p>
             </div>
-            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">체계적인 인프라 운영 관리</h3>
-            <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
-            </p>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
+              <span className="font-mono text-[#b06000] font-medium">03</span>
+              <span>24/7 중단 없는 브랜드 지속 가능성 확보</span>
+            </div>
           </div>
         </div>
       </div>

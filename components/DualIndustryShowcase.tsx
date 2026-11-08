@@ -303,18 +303,18 @@ export default function DualIndustryShowcase({
   return (
     <section id="showcase" className="py-24 sm:py-32 lg:py-36 bg-[#f8f9fa] border-b border-[#e8eaed] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
-        {/* Section Header */}
+        {/* Section Header with Numerological Storytelling (The Dyad of Commerce) */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#dadce0] text-[#3c4043] text-xs sm:text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#dadce0] text-[#3c4043] text-xs sm:text-sm font-medium mb-6 shadow-xs">
             <Store className="w-4 h-4 text-[#1a73e8]" />
-            <span>업종별 라이브 데모 쇼케이스</span>
+            <span className="font-medium text-[#202124]">The Dyad of D2C · 2대 특화 영역</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#202124] tracking-tight mb-6 leading-tight">
             내 업종에 꼭 맞는 특화 기능과 테마 디자인
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed">
-            모든 업종에 똑같은 획일적인 템플릿이 아닙니다. 
-            식품·농가의 신선도부터 패션의 핏감까지, 실제 제작되어 운영 중인 업종별 라이브 데모를 직접 확인해 보세요.
+            대지의 신선도를 전하는 <strong>식품(01)</strong>과 핏과 감각을 표현하는 <strong>패션(02)</strong>. 
+            획일화된 템플릿 대신 각 산업의 본질에 맞추어 설계된 2대 라이브 데모 쇼핑몰을 직접 경험해 보세요.
           </p>
 
           {/* Industry Dual Switcher Pills */}
