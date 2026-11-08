@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import DiagnosticSection from "@/components/DiagnosticSection";
+import ChannelHubSection from "@/components/ChannelHubSection";
 import GuideSection from "@/components/GuideSection";
 import GagejigiShowcase from "@/components/GagejigiShowcase";
 import FaqSection from "@/components/FaqSection";
@@ -15,6 +16,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6">
           <DiagnosticSection />
         </div>
+        <ChannelHubSection />
         <GuideSection />
         <GagejigiShowcase />
         <FaqSection />
