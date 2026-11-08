@@ -1,7 +1,7 @@
-:HL["/wonpice/_next/static/chunks/1ss762_ific51.css","style"]
+:HL["/wonpice/_next/static/chunks/0aojvm9u95qh8.css","style"]
 :HL["/wonpice/_next/static/media/9b242d3a901795b0-s.p.3g40io3hfcs5l.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css","style",{"crossOrigin":"anonymous"}]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":"fashion","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"channels","h":64,"c":"$Q2"}]]
-0:{"b":"nbocV6xxZ5dfc_19Bl-DC","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"dy89UA6uyWQEHfb-Lw92z","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
