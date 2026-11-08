@@ -1,27 +1,12 @@
-import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import DiagnosticSection from "@/components/DiagnosticSection";
-import ChannelHubSection from "@/components/ChannelHubSection";
-import GuideSection from "@/components/GuideSection";
-import GagejigiShowcase from "@/components/GagejigiShowcase";
-import FaqSection from "@/components/FaqSection";
-import Footer from "@/components/Footer";
+import WebAppContainer from "@/components/WebAppContainer";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "WonPice (원피스) — 소상공인·농가 온라인 판로 개척 웹앱 가이드",
+  description:
+    "최저가 출혈 경쟁에서 벗어나 내 브랜드를 지키는 올바른 선택. 스마트스토어·쿠팡 셀러를 위한 자사몰 독립 적합도 및 수수료 절감 실시간 웹앱 진단기.",
+};
 
 export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex-1">
-        <Hero />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <DiagnosticSection />
-        </div>
-        <ChannelHubSection />
-        <GuideSection />
-        <GagejigiShowcase />
-        <FaqSection />
-      </main>
-      <Footer />
-    </div>
-  );
+  return <WebAppContainer initialTab="diagnostic" />;
 }
