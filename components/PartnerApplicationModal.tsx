@@ -177,7 +177,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
                   <Store className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-[#e6f4ea] text-[#137333] border border-[#ceead6]">
-                  2026 선착순 50% 프로모션
+                  2026 자사몰 구축 프로모션
                 </span>
               </div>
               <h2
@@ -187,7 +187,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
                 WonPice 자사몰 파트너십 구축 신청서
               </h2>
               <p className="text-xs sm:text-sm text-[#5f6368] mt-1">
-                플랫폼 수수료 없는 나만의 자사몰을 시작하세요. 3~5주 내 제작 완료 및 50% 혜택이 적용됩니다.
+                별도 중개 수수료 없는 자사몰 운영을 시작하세요. 3~5주 내 제작 완료 및 50% 혜택이 적용됩니다.
               </p>
             </div>
 

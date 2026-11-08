@@ -89,7 +89,7 @@ export default function SolutionInfrastructure() {
                 <div className="bg-white rounded-2xl border border-[#dadce0] p-4 sm:p-5 shadow-xs space-y-3">
                   <div className="flex items-center justify-between text-xs">
                     <span className="font-medium text-[#202124]">상품 100개 등록 소요시간 비교</span>
-                    <span className="font-medium text-[#1a73e8]">100% 수작업 시간 절감</span>
+                    <span className="font-medium text-[#1a73e8]">대량 등록 수작업 시간 절감</span>
                   </div>
                   <div className="space-y-2">
                     <div className="space-y-1">
@@ -104,7 +104,7 @@ export default function SolutionInfrastructure() {
                     <div className="space-y-1">
                       <div className="flex justify-between text-[11px] text-[#1a73e8] font-medium">
                         <span>WonPice 대행 솔루션</span>
-                        <span>0시간 (전액 무료 대행)</span>
+                        <span>등록 대행 지원 (기본 100개 포함)</span>
                       </div>
                       <div className="w-full h-2 rounded-full bg-[#e8f0fe] overflow-hidden">
                         <div className="h-full bg-[#1a73e8] rounded-full w-2" />
@@ -116,7 +116,7 @@ export default function SolutionInfrastructure() {
             </div>
 
             <div className="text-xs font-medium text-[#1a73e8] pt-4 border-t border-[#dadce0] flex items-center justify-between">
-              <span>노가다 작업 없이 즉시 오픈</span>
+              <span>수작업 부담 없는 일괄 등록 지원</span>
               <span className="text-[#5f6368] font-normal">비즈니스 플랜 기본 제공</span>
             </div>
           </div>
@@ -138,11 +138,11 @@ export default function SolutionInfrastructure() {
 
               {/* Graphic: 1-day approval, 2x2 brands, zero fee guarantee */}
               <div className="space-y-3 pt-2">
-                {/* 1-day PG approval badge */}
+                {/* PG application badge */}
                 <div>
                   <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#ceead6] text-xs font-medium text-[#137333] shadow-xs">
                     <Clock className="w-4 h-4 text-[#137333]" />
-                    <span>영업일 기준 1일 초고속 심사 승인</span>
+                    <span>영업일 기준 신속 서류 접수 대행</span>
                   </div>
                 </div>
 
@@ -172,11 +172,11 @@ export default function SolutionInfrastructure() {
                   </div>
                 </div>
 
-                {/* Direct contract zero-fee guarantee */}
+                {/* Direct contract zero-fee note */}
                 <div className="bg-[#e6f4ea]/40 border border-[#ceead6] rounded-2xl p-3.5 flex items-center gap-3">
                   <ShieldCheck className="w-5 h-5 text-[#137333] shrink-0" />
                   <div className="text-xs text-[#137333] leading-tight">
-                    <span className="font-semibold">PG사 직접 정산 계약</span> · 중개 수수료 0% 보장
+                    <span className="font-semibold">PG사 직접 정산 계약</span> · 자사몰 판매 시 별도 중개 수수료 없음
                   </div>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function SolutionInfrastructure() {
                   브랜드 전용 독립 도메인 연결
                 </h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed">
-                  우리 브랜드만의 주소(brand.co.kr, .kr)를 연결해 드립니다. 최신 HTTPS 보안 SSL 인증서가 평생 무상으로 자동 갱신 제공됩니다.
+                  우리 브랜드만의 주소(brand.co.kr, .kr)를 연결해 드립니다. 최신 HTTPS 보안 SSL 인증서가 무상 자동 갱신 제공됩니다.
                 </p>
               </div>
 
@@ -224,7 +224,7 @@ export default function SolutionInfrastructure() {
                       <span className="font-mono text-[11px]">SSL/TLS</span>
                       <span className="text-[#137333] font-medium flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" />
-                        <span>TLS 1.3 256-bit 평생 무상 갱신</span>
+                        <span>TLS 1.3 256-bit 무상 자동 갱신</span>
                       </span>
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export default function SolutionInfrastructure() {
 
             <div className="text-xs font-medium text-[#b06000] pt-4 border-t border-[#feefc3] flex items-center justify-between">
               <span>브랜드 독립성 및 보안 완비</span>
-              <span className="text-[#5f6368] font-normal">포워딩 아닌 완벽 연결</span>
+              <span className="text-[#5f6368] font-normal">포워딩이 아닌 독립 연결</span>
             </div>
           </div>
 
@@ -261,7 +261,7 @@ export default function SolutionInfrastructure() {
                       <Activity className="w-4 h-4 text-[#1a73e8]" />
                       <span className="font-medium text-[#202124]">글로벌 3개 거점 실시간 헬스체크 레이더</span>
                     </div>
-                    <span className="text-[11px] font-mono text-[#137333] bg-[#e6f4ea] px-2 py-0.5 rounded-full font-medium">가용성 99.99%</span>
+                    <span className="text-[11px] font-mono text-[#137333] bg-[#e6f4ea] px-2 py-0.5 rounded-full font-medium">안정적 인프라 가동</span>
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-2.5">
@@ -315,7 +315,7 @@ export default function SolutionInfrastructure() {
                     </div>
                     <div className="flex-1 p-2.5 rounded-xl bg-[#f8f9fa] border border-[#dadce0] flex items-center gap-2.5">
                       <GraduationCap className="w-4 h-4 text-[#d93025] shrink-0" />
-                      <span className="text-[#3c4043] font-medium">1:1 원격 실무 교육 60분 (관리자 완전 정복)</span>
+                      <span className="text-[#3c4043] font-medium">1:1 원격 실무 교육 60분 (관리자 핵심 기능 안내)</span>
                     </div>
                   </div>
                 </div>

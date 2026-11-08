@@ -406,7 +406,7 @@ test.describe('Tier 1: Comprehensive Feature Coverage', () => {
 
       // 2. Pillar 1: 상품 100개 등록 대행
       await expect(infra).toContainText('기존 상품 100개 등록 대행');
-      await expect(infra).toContainText('노가다 작업 없이 즉시 오픈');
+      await expect(infra).toContainText('수작업 부담 없는 일괄 등록 지원');
 
       // 3. Pillar 2: 토스페이먼츠 간편결제 연동
       await expect(infra).toContainText('토스페이먼츠 간편결제 연동');

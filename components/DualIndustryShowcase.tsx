@@ -399,7 +399,7 @@ export default function DualIndustryShowcase({
                   </div>
                   <div>
                     <h4 className="font-medium text-[#202124] text-base mb-1">냉장·신선 배송 &amp; 보관법 가이드</h4>
-                    <p className="text-xs text-[#5f6368]">완충 에어캡 포장과 후숙/보관 팁을 구매 전 미리 제공하여 반품 및 CS 80% 예방</p>
+                    <p className="text-xs text-[#5f6368]">완충 포장 방식과 보관 팁을 구매 전 상세히 안내하여 고객 문의와 오배송 혼선을 줄입니다</p>
                   </div>
                 </div>
               </div>
@@ -527,7 +527,7 @@ export default function DualIndustryShowcase({
                   </div>
                   <div>
                     <h4 className="font-medium text-[#202124] text-base mb-1">실측 사이즈표 &amp; 소재 가이드</h4>
-                    <p className="text-xs text-[#5f6368]">어깨/가슴/소매 단면 실측표와 신축성·두께감·비침 지수를 제공해 교환율 대폭 감소</p>
+                    <p className="text-xs text-[#5f6368]">어깨/가슴/소매 단면 실측표와 신축성·두께감 지수를 제공하여 사이즈 착오로 인한 교환을 방지합니다</p>
                   </div>
                 </div>
               </div>

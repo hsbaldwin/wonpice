@@ -19,15 +19,15 @@ export default function SolutionPricing() {
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#137333] border border-[#ceead6] text-xs sm:text-sm font-medium mb-6">
             <Sparkles className="w-4 h-4 text-[#1e8e3e]" />
-            <span>2026 선착순 한정 프로모션</span>
+            <span>2026 자사몰 구축 프로모션</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#202124] tracking-tight mb-6 leading-tight">
-            자사몰 솔루션 요금제 &amp; 선착순 50% 혜택
+            자사몰 솔루션 요금제 &amp; 50% 프로모션 안내
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed">
             비싼 개발사 외주나 프리랜서 고용 없이, 초기 기획부터 디자인 세팅, 결제 연동까지 원스톱으로 제공합니다.
             <br className="hidden sm:inline" />
-            선착순 접수 순서대로 자사몰 구축비 50% 감면 혜택이 즉시 적용됩니다.
+            프로모션 기간 내 신청 시 자사몰 구축비 50% 감면 혜택이 적용됩니다.
           </p>
         </div>
 
@@ -132,7 +132,7 @@ export default function SolutionPricing() {
               <ul className="text-xs sm:text-sm text-[#3c4043] space-y-3.5 pb-8 border-t border-[#dadce0] pt-6">
                 <li className="flex items-center gap-3 font-medium text-[#202124]">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
-                  <span>스타터의 모든 기능 100% 포함</span>
+                  <span>스타터의 모든 기능 포함</span>
                 </li>
                 <li className="flex items-center gap-3 font-medium text-[#1a73e8]">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
@@ -197,11 +197,11 @@ export default function SolutionPricing() {
               <ul className="text-xs sm:text-sm text-[#5f6368] space-y-3.5 pb-8 border-t border-[#f1f3f4] pt-6">
                 <li className="flex items-center gap-3 font-medium text-[#202124]">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
-                  <span>비즈니스의 모든 기능 100% 포함</span>
+                  <span>비즈니스의 모든 기능 포함</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
-                  <span>전용 서버·DB (완전 독립 데이터 인프라)</span>
+                  <span>전용 서버·DB (독립 데이터 인프라 구성)</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
@@ -235,11 +235,11 @@ export default function SolutionPricing() {
           </div>
         </div>
 
-        {/* 3-Second Eligibility Confirmation Card */}
+        {/* Eligibility Confirmation Card */}
         <div data-testid="eligibility-checker" className="bg-white p-9 sm:p-12 rounded-[36px] border border-[#dadce0] shadow-xs">
           <h3 className="font-medium text-[#202124] text-lg sm:text-xl flex items-center gap-2.5 mb-6">
             <ShieldCheck className="w-5 h-5 text-[#1e8e3e]" />
-            <span>3초 프로모션 지원 자격 확인</span>
+            <span>프로모션 지원 자격 자가 진단</span>
           </h3>
 
           <div className="space-y-4 text-sm sm:text-base text-[#3c4043]">

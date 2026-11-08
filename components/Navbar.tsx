@@ -36,7 +36,7 @@ export default function Navbar() {
           2026 프로모션
         </span>
         <span className="font-normal truncate sm:overflow-visible">
-          업종 맞춤 자사몰 제작 선착순 구축비 50% 프로모션 접수 중
+          업종 맞춤 자사몰 제작 구축비 50% 프로모션 접수 중
         </span>
         <a
           href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_topbanner"

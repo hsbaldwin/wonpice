@@ -95,7 +95,7 @@ export default function SolutionHero() {
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#fad2cf] bg-[#fce8e6] text-[#c5221f] text-xs font-medium">
               <Check className="w-3.5 h-3.5" />
-              <span>선착순 30개사 한정</span>
+              <span>업종 맞춤 테마 제공</span>
             </span>
           </div>
 
@@ -111,8 +111,8 @@ export default function SolutionHero() {
                     WonPice Commerce Engine v2026
                   </h4>
                 </div>
-                <p className="text-xs sm:text-sm text-[#5f6368]">
-                  식품·농가(제철곳간) 및 패션·디자이너(온결) 업종별 전용 테마 완벽 지원
+                <p className="text-xs text-[#5f6368]">
+                  식품·농가(제철곳간) 및 패션·디자이너(온결) 업종별 전용 테마 맞춤 지원
                 </p>
               </div>
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#f8f9fa] border border-[#dadce0] text-xs text-[#3c4043] shrink-0">
@@ -128,13 +128,13 @@ export default function SolutionHero() {
                 <div className="text-2xl sm:text-3xl font-medium text-[#202124] mt-2 mb-1">₩ 4,820,000</div>
                 <div className="inline-flex items-center gap-1 text-xs text-[#137333] font-medium">
                   <Check className="w-3.5 h-3.5" />
-                  <span>오픈마켓 수수료 0원 세이브</span>
+                  <span>오픈마켓 중개 수수료 절감</span>
                 </div>
               </div>
 
               <div className="bg-[#f8f9fa] p-5 sm:p-6 rounded-2xl border border-[#dadce0] transition-all hover:border-[#1a73e8]/30">
-                <span className="text-xs font-medium text-[#5f6368]">토스 간편결제 승인율</span>
-                <div className="text-2xl sm:text-3xl font-medium text-[#1a73e8] mt-2 mb-1">99.98%</div>
+                <span className="text-xs font-medium text-[#5f6368]">토스 간편결제 연동</span>
+                <div className="text-2xl sm:text-3xl font-medium text-[#1a73e8] mt-2 mb-1">안정적 승인</div>
                 <div className="inline-flex items-center gap-1 text-xs text-[#5f6368]">
                   <Check className="w-3.5 h-3.5 text-[#1e8e3e]" />
                   <span>투명한 PG 원가(2~3%) 적용</span>
@@ -142,11 +142,11 @@ export default function SolutionHero() {
               </div>
 
               <div className="bg-[#f8f9fa] p-5 sm:p-6 rounded-2xl border border-[#dadce0] transition-all hover:border-[#1a73e8]/30">
-                <span className="text-xs font-medium text-[#5f6368]">영구 소유 브랜드 고객 DB</span>
+                <span className="text-xs font-medium text-[#5f6368]">브랜드 직접 소유 고객 DB</span>
                 <div className="text-2xl sm:text-3xl font-medium text-[#202124] mt-2 mb-1">2,450명</div>
                 <div className="inline-flex items-center gap-1 text-xs text-[#5f6368]">
                   <Check className="w-3.5 h-3.5 text-[#1e8e3e]" />
-                  <span>가상번호 없는 100% 실명 DB</span>
+                  <span>가상번호 없는 자사몰 회원 DB</span>
                 </div>
               </div>
             </div>
@@ -209,7 +209,7 @@ export default function SolutionHero() {
             </div>
             <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">플랫폼 중개 수수료 0%</h3>
             <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 순마진이 획기적으로 개선됩니다.
+              오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
             </p>
           </div>
 
@@ -217,9 +217,9 @@ export default function SolutionHero() {
             <div className="w-12 h-12 rounded-full bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center mb-6">
               <Users className="w-6 h-6" />
             </div>
-            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">고객 DB 100% 브랜드 소유</h3>
+            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">고객 DB 직접 소유</h3>
             <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              플랫폼 가상번호 대신 고객의 진짜 연락처와 구매 내역을 직접 소유하여, 광고비 지출 없이 재구매와 프로모션을 자유롭게 실행합니다.
+              플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
             </p>
           </div>
 
@@ -227,9 +227,9 @@ export default function SolutionHero() {
             <div className="w-12 h-12 rounded-full bg-[#fef7e0] text-[#b06000] flex items-center justify-center mb-6">
               <ShieldCheck className="w-6 h-6" />
             </div>
-            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">전담 엔터프라이즈 운영</h3>
+            <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">체계적인 인프라 운영 관리</h3>
             <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
-              매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에만 온전히 집중하실 수 있습니다.
+              매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
             </p>
           </div>
         </div>

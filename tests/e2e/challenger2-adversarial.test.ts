@@ -114,27 +114,27 @@ test.describe('Adversarial Stress Test: Challenger 2 (Milestone 3)', () => {
       await expect(infra.locator('text=02. 자동 변환 엔진')).toBeVisible();
       await expect(infra.locator('text=03. 자사몰 즉시 런칭')).toBeVisible();
       await expect(infra.locator('text=상품 100개 등록 소요시간 비교')).toBeVisible();
-      await expect(infra.locator('text=100% 수작업 시간 절감')).toBeVisible();
+      await expect(infra.locator('text=대량 등록 수작업 시간 절감')).toBeVisible();
 
       // Graphic 2: 1-Day Approval, 2x2 Payment Brands & Zero Fee Guarantee
-      await expect(infra.locator('text=영업일 기준 1일 초고속 심사 승인')).toBeVisible();
+      await expect(infra.locator('text=영업일 기준 신속 서류 접수 대행')).toBeVisible();
       await expect(infra.getByText('토스페이', { exact: true })).toBeVisible();
       await expect(infra.getByText('카카오페이', { exact: true })).toBeVisible();
       await expect(infra.getByText('네이버페이', { exact: true })).toBeVisible();
       await expect(infra.getByText('국내 전 카드사', { exact: true })).toBeVisible();
       await expect(infra.locator('text=PG사 직접 정산 계약')).toBeVisible();
-      await expect(infra.locator('text=중개 수수료 0% 보장')).toBeVisible();
+      await expect(infra.locator('text=자사몰 판매 시 별도 중개 수수료 없음')).toBeVisible();
 
       // Graphic 3: Browser URL simulation, DNS A Record, TLS 1.3
       await expect(infra.locator('text=https://brand.co.kr')).toBeVisible();
       await expect(infra.locator('text=보안 연결됨')).toBeVisible();
       await expect(infra.locator('text=DNS A Record')).toBeVisible();
       await expect(infra.locator('text=자동 글로벌 애니캐스트 라우팅')).toBeVisible();
-      await expect(infra.locator('text=TLS 1.3 256-bit 평생 무상 갱신')).toBeVisible();
+      await expect(infra.locator('text=TLS 1.3 256-bit 무상 자동 갱신')).toBeVisible();
 
       // Graphic 4: 3-Region Uptime Radar & DB Backup & 1:1 Training
       await expect(infra.locator('text=글로벌 3개 거점 실시간 헬스체크 레이더')).toBeVisible();
-      await expect(infra.locator('text=가용성 99.99%')).toBeVisible();
+      await expect(infra.locator('text=안정적 인프라 가동')).toBeVisible();
       await expect(infra.locator('text=서울 ICN')).toBeVisible();
       await expect(infra.locator('text=Ping 8ms')).toBeVisible();
       await expect(infra.locator('text=미국 PDX')).toBeVisible();
@@ -142,7 +142,7 @@ test.describe('Adversarial Stress Test: Challenger 2 (Milestone 3)', () => {
       await expect(infra.locator('text=유럽 FRA')).toBeVisible();
       await expect(infra.locator('text=Ping 182ms')).toBeVisible();
       await expect(infra.locator('text=매일 새벽 자동 DB 백업 (S3 다중 분산)')).toBeVisible();
-      await expect(infra.locator('text=1:1 원격 실무 교육 60분 (관리자 완전 정복)')).toBeVisible();
+      await expect(infra.locator('text=1:1 원격 실무 교육 60분 (관리자 핵심 기능 안내)')).toBeVisible();
     });
   });
 

@@ -10,7 +10,7 @@ import PartnerApplicationModal from "@/components/PartnerApplicationModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "패션 브랜드·자체제작 의류 자사몰 솔루션 — 2026 선착순 구축비 50% 프로모션 | WonPice",
+  title: "패션 브랜드·자체제작 의류 자사몰 솔루션 — 2026 자사몰 구축비 50% 프로모션 | WonPice",
   description:
     "에이블리·지그재그 수수료를 넘어 브랜드의 핏과 감성을 온전히 살리는 패션 전문 자사몰 솔루션. 세로형 룩북, 사이즈 가이드, 50% 프로모션 안내.",
 };

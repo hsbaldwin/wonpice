@@ -51,7 +51,7 @@ export default function Footer() {
               </li>
               <li>
                 <a href="#pricing" className="hover:text-[#202124] transition-colors">
-                  2026 선착순 50% 요금제
+                  2026 구축비 50% 요금제
                 </a>
               </li>
               <li>
@@ -123,7 +123,7 @@ export default function Footer() {
                 <span>매일 새벽 자동 DB 백업 &amp; 시점 복구</span>
               </li>
               <li className="text-xs text-[#5f6368] pt-1 leading-relaxed">
-                장애 대응 SLA 약정 체결 및 계약 종료 시 고객 데이터 100% 엑셀 안전 반환
+                안정적 기술 지원 및 계약 종료 시 고객 데이터 엑셀 파일 안전 반환
               </li>
             </ul>
           </div>
