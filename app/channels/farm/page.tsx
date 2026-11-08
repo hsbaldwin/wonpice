@@ -1,10 +1,9 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import FarmMarginCalculator from "@/components/FarmMarginCalculator";
-import FarmD2cGuide from "@/components/FarmD2cGuide";
-import FarmFeaturesShowcase from "@/components/FarmFeaturesShowcase";
-import FarmReadinessDiagnostic from "@/components/FarmReadinessDiagnostic";
-import PromotionBridge from "@/components/PromotionBridge";
+import ValueStory from "@/components/ValueStory";
+import ConnectionMethod from "@/components/ConnectionMethod";
+import StoreShowcase from "@/components/StoreShowcase";
+import SupportProgram from "@/components/SupportProgram";
 import FarmFaq from "@/components/FarmFaq";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
@@ -19,22 +18,20 @@ export const metadata: Metadata = {
     "산지직송 쇼핑몰 만들기",
     "농가 자사몰 구축 지원",
     "과일 직거래 사이트",
-    "농가 스마트스토어 수수료",
     "가게지기",
   ],
 };
 
 export default function FarmChannelPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-stone-50 text-stone-900 font-sans">
+    <div className="min-h-screen flex flex-col bg-white text-[#202124] font-sans selection:bg-[#e8f0fe] selection:text-[#1a73e8]">
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <FarmMarginCalculator />
-        <FarmD2cGuide />
-        <FarmFeaturesShowcase />
-        <FarmReadinessDiagnostic />
-        <PromotionBridge />
+        <ValueStory />
+        <ConnectionMethod />
+        <StoreShowcase />
+        <SupportProgram />
         <FarmFaq />
       </main>
       <Footer />
