@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -b gh-pages"
+    "deploy": "next build && touch out/.nojekyll && gh-pages -d out --dotfiles -b gh-pages"
   },
   "dependencies": {
     "lucide-react": "^1.70.0",
