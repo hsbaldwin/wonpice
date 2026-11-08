@@ -1,17 +1,16 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import ValueStory from "@/components/ValueStory";
-import ConnectionMethod from "@/components/ConnectionMethod";
-import StoreShowcase from "@/components/StoreShowcase";
-import SupportProgram from "@/components/SupportProgram";
-import FarmFaq from "@/components/FarmFaq";
+import SolutionHero from "@/components/SolutionHero";
+import DualIndustryShowcase from "@/components/DualIndustryShowcase";
+import SolutionInfrastructure from "@/components/SolutionInfrastructure";
+import SolutionPricing from "@/components/SolutionPricing";
+import SolutionFaq from "@/components/SolutionFaq";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "농산물 직거래 쇼핑몰 제작 — 공판장 헐값과 수수료를 넘는 농가의 올바른 선택 | WonPice",
+  title: "업종 맞춤 자사몰 솔루션 — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 제작 | WonPice",
   description:
-    "최저가 가격 경쟁에서 벗어나 내 농산물의 제값을 받는 가장 올바른 선택. 농산물 직거래 쇼핑몰 제작, 스마트스토어 병행 및 D2C 단골 전환 실전 가이드. 2026 농가 맞춤 자사몰 구축비 50% 지원 혜택 안내.",
+    "스마트스토어·오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤형 자사몰 솔루션. 식품·농가('제철곳간')부터 패션('온결')까지. 테마 제작, 상품 100개 등록 대행, 결제 연동 3~5주 완성. 2026 선착순 구축비 50% 할인 프로모션.",
 };
 
 export default function Home() {
@@ -19,12 +18,11 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-white text-[#202124] font-sans selection:bg-[#e8f0fe] selection:text-[#1a73e8]">
       <Navbar />
       <main className="flex-1">
-        <Hero />
-        <ValueStory />
-        <ConnectionMethod />
-        <StoreShowcase />
-        <SupportProgram />
-        <FarmFaq />
+        <SolutionHero />
+        <DualIndustryShowcase />
+        <SolutionInfrastructure />
+        <SolutionPricing />
+        <SolutionFaq />
       </main>
       <Footer />
     </div>

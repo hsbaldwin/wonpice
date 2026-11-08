@@ -1,24 +1,16 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import ValueStory from "@/components/ValueStory";
-import ConnectionMethod from "@/components/ConnectionMethod";
-import StoreShowcase from "@/components/StoreShowcase";
-import SupportProgram from "@/components/SupportProgram";
-import FarmFaq from "@/components/FarmFaq";
+import SolutionHero from "@/components/SolutionHero";
+import DualIndustryShowcase from "@/components/DualIndustryShowcase";
+import SolutionInfrastructure from "@/components/SolutionInfrastructure";
+import SolutionPricing from "@/components/SolutionPricing";
+import SolutionFaq from "@/components/SolutionFaq";
 import Footer from "@/components/Footer";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "수제 식품·농산물 온라인 직거래 쇼핑몰 제작 가이드 | WonPice",
+  title: "수제 식품·신선식품 자사몰 솔루션 — 2026 선착순 구축비 50% 프로모션 | WonPice",
   description:
-    "배달앱 및 오픈마켓 수수료를 넘어, 전국 단골을 확보하는 수제 식품·산지직송 온라인 판로 개척 실전 가이드. 2026 자사몰 구축비 50% 프로모션 안내.",
-  keywords: [
-    "수제 식품 온라인 판로 개척",
-    "밀키트 쇼핑몰 제작",
-    "식품 자사몰 구축 지원",
-    "농산물 직거래 쇼핑몰",
-    "가게지기",
-  ],
+    "오픈마켓 수수료 없이 전국 단골을 확보하는 식품 전용 자사몰 솔루션. 중량 옵션, 오늘 출고 마감, 냉장 배송 안내. 50% 프로모션 안내.",
 };
 
 export default function FoodChannelPage() {
@@ -26,12 +18,11 @@ export default function FoodChannelPage() {
     <div className="min-h-screen flex flex-col bg-white text-[#202124] font-sans selection:bg-[#e8f0fe] selection:text-[#1a73e8]">
       <Navbar />
       <main className="flex-1">
-        <Hero />
-        <ValueStory />
-        <ConnectionMethod />
-        <StoreShowcase />
-        <SupportProgram />
-        <FarmFaq />
+        <SolutionHero />
+        <DualIndustryShowcase />
+        <SolutionInfrastructure />
+        <SolutionPricing />
+        <SolutionFaq />
       </main>
       <Footer />
     </div>
