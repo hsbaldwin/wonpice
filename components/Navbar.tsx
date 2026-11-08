@@ -36,40 +36,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-2 text-sm font-medium text-[#5f6368]">
-          <a
-            href="#features"
-            className="px-4 py-2 rounded-full hover:text-[#202124] hover:bg-[#f1f3f4] transition-colors"
-          >
-            솔루션 강점
-          </a>
-          <a
-            href="#showcase"
-            className="px-4 py-2 rounded-full hover:text-[#202124] hover:bg-[#f1f3f4] transition-colors"
-          >
-            업종별 라이브 데모
-          </a>
-          <a
-            href="#infrastructure"
-            className="px-4 py-2 rounded-full hover:text-[#202124] hover:bg-[#f1f3f4] transition-colors"
-          >
-            제공 인프라
-          </a>
-          <a
-            href="#pricing"
-            className="px-4 py-2 rounded-full hover:text-[#202124] hover:bg-[#f1f3f4] transition-colors"
-          >
-            요금제 &amp; 50% 혜택
-          </a>
-          <a
-            href="#faq"
-            className="px-4 py-2 rounded-full hover:text-[#202124] hover:bg-[#f1f3f4] transition-colors"
-          >
-            FAQ
-          </a>
-        </nav>
-
         {/* Right CTA */}
         <div className="flex items-center gap-3">
           <a

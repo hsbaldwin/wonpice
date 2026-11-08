@@ -29,7 +29,7 @@ export default function SolutionHero() {
         </p>
 
         {/* Dual Actions */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20 sm:mb-24">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 sm:mb-16">
           <a
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_hero"
             target="_blank"
@@ -47,6 +47,51 @@ export default function SolutionHero() {
             <span>업종별 라이브 데모 둘러보기</span>
             <ArrowDown className="w-4.5 h-4.5 opacity-60" />
           </a>
+        </div>
+
+        {/* 4대 비용·효율 KPI 대시보드 (가로 1열 통합 바 - 1280px Scale) */}
+        <div className="max-w-7xl mx-auto mb-16 sm:mb-20">
+          <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-3xl lg:rounded-full p-6 lg:py-5 lg:px-8 shadow-xs">
+            <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#dadce0] gap-y-6 lg:gap-y-0">
+              {/* Metric 1 */}
+              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center">
+                <span className="text-xs font-medium text-[#5f6368] mb-1.5">자사몰 제작비</span>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">75만 원부터</span>
+                </div>
+                <div className="inline-flex items-center gap-1 text-[11px] font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
+                  <span>50% 프로모션가</span>
+                </div>
+              </div>
+
+              {/* Metric 2 */}
+              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center">
+                <span className="text-xs font-medium text-[#5f6368] mb-1.5">월 고정 유지비</span>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">10만 원</span>
+                </div>
+                <span className="text-[11px] text-[#5f6368]">서버·자동 백업·3중 모니터링</span>
+              </div>
+
+              {/* Metric 3 */}
+              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0">
+                <span className="text-xs font-medium text-[#5f6368] mb-1.5">추가 중개 수수료</span>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className="text-2xl sm:text-3xl font-medium text-[#1a73e8] tracking-tight">0원 (0%)</span>
+                </div>
+                <span className="text-[11px] text-[#5f6368]">토스 PG 직접 계약 · 판매 수수료 0%</span>
+              </div>
+
+              {/* Metric 4 */}
+              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0">
+                <span className="text-xs font-medium text-[#5f6368] mb-1.5">제작 소요 기간</span>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">3~5주 완성</span>
+                </div>
+                <span className="text-[11px] text-[#5f6368]">PG 심사 대행 + 상품 100개 등록</span>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* 3 Core Value Pillars */}
