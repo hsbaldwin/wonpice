@@ -1,14 +1,9 @@
 import {
   ArrowDown,
-  Check,
   ExternalLink,
-  Lock,
   ShieldCheck,
   Users,
   Zap,
-  TrendingUp,
-  CreditCard,
-  ArrowUpRight,
 } from "lucide-react";
 
 export default function SolutionHero() {
@@ -67,137 +62,6 @@ export default function SolutionHero() {
             <span>업종별 라이브 데모 둘러보기</span>
             <ArrowDown className="w-4 h-4 opacity-70" />
           </a>
-        </div>
-
-        {/* Studio Hardware & Browser Mockup Showcase Stage */}
-        <div
-          data-testid="device-mockup"
-          className="max-w-5xl mx-auto mb-16 sm:mb-20 rounded-3xl lg:rounded-[32px] border border-[#dadce0] bg-white shadow-[0_16px_48px_rgba(0,0,0,0.06)] overflow-hidden text-left relative"
-        >
-          {/* Browser Top Chrome */}
-          <div className="bg-[#f8f9fa] border-b border-[#dadce0] px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="w-3 h-3 rounded-full bg-[#ea4335]" />
-              <span className="w-3 h-3 rounded-full bg-[#fbbc04]" />
-              <span className="w-3 h-3 rounded-full bg-[#34a853]" />
-            </div>
-
-            {/* URL Bar */}
-            <div className="flex-1 max-w-md mx-auto bg-white border border-[#dadce0] rounded-full px-4 py-1 flex items-center justify-center gap-2 text-xs shadow-xs">
-              <Lock className="w-3.5 h-3.5 text-[#1e8e3e] shrink-0" />
-              <span className="text-xs text-[#5f6368] font-mono truncate">
-                https://shop-site-950864605215.asia-northeast3.run.app
-              </span>
-            </div>
-
-            {/* Live Engine Status Badge */}
-            <div className="hidden sm:flex items-center gap-1.5 text-xs text-[#137333] shrink-0 font-medium">
-              <span className="w-2 h-2 rounded-full bg-[#1e8e3e]" />
-              <span>라이브 엔진 가동 중</span>
-            </div>
-          </div>
-
-          {/* Floating Google 4-Color Chip Badges Bar */}
-          <div className="bg-[#f8f9fa]/80 border-b border-[#dadce0] px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#d2e3fc] bg-[#e8f0fe] text-[#1a73e8] text-xs font-medium">
-              <Check className="w-3.5 h-3.5" />
-              <span>추가 중개 수수료 0%</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#ceead6] bg-[#e6f4ea] text-[#137333] text-xs font-medium">
-              <Check className="w-3.5 h-3.5" />
-              <span>3~5주 완성 원스톱 런칭</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#feefc3] bg-[#fef7e0] text-[#b06000] text-xs font-medium">
-              <Check className="w-3.5 h-3.5" />
-              <span>구축비 50% 프로모션</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#fad2cf] bg-[#fce8e6] text-[#c5221f] text-xs font-medium">
-              <Check className="w-3.5 h-3.5" />
-              <span>업종 맞춤 테마 제공</span>
-            </span>
-          </div>
-
-          {/* Studio Preview Interior: Balanced, Clean Console */}
-          <div className="p-6 sm:p-8 bg-white">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-[#e8eaed] gap-3">
-              <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2 py-0.5 rounded">
-                    v2026.11
-                  </span>
-                  <h4 className="font-medium text-[#202124] text-base sm:text-lg">
-                    WonPice Commerce Engine v2026
-                  </h4>
-                </div>
-                <p className="text-xs text-[#5f6368]">
-                  식품·농가(제철곳간) 및 패션·디자이너(온결) 업종별 전용 테마 맞춤 지원
-                </p>
-              </div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f8f9fa] border border-[#dadce0] text-xs text-[#5f6368] shrink-0">
-                <span className="w-2 h-2 rounded-full bg-[#1e8e3e]" />
-                <span>클라우드 런 정상 배포됨</span>
-              </div>
-            </div>
-
-            {/* 3 Balanced Metric Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mt-6">
-              <div className="bg-[#f8f9fa] p-5 sm:p-6 rounded-2xl border border-[#dadce0] transition-all hover:border-[#1a73e8]/30">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-medium text-[#5f6368]">일간 실시간 결제액</span>
-                  <TrendingUp className="w-4 h-4 text-[#1a73e8]" />
-                </div>
-                <div className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight mb-1">
-                  ₩ 4,820,000
-                </div>
-                <div className="text-xs text-[#137333] font-medium flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5" />
-                  <span>오픈마켓 중개 수수료 절감</span>
-                </div>
-              </div>
-
-              <div className="bg-[#f8f9fa] p-5 sm:p-6 rounded-2xl border border-[#dadce0] transition-all hover:border-[#1a73e8]/30">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-medium text-[#5f6368]">토스 간편결제 연동</span>
-                  <CreditCard className="w-4 h-4 text-[#137333]" />
-                </div>
-                <div className="text-2xl sm:text-3xl font-medium text-[#1a73e8] tracking-tight mb-1">
-                  안정적 승인
-                </div>
-                <div className="text-xs text-[#5f6368] flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5 text-[#1e8e3e]" />
-                  <span>투명한 PG 원가(2~3%) 적용</span>
-                </div>
-              </div>
-
-              <div className="bg-[#f8f9fa] p-5 sm:p-6 rounded-2xl border border-[#dadce0] transition-all hover:border-[#1a73e8]/30">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-xs font-medium text-[#5f6368]">브랜드 직접 소유 고객 DB</span>
-                  <Users className="w-4 h-4 text-[#b06000]" />
-                </div>
-                <div className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight mb-1">
-                  2,450명
-                </div>
-                <div className="text-xs text-[#5f6368] flex items-center gap-1">
-                  <Check className="w-3.5 h-3.5 text-[#1e8e3e]" />
-                  <span>가상번호 없는 자사몰 회원 DB</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Bottom Status Feed */}
-            <div className="mt-5 p-3 rounded-xl bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-2.5 text-xs">
-              <span className="text-[#5f6368]">
-                실시간 연동: <strong className="font-medium text-[#202124]">[제철곳간] 성주 꿀참외 3kg 주문 완료</strong> (토스 결제 완료)
-              </span>
-              <a
-                href="#showcase"
-                className="text-[#1a73e8] hover:underline font-medium inline-flex items-center gap-0.5 shrink-0"
-              >
-                <span>데모 둘러보기</span>
-                <ArrowUpRight className="w-3 h-3" />
-              </a>
-            </div>
-          </div>
         </div>
 
         {/* 4-Column KPI Metric Ribbon */}
