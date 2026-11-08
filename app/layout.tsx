@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
+import { Roboto_Flex } from "next/font/google";
 import "./globals.css";
+
+const robotoFlex = Roboto_Flex({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-roboto-flex",
+});
 
 export const metadata: Metadata = {
   title: "업종 맞춤 자사몰 솔루션 — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 제작 | WonPice",
@@ -114,8 +121,15 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="ko" className="h-full antialiased scroll-smooth">
+    <html lang="ko" className={`h-full antialiased scroll-smooth ${robotoFlex.variable}`}>
       <head>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebsite) }}

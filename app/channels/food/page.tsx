@@ -5,6 +5,8 @@ import SolutionInfrastructure from "@/components/SolutionInfrastructure";
 import SolutionPricing from "@/components/SolutionPricing";
 import SolutionFaq from "@/components/SolutionFaq";
 import Footer from "@/components/Footer";
+import { PartnerModalProvider } from "@/components/PartnerModalContext";
+import PartnerApplicationModal from "@/components/PartnerApplicationModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -15,16 +17,19 @@ export const metadata: Metadata = {
 
 export default function FoodChannelPage() {
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#202124] font-sans selection:bg-[#e8f0fe] selection:text-[#1a73e8]">
-      <Navbar />
-      <main className="flex-1">
-        <SolutionHero />
-        <DualIndustryShowcase />
-        <SolutionInfrastructure />
-        <SolutionPricing />
-        <SolutionFaq />
-      </main>
-      <Footer />
-    </div>
+    <PartnerModalProvider>
+      <div className="min-h-screen flex flex-col bg-white text-[#202124] font-sans selection:bg-[#e8f0fe] selection:text-[#1a73e8]">
+        <Navbar />
+        <main className="flex-1">
+          <SolutionHero />
+          <DualIndustryShowcase initialIndustry="food" />
+          <SolutionInfrastructure />
+          <SolutionPricing />
+          <SolutionFaq />
+        </main>
+        <Footer />
+        <PartnerApplicationModal />
+      </div>
+    </PartnerModalProvider>
   );
 }

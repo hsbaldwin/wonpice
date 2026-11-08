@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, HelpCircle } from "lucide-react";
+import { usePartnerModal } from "./PartnerModalContext";
 
 interface FaqItem {
   q: string;
@@ -36,6 +37,7 @@ const faqs: FaqItem[] = [
 ];
 
 export default function SolutionFaq() {
+  const { openPartnerModal } = usePartnerModal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const toggle = (idx: number) => {
@@ -67,7 +69,9 @@ export default function SolutionFaq() {
               <div
                 key={faq.q}
                 className={`rounded-[28px] border transition-all ${
-                  isOpen ? "bg-white border-[#202124] shadow-xs" : "bg-[#f8f9fa] border-[#dadce0]"
+                  isOpen
+                    ? "border border-[#1a73e8] bg-white shadow-xs"
+                    : "border border-[#dadce0] bg-[#f8f9fa] hover:bg-[#f1f3f4]"
                 }`}
               >
                 <button
@@ -115,7 +119,11 @@ export default function SolutionFaq() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_faq_bottom"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shrink-0 shadow-xs transition-all"
+            onClick={(e) => {
+              e.preventDefault();
+              openPartnerModal({ plan: "custom" });
+            }}
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shrink-0 shadow-xs transition-all cursor-pointer"
           >
             <span>1:1 상담 신청서 작성 ↗</span>
           </a>

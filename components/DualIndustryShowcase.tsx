@@ -3,11 +3,305 @@
 import { useState } from "react";
 import { Store, Shirt, Wheat, ExternalLink, Clock, Package, Scale, Ruler, Sparkles, Layers } from "lucide-react";
 
-export default function DualIndustryShowcase() {
-  const [activeIndustry, setActiveIndustry] = useState<"food" | "fashion">("food");
+export interface DualIndustryShowcaseProps {
+  initialIndustry?: "food" | "fashion";
+}
+
+function FreshAppleVector({ className = "w-16 h-16" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 100"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-label="신선한 사과 일러스트"
+      role="img"
+    >
+      <defs>
+        {/* Ambient Ground Shadow Gradient */}
+        <radialGradient id="appleShadowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#202124" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#202124" stopOpacity="0" />
+        </radialGradient>
+
+        {/* Rich Organic Ruby Apple Gradient */}
+        <radialGradient id="appleBodyGrad" cx="38%" cy="36%" r="65%">
+          <stop offset="0%" stopColor="#ff5252" />
+          <stop offset="25%" stopColor="#e53935" />
+          <stop offset="60%" stopColor="#d32f2f" />
+          <stop offset="85%" stopColor="#b71c1c" />
+          <stop offset="100%" stopColor="#7f0000" />
+        </radialGradient>
+
+        {/* 3D Specular Highlight Gradient */}
+        <linearGradient id="appleHighlight" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity="0.85" />
+          <stop offset="45%" stopColor="#ffffff" stopOpacity="0.25" />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+        </linearGradient>
+
+        {/* Secondary Rim Reflection */}
+        <linearGradient id="appleRimGrad" x1="100%" y1="70%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="#ffcdd2" stopOpacity="0.4" />
+          <stop offset="100%" stopColor="#ffcdd2" stopOpacity="0" />
+        </linearGradient>
+
+        {/* Emerald Leaf Gradient */}
+        <linearGradient id="appleLeafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#66bb6a" />
+          <stop offset="50%" stopColor="#43a047" />
+          <stop offset="100%" stopColor="#1b5e20" />
+        </linearGradient>
+
+        {/* Wooden Stem Gradient */}
+        <linearGradient id="appleStemGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#4e342e" />
+          <stop offset="50%" stopColor="#6d4c41" />
+          <stop offset="100%" stopColor="#3e2723" />
+        </linearGradient>
+      </defs>
+
+      {/* Ambient soft shadow */}
+      <ellipse cx="50" cy="91" rx="28" ry="6" fill="url(#appleShadowGrad)" />
+
+      {/* Wooden Stem with natural organic curve */}
+      <path
+        d="M 50 34 C 49 26 53 19 61 14 C 62 13 63 15 62 16 C 56 22 53 27 52 34 Z"
+        fill="url(#appleStemGrad)"
+      />
+
+      {/* Emerald leaf with vein */}
+      <path
+        d="M 51 30 C 58 20 73 20 78 27 C 78 35 65 39 52 32 Z"
+        fill="url(#appleLeafGrad)"
+        filter="drop-shadow(0 1px 1px rgba(0,0,0,0.15))"
+      />
+      {/* Delicate Leaf Center Vein */}
+      <path
+        d="M 52 30 C 60 27 68 26 77 28"
+        stroke="#81c784"
+        strokeWidth="0.9"
+        strokeLinecap="round"
+        opacity="0.85"
+      />
+
+      {/* Organic Apple Body Silhouette with natural clefts */}
+      <path
+        d="M 50 35 
+           C 42 27, 24 28, 19 44 
+           C 14 60, 21 82, 38 87 
+           C 45 89, 48 85, 50 85 
+           C 52 85, 55 89, 62 87 
+           C 79 82, 86 60, 81 44 
+           C 76 28, 58 27, 50 35 Z"
+        fill="url(#appleBodyGrad)"
+      />
+
+      {/* Secondary Rim light on right */}
+      <path
+        d="M 50 85 C 55 89 62 87 79 82 C 85 64 80 48 74 38"
+        stroke="url(#appleRimGrad)"
+        strokeWidth="3"
+        strokeLinecap="round"
+        fill="none"
+      />
+
+      {/* 3D Specular Highlight */}
+      <ellipse
+        cx="33"
+        cy="43"
+        rx="7"
+        ry="12"
+        transform="rotate(-26 33 43)"
+        fill="url(#appleHighlight)"
+      />
+      {/* Secondary Micro Sparkle */}
+      <circle cx="28" cy="38" r="1.8" fill="#ffffff" opacity="0.9" />
+
+      {/* Top Cleft Depth Crease */}
+      <path
+        d="M 46 34 C 48 37 52 37 54 34"
+        stroke="#4a0000"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+    </svg>
+  );
+}
+
+function CuratedCoatVector({ className = "w-16 h-20" }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 100 120"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      aria-label="큐레이티드 울 코트 일러스트"
+      role="img"
+    >
+      <defs>
+        {/* Soft Ambient Ground Shadow */}
+        <radialGradient id="coatShadowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#202124" stopOpacity="0.2" />
+          <stop offset="100%" stopColor="#202124" stopOpacity="0" />
+        </radialGradient>
+
+        {/* Brass Hanger Metallic Gradient */}
+        <linearGradient id="brassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#ffe082" />
+          <stop offset="30%" stopColor="#ffb300" />
+          <stop offset="70%" stopColor="#d4af37" />
+          <stop offset="100%" stopColor="#8d6e1f" />
+        </linearGradient>
+
+        {/* Classic Navy Wool Gradient */}
+        <linearGradient id="coatNavyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#253554" />
+          <stop offset="40%" stopColor="#1a2744" />
+          <stop offset="80%" stopColor="#131c33" />
+          <stop offset="100%" stopColor="#0c1322" />
+        </linearGradient>
+
+        {/* Lapel Facing Highlight Gradient */}
+        <linearGradient id="lapelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#314468" />
+          <stop offset="100%" stopColor="#19243d" />
+        </linearGradient>
+
+        {/* Horn Button Gradient */}
+        <radialGradient id="hornButtonGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stopColor="#4e342e" />
+          <stop offset="60%" stopColor="#271b17" />
+          <stop offset="100%" stopColor="#110c0a" />
+        </radialGradient>
+      </defs>
+
+      {/* Ambient Ground Shadow */}
+      <ellipse cx="50" cy="116" rx="34" ry="4" fill="url(#coatShadowGrad)" />
+
+      {/* Brass Hanger Hook & Shoulder Bar */}
+      {/* Hook loop */}
+      <path
+        d="M 50 14 C 47 14 45 12 45 9 C 45 6 47 4 50 4 C 53 4 55 6 55 9 C 55 13 50 15 50 18"
+        stroke="url(#brassGrad)"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        fill="none"
+      />
+      {/* Top hanger bar */}
+      <path
+        d="M 33 24 L 50 18 L 67 24"
+        stroke="url(#brassGrad)"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+
+      {/* Inner Collar Shirt/Lining shadow */}
+      <path
+        d="M 43 23 L 50 33 L 57 23 Z"
+        fill="#0b0f19"
+      />
+
+      {/* Main Coat Silhouette (Overfit Tailored Wool Single Coat) */}
+      <path
+        d="M 33 24 
+           L 18 36 L 22 55 L 28 53 L 26 108 L 74 108 L 72 53 L 78 55 L 82 36 L 67 24
+           C 60 26 40 26 33 24 Z"
+        fill="url(#coatNavyGrad)"
+      />
+
+      {/* Tailored Center Seam & Placket */}
+      <line x1="50" y1="58" x2="50" y2="108" stroke="#0a0f1a" strokeWidth="1.2" />
+
+      {/* Left Lapel (Notch Lapel) */}
+      <path
+        d="M 37 24 L 43 40 L 40 43 L 50 58 L 50 32 L 40 24 Z"
+        fill="url(#lapelGrad)"
+        stroke="#101826"
+        strokeWidth="0.8"
+      />
+      {/* Left Lapel Micro-stitch line */}
+      <path
+        d="M 38 25 L 43 39 L 41 42 L 49 55"
+        stroke="#4a6088"
+        strokeWidth="0.6"
+        strokeDasharray="1.2 1"
+        fill="none"
+        opacity="0.75"
+      />
+
+      {/* Right Lapel (Overlapping front placket) */}
+      <path
+        d="M 63 24 L 57 40 L 60 43 L 50 58 L 50 32 L 60 24 Z"
+        fill="url(#lapelGrad)"
+        stroke="#101826"
+        strokeWidth="0.8"
+      />
+      {/* Right Lapel Micro-stitch line */}
+      <path
+        d="M 62 25 L 57 39 L 59 42 L 51 55"
+        stroke="#4a6088"
+        strokeWidth="0.6"
+        strokeDasharray="1.2 1"
+        fill="none"
+        opacity="0.75"
+      />
+
+      {/* Tailored Chest Welt Pocket on left */}
+      <rect x="33" y="47" width="10" height="2" rx="0.5" fill="#131c30" stroke="#253554" strokeWidth="0.5" />
+
+      {/* Waist Flap Pockets (Left & Right) */}
+      {/* Left Flap Pocket */}
+      <path
+        d="M 28 72 L 42 72 L 42 76 L 28 76 Z"
+        fill="#121a2d"
+        stroke="#273756"
+        strokeWidth="0.7"
+      />
+      {/* Right Flap Pocket */}
+      <path
+        d="M 58 72 L 72 72 L 72 76 L 58 76 Z"
+        fill="#121a2d"
+        stroke="#273756"
+        strokeWidth="0.7"
+      />
+
+      {/* Horn Buttons with Thread Detail */}
+      {/* Button 1 */}
+      <circle cx="50" cy="64" r="2.4" fill="url(#hornButtonGrad)" stroke="#5d4037" strokeWidth="0.5" />
+      <circle cx="49.5" cy="63.5" r="0.5" fill="#ffffff" opacity="0.6" />
+      <circle cx="50.5" cy="64.5" r="0.5" fill="#ffffff" opacity="0.6" />
+
+      {/* Button 2 */}
+      <circle cx="50" cy="78" r="2.4" fill="url(#hornButtonGrad)" stroke="#5d4037" strokeWidth="0.5" />
+      <circle cx="49.5" cy="77.5" r="0.5" fill="#ffffff" opacity="0.6" />
+      <circle cx="50.5" cy="78.5" r="0.5" fill="#ffffff" opacity="0.6" />
+
+      {/* Button 3 */}
+      <circle cx="50" cy="92" r="2.4" fill="url(#hornButtonGrad)" stroke="#5d4037" strokeWidth="0.5" />
+      <circle cx="49.5" cy="91.5" r="0.5" fill="#ffffff" opacity="0.6" />
+      <circle cx="50.5" cy="92.5" r="0.5" fill="#ffffff" opacity="0.6" />
+
+      {/* Hem micro-stitch detail */}
+      <line x1="28" y1="105" x2="72" y2="105" stroke="#314468" strokeWidth="0.5" strokeDasharray="1.5 1" opacity="0.6" />
+    </svg>
+  );
+}
+
+export default function DualIndustryShowcase({
+  initialIndustry = "food",
+}: DualIndustryShowcaseProps) {
+  const [prevInitialIndustry, setPrevInitialIndustry] = useState(initialIndustry);
+  const [activeIndustry, setActiveIndustry] = useState<"food" | "fashion">(initialIndustry);
+
+  if (initialIndustry && initialIndustry !== prevInitialIndustry) {
+    setPrevInitialIndustry(initialIndustry);
+    setActiveIndustry(initialIndustry);
+  }
 
   return (
-    <section id="showcase" className="py-24 sm:py-32 lg:py-36 bg-[#f8f9fa] border-b border-[#e8eaed]">
+    <section id="showcase" className="py-24 sm:py-32 lg:py-36 bg-[#f8f9fa] border-b border-[#e8eaed] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
@@ -24,31 +318,39 @@ export default function DualIndustryShowcase() {
           </p>
 
           {/* Industry Dual Switcher Pills */}
-          <div className="inline-flex p-1.5 rounded-full bg-white border border-[#dadce0] shadow-xs mt-10">
+          <div className="flex flex-col sm:inline-flex sm:flex-row p-1.5 rounded-3xl sm:rounded-full bg-white border border-[#dadce0] shadow-xs mt-8 sm:mt-10 max-w-full">
             <button
               type="button"
               onClick={() => setActiveIndustry("food")}
-              className={`flex items-center gap-2 px-7 py-3 rounded-full text-sm sm:text-base font-medium transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-base font-medium transition-all duration-200 cursor-pointer ${
                 activeIndustry === "food"
-                  ? "bg-[#202124] text-white shadow-xs"
-                  : "text-[#5f6368] hover:text-[#202124]"
+                  ? "bg-[#1a73e8] text-white shadow-xs"
+                  : "text-[#5f6368] hover:text-[#202124] hover:bg-[#f8f9fa]"
               }`}
             >
-              <Wheat className="w-4.5 h-4.5 text-[#81c995]" />
-              <span>식품 · 농가 솔루션 ('제철곳간')</span>
+              <Wheat
+                className={`w-4.5 h-4.5 transition-colors ${
+                  activeIndustry === "food" ? "text-white" : "text-[#137333]"
+                }`}
+              />
+              <span>식품 · 농가 솔루션 (&apos;제철곳간&apos;)</span>
             </button>
 
             <button
               type="button"
               onClick={() => setActiveIndustry("fashion")}
-              className={`flex items-center gap-2 px-7 py-3 rounded-full text-sm sm:text-base font-medium transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-base font-medium transition-all duration-200 cursor-pointer ${
                 activeIndustry === "fashion"
-                  ? "bg-[#202124] text-white shadow-xs"
-                  : "text-[#5f6368] hover:text-[#202124]"
+                  ? "bg-[#1a73e8] text-white shadow-xs"
+                  : "text-[#5f6368] hover:text-[#202124] hover:bg-[#f8f9fa]"
               }`}
             >
-              <Shirt className="w-4.5 h-4.5 text-[#8ab4f8]" />
-              <span>패션 · 디자이너 솔루션 ('온결')</span>
+              <Shirt
+                className={`w-4.5 h-4.5 transition-colors ${
+                  activeIndustry === "fashion" ? "text-white" : "text-[#1a73e8]"
+                }`}
+              />
+              <span>패션 · 디자이너 솔루션 (&apos;온결&apos;)</span>
             </button>
           </div>
         </div>
@@ -63,7 +365,7 @@ export default function DualIndustryShowcase() {
                   농산물 · 신선식품 · 과수원 D2C
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-medium text-[#202124]">
-                  산지직송의 신선함을 전하는 '제철곳간'
+                  산지직송의 신선함을 전하는 &apos;제철곳간&apos;
                 </h3>
                 <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
                   일반 공산품 쇼핑몰로는 해결할 수 없는 농식품만의 중량 규격, 당일 출고 마감, 신선 안심 포장 가이드를 기본 탑재했습니다.
@@ -107,9 +409,9 @@ export default function DualIndustryShowcase() {
                   href="https://shop-demo-food-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shadow-xs transition-all"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shadow-xs transition-all w-full sm:w-auto text-center justify-center"
                 >
-                  <span>'제철곳간' 라이브 데모 쇼핑몰 직접 들어가 보기</span>
+                  <span>&apos;제철곳간&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
                   <ExternalLink className="w-4.5 h-4.5 opacity-80" />
                 </a>
               </div>
@@ -133,8 +435,8 @@ export default function DualIndustryShowcase() {
 
               <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0]">
                 <div className="flex gap-5 items-center">
-                  <div className="w-20 h-20 rounded-2xl bg-[#fef7e0] border border-[#feefc3] flex items-center justify-center text-4xl shrink-0">
-                    🍎
+                  <div className="w-20 h-20 rounded-2xl bg-[#fef7e0] border border-[#feefc3] flex items-center justify-center shrink-0 p-2 shadow-xs">
+                    <FreshAppleVector className="w-16 h-16" />
                   </div>
                   <div>
                     <span className="text-xs font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full">
@@ -191,7 +493,7 @@ export default function DualIndustryShowcase() {
                   디자이너 브랜드 · 자체제작 의류
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-medium text-[#202124]">
-                  핏과 감성을 온전히 담아내는 '온결'
+                  핏과 감성을 온전히 담아내는 &apos;온결&apos;
                 </h3>
                 <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
                   에이블리나 지그재그의 가격 비교 알고리즘에 묻히지 않도록, 브랜드 고유의 감성을 표현하는 세로형 룩북과 체형별 사이즈 가이드를 기본 탑재했습니다.
@@ -235,9 +537,9 @@ export default function DualIndustryShowcase() {
                   href="https://shop-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shadow-xs transition-all"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shadow-xs transition-all w-full sm:w-auto text-center justify-center"
                 >
-                  <span>패션 '온결' 라이브 데모 쇼핑몰 직접 들어가 보기</span>
+                  <span>패션 &apos;온결&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
                   <ExternalLink className="w-4.5 h-4.5 opacity-80" />
                 </a>
               </div>
@@ -261,8 +563,8 @@ export default function DualIndustryShowcase() {
 
               <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0]">
                 <div className="flex gap-5 items-center">
-                  <div className="w-20 h-24 rounded-2xl bg-[#e8f0fe] border border-[#d2e3fc] flex items-center justify-center text-4xl shrink-0">
-                    🧥
+                  <div className="w-20 h-24 rounded-2xl bg-[#e8f0fe] border border-[#d2e3fc] flex items-center justify-center shrink-0 p-2 shadow-xs">
+                    <CuratedCoatVector className="w-16 h-20" />
                   </div>
                   <div>
                     <span className="text-xs font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full">

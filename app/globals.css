@@ -1,25 +1,182 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #202124;
-  --google-gray-bg: #f8f9fa;
-  --google-border: #dadce0;
-  --google-charcoal: #202124;
-  --google-green: #1e8e3e;
-  --google-green-dark: #137333;
-  --google-blue: #1a73e8;
-  --google-text-muted: #5f6368;
+@theme {
+  /* Google 4-Color Palette */
+  --color-google-blue: #1a73e8;
+  --color-google-blue-hover: #1557b0;
+  --color-google-blue-active: #174ea6;
+  --color-google-blue-tonal: #e8f0fe;
+  --color-google-blue-container: #e8f0fe;
+  --color-google-blue-on-container: #1967d2;
+
+  --color-google-red: #ea4335;
+  --color-google-red-hover: #d93025;
+  --color-google-red-tonal: #fce8e6;
+  --color-google-red-container: #fce8e6;
+  --color-google-red-on-container: #c5221f;
+
+  --color-google-yellow: #fbbc04;
+  --color-google-yellow-hover: #f9ab00;
+  --color-google-yellow-text: #f29900;
+  --color-google-yellow-tonal: #fef7e0;
+  --color-google-yellow-container: #fef7e0;
+  --color-google-yellow-on-container: #b06000;
+
+  --color-google-green: #34a853;
+  --color-google-green-hover: #1e8e3e;
+  --color-google-green-dark: #137333;
+  --color-google-green-tonal: #e6f4ea;
+  --color-google-green-container: #e6f4ea;
+  --color-google-green-on-container: #137333;
+
+  /* Google Tonal Surfaces & Border Grays */
+  --color-surface-background: #ffffff;
+  --color-surface-tonal-1: #f8f9fa;
+  --color-surface-tonal-2: #f1f3f4;
+  --color-surface-tonal-3: #e8eaed;
+  --color-google-outline: #dadce0;
+  --color-google-border: #dadce0;
+  --color-text-primary: #202124;
+  --color-text-secondary: #5f6368;
+  --color-text-tertiary: #80868b;
+  --color-google-on-surface: #202124;
+  --color-google-on-surface-variant: #5f6368;
+
+  /* Backward compatibility aliases */
+  --color-google-gray-bg: #f8f9fa;
+  --color-google-charcoal: #202124;
+  --color-google-text-muted: #5f6368;
+
+  /* Fonts */
+  --font-sans: "Google Sans", "Product Sans", var(--font-roboto-flex, "Roboto Flex"), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-google-sans: "Google Sans", "Product Sans", var(--font-roboto-flex, "Roboto Flex"), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-google-text: "Google Sans Text", var(--font-roboto-flex, "Roboto Flex"), "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+  /* Letter Spacing Tracking */
+  --tracking-headline: -0.02em;
+  --tracking-subhead: -0.01em;
+}
+
+.btn-primary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  background-color: var(--color-google-blue, #1a73e8);
+  color: #ffffff;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-google-blue-hover, #1557b0);
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+.btn-secondary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  background-color: #ffffff;
+  color: var(--color-google-blue, #1a73e8);
+  border: 1px solid var(--color-google-border, #dadce0);
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-surface-tonal-1, #f8f9fa);
+    border-color: var(--color-google-border, #dadce0);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+#showcase,
+#features,
+#infrastructure,
+#pricing,
+#faq {
+  scroll-margin-top: 7rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: "Google Sans", -apple-system, BlinkMacSystemFont, "Pretendard Variable", Pretendard, "Segoe UI", Roboto, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  background-color: var(--color-surface-background, #ffffff);
+  color: var(--color-text-primary, #202124);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1, h2 {
+  letter-spacing: var(--tracking-headline, -0.02em);
+}
+
+h3, h4 {
+  letter-spacing: var(--tracking-subhead, -0.01em);
+}
+
 input[type="range"] {
-  accent-color: #1e8e3e;
+  accent-color: var(--color-google-blue, #1a73e8);
+}
+
+:root {
+  --color-google-blue: #1a73e8;
+  --color-google-blue-hover: #1557b0;
+  --color-google-blue-active: #174ea6;
+  --color-google-blue-tonal: #e8f0fe;
+  --color-google-blue-container: #e8f0fe;
+  --color-google-blue-on-container: #1967d2;
+
+  --color-google-red: #ea4335;
+  --color-google-red-hover: #d93025;
+  --color-google-red-tonal: #fce8e6;
+  --color-google-red-container: #fce8e6;
+  --color-google-red-on-container: #c5221f;
+
+  --color-google-yellow: #fbbc04;
+  --color-google-yellow-hover: #f9ab00;
+  --color-google-yellow-text: #f29900;
+  --color-google-yellow-tonal: #fef7e0;
+  --color-google-yellow-container: #fef7e0;
+  --color-google-yellow-on-container: #b06000;
+
+  --color-google-green: #34a853;
+  --color-google-green-hover: #1e8e3e;
+  --color-google-green-dark: #137333;
+  --color-google-green-tonal: #e6f4ea;
+  --color-google-green-container: #e6f4ea;
+  --color-google-green-on-container: #137333;
+
+  --color-surface-background: #ffffff;
+  --color-surface-tonal-1: #f8f9fa;
+  --color-surface-tonal-2: #f1f3f4;
+  --color-surface-tonal-3: #e8eaed;
+  --color-google-outline: #dadce0;
+  --color-google-border: #dadce0;
+  --color-text-primary: #202124;
+  --color-text-secondary: #5f6368;
+  --color-text-tertiary: #80868b;
+  --color-google-on-surface: #202124;
+  --color-google-on-surface-variant: #5f6368;
 }

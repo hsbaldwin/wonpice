@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck } from "lucide-react";
+import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck, AlertCircle } from "lucide-react";
+import { usePartnerModal } from "./PartnerModalContext";
 
 export default function SolutionPricing() {
+  const { openPartnerModal } = usePartnerModal();
   const [checked1, setChecked1] = useState(true);
   const [checked2, setChecked2] = useState(true);
   const [checked3, setChecked3] = useState(true);
@@ -32,7 +34,10 @@ export default function SolutionPricing() {
         {/* 3 Pricing Plans Grid in Google Store Style */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Starter Plan */}
-          <div className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between">
+          <div
+            data-testid="plan-starter"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
@@ -85,7 +90,11 @@ export default function SolutionPricing() {
                 href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_starter"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openPartnerModal({ plan: "starter" });
+                }}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer"
               >
                 <span>스타터 50% 신청 ↗</span>
               </a>
@@ -93,8 +102,11 @@ export default function SolutionPricing() {
           </div>
 
           {/* Business Plan (Recommended) */}
-          <div className="bg-white p-8 sm:p-10 rounded-[36px] border-2 border-[#202124] shadow-md flex flex-col justify-between relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-[#202124] text-white text-xs font-medium px-5 py-1.5 rounded-bl-2xl">
+          <div
+            data-testid="plan-business"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border-2 border-[#1a73e8] shadow-md shadow-[#1a73e8]/5 flex flex-col justify-between relative overflow-hidden"
+          >
+            <div className="absolute top-4 right-4 bg-[#1a73e8] text-white text-xs font-medium px-4 py-1 rounded-full shadow-xs">
               가장 추천하는 플랜
             </div>
 
@@ -150,7 +162,11 @@ export default function SolutionPricing() {
                 href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_business"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-sm transition-all cursor-pointer"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openPartnerModal({ plan: "business" });
+                }}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-sm transition-all cursor-pointer"
               >
                 <span>비즈니스 50% 신청 ↗</span>
                 <ExternalLink className="w-4 h-4" />
@@ -159,7 +175,10 @@ export default function SolutionPricing() {
           </div>
 
           {/* Custom Plan */}
-          <div className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between">
+          <div
+            data-testid="plan-custom"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
+          >
             <div>
               <div className="flex items-center justify-between mb-6">
                 <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
@@ -204,7 +223,11 @@ export default function SolutionPricing() {
                 href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_custom"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all"
+                onClick={(e) => {
+                  e.preventDefault();
+                  openPartnerModal({ plan: "custom" });
+                }}
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer"
               >
                 <span>맞춤 플랜 상담 ↗</span>
               </a>
@@ -213,7 +236,7 @@ export default function SolutionPricing() {
         </div>
 
         {/* 3-Second Eligibility Confirmation Card */}
-        <div className="bg-white p-9 sm:p-12 rounded-[36px] border border-[#dadce0] shadow-xs">
+        <div data-testid="eligibility-checker" className="bg-white p-9 sm:p-12 rounded-[36px] border border-[#dadce0] shadow-xs">
           <h3 className="font-medium text-[#202124] text-lg sm:text-xl flex items-center gap-2.5 mb-6">
             <ShieldCheck className="w-5 h-5 text-[#1e8e3e]" />
             <span>3초 프로모션 지원 자격 확인</span>
@@ -225,7 +248,7 @@ export default function SolutionPricing() {
                 type="checkbox"
                 checked={checked1}
                 onChange={(e) => setChecked1(e.target.checked)}
-                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0]"
+                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0] cursor-pointer"
               />
               <span>식품, 농산물, 패션, 리빙 등 직접 제작·생산하거나 판매 중인 제품이 있습니다.</span>
             </label>
@@ -235,7 +258,7 @@ export default function SolutionPricing() {
                 type="checkbox"
                 checked={checked2}
                 onChange={(e) => setChecked2(e.target.checked)}
-                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0]"
+                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0] cursor-pointer"
               />
               <span>스마트스토어, 오픈마켓, 소셜커머스 수수료에서 벗어나 내 자사몰을 구축하고자 합니다.</span>
             </label>
@@ -245,7 +268,7 @@ export default function SolutionPricing() {
                 type="checkbox"
                 checked={checked3}
                 onChange={(e) => setChecked3(e.target.checked)}
-                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0]"
+                className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0] cursor-pointer"
               />
               <span>내 브랜드 전용 도메인으로 충성 단골 고객을 소유하고 성장시키고 싶습니다.</span>
             </label>
@@ -255,12 +278,13 @@ export default function SolutionPricing() {
             <div className="flex items-center gap-2 text-sm sm:text-base">
               {isEligible ? (
                 <span className="font-medium text-[#137333] flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-[#1e8e3e]" />
-                  지원 대상 확인 완료: 50% 감면 혜택 적용 대상입니다.
+                  <CheckCircle2 className="w-5 h-5 text-[#1e8e3e] shrink-0" />
+                  지원 대상 확인 완료: 50% 감면 혜택 적용 대상입니다
                 </span>
               ) : (
-                <span className="font-medium text-[#b06000]">
-                  체크 항목을 확인해 주세요.
+                <span className="font-medium text-[#b06000] flex items-center gap-2">
+                  <AlertCircle className="w-5 h-5 text-[#b06000] shrink-0" />
+                  체크 항목을 확인해 주세요
                 </span>
               )}
             </div>
@@ -269,7 +293,11 @@ export default function SolutionPricing() {
               href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_eligibility_box"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm sm:text-base font-medium text-[#1a73e8] hover:text-[#174ea6] underline underline-offset-4"
+              onClick={(e) => {
+                e.preventDefault();
+                openPartnerModal({ plan: "business" });
+              }}
+              className="inline-flex items-center gap-1.5 text-sm sm:text-base font-medium text-[#1a73e8] hover:text-[#174ea6] underline underline-offset-4 cursor-pointer"
             >
               <span>공식 지원 신청서 바로가기 ↗</span>
             </a>
