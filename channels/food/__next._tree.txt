@@ -1,5 +1,5 @@
-:HL["/wonpice/_next/static/chunks/3-ofh11k6tv1d.css","style"]
+:HL["/wonpice/_next/static/chunks/2uiyi1166qff7.css","style"]
 3:[["children",{"s":"__PAGE__","h":160}]]
 2:[["children",{"s":"food","h":96,"c":"$Q3"}]]
 1:[["children",{"s":"channels","h":64,"c":"$Q2"}]]
-0:{"b":"roO3I7R1lQvGkTBLjTV3L","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
+0:{"b":"6uuomB9mw0S7S0bLD_DA_","t":{"t":{"s":"","h":16,"c":"$Q1"}}}
