@@ -4,8 +4,17 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Store, ExternalLink, Menu, X } from "lucide-react";
 
+const FLOW_STEPS = [
+  { id: "hero", label: "01 본질 가치", href: "#hero" },
+  { id: "showcase", label: "02 라이브 데모", href: "#showcase" },
+  { id: "infrastructure", label: "03 4대 인프라", href: "#infrastructure" },
+  { id: "pricing", label: "04 50% 프로모션", href: "#pricing" },
+  { id: "faq", label: "05 자주 묻는 질문", href: "#faq" },
+];
+
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -26,6 +35,40 @@ export default function Navbar() {
       document.body.style.overflow = "";
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    const sectionIds = ["hero", "showcase", "infrastructure", "pricing", "faq"];
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const offset = 220;
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const top = el.offsetTop;
+          if (scrollY >= top - offset) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleStepClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      if (typeof window !== "undefined") {
+        window.history.pushState(null, "", `#${id}`);
+      }
+      setActiveSection(id);
+    }
+  };
 
   return (
     <>
@@ -122,6 +165,43 @@ export default function Navbar() {
           >
             <Menu className="w-5 h-5" />
           </button>
+        </div>
+      </div>
+
+      {/* Sticky Flow Bar (Progress & Section Navigation) */}
+      <div className="border-t border-[#f1f3f4] bg-white/95 backdrop-blur-md px-4 sm:px-10 lg:px-12 py-1.5 sm:py-2">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 overflow-hidden">
+          <nav
+            aria-label="스토리 단계 네비게이션"
+            className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 max-w-full"
+          >
+            {FLOW_STEPS.map((step) => {
+              const isActive = activeSection === step.id;
+              return (
+                <a
+                  key={step.id}
+                  href={step.href}
+                  onClick={(e) => handleStepClick(e, step.id)}
+                  className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all shrink-0 ${
+                    isActive
+                      ? "bg-[#e8f0fe] text-[#1a73e8] border border-[#d2e3fc] font-semibold shadow-xs"
+                      : "text-[#5f6368] hover:text-[#202124] hover:bg-[#f1f3f4]"
+                  }`}
+                >
+                  <span
+                    className={`w-1.5 h-1.5 rounded-full ${
+                      isActive ? "bg-[#1a73e8]" : "bg-[#dadce0]"
+                    }`}
+                  />
+                  <span>{step.label}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          <span className="hidden lg:inline-flex items-center text-[11px] font-mono text-[#5f6368] shrink-0">
+            01 가치 → 02 데모 → 03 인프라 → 04 요금 → 05 FAQ
+          </span>
         </div>
       </div>
     </header>

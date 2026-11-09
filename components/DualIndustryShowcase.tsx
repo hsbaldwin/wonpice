@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Store, Shirt, Wheat, ExternalLink, Clock, Package, Scale, Ruler, Sparkles, Layers } from "lucide-react";
+import { Store, Shirt, Wheat, ExternalLink, Clock, Package, Scale, Ruler, Sparkles, Layers, ArrowDown } from "lucide-react";
 
 export interface DualIndustryShowcaseProps {
   initialIndustry?: "food" | "fashion";
@@ -607,6 +607,40 @@ export default function DualIndustryShowcase({
             </div>
           </div>
         )}
+
+        {/* Contextual Transition Bridge to Section 03 (Infrastructure) */}
+        <div className="pt-6 sm:pt-10">
+          <a
+            href="#infrastructure"
+            className="group block max-w-4xl mx-auto bg-white border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                    Next Chapter · 03
+                  </span>
+                  <span className="text-xs font-medium text-[#5f6368]">
+                    4대 인프라 기반 &amp; 7단계 완성 주기
+                  </span>
+                </div>
+                <h4 className="text-base sm:text-lg font-medium text-[#202124] group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5">
+                  <span>예쁜 디자인 뒤에 숨겨진 안정적인 기술 기반은 무엇일까요?</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-[#5f6368]">
+                  독립 데이터베이스 소유, 토스 간편결제 직가맹, 3중 모니터링 레이더와 7단계 런칭 아키텍처
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-xs font-medium text-[#1a73e8] bg-[#f8f9fa] border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                  <span>03 기술 인프라 확인</span>
+                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   );

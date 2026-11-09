@@ -197,6 +197,40 @@ export default function SolutionHero() {
             </div>
           </div>
         </div>
+
+        {/* Contextual Transition Bridge to Section 02 (Showcase) */}
+        <div className="mt-16 sm:mt-20 pt-4">
+          <a
+            href="#showcase"
+            className="group block max-w-4xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                    Next Chapter · 02
+                  </span>
+                  <span className="text-xs font-medium text-[#5f6368]">
+                    라이브 데모 쇼케이스
+                  </span>
+                </div>
+                <h4 className="text-base sm:text-lg font-medium text-[#202124] group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5">
+                  <span>3대 본질 가치가 실제 내 업종 쇼핑몰에 어떻게 구현될까요?</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-[#5f6368]">
+                  대지의 신선도를 전하는 <strong>식품(제철곳간)</strong>과 핏과 감각의 <strong>패션(온결)</strong> 실제 구축 화면 둘러보기
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                  <span>02 라이브 데모 확인</span>
+                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </a>
+        </div>
       </div>
     </section>
   );

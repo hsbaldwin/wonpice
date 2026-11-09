@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck, AlertCircle } from "lucide-react";
+import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck, AlertCircle, ArrowDown } from "lucide-react";
 import { usePartnerModal } from "./PartnerModalContext";
 
 export default function SolutionPricing() {
@@ -320,6 +320,40 @@ export default function SolutionPricing() {
               <span>공식 지원 신청서 바로가기 ↗</span>
             </a>
           </div>
+        </div>
+
+        {/* Contextual Transition Bridge to Section 05 (FAQ) */}
+        <div className="pt-4">
+          <a
+            href="#faq"
+            className="group block max-w-4xl mx-auto bg-white border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                    Next Chapter · 05
+                  </span>
+                  <span className="text-xs font-medium text-[#5f6368]">
+                    자주 묻는 질문 &amp; 1:1 상담
+                  </span>
+                </div>
+                <h4 className="text-base sm:text-lg font-medium text-[#202124] group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5">
+                  <span>신청 전, 아직 풀리지 않은 궁금증이나 고민이 있으신가요?</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-[#5f6368]">
+                  기존 상품 100개 이전 절차, 도메인 연결, 토스 결제 계약, 관리자 실무 교육 안내
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-xs font-medium text-[#1a73e8] bg-[#f8f9fa] border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                  <span>05 궁금증 해결하기</span>
+                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>

@@ -11,6 +11,7 @@ import {
   Activity,
   Database,
   GraduationCap,
+  ArrowDown,
 } from "lucide-react";
 
 export default function SolutionInfrastructure() {
@@ -402,6 +403,40 @@ export default function SolutionInfrastructure() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Contextual Transition Bridge to Section 04 (Pricing) */}
+        <div className="pt-4">
+          <a
+            href="#pricing"
+            className="group block max-w-4xl mx-auto bg-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                    Next Chapter · 04
+                  </span>
+                  <span className="text-xs font-medium text-[#5f6368]">
+                    요금제 &amp; 50% 구축비 프로모션
+                  </span>
+                </div>
+                <h4 className="text-base sm:text-lg font-medium text-[#202124] group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5">
+                  <span>체계적인 4대 인프라와 7단계 런칭, 시작 비용은 얼마일까요?</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-[#5f6368]">
+                  개발사 외주 대비 50% 감면 혜택, 스타터 75만 원부터 시작하는 투명한 요금제와 자가진단
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                  <span>04 요금제 및 프로모션 확인</span>
+                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
+                </span>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
     </section>
