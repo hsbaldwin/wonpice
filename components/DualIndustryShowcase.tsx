@@ -368,7 +368,7 @@ export default function DualIndustryShowcase({
                   산지직송의 신선함을 전하는 &apos;제철곳간&apos;
                 </h3>
                 <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed break-keep">
-                  일반 공산품 쇼핑몰로는 해결할 수 없는 농식품만의 중량 규격, 당일 출고 마감, 신선 안심 포장 가이드를 기본 탑재했습니다.
+                  신선 식품 및 농산물 직거래에 최적화된 중량 규격 분기, 당일 출고 마감 타이머, 안심 신선 포장 가이드를 기본 탑재했습니다.
                 </p>
               </div>
 

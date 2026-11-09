@@ -30,8 +30,7 @@ export default function Footer() {
             </div>
 
             <p className="text-slate-600 text-sm leading-relaxed max-w-sm break-keep">
-              mord(모르드)는 플랫폼의 과도한 중개 수수료와 알고리즘 종속에서 벗어나, 
-              내 브랜드만의 독립된 자사몰을 통해 고객을 직접 소유하고 성장할 수 있도록 돕는 <strong className="font-semibold text-slate-900">업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
+              mord(모르드)는 독립 브랜드의 고유한 정체성을 실현하고 단골 고객과의 직접적인 관계를 확장하는 <strong className="font-semibold text-slate-900">업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
             </p>
 
             <div className="text-xs text-[#5f6368] pt-1 leading-relaxed break-keep">

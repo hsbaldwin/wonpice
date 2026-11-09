@@ -51,7 +51,7 @@ export default function SolutionInfrastructure() {
                   기존 상품 100개 등록 대행
                 </h3>
                 <p className="text-sm text-slate-600 leading-relaxed break-keep">
-                  스마트스토어나 카페24의 상품 엑셀 파일만 전달해 주시면, 상품명·옵션·상세페이지 이미지까지 비즈니스 플랜 기준 100개까지 일괄 등록해 드립니다.
+                  보유하신 상품 카탈로그 엑셀 파일만 전달해 주시면, 상품명·옵션·상세페이지 이미지까지 비즈니스 플랜 기준 100개 품목을 정합성 있게 일괄 등록해 드립니다.
                 </p>
               </div>
 
@@ -74,7 +74,7 @@ export default function SolutionInfrastructure() {
                   <div className="flex flex-col sm:flex-row gap-2 text-center text-xs">
                     <div className="flex-1 p-3 rounded-xl bg-[#f8f9fa] border border-[#dadce0] flex flex-col items-center justify-center">
                       <span className="text-[10px] text-[#5f6368] font-mono">01. 원본 추출</span>
-                      <span className="font-semibold text-[#202124] mt-0.5">스토어·카페24</span>
+                      <span className="font-semibold text-[#202124] mt-0.5">카탈로그 연동</span>
                       <span className="text-[11px] text-[#5f6368]">엑셀 원본 파일</span>
                     </div>
                     <div className="flex-1 p-3 rounded-xl bg-[#e8f0fe] border border-[#d2e3fc] flex flex-col items-center justify-center text-[#1a73e8]">
@@ -90,30 +90,25 @@ export default function SolutionInfrastructure() {
                   </div>
                 </div>
 
-                {/* Time saved comparison bar */}
-                <div className="bg-white rounded-2xl border border-[#dadce0] p-4 sm:p-5 shadow-xs space-y-3">
+                {/* Batch Ingestion Specification Box */}
+                <div className="bg-slate-50/70 rounded-xl border border-slate-200 p-4 sm:p-5 shadow-2xs space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="font-semibold text-[#202124]">상품 100개 등록 소요시간 비교</span>
-                    <span className="font-semibold text-[#1a73e8]">대량 등록 수작업 시간 절감</span>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-[11px] text-[#5f6368]">
-                        <span>기존 수작업 등록 시</span>
-                        <span className="font-medium">약 40시간 소요</span>
-                      </div>
-                      <div className="w-full h-2 rounded-full bg-[#f1f3f4] overflow-hidden">
-                        <div className="h-full bg-[#dadce0] rounded-full w-full" />
-                      </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
+                      <span className="font-mono text-xs font-semibold text-slate-900">상품 100개 등록 소요시간 비교</span>
                     </div>
-                    <div className="space-y-1">
-                      <div className="flex justify-between text-[11px] text-[#1a73e8] font-medium">
-                        <span className="font-semibold">mord 대행 솔루션</span>
-                        <span className="font-semibold">등록 대행 지원 (기본 100개 포함)</span>
-                      </div>
-                      <div className="w-full h-2 rounded-full bg-[#e8f0fe] overflow-hidden">
-                        <div className="h-full bg-[#1a73e8] rounded-full w-2" />
-                      </div>
+                    <span className="text-[11px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full font-medium border border-blue-200/60">
+                      대량 등록 수작업 시간 절감
+                    </span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row gap-2 text-xs pt-1">
+                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80">
+                      <span className="font-mono text-[10px] text-slate-500 uppercase block">처리 파이프라인</span>
+                      <span className="font-mono font-bold text-slate-900 text-xs sm:text-sm">Batch Ingest Engine</span>
+                    </div>
+                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80">
+                      <span className="font-mono text-[10px] text-slate-500 uppercase block">자동 변환율</span>
+                      <span className="font-mono font-bold text-emerald-600 text-xs sm:text-sm">100% 규격 자동화</span>
                     </div>
                   </div>
                 </div>

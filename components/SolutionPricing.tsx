@@ -119,7 +119,7 @@ export default function SolutionPricing() {
                     비즈니스
                   </span>
                 </div>
-                <span className="text-xs font-mono text-slate-500">스마트스토어 탈플랫폼 브랜드</span>
+                <span className="text-xs font-mono text-slate-500">독립 스케일업 D2C 브랜드</span>
               </div>
 
               <div className="mb-8">
@@ -270,7 +270,7 @@ export default function SolutionPricing() {
                 onChange={(e) => setChecked2(e.target.checked)}
                 className="w-5 h-5 rounded text-[#1e8e3e] focus:ring-[#1e8e3e] border-[#dadce0] cursor-pointer"
               />
-              <span>스마트스토어, 오픈마켓, 소셜커머스 수수료에서 벗어나 내 자사몰을 구축하고자 합니다.</span>
+              <span>외부 유통 플랫폼 종속 없이 독립적인 D2C 자사몰 시스템을 구축하고자 합니다.</span>
             </label>
 
             <label className="flex items-center gap-3.5 cursor-pointer p-3 rounded-2xl hover:bg-[#f8f9fa] transition-colors break-keep">

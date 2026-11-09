@@ -50,13 +50,13 @@ export default function SolutionHero() {
           <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 bg-clip-text text-transparent"> 내 브랜드를 키우는 자사몰 솔루션</span>
         </h1>
 
-        {/* Subtitle - Crisp, reassuring product tone */}
+        {/* Subtitle - Crisp, sovereign product tone */}
         <p className="text-[#5f6368] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-12 font-normal break-keep">
-          남들과 똑같은 스마트스토어 화면과 오픈마켓의 과도한 수수료에서 벗어나 내 고객과 마진의 온전한 주권을 되찾으세요.
+          스마트스토어를 넘어 브랜드 고유의 정체성과 단골 고객 데이터를 온전히 소유하는 독립 D2C 스토어프론트.
           <br className="hidden md:inline" />
           농가·식품부터 패션 브랜드까지, 대표님의 철학을 담은 독창적인 맞춤 디자인과 상품 100개 등록,
           <br className="hidden md:inline" />
-          토스 간편결제 연동까지 3~5주 만에 든든한 기술 동반자가 함께 완성합니다.
+          토스 간편결제 연동까지 3~5주 만에 기술 동반자 mord가 완성합니다.
         </p>
 
         {/* Dual Actions - SaaS high-precision buttons */}
@@ -303,12 +303,12 @@ export default function SolutionHero() {
             <span>mord.spec // One Masterpiece</span>
           </div>
           <blockquote className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug sm:leading-relaxed break-keep">
-            “모두가 똑같은 플랫폼 템플릿에 브랜드를 구겨 넣을 때,
+            “브랜드 고유의 철학과 감각을 인터페이스 전면에 오롯이 구현하여,
             <br className="hidden sm:inline" />
-            모르드(mord)는 대표님의 철학과 핏을 오롯이 담아낸 <span className="text-blue-600 font-bold">단 하나의 명작</span>을 짓습니다.”
+            고객과 직접 교감하고 영속하는 <span className="text-blue-600 font-bold">단 하나의 명작 자사몰</span>을 완성합니다.”
           </blockquote>
           <p className="text-sm sm:text-base text-slate-600 mt-4 max-w-2xl mx-auto leading-relaxed break-keep font-normal">
-            오픈마켓의 잦은 알고리즘 변화에 불안해하지 않고, 내 브랜드의 주권을 온전히 지키며 단골과 직접 호흡할 수 있도록 mord가 가장 가까운 기술 동반자가 되어드립니다.
+            외부 환경의 변화에 흔들리지 않고, 내 브랜드 고유의 자산과 단골 고객 관계를 온전히 축적할 수 있도록 mord가 신뢰할 수 있는 엔지니어링 동반자가 되어드립니다.
           </p>
         </div>
 
@@ -334,19 +334,19 @@ export default function SolutionHero() {
                   <Zap className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 shrink-0">
-                  PILLAR // 01 · 수수료 독립
+                  PILLAR // 01 · 마진 자율성
                 </span>
               </div>
               <h3 className="font-bold text-slate-900 text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep font-sans">
                 플랫폼 중개 수수료 0%
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료만 지출됩니다. 땀 흘려 일군 마진을 플랫폼에 빼앗기지 않고 온전히 대표님의 몫으로 지켜드립니다.
+                토스페이먼츠 직접 가맹 연동으로 원가 수준의 카드 수수료만 정산됩니다. 별도의 중간 유통 수수료 없이 모든 결제 대금이 판매자 사업 계좌로 즉시 직결되는 투명한 D2C 구조를 실현합니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
               <span className="text-emerald-700 font-semibold text-sm">01</span>
-              <span className="font-sans">수수료 종속 탈피와 마진의 온전한 회복</span>
+              <span className="font-sans">PG 직접 계약 기반의 100% 투명한 마진 구조</span>
             </div>
           </div>
 
@@ -365,7 +365,7 @@ export default function SolutionHero() {
                 고객 DB 직접 소유
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                플랫폼 가상번호 뒤에 가려졌던 소중한 단골 고객을 직접 맞이하세요. 구매 이력과 연락처를 100% 소유하여, 언제든 내 손으로 재구매와 브랜드 팬덤을 키워갈 수 있습니다.
+                스토어에 방문한 고객의 구매 이력과 회원 데이터를 온전히 자사 자산으로 확보합니다. 직접 소통하는 CRM 마케팅과 개인화 멤버십으로 지속 가능한 브랜드 팬덤을 구축할 수 있습니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
