@@ -2,28 +2,36 @@ import { ExternalLink, ShieldCheck, Server, RefreshCw } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#f8f9fa] text-[#5f6368] text-xs sm:text-sm py-20 sm:py-24 border-t border-[#dadce0]">
+    <footer className="bg-[#f8fafc] text-slate-600 text-xs sm:text-sm py-20 sm:py-24 border-t border-slate-200">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
-        {/* 4-Column Google Store Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-[#dadce0]">
+        {/* 4-Column SaaS Layout */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-slate-200">
           {/* Col 1: Brand & Mission (lg:col-span-4) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-[#202124] text-white flex items-center justify-center font-bold text-sm shrink-0 shadow-xs tracking-tighter">
+              <div className="w-9 h-9 rounded-xl bg-slate-950 text-white flex items-center justify-center font-mono font-bold text-sm shrink-0 shadow-xs tracking-tighter ring-1 ring-slate-800">
                 m
               </div>
               <div className="flex items-center gap-2">
-                <span className="font-bold text-2xl text-[#202124] tracking-tight font-sans">mord</span>
-                <span className="font-semibold text-xs text-[#5f6368] border-l border-[#dadce0] pl-2 uppercase">WonPice</span>
+                <span className="font-bold text-2xl text-slate-900 tracking-tight font-sans">mord</span>
+                <span className="font-semibold text-xs text-slate-500 border-l border-slate-300 pl-2 uppercase font-mono">WonPice</span>
               </div>
-              <span className="text-xs text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] font-semibold shrink-0">
+              <span className="text-xs text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/80 font-semibold shrink-0">
                 업종 맞춤 자사몰 솔루션
               </span>
             </div>
 
-            <p className="text-[#5f6368] text-sm leading-relaxed max-w-sm break-keep">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-mono text-slate-700 shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+              </span>
+              <span>SYSTEM STATUS // 100% OPERATIONAL</span>
+            </div>
+
+            <p className="text-slate-600 text-sm leading-relaxed max-w-sm break-keep">
               mord(모르드)는 플랫폼의 과도한 중개 수수료와 알고리즘 종속에서 벗어나, 
-              내 브랜드만의 독립된 자사몰을 통해 고객을 직접 소유하고 성장할 수 있도록 돕는 <strong className="font-semibold text-[#202124]">업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
+              내 브랜드만의 독립된 자사몰을 통해 고객을 직접 소유하고 성장할 수 있도록 돕는 <strong className="font-semibold text-slate-900">업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
             </p>
 
             <div className="text-xs text-[#5f6368] pt-1 leading-relaxed break-keep">
