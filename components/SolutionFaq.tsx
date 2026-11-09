@@ -70,8 +70,8 @@ export default function SolutionFaq() {
                 key={faq.q}
                 className={`rounded-[28px] overflow-hidden border transition-all duration-200 ${
                   isOpen
-                    ? "border border-[#1a73e8] bg-white shadow-[0_0_20px_rgba(6,182,212,0.18)]"
-                    : "border border-[#dadce0] bg-[#f8f9fa] hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]"
+                    ? "border border-[#1a73e8] bg-white shadow-[0_12px_28px_-6px_rgba(6,182,212,0.22),_inset_0_1px_1px_rgba(255,255,255,0.9)]"
+                    : "border border-[#dadce0] bg-[#f8f9fa] hover:border-cyan-400 hover:shadow-[0_8px_20px_-4px_rgba(6,182,212,0.18)] hover:-translate-y-0.5"
                 }`}
               >
                 <button
@@ -112,7 +112,7 @@ export default function SolutionFaq() {
         </div>
 
         {/* Bottom Support Card */}
-        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
+        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6 card-3d-elevated">
           <div>
             <div className="font-semibold text-[#202124] text-lg sm:text-xl mb-1.5 tracking-tight break-keep">
               내 브랜드 맞춤 제작 견적이나 상담이 필요하신가요?
@@ -129,7 +129,7 @@ export default function SolutionFaq() {
               e.preventDefault();
               openPartnerModal({ plan: "custom" });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-semibold text-sm sm:text-base shrink-0 shadow-xs hover:shadow transition-all cursor-pointer tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-semibold text-sm sm:text-base shrink-0 btn-3d-primary transition-all cursor-pointer tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
           >
             <span>1:1 상담 신청서 작성 ↗</span>
           </a>

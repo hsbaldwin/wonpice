@@ -318,13 +318,13 @@ export default function DualIndustryShowcase({
           </p>
 
           {/* Industry Dual Switcher Pills */}
-          <div className="flex flex-col sm:inline-flex sm:flex-row p-1.5 rounded-3xl sm:rounded-full bg-white border border-[#dadce0] shadow-xs mt-8 sm:mt-10 max-w-full">
+          <div className="flex flex-col sm:inline-flex sm:flex-row p-1.5 rounded-3xl sm:rounded-full bg-slate-100/90 border border-[#dadce0] track-3d-recessed mt-8 sm:mt-10 max-w-full">
             <button
               type="button"
               onClick={() => setActiveIndustry("food")}
               className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-base font-semibold transition-all duration-200 cursor-pointer ${
                 activeIndustry === "food"
-                  ? "bg-[#1a73e8] text-white shadow-xs"
+                  ? "bg-[#1a73e8] text-white shadow-xs pill-3d-active"
                   : "text-[#5f6368] hover:text-[#202124] hover:bg-[#f8f9fa]"
               }`}
             >
@@ -341,7 +341,7 @@ export default function DualIndustryShowcase({
               onClick={() => setActiveIndustry("fashion")}
               className={`flex items-center gap-2 px-5 sm:px-7 py-2.5 sm:py-3 rounded-full text-xs sm:text-base font-semibold transition-all duration-200 cursor-pointer ${
                 activeIndustry === "fashion"
-                  ? "bg-[#1a73e8] text-white shadow-xs"
+                  ? "bg-[#1a73e8] text-white shadow-xs pill-3d-active"
                   : "text-[#5f6368] hover:text-[#202124] hover:bg-[#f8f9fa]"
               }`}
             >
@@ -361,7 +361,7 @@ export default function DualIndustryShowcase({
             {/* Left Explanation (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <span className="text-xs font-semibold text-[#137333] bg-[#e6f4ea] px-3.5 py-1 rounded-full border border-[#ceead6]">
+                <span className="text-xs font-semibold text-[#137333] bg-[#e6f4ea] px-3.5 py-1 rounded-full border border-[#ceead6] shadow-2xs">
                   농산물 · 신선식품 · 과수원 D2C
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-semibold text-[#202124] tracking-tight break-keep">
@@ -373,8 +373,8 @@ export default function DualIndustryShowcase({
               </div>
 
               <div className="space-y-3.5">
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#e6f4ea] text-[#137333] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#e6f4ea] text-[#137333] shrink-0 mt-0.5 shadow-2xs">
                     <Scale className="w-5 h-5" />
                   </div>
                   <div>
@@ -383,8 +383,8 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#fef7e0] text-[#b06000] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#fef7e0] text-[#b06000] shrink-0 mt-0.5 shadow-2xs">
                     <Clock className="w-5 h-5" />
                   </div>
                   <div>
@@ -393,8 +393,8 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] shrink-0 mt-0.5 shadow-2xs">
                     <Package className="w-5 h-5" />
                   </div>
                   <div>
@@ -409,7 +409,7 @@ export default function DualIndustryShowcase({
                   href="https://shop-demo-food-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base shadow-xs transition-all w-full sm:w-auto text-center justify-center tracking-tight"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-primary transition-all w-full sm:w-auto text-center justify-center tracking-tight"
                 >
                   <span>&apos;제철곳간&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
                   <ExternalLink className="w-4.5 h-4.5 opacity-80" />
@@ -418,7 +418,7 @@ export default function DualIndustryShowcase({
             </div>
 
             {/* Right Mock Card (7 cols) */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] shadow-xs space-y-6">
+            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating space-y-6">
               <div className="flex items-center justify-between pb-5 border-b border-[#dadce0]">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#dadce0]" />
@@ -433,13 +433,13 @@ export default function DualIndustryShowcase({
                 </span>
               </div>
 
-              <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0]">
+              <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0] card-3d-elevated">
                 <div className="flex gap-5 items-center">
                   <div className="w-20 h-20 rounded-2xl bg-[#fef7e0] border border-[#feefc3] flex items-center justify-center shrink-0 p-2 shadow-xs">
                     <FreshAppleVector className="w-16 h-16" />
                   </div>
                   <div>
-                    <span className="text-xs font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full">
+                    <span className="text-xs font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full shadow-2xs">
                       경북 청송 산지직송
                     </span>
                     <h4 className="font-medium text-[#202124] text-xl mt-1.5">
@@ -449,9 +449,9 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="bg-white border border-[#dadce0] rounded-2xl p-4 flex items-center justify-between">
+                <div className="bg-white border border-[#dadce0] rounded-2xl p-4 flex items-center justify-between slot-depth-inset">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0 shadow-2xs">
                       <Clock className="w-5 h-5" />
                     </div>
                     <div>
@@ -463,17 +463,17 @@ export default function DualIndustryShowcase({
                       </div>
                     </div>
                   </div>
-                  <div className="font-mono font-medium text-lg text-[#202124] bg-[#f8f9fa] px-3.5 py-1.5 rounded-full border border-[#dadce0]">
+                  <div className="font-mono font-medium text-lg text-[#202124] bg-[#f8f9fa] px-3.5 py-1.5 rounded-full border border-[#dadce0] shadow-2xs">
                     03:42:18
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 text-xs sm:text-sm">
-                  <div className="p-4 rounded-2xl border-2 border-[#1e8e3e] bg-[#e6f4ea]/30">
+                  <div className="p-4 rounded-2xl border-2 border-[#1e8e3e] bg-[#e6f4ea]/30 shadow-2xs">
                     <div className="font-medium text-[#202124]">3kg 실속형 (10~12과)</div>
                     <div className="text-[#137333] font-medium text-base mt-1.5">28,000원</div>
                   </div>
-                  <div className="p-4 rounded-2xl border border-[#dadce0] bg-white">
+                  <div className="p-4 rounded-2xl border border-[#dadce0] bg-white shadow-2xs">
                     <div className="font-medium text-[#202124]">5kg 선물용 (14~16과)</div>
                     <div className="text-[#5f6368] font-medium text-base mt-1.5">45,000원</div>
                   </div>
@@ -489,7 +489,7 @@ export default function DualIndustryShowcase({
             {/* Left Explanation (5 cols) */}
             <div className="lg:col-span-5 space-y-6">
               <div className="space-y-3">
-                <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3.5 py-1 rounded-full border border-[#d2e3fc]">
+                <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3.5 py-1 rounded-full border border-[#d2e3fc] shadow-2xs">
                   디자이너 브랜드 · 자체제작 의류
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-semibold text-[#202124] tracking-tight break-keep">
@@ -501,8 +501,8 @@ export default function DualIndustryShowcase({
               </div>
 
               <div className="space-y-3.5">
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#e8f0fe] text-[#1a73e8] shrink-0 mt-0.5 shadow-2xs">
                     <Layers className="w-5 h-5" />
                   </div>
                   <div>
@@ -511,8 +511,8 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#fef7e0] text-[#b06000] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#fef7e0] text-[#b06000] shrink-0 mt-0.5 shadow-2xs">
                     <Sparkles className="w-5 h-5" />
                   </div>
                   <div>
@@ -521,8 +521,8 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4">
-                  <div className="p-2.5 rounded-full bg-[#fce8e6] text-[#d93025] shrink-0 mt-0.5">
+                <div className="p-5 rounded-2xl bg-white border border-[#dadce0] flex items-start gap-4 card-3d-elevated">
+                  <div className="p-2.5 rounded-full bg-[#fce8e6] text-[#d93025] shrink-0 mt-0.5 shadow-2xs">
                     <Ruler className="w-5 h-5" />
                   </div>
                   <div>
@@ -537,7 +537,7 @@ export default function DualIndustryShowcase({
                   href="https://shop-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base shadow-xs transition-all w-full sm:w-auto text-center justify-center tracking-tight"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-primary transition-all w-full sm:w-auto text-center justify-center tracking-tight"
                 >
                   <span>패션 &apos;온결&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
                   <ExternalLink className="w-4.5 h-4.5 opacity-80" />
@@ -546,7 +546,7 @@ export default function DualIndustryShowcase({
             </div>
 
             {/* Right Mock Card (7 cols) */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] shadow-xs space-y-6">
+            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating space-y-6">
               <div className="flex items-center justify-between pb-5 border-b border-[#dadce0]">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#dadce0]" />
@@ -561,13 +561,13 @@ export default function DualIndustryShowcase({
                 </span>
               </div>
 
-              <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0]">
+              <div className="space-y-6 bg-[#f8f9fa] p-8 rounded-3xl border border-[#dadce0] card-3d-elevated">
                 <div className="flex gap-5 items-center">
                   <div className="w-20 h-24 rounded-2xl bg-[#e8f0fe] border border-[#d2e3fc] flex items-center justify-center shrink-0 p-2 shadow-xs">
                     <CuratedCoatVector className="w-16 h-20" />
                   </div>
                   <div>
-                    <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full">
+                    <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full shadow-2xs">
                       2026 S/S 시그니처
                     </span>
                     <h4 className="font-semibold text-[#202124] text-xl mt-1.5 tracking-tight break-keep">
@@ -577,28 +577,28 @@ export default function DualIndustryShowcase({
                   </div>
                 </div>
 
-                <div className="bg-white border border-[#dadce0] rounded-2xl p-5 space-y-3">
+                <div className="bg-white border border-[#dadce0] rounded-2xl p-5 space-y-3 slot-depth-inset">
                   <div className="flex items-center justify-between text-xs font-semibold text-[#202124]">
                     <span>소재 특성 가이드</span>
                     <span className="text-[#1a73e8] cursor-pointer">사이즈 가이드 보기</span>
                   </div>
                   <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043]">신축성: 보통</div>
-                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043]">두께감: 도톰함</div>
-                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043]">비침: 없음</div>
+                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043] shadow-2xs">신축성: 보통</div>
+                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043] shadow-2xs">두께감: 도톰함</div>
+                    <div className="p-2.5 rounded-xl bg-[#f8f9fa] font-medium text-[#3c4043] shadow-2xs">비침: 없음</div>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-3 text-xs sm:text-sm">
-                  <div className="p-3.5 rounded-2xl border-2 border-[#1a73e8] bg-[#e8f0fe]/30 text-center">
+                  <div className="p-3.5 rounded-2xl border-2 border-[#1a73e8] bg-[#e8f0fe]/30 text-center shadow-2xs">
                     <div className="font-semibold text-[#202124]">S (90~95)</div>
                     <div className="text-xs font-medium text-[#1a73e8] mt-0.5">재고 있음</div>
                   </div>
-                  <div className="p-3.5 rounded-2xl border border-[#dadce0] bg-white text-center">
+                  <div className="p-3.5 rounded-2xl border border-[#dadce0] bg-white text-center shadow-2xs">
                     <div className="font-semibold text-[#202124]">M (95~100)</div>
                     <div className="text-xs font-medium text-[#5f6368] mt-0.5">재고 있음</div>
                   </div>
-                  <div className="p-3.5 rounded-2xl border border-[#dadce0] bg-white text-center">
+                  <div className="p-3.5 rounded-2xl border border-[#dadce0] bg-white text-center shadow-2xs">
                     <div className="font-semibold text-[#202124]">L (100~105)</div>
                     <div className="text-xs font-medium text-[#5f6368] mt-0.5">품절 임박</div>
                   </div>

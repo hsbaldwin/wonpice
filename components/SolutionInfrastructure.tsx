@@ -36,14 +36,14 @@ export default function SolutionInfrastructure() {
         {/* Asymmetric Bento Grid spanning 12 columns */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 lg:gap-8">
           {/* Card 1: Hero Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-cyan-400 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-200/80 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 border border-blue-200/80 flex items-center justify-center shrink-0 shadow-2xs">
                     <Layers className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-medium text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/80">
+                  <span className="text-xs font-mono font-medium text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/80 shadow-2xs">
                     PIPELINE // 01 · 상품 데이터 등록
                   </span>
                 </div>
@@ -62,7 +62,7 @@ export default function SolutionInfrastructure() {
                   <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#dadce0] text-xs font-mono text-[#3c4043] shadow-xs font-medium">
                     <FileSpreadsheet className="w-4 h-4 text-[#137333]" />
                     <span>products_catalog_export.xlsx</span>
-                    <span className="text-[11px] font-sans text-[#137333] font-semibold bg-[#e6f4ea] px-2 py-0.5 rounded-full">
+                    <span className="text-[11px] font-sans text-[#137333] font-semibold bg-[#e6f4ea] px-2 py-0.5 rounded-full shadow-2xs">
                       100개 품목 자동 매핑
                     </span>
                   </div>
@@ -72,17 +72,17 @@ export default function SolutionInfrastructure() {
                 <div className="bg-white rounded-2xl border border-[#dadce0] p-4 sm:p-5 shadow-xs space-y-3">
                   <div className="text-xs font-semibold text-[#5f6368]">원클릭 3단계 마이그레이션 파이프라인</div>
                   <div className="flex flex-col sm:flex-row gap-2 text-center text-xs">
-                    <div className="flex-1 p-3 rounded-xl bg-[#f8f9fa] border border-[#dadce0] flex flex-col items-center justify-center">
+                    <div className="flex-1 p-3 rounded-xl bg-[#f8f9fa] border border-[#dadce0] flex flex-col items-center justify-center hover:-translate-y-0.5 transition-transform">
                       <span className="text-[10px] text-[#5f6368] font-mono">01. 원본 추출</span>
                       <span className="font-semibold text-[#202124] mt-0.5">카탈로그 연동</span>
                       <span className="text-[11px] text-[#5f6368]">엑셀 원본 파일</span>
                     </div>
-                    <div className="flex-1 p-3 rounded-xl bg-[#e8f0fe] border border-[#d2e3fc] flex flex-col items-center justify-center text-[#1a73e8]">
+                    <div className="flex-1 p-3 rounded-xl bg-[#e8f0fe] border border-[#d2e3fc] flex flex-col items-center justify-center text-[#1a73e8] hover:-translate-y-0.5 transition-transform">
                       <span className="text-[10px] text-[#1a73e8] font-mono font-medium">02. 자동 변환 엔진</span>
                       <span className="font-semibold text-[#1a73e8] mt-0.5">mord Engine</span>
                       <span className="text-[11px] text-[#1967d2]">규격화 &amp; 이미지 최적화</span>
                     </div>
-                    <div className="flex-1 p-3 rounded-xl bg-[#e6f4ea] border border-[#ceead6] flex flex-col items-center justify-center text-[#137333]">
+                    <div className="flex-1 p-3 rounded-xl bg-[#e6f4ea] border border-[#ceead6] flex flex-col items-center justify-center text-[#137333] hover:-translate-y-0.5 transition-transform">
                       <span className="text-[10px] text-[#137333] font-mono font-medium">03. 자사몰 즉시 런칭</span>
                       <span className="font-semibold text-[#137333] mt-0.5">자사몰 즉시 런칭</span>
                       <span className="text-[11px] text-[#188038]">100개 상품 완료</span>
@@ -97,16 +97,16 @@ export default function SolutionInfrastructure() {
                       <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
                       <span className="font-mono text-xs font-semibold text-slate-900">상품 100개 등록 소요시간 비교</span>
                     </div>
-                    <span className="text-[11px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full font-medium border border-blue-200/60">
+                    <span className="text-[11px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded-full font-medium border border-blue-200/60 shadow-2xs">
                       대량 등록 수작업 시간 절감
                     </span>
                   </div>
                   <div className="flex flex-col sm:flex-row gap-2 text-xs pt-1">
-                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80">
+                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
                       <span className="font-mono text-[10px] text-slate-500 uppercase block">처리 파이프라인</span>
                       <span className="font-mono font-bold text-slate-900 text-xs sm:text-sm">Batch Ingest Engine</span>
                     </div>
-                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80">
+                    <div className="flex-1 p-2.5 rounded-lg bg-white border border-slate-200/80 shadow-2xs">
                       <span className="font-mono text-[10px] text-slate-500 uppercase block">자동 변환율</span>
                       <span className="font-mono font-bold text-emerald-600 text-xs sm:text-sm">100% 규격 자동화</span>
                     </div>
@@ -122,14 +122,14 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 2: PG Payments Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-emerald-400 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/80 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/80 flex items-center justify-center shrink-0 shadow-2xs">
                     <CreditCard className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80">
+                  <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 shadow-2xs">
                     GATEWAY // 02 · 간편결제 직연동
                   </span>
                 </div>
@@ -155,21 +155,21 @@ export default function SolutionInfrastructure() {
                 <div className="bg-slate-50/70 rounded-xl border border-slate-200 p-4 sm:p-5 shadow-2xs">
                   <div className="flex flex-col gap-2.5 text-xs font-semibold">
                     <div className="flex gap-2.5">
-                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-blue-600 flex items-center justify-between">
+                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-blue-600 flex items-center justify-between hover:-translate-y-0.5 transition-transform shadow-2xs">
                         <span>토스페이</span>
                         <CheckCircle2 className="w-4 h-4 text-blue-600" />
                       </div>
-                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-amber-600 flex items-center justify-between">
+                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-amber-600 flex items-center justify-between hover:-translate-y-0.5 transition-transform shadow-2xs">
                         <span>카카오페이</span>
                         <CheckCircle2 className="w-4 h-4 text-amber-600" />
                       </div>
                     </div>
                     <div className="flex gap-2.5">
-                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-emerald-600 flex items-center justify-between">
+                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-emerald-600 flex items-center justify-between hover:-translate-y-0.5 transition-transform shadow-2xs">
                         <span>네이버페이</span>
                         <CheckCircle2 className="w-4 h-4 text-emerald-600" />
                       </div>
-                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-slate-700 flex items-center justify-between">
+                      <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 text-slate-700 flex items-center justify-between hover:-translate-y-0.5 transition-transform shadow-2xs">
                         <span>국내 전 카드사</span>
                         <CheckCircle2 className="w-4 h-4 text-blue-600" />
                       </div>
@@ -178,7 +178,7 @@ export default function SolutionInfrastructure() {
                 </div>
 
                 {/* Direct contract zero-fee note */}
-                <div className="bg-emerald-50/60 border border-emerald-200/80 rounded-xl p-3.5 flex items-center gap-3">
+                <div className="bg-emerald-50/60 border border-emerald-200/80 rounded-xl p-3.5 flex items-center gap-3 shadow-2xs">
                   <ShieldCheck className="w-5 h-5 text-emerald-700 shrink-0" />
                   <div className="text-xs text-emerald-800 leading-tight">
                     <span className="font-semibold">PG사 직접 정산 계약</span> · 자사몰 판매 시 별도 중개 수수료 없음
@@ -194,14 +194,14 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 3: Custom Domain Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-amber-400 hover:shadow-[0_20px_45px_-10px_rgba(245,158,11,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center justify-center shrink-0">
+                  <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center justify-center shrink-0 shadow-2xs">
                     <Globe className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-medium text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/80">
+                  <span className="text-xs font-mono font-medium text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/80 shadow-2xs">
                     EDGE DNS // 03 · 독립 도메인 &amp; 보안
                   </span>
                 </div>
@@ -216,21 +216,21 @@ export default function SolutionInfrastructure() {
               {/* Graphic: Browser URL bar, DNS A record, TLS 1.3 */}
               <div className="space-y-3 pt-2">
                 <div className="bg-slate-50/70 rounded-xl border border-slate-200 p-4 sm:p-5 shadow-2xs space-y-3">
-                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200">
+                  <div className="flex items-center gap-2 p-2.5 rounded-lg bg-white border border-slate-200 slot-depth-inset">
                     <Lock className="w-4 h-4 text-emerald-600 shrink-0" />
                     <span className="text-xs font-mono font-semibold text-slate-900 flex-1 truncate">
                       https://brand.co.kr
                     </span>
-                    <span className="text-[11px] font-mono font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0 border border-emerald-200/60">
+                    <span className="text-[11px] font-mono font-medium text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full shrink-0 border border-emerald-200/60 shadow-2xs">
                       보안 연결됨
                     </span>
                   </div>
                   <div className="space-y-2 text-xs">
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-slate-200/60 text-slate-600">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-slate-200/60 text-slate-600 shadow-2xs">
                       <span className="font-mono text-[11px] font-medium text-slate-500">DNS A Record</span>
                       <span className="text-slate-900 font-medium">자동 글로벌 애니캐스트 라우팅</span>
                     </div>
-                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-slate-200/60 text-slate-600">
+                    <div className="flex items-center justify-between p-2.5 rounded-lg bg-white border border-slate-200/60 text-slate-600 shadow-2xs">
                       <span className="font-mono text-[11px] font-medium text-slate-500">SSL/TLS</span>
                       <span className="text-emerald-700 font-medium flex items-center gap-1">
                         <CheckCircle2 className="w-3.5 h-3.5" />
@@ -249,7 +249,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 4: Monitoring Radar Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-indigo-400 hover:shadow-[0_0_35px_rgba(99,102,241,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-indigo-400 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -348,7 +348,7 @@ export default function SolutionInfrastructure() {
 
         {/* 7단계 런칭 프로세스 로드맵 */}
         <div className="pt-6 sm:pt-10">
-          <div className="bg-[#f8f9fa] rounded-[36px] border border-[#dadce0] p-8 sm:p-12 shadow-xs space-y-8">
+          <div className="bg-[#f8f9fa] rounded-[36px] border border-[#dadce0] p-8 sm:p-12 card-3d-elevated space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
               <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-[#dadce0] text-xs text-[#3c4043] font-semibold shadow-xs">
                 7단계 런칭 프로세스
@@ -373,14 +373,14 @@ export default function SolutionInfrastructure() {
               ].map((item, idx) => (
                 <div
                   key={item.step}
-                  className="flex-1 min-w-[200px] lg:min-w-0 bg-white rounded-2xl border border-[#dadce0] p-4 flex flex-col justify-between shadow-xs hover:border-[#1a73e8]/40 transition-all"
+                  className="flex-1 min-w-[200px] lg:min-w-0 bg-white rounded-2xl border border-[#dadce0] p-4 flex flex-col justify-between card-3d-elevated hover:border-[#1a73e8]/60 hover:-translate-y-1 transition-all"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-2">
                       <span className="font-mono text-xs font-semibold text-[#1a73e8]">
                         Step {item.step}
                       </span>
-                      <span className="text-[10px] font-mono text-[#5f6368] bg-[#f8f9fa] px-1.5 py-0.5 rounded font-medium">
+                      <span className="text-[10px] font-mono text-[#5f6368] bg-[#f8f9fa] px-1.5 py-0.5 rounded font-medium shadow-2xs">
                         {item.tag}
                       </span>
                     </div>

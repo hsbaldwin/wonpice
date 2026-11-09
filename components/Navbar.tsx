@@ -115,7 +115,7 @@ export default function Navbar() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_nav"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-900 hover:bg-slate-800 active:bg-slate-950 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all cursor-pointer shadow-xs hover:shadow text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap tracking-tight ring-1 ring-slate-800"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full btn-3d-primary cursor-pointer text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap tracking-tight ring-1 ring-cyan-500/40"
           >
             <span>50% 프로모션 신청</span>
             <ExternalLink className="w-3.5 h-3.5 opacity-80" />
@@ -220,7 +220,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white py-3 px-4 rounded-full font-medium text-sm transition-all shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white py-3 px-4 rounded-full font-medium text-sm btn-3d-primary transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
               >
                 <span>50% 프로모션 신청</span>
                 <ExternalLink className="w-4 h-4 opacity-90" />
