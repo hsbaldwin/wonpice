@@ -17,11 +17,11 @@ export default function SolutionPricing() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white text-slate-800 border border-slate-200 text-xs font-mono font-medium mb-6 shadow-2xs">
-            <Sparkles className="w-4 h-4 text-emerald-600" />
-            <span>PRICING MATRIX // 2026 자사몰 구축 프로모션</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-medium mb-6 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+            <Sparkles className="w-4 h-4 text-cyan-400" />
+            <span>PRICING MATRIX // 2026 자사몰 구축 프로모션 ⚡</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-tight break-keep">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-tight break-keep drop-shadow-[0_0_16px_rgba(56,189,248,0.2)]">
             자사몰 솔루션 요금제 &amp; 50% 프로모션 안내
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed break-keep font-normal">
@@ -36,7 +36,7 @@ export default function SolutionPricing() {
           {/* Starter Plan */}
           <div
             data-testid="plan-starter"
-            className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between h-full"
+            className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-cyan-400/80 hover:shadow-[0_0_25px_rgba(6,182,212,0.18)] transition-all duration-300 flex flex-col justify-between h-full"
           >
             <div>
               <div className="flex flex-wrap items-center justify-between gap-2 mb-6 min-h-[36px]">
@@ -96,7 +96,7 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "starter" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-medium text-sm transition-all cursor-pointer h-12 tracking-tight border border-slate-200"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-900 font-medium text-sm transition-all cursor-pointer h-12 tracking-tight border border-slate-200 hover:border-cyan-400"
               >
                 <span>스타터 50% 신청 ↗</span>
               </a>
@@ -106,10 +106,10 @@ export default function SolutionPricing() {
           {/* Business Plan (Recommended) */}
           <div
             data-testid="plan-business"
-            className="bg-white p-8 sm:p-10 rounded-2xl border-2 border-slate-900 shadow-lg shadow-slate-200/50 flex flex-col justify-between h-full relative overflow-hidden ring-4 ring-slate-900/5"
+            className="bg-white p-8 sm:p-10 rounded-2xl border-2 border-slate-900 shadow-lg shadow-slate-200/50 flex flex-col justify-between h-full relative overflow-hidden ring-4 ring-cyan-500/10 hover:border-cyan-400 hover:shadow-[0_0_40px_rgba(6,182,212,0.25)] transition-all duration-300"
           >
-            <div className="absolute top-4 right-4 bg-slate-900 text-white text-xs font-mono font-medium px-3.5 py-1 rounded-full shadow-xs">
-              가장 추천하는 플랜
+            <div className="absolute top-4 right-4 bg-slate-950 text-cyan-300 text-xs font-mono font-medium px-3.5 py-1 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.3)] border border-cyan-500/40">
+              가장 추천하는 플랜 ⚡
             </div>
 
             <div>
@@ -125,8 +125,8 @@ export default function SolutionPricing() {
               <div className="mb-8">
                 <div className="flex items-baseline gap-2.5 h-10">
                   <span className="text-slate-400 line-through text-base font-normal">300만 원</span>
-                  <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight font-sans">150만 원~</span>
-                  <span className="text-xs font-mono font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
+                  <span className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight font-sans neon-text-cyan">150만 원~</span>
+                  <span className="text-xs font-mono font-medium text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80 shadow-[0_0_8px_rgba(16,185,129,0.25)]">
                     50% 할인
                   </span>
                 </div>
@@ -170,10 +170,10 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "business" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-md transition-all cursor-pointer h-12 tracking-tight ring-1 ring-slate-800"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-sm sm:text-base shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_35px_rgba(6,182,212,0.65)] hover:ring-2 hover:ring-cyan-400 transition-all cursor-pointer h-12 tracking-tight ring-1 ring-cyan-500/40"
               >
                 <span>비즈니스 50% 신청 ↗</span>
-                <ExternalLink className="w-4 h-4" />
+                <ExternalLink className="w-4 h-4 text-cyan-300" />
               </a>
             </div>
           </div>

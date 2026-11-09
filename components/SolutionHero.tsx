@@ -31,25 +31,25 @@ export default function SolutionHero() {
       </div>
 
       <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 text-center">
-        {/* Eyebrow Pill Badge - SaaS System Status */}
+        {/* Eyebrow Pill Badge - SaaS Electric Current Status */}
         <div
           data-testid="hero-eyebrow"
-          className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-800 text-xs font-mono font-medium mb-8 shadow-xs hover:border-slate-300 transition-colors"
+          className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-slate-950 text-slate-100 text-xs font-mono font-medium mb-8 border border-cyan-500/40 shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_24px_rgba(6,182,212,0.6)] transition-all cursor-pointer"
         >
           <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.9)]"></span>
           </span>
-          <span className="text-slate-900 font-bold">mord 2.4</span>
-          <span className="text-slate-300">/</span>
-          <span className="text-slate-600 font-sans">2026 자사몰 구축비 50% 프로모션 진행 중</span>
+          <span className="text-cyan-300 font-bold tracking-tight">mord 2.4</span>
+          <span className="text-cyan-500/60 font-mono">⚡ 220V</span>
+          <span className="text-slate-300 font-sans">2026 자사몰 구축비 50% 프로모션 진행 중</span>
         </div>
 
-        {/* Primary SEO Heading (H1) - Crisp SaaS Linear Typography */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-bold text-slate-900 tracking-[-0.035em] leading-[1.08] mb-6 sm:mb-8 max-w-5xl mx-auto break-keep">
+        {/* Primary SEO Heading (H1) - Neon Sign Glow Typography */}
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[76px] font-bold text-slate-900 tracking-[-0.035em] leading-[1.08] mb-6 sm:mb-8 max-w-5xl mx-auto break-keep drop-shadow-[0_0_20px_rgba(56,189,248,0.25)]">
           오픈마켓 수수료 없이,
           <br className="hidden sm:inline" />
-          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 bg-clip-text text-transparent"> 내 브랜드를 키우는 자사몰 솔루션</span>
+          <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-sky-500 bg-clip-text text-transparent neon-text-blue"> 내 브랜드를 키우는 자사몰 솔루션</span>
         </h1>
 
         {/* Subtitle - Concrete, product-promotional tone */}
@@ -59,31 +59,33 @@ export default function SolutionHero() {
           초기 구축비 50% 프로모션으로 외주 개발 부담 없이 3~5주 만에 실제 판매 가능한 자사몰을 오픈합니다.
         </p>
 
-        {/* Dual Actions - SaaS high-precision buttons */}
+        {/* Dual Actions - Interactive Luminous Energy Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 mb-14 sm:mb-16 w-full max-w-md sm:max-w-none mx-auto">
           <a
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_hero"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-md transition-all cursor-pointer tracking-tight ring-1 ring-slate-800"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-sm sm:text-base shadow-[0_0_20px_rgba(6,182,212,0.35)] hover:shadow-[0_0_35px_rgba(6,182,212,0.65)] hover:ring-2 hover:ring-cyan-400 transition-all cursor-pointer tracking-tight ring-1 ring-cyan-500/40 relative overflow-hidden group"
           >
-            <span>50% 프로모션 신청하기</span>
-            <ExternalLink className="w-4 h-4 opacity-80" />
+            <span className="relative z-10 flex items-center gap-2">
+              <span>50% 프로모션 신청하기</span>
+              <ExternalLink className="w-4 h-4 opacity-90 text-cyan-300" />
+            </span>
           </a>
 
           <a
             href="#showcase"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-slate-50 text-slate-900 font-medium text-sm sm:text-base border border-slate-200 shadow-2xs hover:border-slate-300 transition-all cursor-pointer tracking-tight"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-cyan-50/50 text-slate-900 font-medium text-sm sm:text-base border border-slate-200 shadow-2xs hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.2)] transition-all cursor-pointer tracking-tight"
           >
             <span>업종별 라이브 데모 둘러보기</span>
-            <ArrowDown className="w-4 h-4 opacity-70" />
+            <ArrowDown className="w-4 h-4 opacity-70 text-cyan-600" />
           </a>
         </div>
 
-        {/* Hero Flagship Studio Stage (SaaS Interactive Workbench) */}
+        {/* Hero Flagship Studio Stage (SaaS Interactive Luminous Workbench) */}
         <div
           data-testid="device-mockup"
-          className="max-w-5xl mx-auto mb-16 sm:mb-20 rounded-3xl border border-slate-200/90 bg-slate-900/5 backdrop-blur-md p-3 sm:p-5 lg:p-6 shadow-2xl shadow-slate-200/70 relative text-left"
+          className="max-w-5xl mx-auto mb-16 sm:mb-20 rounded-3xl border border-cyan-500/35 bg-slate-950/5 backdrop-blur-md p-3 sm:p-5 lg:p-6 shadow-[0_0_40px_rgba(6,182,212,0.18)] hover:shadow-[0_0_60px_rgba(6,182,212,0.32)] transition-all duration-300 relative text-left"
         >
           {/* Top Browser & Window Bar */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-200">
@@ -297,17 +299,17 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* Official Product Promotion Package Hub */}
+        {/* Official Product Promotion Package Hub - Neon Energy Power Core */}
         <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-mono font-medium mb-5 shadow-xs">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950 text-cyan-300 text-xs font-mono font-medium mb-5 shadow-[0_0_15px_rgba(6,182,212,0.35)] border border-cyan-500/40">
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
             <span>PROMOTION SPEC // 2026 상반기 한정 특별 지원</span>
           </div>
           
-          <div className="bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-10 shadow-lg text-left space-y-6">
+          <div className="bg-white rounded-3xl border border-cyan-500/30 p-7 sm:p-10 shadow-[0_0_35px_rgba(6,182,212,0.12)] hover:shadow-[0_0_50px_rgba(6,182,212,0.25)] transition-all duration-300 text-left space-y-6 relative overflow-hidden group">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
               <div>
-                <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">All-in-One Package</span>
+                <span className="text-xs font-mono font-bold text-cyan-600 uppercase tracking-wider">All-in-One Package</span>
                 <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
                   mord 자사몰 올인원 런칭 패키지
                 </h3>
@@ -317,9 +319,9 @@ export default function SolutionHero() {
               </div>
               <div className="sm:text-right shrink-0 bg-slate-50 sm:bg-transparent p-4 sm:p-0 rounded-2xl border sm:border-0 border-slate-200">
                 <div className="text-xs text-slate-400 line-through">정가 3,000,000원</div>
-                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight neon-text-cyan">
                   1,500,000원
-                  <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60 ml-2">50% OFF</span>
+                  <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60 ml-2 shadow-[0_0_8px_rgba(16,185,129,0.25)]">50% OFF</span>
                 </div>
                 <div className="text-[11px] font-mono text-slate-500 mt-0.5">선착순 파트너사 프로모션 특별가</div>
               </div>
@@ -327,7 +329,7 @@ export default function SolutionHero() {
 
             {/* 4 Concrete Core Deliverables */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
-              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all">
                 <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-slate-900">기존 상품 100개 일괄 등록 대행</div>
@@ -337,7 +339,7 @@ export default function SolutionHero() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all">
                 <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-slate-900">토스 간편결제 4종 가맹 연동</div>
@@ -347,7 +349,7 @@ export default function SolutionHero() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all">
                 <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-slate-900">브랜드 독립 도메인 무상 연결</div>
@@ -357,7 +359,7 @@ export default function SolutionHero() {
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3 hover:border-cyan-400/60 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all">
                 <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
                   <div className="text-sm font-bold text-slate-900">3중 모니터링 &amp; 1:1 실무 교육</div>
@@ -375,10 +377,10 @@ export default function SolutionHero() {
               <button
                 type="button"
                 onClick={() => openPartnerModal({ plan: "business" })}
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-medium transition-all shadow-xs cursor-pointer w-full sm:w-auto justify-center"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white text-xs sm:text-sm font-medium transition-all shadow-[0_0_15px_rgba(6,182,212,0.35)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:ring-2 hover:ring-cyan-400 cursor-pointer w-full sm:w-auto justify-center ring-1 ring-cyan-500/40"
               >
                 <span>50% 프로모션 패키지 신청하기</span>
-                <ExternalLink className="w-3.5 h-3.5" />
+                <ExternalLink className="w-3.5 h-3.5 text-cyan-300" />
               </button>
             </div>
           </div>
@@ -399,10 +401,10 @@ export default function SolutionHero() {
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto text-left scroll-mt-24 sm:scroll-mt-28 items-stretch"
         >
           {/* Card 1 */}
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-full">
+          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-emerald-400 hover:shadow-[0_0_30px_rgba(16,185,129,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
-                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/80 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200/80 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_15px_rgba(16,185,129,0.4)] transition-all">
                   <Zap className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 shrink-0">
@@ -417,16 +419,16 @@ export default function SolutionHero() {
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
-              <span className="text-emerald-700 font-semibold text-sm">01</span>
+              <span className="text-emerald-700 font-semibold text-sm neon-text-emerald">01</span>
               <span className="font-sans">중개 수수료 0원 · 전액 판매자 직결 정산</span>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-full">
+          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-cyan-400 hover:shadow-[0_0_30px_rgba(6,182,212,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
-                <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 border border-blue-200/80 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 text-blue-700 border border-blue-200/80 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] transition-all">
                   <Users className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-mono font-medium text-blue-800 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/80 shrink-0">
@@ -441,16 +443,16 @@ export default function SolutionHero() {
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
-              <span className="text-blue-700 font-semibold text-sm">02</span>
+              <span className="text-blue-700 font-semibold text-sm neon-text-blue">02</span>
               <span className="font-sans">실고객 데이터 100% 엑셀 다운로드 및 CRM 자산화</span>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 hover:shadow-sm transition-all flex flex-col justify-between h-full">
+          <div className="bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-amber-400 hover:shadow-[0_0_30px_rgba(245,158,11,0.22)] transition-all duration-300 flex flex-col justify-between h-full group">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
-                <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center justify-center shrink-0">
+                <div className="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_15px_rgba(245,158,11,0.4)] transition-all">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-mono font-medium text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200/80 shrink-0">

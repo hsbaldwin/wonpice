@@ -31,8 +31,10 @@ export default function Navbar() {
     <>
       <header className="sticky top-0 z-50 w-full bg-white/75 backdrop-blur-xl border-b border-slate-200/80 transition-colors">
       {/* Top Announcement Banner */}
-      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 sm:px-6 text-center border-b border-slate-800 flex items-center justify-center gap-2 sm:gap-2.5">
-        <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 text-emerald-400 px-2.5 sm:px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-medium border border-emerald-500/20 shrink-0">
+      <div className="bg-slate-950 text-slate-300 text-xs py-2 px-4 sm:px-6 text-center border-b border-cyan-900/40 flex items-center justify-center gap-2 sm:gap-2.5 relative overflow-hidden">
+        <div className="absolute inset-x-0 -bottom-px h-px bg-gradient-to-r from-transparent via-cyan-400/80 to-transparent animate-pulse" />
+        <span className="inline-flex items-center gap-1.5 bg-cyan-950/80 text-cyan-300 px-2.5 sm:px-3 py-0.5 rounded-full text-[11px] sm:text-xs font-mono font-medium border border-cyan-500/40 shrink-0 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+          <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
           2026 프로모션
         </span>
         <span className="font-normal truncate sm:overflow-visible text-slate-200">
@@ -42,7 +44,7 @@ export default function Navbar() {
           href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_topbanner"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sky-400 hover:text-sky-300 font-medium inline-flex items-center gap-1 ml-1.5 hidden sm:inline-flex shrink-0 font-mono text-xs"
+          className="text-cyan-400 hover:text-cyan-300 font-medium inline-flex items-center gap-1 ml-1.5 hidden sm:inline-flex shrink-0 font-mono text-xs neon-text-cyan transition-all"
         >
           <span>자세히 보기</span>
           <ExternalLink className="w-3.5 h-3.5" />
@@ -57,11 +59,11 @@ export default function Navbar() {
           aria-label="mord (WonPice) 홈으로 이동"
           className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
         >
-          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-slate-950 text-white flex items-center justify-center rounded-xl group-hover:scale-105 transition-transform shrink-0 font-mono font-bold text-sm tracking-tighter shadow-xs ring-1 ring-slate-800">
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-slate-950 text-cyan-300 flex items-center justify-center rounded-xl group-hover:scale-105 transition-all shrink-0 font-mono font-bold text-sm tracking-tighter shadow-[0_0_15px_rgba(6,182,212,0.4)] ring-1 ring-cyan-500/50 group-hover:shadow-[0_0_22px_rgba(6,182,212,0.7)]">
             m
           </div>
           <div className="flex items-center gap-2.5">
-            <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight font-sans">
+            <span className="font-bold text-xl sm:text-2xl text-slate-900 tracking-tight font-sans group-hover:text-cyan-600 transition-colors">
               mord
             </span>
             <span className="text-[11px] font-semibold text-slate-500 tracking-wider uppercase border-l border-slate-200 pl-2.5 hidden sm:inline font-mono">

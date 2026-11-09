@@ -9,24 +9,24 @@ export default function Footer() {
           {/* Col 1: Brand & Mission (lg:col-span-4) */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-xl bg-slate-950 text-white flex items-center justify-center font-mono font-bold text-sm shrink-0 shadow-xs tracking-tighter ring-1 ring-slate-800">
+              <div className="w-9 h-9 rounded-xl bg-slate-950 text-cyan-300 flex items-center justify-center font-mono font-bold text-sm shrink-0 shadow-[0_0_15px_rgba(6,182,212,0.4)] tracking-tighter ring-1 ring-cyan-500/50">
                 m
               </div>
               <div className="flex items-center gap-2">
                 <span className="font-bold text-2xl text-slate-900 tracking-tight font-sans">mord</span>
                 <span className="font-semibold text-xs text-slate-500 border-l border-slate-300 pl-2 uppercase font-mono">WonPice</span>
               </div>
-              <span className="text-xs text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-200/80 font-semibold shrink-0">
+              <span className="text-xs text-cyan-700 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-200/80 font-semibold shrink-0 shadow-[0_0_8px_rgba(6,182,212,0.2)]">
                 업종 맞춤 자사몰 솔루션
               </span>
             </div>
 
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-slate-200 text-xs font-mono text-slate-700 shadow-2xs">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950 border border-cyan-500/40 text-xs font-mono text-cyan-300 shadow-[0_0_12px_rgba(6,182,212,0.25)]">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-400 shadow-[0_0_6px_rgba(6,182,212,0.9)]"></span>
               </span>
-              <span>SYSTEM STATUS // 100% OPERATIONAL</span>
+              <span>SYSTEM STATUS // 100% OPERATIONAL ⚡</span>
             </div>
 
             <p className="text-slate-600 text-sm leading-relaxed max-w-sm break-keep">

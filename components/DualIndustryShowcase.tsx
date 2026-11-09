@@ -305,11 +305,11 @@ export default function DualIndustryShowcase({
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#dadce0] text-[#3c4043] text-xs sm:text-sm font-semibold mb-6 shadow-xs">
-            <Store className="w-4 h-4 text-[#1a73e8]" />
-            <span className="font-semibold text-[#202124]">업종별 특화 쇼케이스</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-950 text-cyan-300 border border-cyan-500/40 text-xs sm:text-sm font-semibold mb-6 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+            <Store className="w-4 h-4 text-cyan-400" />
+            <span className="font-semibold text-cyan-200">업종별 특화 쇼케이스 ⚡</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep drop-shadow-[0_0_16px_rgba(56,189,248,0.2)]">
             내 업종에 꼭 맞는 특화 기능과 테마 디자인
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">

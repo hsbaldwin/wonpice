@@ -49,11 +49,11 @@ export default function SolutionFaq() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-semibold mb-6">
-            <HelpCircle className="w-4 h-4 text-[#1a73e8]" />
-            <span>자주 묻는 질문</span>
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-950 text-cyan-300 border border-cyan-500/40 text-xs sm:text-sm font-semibold mb-6 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+            <HelpCircle className="w-4 h-4 text-cyan-400" />
+            <span>자주 묻는 질문 ⚡</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep drop-shadow-[0_0_16px_rgba(56,189,248,0.2)]">
             자사몰 제작 및 운영 실무 FAQ
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">
@@ -70,8 +70,8 @@ export default function SolutionFaq() {
                 key={faq.q}
                 className={`rounded-[28px] overflow-hidden border transition-all duration-200 ${
                   isOpen
-                    ? "border border-[#1a73e8] bg-white shadow-xs"
-                    : "border border-[#dadce0] bg-[#f8f9fa] hover:bg-[#f1f3f4]"
+                    ? "border border-[#1a73e8] bg-white shadow-[0_0_20px_rgba(6,182,212,0.18)]"
+                    : "border border-[#dadce0] bg-[#f8f9fa] hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(6,182,212,0.15)]"
                 }`}
               >
                 <button

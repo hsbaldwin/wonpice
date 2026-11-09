@@ -19,11 +19,11 @@ export default function SolutionInfrastructure() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-800 text-xs font-mono font-medium mb-6">
-            <Server className="w-3.5 h-3.5 text-blue-600" />
-            <span>SYSTEM ARCHITECTURE // 4대 기술 인프라</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950 text-cyan-300 border border-cyan-500/40 text-xs font-mono font-medium mb-6 shadow-[0_0_12px_rgba(6,182,212,0.3)]">
+            <Server className="w-3.5 h-3.5 text-cyan-400" />
+            <span>SYSTEM ARCHITECTURE // 4대 기술 인프라 ⚡</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-tight break-keep">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 tracking-tight mb-6 leading-tight break-keep drop-shadow-[0_0_16px_rgba(56,189,248,0.2)]">
             쇼핑몰 오픈에 필요한 모든 기술을 원스톱으로 제공합니다
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-slate-600 leading-relaxed break-keep font-normal">
@@ -36,7 +36,7 @@ export default function SolutionInfrastructure() {
         {/* Asymmetric Bento Grid spanning 12 columns */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 lg:gap-8">
           {/* Card 1: Hero Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(6,182,212,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -122,7 +122,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 2: PG Payments Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-emerald-400 hover:shadow-[0_0_35px_rgba(16,185,129,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -194,7 +194,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 3: Custom Domain Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-amber-400 hover:shadow-[0_0_35px_rgba(245,158,11,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -249,7 +249,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 4: Monitoring Radar Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-slate-300 transition-all flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200 shadow-xs hover:border-indigo-400 hover:shadow-[0_0_35px_rgba(99,102,241,0.2)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
