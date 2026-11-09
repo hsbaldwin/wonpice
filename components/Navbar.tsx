@@ -165,7 +165,7 @@ export default function Navbar() {
                   aria-label="닫기"
                   data-testid="partner-modal-close"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5f6368] hover:text-[#202124] transition-colors"
+                  className="p-2 rounded-full hover:bg-[#f1f3f4] text-[#5f6368] hover:text-[#202124] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -218,7 +218,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="w-full inline-flex items-center justify-center gap-2 bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white py-3 px-4 rounded-full font-medium text-sm transition-all shadow-sm hover:shadow"
+                className="w-full inline-flex items-center justify-center gap-2 bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white py-3 px-4 rounded-full font-medium text-sm transition-all shadow-sm hover:shadow focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
               >
                 <span>50% 프로모션 신청</span>
                 <ExternalLink className="w-4 h-4 opacity-90" />

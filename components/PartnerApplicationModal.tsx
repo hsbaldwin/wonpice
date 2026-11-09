@@ -93,7 +93,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
           aria-label="닫기"
           data-testid="partner-modal-close"
           onClick={closePartnerModal}
-          className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2 rounded-full hover:bg-[#f1f3f4] text-[#5f6368] hover:text-[#202124] transition-colors cursor-pointer"
+          className="absolute top-5 right-5 sm:top-6 sm:right-6 p-2 rounded-full hover:bg-[#f1f3f4] text-[#5f6368] hover:text-[#202124] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8]"
         >
           <X className="w-5 h-5" />
         </button>
@@ -152,7 +152,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
               <button
                 type="button"
                 onClick={closePartnerModal}
-                className="flex-1 py-3 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm transition-all cursor-pointer"
+                className="flex-1 py-3 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm transition-all cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
               >
                 확인 완료 / 닫기
               </button>
@@ -160,7 +160,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
                 href="https://shop-site-950864605215.asia-northeast3.run.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-3 px-6 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
+                className="flex-1 py-3 px-6 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-slate-900 focus-visible:ring-offset-2"
               >
                 <span>가게지기 포털 바로가기</span>
                 <ExternalLink className="w-3.5 h-3.5 text-[#5f6368]" />
@@ -417,7 +417,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shadow-sm hover:shadow transition-all cursor-pointer flex items-center justify-center gap-2"
+                  className="w-full py-3.5 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-medium text-sm sm:text-base shadow-sm hover:shadow transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
                 >
                   <span>50% 프로모션 신청서 접수하기</span>
                 </button>

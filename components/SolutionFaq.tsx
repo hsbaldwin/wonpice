@@ -68,7 +68,7 @@ export default function SolutionFaq() {
             return (
               <div
                 key={faq.q}
-                className={`rounded-[28px] border transition-all ${
+                className={`rounded-[28px] overflow-hidden border transition-all duration-200 ${
                   isOpen
                     ? "border border-[#1a73e8] bg-white shadow-xs"
                     : "border border-[#dadce0] bg-[#f8f9fa] hover:bg-[#f1f3f4]"
@@ -77,7 +77,10 @@ export default function SolutionFaq() {
                 <button
                   type="button"
                   onClick={() => toggle(idx)}
-                  className="w-full p-6 sm:p-8 text-left flex items-center justify-between gap-5 cursor-pointer"
+                  aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${idx}`}
+                  id={`faq-question-${idx}`}
+                  className="w-full p-6 sm:p-8 text-left flex items-center justify-between gap-5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 transition-colors"
                 >
                   <span className="font-semibold text-[#202124] text-base sm:text-lg flex items-center gap-3.5 tracking-tight break-keep">
                     <span className="text-[#1a73e8] font-bold text-base sm:text-lg shrink-0">
@@ -94,6 +97,9 @@ export default function SolutionFaq() {
 
                 {/* Pre-rendered content for crawler SEO */}
                 <div
+                  id={`faq-answer-${idx}`}
+                  role="region"
+                  aria-labelledby={`faq-question-${idx}`}
                   className={`px-6 sm:px-8 pb-8 pt-2 text-sm sm:text-base text-[#5f6368] leading-relaxed border-t border-[#f1f3f4] ${
                     isOpen ? "block bg-white" : "hidden"
                   }`}
@@ -106,7 +112,7 @@ export default function SolutionFaq() {
         </div>
 
         {/* Bottom Support Card */}
-        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xs">
           <div>
             <div className="font-semibold text-[#202124] text-lg sm:text-xl mb-1.5 tracking-tight break-keep">
               내 브랜드 맞춤 제작 견적이나 상담이 필요하신가요?
@@ -123,7 +129,7 @@ export default function SolutionFaq() {
               e.preventDefault();
               openPartnerModal({ plan: "custom" });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-semibold text-sm sm:text-base shrink-0 shadow-xs transition-all cursor-pointer tracking-tight"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-semibold text-sm sm:text-base shrink-0 shadow-xs hover:shadow transition-all cursor-pointer tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
           >
             <span>1:1 상담 신청서 작성 ↗</span>
           </a>
