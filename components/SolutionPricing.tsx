@@ -39,10 +39,10 @@ export default function SolutionPricing() {
           {/* Starter Plan */}
           <div
             data-testid="plan-starter"
-            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between h-full"
           >
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6 min-h-[36px]">
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
                     스타터
@@ -55,17 +55,17 @@ export default function SolutionPricing() {
               </div>
 
               <div className="mb-8">
-                <div className="flex items-baseline gap-2.5">
+                <div className="flex items-baseline gap-2.5 h-10">
                   <span className="text-[#9aa0a6] line-through text-base">150만 원</span>
                   <span className="text-3xl sm:text-4xl font-normal text-[#202124]">75만 원~</span>
                   <span className="text-xs font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
                     50% 할인
                   </span>
                 </div>
-                <div className="text-xs text-[#5f6368] mt-2">월 유지보수비 10만 원~ (서버·백업·장애대응)</div>
+                <div className="text-xs text-[#5f6368] mt-2 h-5 flex items-center">월 유지보수비 10만 원~ (서버·백업·장애대응)</div>
               </div>
 
-              <ul className="text-xs sm:text-sm text-[#5f6368] space-y-3.5 pb-8 border-t border-[#f1f3f4] pt-6">
+              <ul className="text-xs sm:text-sm text-[#5f6368] space-y-3.5 pb-8 border-t border-[#f1f3f4] pt-6 min-h-[280px]">
                 <li className="flex items-center gap-3">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
                   <span>업종 테마 + 브랜드 색상·로고 세팅</span>
@@ -102,7 +102,7 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "starter" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer h-14"
               >
                 <span>스타터 50% 신청 ↗</span>
               </a>
@@ -112,14 +112,14 @@ export default function SolutionPricing() {
           {/* Business Plan (Recommended) */}
           <div
             data-testid="plan-business"
-            className="bg-white p-8 sm:p-10 rounded-[36px] border-2 border-[#1a73e8] shadow-md shadow-[#1a73e8]/5 flex flex-col justify-between relative overflow-hidden"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border-2 border-[#1a73e8] shadow-md shadow-[#1a73e8]/5 flex flex-col justify-between h-full relative overflow-hidden"
           >
             <div className="absolute top-4 right-4 bg-[#1a73e8] text-white text-xs font-medium px-4 py-1 rounded-full shadow-xs">
               가장 추천하는 플랜
             </div>
 
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6 min-h-[36px]">
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm font-medium text-[#137333] bg-[#e6f4ea] px-4 py-1.5 rounded-full border border-[#ceead6]">
                     비즈니스
@@ -132,17 +132,17 @@ export default function SolutionPricing() {
               </div>
 
               <div className="mb-8">
-                <div className="flex items-baseline gap-2.5">
+                <div className="flex items-baseline gap-2.5 h-10">
                   <span className="text-[#9aa0a6] line-through text-base">300만 원</span>
                   <span className="text-3xl sm:text-4xl font-normal text-[#202124]">150만 원~</span>
                   <span className="text-xs font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
                     50% 할인
                   </span>
                 </div>
-                <div className="text-xs text-[#5f6368] mt-2">월 유지보수비 20만 원~ (전담 기술 지원)</div>
+                <div className="text-xs text-[#5f6368] mt-2 h-5 flex items-center">월 유지보수비 20만 원~ (전담 기술 지원)</div>
               </div>
 
-              <ul className="text-xs sm:text-sm text-[#3c4043] space-y-3.5 pb-8 border-t border-[#dadce0] pt-6">
+              <ul className="text-xs sm:text-sm text-[#3c4043] space-y-3.5 pb-8 border-t border-[#dadce0] pt-6 min-h-[280px]">
                 <li className="flex items-center gap-3 font-medium text-[#202124]">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
                   <span>스타터의 모든 기능 포함</span>
@@ -179,7 +179,7 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "business" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-sm transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shadow-xs hover:shadow-sm transition-all cursor-pointer h-14"
               >
                 <span>비즈니스 50% 신청 ↗</span>
                 <ExternalLink className="w-4 h-4" />
@@ -190,10 +190,10 @@ export default function SolutionPricing() {
           {/* Custom Plan */}
           <div
             data-testid="plan-custom"
-            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between"
+            className="bg-white p-8 sm:p-10 rounded-[36px] border border-[#dadce0] shadow-xs flex flex-col justify-between h-full"
           >
             <div>
-              <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-6 min-h-[36px]">
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm font-medium text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
                     맞춤
@@ -206,13 +206,13 @@ export default function SolutionPricing() {
               </div>
 
               <div className="mb-8">
-                <div className="flex items-baseline gap-2.5">
+                <div className="flex items-baseline gap-2.5 h-10">
                   <span className="text-3xl sm:text-4xl font-normal text-[#202124]">별도 견적</span>
                 </div>
-                <div className="text-xs text-[#5f6368] mt-2">유지보수비 별도 견적 협의</div>
+                <div className="text-xs text-[#5f6368] mt-2 h-5 flex items-center">유지보수비 별도 견적 협의</div>
               </div>
 
-              <ul className="text-xs sm:text-sm text-[#5f6368] space-y-3.5 pb-8 border-t border-[#f1f3f4] pt-6">
+              <ul className="text-xs sm:text-sm text-[#5f6368] space-y-3.5 pb-8 border-t border-[#f1f3f4] pt-6 min-h-[280px]">
                 <li className="flex items-center gap-3 font-medium text-[#202124]">
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
                   <span>비즈니스의 모든 기능 포함</span>
@@ -233,6 +233,10 @@ export default function SolutionPricing() {
                   <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
                   <span>장애 대응 시간 약정 (SLA 체결)</span>
                 </li>
+                <li className="flex items-center gap-3">
+                  <CheckCircle2 className="w-4.5 h-4.5 text-[#1e8e3e] shrink-0" />
+                  <span>전담 기술 PM 배정 &amp; 커스텀 보안 감사</span>
+                </li>
               </ul>
             </div>
 
@@ -245,7 +249,7 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "custom" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-4 rounded-full bg-[#f1f3f4] hover:bg-[#e8eaed] text-[#202124] font-medium text-sm transition-all cursor-pointer h-14"
               >
                 <span>맞춤 플랜 상담 ↗</span>
               </a>
@@ -326,7 +330,7 @@ export default function SolutionPricing() {
         <div className="pt-4">
           <a
             href="#faq"
-            className="group block max-w-4xl mx-auto bg-white border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-white via-[#f8f9fa] to-white border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5">
@@ -347,7 +351,7 @@ export default function SolutionPricing() {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-medium text-[#1a73e8] bg-[#f8f9fa] border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
                   <span>05 궁금증 해결하기</span>
                   <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 </span>

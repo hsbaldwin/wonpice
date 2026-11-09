@@ -612,7 +612,7 @@ export default function DualIndustryShowcase({
         <div className="pt-6 sm:pt-10">
           <a
             href="#infrastructure"
-            className="group block max-w-4xl mx-auto bg-white border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-white via-[#f8f9fa] to-white border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5">
@@ -633,7 +633,7 @@ export default function DualIndustryShowcase({
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-medium text-[#1a73e8] bg-[#f8f9fa] border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
                   <span>03 기술 인프라 확인</span>
                   <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 </span>

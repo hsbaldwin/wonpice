@@ -121,7 +121,7 @@ export default function SolutionInfrastructure() {
               </div>
             </div>
 
-            <div className="text-xs font-medium text-[#1a73e8] pt-4 border-t border-[#dadce0] flex items-center justify-between">
+            <div className="text-xs font-medium text-[#1a73e8] pt-4 border-t border-[#dadce0] flex items-center justify-between h-10">
               <span>수작업 부담 없는 일괄 등록 지원</span>
               <span className="text-[#5f6368] font-normal">비즈니스 플랜 기본 제공</span>
             </div>
@@ -139,7 +139,7 @@ export default function SolutionInfrastructure() {
                     Foundation II · 결제 (Exchange)
                   </span>
                 </div>
-                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
+                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl h-8 flex items-center">
                   토스페이먼츠 간편결제 연동
                 </h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed">
@@ -193,7 +193,7 @@ export default function SolutionInfrastructure() {
               </div>
             </div>
 
-            <div className="text-xs font-medium text-[#137333] pt-4 border-t border-[#ceead6] flex items-center justify-between">
+            <div className="text-xs font-medium text-[#137333] pt-4 border-t border-[#ceead6] flex items-center justify-between h-10">
               <span>플랫폼 중개 수수료 0원</span>
               <span className="text-[#5f6368] font-normal">정산 대금 직입금</span>
             </div>
@@ -211,7 +211,7 @@ export default function SolutionInfrastructure() {
                     Foundation III · 정체성 (Identity)
                   </span>
                 </div>
-                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
+                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl h-8 flex items-center">
                   브랜드 전용 독립 도메인 연결
                 </h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed">
@@ -248,7 +248,7 @@ export default function SolutionInfrastructure() {
               </div>
             </div>
 
-            <div className="text-xs font-medium text-[#b06000] pt-4 border-t border-[#feefc3] flex items-center justify-between">
+            <div className="text-xs font-medium text-[#b06000] pt-4 border-t border-[#feefc3] flex items-center justify-between h-10">
               <span>브랜드 독립성 및 보안 완비</span>
               <span className="text-[#5f6368] font-normal">포워딩이 아닌 독립 연결</span>
             </div>
@@ -266,7 +266,7 @@ export default function SolutionInfrastructure() {
                     Foundation IV · 영속성 (Continuity)
                   </span>
                 </div>
-                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl">
+                <h3 className="font-medium text-[#202124] text-xl sm:text-2xl h-8 flex items-center">
                   3중 모니터링 &amp; 1:1 교육
                 </h3>
                 <p className="text-sm text-[#5f6368] leading-relaxed">
@@ -343,7 +343,7 @@ export default function SolutionInfrastructure() {
               </div>
             </div>
 
-            <div className="text-xs font-medium text-[#d93025] pt-4 border-t border-[#fad2cf] flex items-center justify-between">
+            <div className="text-xs font-medium text-[#d93025] pt-4 border-t border-[#fad2cf] flex items-center justify-between h-10">
               <span>기술 걱정 없는 안정적 운영</span>
               <span className="text-[#5f6368] font-normal">24/7 장애 자동 감시</span>
             </div>
@@ -388,14 +388,14 @@ export default function SolutionInfrastructure() {
                         {item.tag}
                       </span>
                     </div>
-                    <div className="font-medium text-[#202124] text-sm mb-1">
+                    <div className="font-medium text-[#202124] text-sm mb-1 h-5 flex items-center">
                       {item.title}
                     </div>
-                    <div className="text-[11px] text-[#5f6368] leading-tight">
+                    <div className="text-[11px] text-[#5f6368] leading-tight min-h-[32px]">
                       {item.desc}
                     </div>
                   </div>
-                  <div className="mt-3 pt-2 border-t border-[#f1f3f4] flex items-center justify-between text-[10px] text-[#9aa0a6]">
+                  <div className="mt-3 pt-2 border-t border-[#f1f3f4] flex items-center justify-between text-[10px] text-[#9aa0a6] h-6">
                     <span>Phase {idx + 1}</span>
                     <span>완료 보장</span>
                   </div>
@@ -409,7 +409,7 @@ export default function SolutionInfrastructure() {
         <div className="pt-4">
           <a
             href="#pricing"
-            className="group block max-w-4xl mx-auto bg-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5">
@@ -430,7 +430,7 @@ export default function SolutionInfrastructure() {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
                   <span>04 요금제 및 프로모션 확인</span>
                   <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 </span>

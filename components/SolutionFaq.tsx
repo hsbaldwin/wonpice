@@ -46,7 +46,7 @@ export default function SolutionFaq() {
 
   return (
     <section id="faq" className="py-24 sm:py-32 lg:py-36 bg-white border-b border-[#e8eaed]">
-      <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-medium mb-6">

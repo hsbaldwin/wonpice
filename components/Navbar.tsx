@@ -93,7 +93,7 @@ export default function Navbar() {
       </div>
 
       {/* Main Navigation Bar */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-10 lg:px-12 h-16 sm:h-18 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 h-16 sm:h-18 flex items-center justify-between">
         {/* Brand Logo */}
         <Link
           href="/"
@@ -169,8 +169,8 @@ export default function Navbar() {
       </div>
 
       {/* Sticky Flow Bar (Progress & Section Navigation) */}
-      <div className="border-t border-[#f1f3f4] bg-white/95 backdrop-blur-md px-4 sm:px-10 lg:px-12 py-1.5 sm:py-2">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-3 overflow-hidden">
+      <div className="border-t border-[#f1f3f4] bg-white/95 backdrop-blur-md py-1.5 sm:py-2">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 flex items-center justify-between gap-3 overflow-hidden">
           <nav
             aria-label="스토리 단계 네비게이션"
             className="flex items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar py-0.5 max-w-full"

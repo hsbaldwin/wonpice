@@ -64,54 +64,62 @@ export default function SolutionHero() {
           </a>
         </div>
 
-        {/* 4-Column KPI Metric Ribbon */}
+        {/* 4-Column KPI Metric Ribbon with Precision Baseline Alignment */}
         <div data-testid="metrics-ribbon" className="max-w-7xl mx-auto mb-16 sm:mb-20">
           <div className="bg-[#f8f9fa] border border-[#dadce0] rounded-3xl lg:rounded-full p-6 lg:py-5 lg:px-8 shadow-xs">
             <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#dadce0] gap-y-6 lg:gap-y-0">
               {/* Metric 1 */}
-              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center">
-                <span className="text-xs font-medium text-[#5f6368] mb-1.5">자사몰 제작비</span>
-                <div className="flex items-baseline gap-1.5 mb-1">
+              <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center min-h-[96px]">
+                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">자사몰 제작비</span>
+                <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
                   <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
                     75만 원부터
                   </span>
                 </div>
-                <div className="inline-flex items-center gap-1 text-[11px] font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
-                  <span>50% 프로모션가</span>
+                <div className="h-6 flex items-center">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
+                    50% 프로모션가
+                  </span>
                 </div>
               </div>
 
               {/* Metric 2 */}
-              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center">
-                <span className="text-xs font-medium text-[#5f6368] mb-1.5">월 고정 유지비</span>
-                <div className="flex items-baseline gap-1.5 mb-1">
+              <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center min-h-[96px]">
+                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">월 고정 유지비</span>
+                <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
                   <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
                     10만 원
                   </span>
                 </div>
-                <span className="text-[11px] text-[#5f6368]">서버·자동 백업·3중 모니터링</span>
+                <div className="h-6 flex items-center">
+                  <span className="text-[11px] text-[#5f6368]">서버·자동 백업·3중 모니터링</span>
+                </div>
               </div>
 
               {/* Metric 3 */}
-              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0">
-                <span className="text-xs font-medium text-[#5f6368] mb-1.5">추가 중개 수수료</span>
-                <div className="flex items-baseline gap-1.5 mb-1">
+              <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0 min-h-[96px]">
+                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">추가 중개 수수료</span>
+                <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
                   <span className="text-2xl sm:text-3xl font-medium text-[#1a73e8] tracking-tight">
                     0원 (0%)
                   </span>
                 </div>
-                <span className="text-[11px] text-[#5f6368]">토스 PG 직접 계약 · 판매 수수료 0%</span>
+                <div className="h-6 flex items-center">
+                  <span className="text-[11px] text-[#5f6368]">토스 PG 직접 계약 · 판매 수수료 0%</span>
+                </div>
               </div>
 
               {/* Metric 4 */}
-              <div className="flex flex-col items-center justify-center px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0">
-                <span className="text-xs font-medium text-[#5f6368] mb-1.5">제작 소요 기간</span>
-                <div className="flex items-baseline gap-1.5 mb-1">
+              <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0 min-h-[96px]">
+                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">제작 소요 기간</span>
+                <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
                   <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
                     3~5주 완성
                   </span>
                 </div>
-                <span className="text-[11px] text-[#5f6368]">PG 심사 대행 + 상품 100개 등록</span>
+                <div className="h-6 flex items-center">
+                  <span className="text-[11px] text-[#5f6368]">PG 심사 대행 + 상품 100개 등록</span>
+                </div>
               </div>
             </div>
           </div>
@@ -129,70 +137,76 @@ export default function SolutionHero() {
 
         <div
           id="features"
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-7xl mx-auto text-left scroll-mt-24 sm:scroll-mt-28"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto text-left scroll-mt-24 sm:scroll-mt-28 items-stretch"
         >
           {/* Card 1: Monad */}
-          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between">
+          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center">
+              <div className="flex items-center justify-between mb-6 h-12">
+                <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
                   <Zap className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6]">
+                <span className="text-xs font-mono font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6] shrink-0">
                   Pillar I · 독립 (The Monad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">플랫폼 중개 수수료 0%</h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+                플랫폼 중개 수수료 0%
+              </h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
                 오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
-              <span className="font-mono text-[#137333] font-medium">01</span>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+              <span className="font-mono text-[#137333] font-semibold text-sm">01</span>
               <span>수수료 종속 탈피와 마진의 온전한 회복</span>
             </div>
           </div>
 
           {/* Card 2: Dyad */}
-          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between">
+          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center">
+              <div className="flex items-center justify-between mb-6 h-12">
+                <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
                   <Users className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc]">
+                <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] shrink-0">
                   Pillar II · 소유 (The Dyad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">고객 DB 직접 소유</h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+                고객 DB 직접 소유
+              </h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
                 플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
-              <span className="font-mono text-[#1a73e8] font-medium">02</span>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+              <span className="font-mono text-[#1a73e8] font-semibold text-sm">02</span>
               <span>단골 고객과의 1:1 직접 관계 자산화</span>
             </div>
           </div>
 
           {/* Card 3: Triad */}
-          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between">
+          <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
-              <div className="flex items-center justify-between mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center">
+              <div className="flex items-center justify-between mb-6 h-12">
+                <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3]">
+                <span className="text-xs font-mono font-medium text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3] shrink-0">
                   Pillar III · 영속 (The Triad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3">체계적인 인프라 운영 관리</h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed">
+              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+                체계적인 인프라 운영 관리
+              </h3>
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
                 매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center gap-1.5">
-              <span className="font-mono text-[#b06000] font-medium">03</span>
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+              <span className="font-mono text-[#b06000] font-semibold text-sm">03</span>
               <span>24/7 중단 없는 브랜드 지속 가능성 확보</span>
             </div>
           </div>
@@ -202,7 +216,7 @@ export default function SolutionHero() {
         <div className="mt-16 sm:mt-20 pt-4">
           <a
             href="#showcase"
-            className="group block max-w-4xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-7 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
+            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
           >
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5">
@@ -223,7 +237,7 @@ export default function SolutionHero() {
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-4 py-2 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-1.5">
+                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
                   <span>02 라이브 데모 확인</span>
                   <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 </span>
