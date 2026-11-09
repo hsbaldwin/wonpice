@@ -313,8 +313,8 @@ export default function DualIndustryShowcase({
             내 업종에 꼭 맞는 특화 기능과 테마 디자인
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">
-            대지의 신선도를 전하는 <strong>식품 쇼핑몰(제철곳간)</strong>과 핏과 감각을 표현하는 <strong>패션 브랜드(온결)</strong>. 
-            획일화된 템플릿 대신 각 산업의 특성에 맞추어 정밀하게 설계된 2대 라이브 데모 쇼핑몰을 직접 경험해 보세요.
+            신선 식품·농산물 전문 <strong>식품 쇼핑몰(제철곳간)</strong>과 의류·잡화 전문 <strong>패션 브랜드(온결)</strong>. 
+            중량 규격 옵션, 당일 마감 타이머, 체형별 핏 가이드 등 실제 판매에 필요한 업종별 특화 기능이 구현된 2대 라이브 데모 쇼핑몰을 직접 테스트해 보세요.
           </p>
 
           {/* Industry Dual Switcher Pills */}

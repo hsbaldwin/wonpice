@@ -13,9 +13,11 @@ import {
   Shirt,
   Sparkles,
 } from "lucide-react";
+import { usePartnerModal } from "./PartnerModalContext";
 
 export default function SolutionHero() {
   const [heroTab, setHeroTab] = useState<"food" | "fashion">("food");
+  const { openPartnerModal } = usePartnerModal();
 
   return (
     <section
@@ -50,13 +52,11 @@ export default function SolutionHero() {
           <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 bg-clip-text text-transparent"> 내 브랜드를 키우는 자사몰 솔루션</span>
         </h1>
 
-        {/* Subtitle - Crisp, sovereign product tone */}
+        {/* Subtitle - Concrete, product-promotional tone */}
         <p className="text-[#5f6368] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-12 font-normal break-keep">
-          스마트스토어를 넘어 브랜드 고유의 정체성과 단골 고객 데이터를 온전히 소유하는 독립 D2C 스토어프론트.
+          스마트스토어 상품 100개 엑셀 이전부터 토스페이먼츠 PG 가맹 연동, 전용 도메인 연결까지.
           <br className="hidden md:inline" />
-          농가·식품부터 패션 브랜드까지, 대표님의 철학을 담은 독창적인 맞춤 디자인과 상품 100개 등록,
-          <br className="hidden md:inline" />
-          토스 간편결제 연동까지 3~5주 만에 기술 동반자 mord가 완성합니다.
+          초기 구축비 50% 프로모션으로 외주 개발 부담 없이 3~5주 만에 실제 판매 가능한 자사몰을 오픈합니다.
         </p>
 
         {/* Dual Actions - SaaS high-precision buttons */}
@@ -297,28 +297,100 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* Brand Manifesto Callout (One Masterpiece) */}
+        {/* Official Product Promotion Package Hub */}
         <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-xs font-mono font-medium text-slate-800 mb-5 shadow-xs">
-            <span>mord.spec // One Masterpiece</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 text-white text-xs font-mono font-medium mb-5 shadow-xs">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>PROMOTION SPEC // 2026 상반기 한정 특별 지원</span>
           </div>
-          <blockquote className="text-xl sm:text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight leading-snug sm:leading-relaxed break-keep">
-            “브랜드 고유의 철학과 감각을 인터페이스 전면에 오롯이 구현하여,
-            <br className="hidden sm:inline" />
-            고객과 직접 교감하고 영속하는 <span className="text-blue-600 font-bold">단 하나의 명작 자사몰</span>을 완성합니다.”
-          </blockquote>
-          <p className="text-sm sm:text-base text-slate-600 mt-4 max-w-2xl mx-auto leading-relaxed break-keep font-normal">
-            외부 환경의 변화에 흔들리지 않고, 내 브랜드 고유의 자산과 단골 고객 관계를 온전히 축적할 수 있도록 mord가 신뢰할 수 있는 엔지니어링 동반자가 되어드립니다.
-          </p>
+          
+          <div className="bg-white rounded-3xl border border-slate-200/90 p-7 sm:p-10 shadow-lg text-left space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+              <div>
+                <span className="text-xs font-mono font-bold text-blue-600 uppercase tracking-wider">All-in-One Package</span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">
+                  mord 자사몰 올인원 런칭 패키지
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                  초기 기획부터 상품 100개 세팅, 결제 심사, 보안 도메인까지 전담 엔지니어가 완성합니다.
+                </p>
+              </div>
+              <div className="sm:text-right shrink-0 bg-slate-50 sm:bg-transparent p-4 sm:p-0 rounded-2xl border sm:border-0 border-slate-200">
+                <div className="text-xs text-slate-400 line-through">정가 3,000,000원</div>
+                <div className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+                  1,500,000원
+                  <span className="text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60 ml-2">50% OFF</span>
+                </div>
+                <div className="text-[11px] font-mono text-slate-500 mt-0.5">선착순 파트너사 프로모션 특별가</div>
+              </div>
+            </div>
+
+            {/* 4 Concrete Core Deliverables */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+                <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-slate-900">기존 상품 100개 일괄 등록 대행</div>
+                  <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    엑셀 파일로 전달 시 상품명·옵션·상세페이지 이미지 완전 세팅
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+                <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-slate-900">토스 간편결제 4종 가맹 연동</div>
+                  <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    토스페이·카카오페이·네이버페이·신용카드 PG 심사 서류 일체 대행
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+                <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-slate-900">브랜드 독립 도메인 무상 연결</div>
+                  <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    brand.co.kr 전용 주소 및 256-bit SSL 보안 인증서 평생 자동 갱신
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200/80 flex items-start gap-3">
+                <CheckCircle2 className="w-4.5 h-4.5 text-emerald-600 shrink-0 mt-0.5" />
+                <div>
+                  <div className="text-sm font-bold text-slate-900">3중 모니터링 &amp; 1:1 실무 교육</div>
+                  <div className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                    매일 새벽 자동 DB 백업 및 관리자 60분 원격 실무 교육 기본 제공
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-100">
+              <span className="text-xs text-slate-500 font-mono">
+                구축 소요 기간: 계약일로부터 3~5주 (PG 심사 병행)
+              </span>
+              <button
+                type="button"
+                onClick={() => openPartnerModal({ plan: "business" })}
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-medium transition-all shadow-xs cursor-pointer w-full sm:w-auto justify-center"
+              >
+                <span>50% 프로모션 패키지 신청하기</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* 3 Core Value Pillars */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-mono font-medium mb-3">
-            <span>CORE PILLARS // SPECIFICATION</span>
+            <span>CORE SPEC // 3대 실무 혜택</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight break-keep">
-            단 하나의 명작 자사몰이 약속하는 3가지 본질
+            mord 솔루션 도입으로 얻는 3대 실무 성과
           </h2>
         </div>
 
@@ -334,19 +406,19 @@ export default function SolutionHero() {
                   <Zap className="w-6 h-6" />
                 </div>
                 <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200/80 shrink-0">
-                  PILLAR // 01 · 마진 자율성
+                  PILLAR // 01 · 판매 수수료 0%
                 </span>
               </div>
               <h3 className="font-bold text-slate-900 text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep font-sans">
                 플랫폼 중개 수수료 0%
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                토스페이먼츠 직접 가맹 연동으로 원가 수준의 카드 수수료만 정산됩니다. 별도의 중간 유통 수수료 없이 모든 결제 대금이 판매자 사업 계좌로 즉시 직결되는 투명한 D2C 구조를 실현합니다.
+                토스페이먼츠 직접 가맹 계약으로 카드사 원가 수수료(약 2~3%대)만 발생합니다. 별도의 플랫폼 중개 수수료가 일체 없어, 모든 판매 대금이 사업자 통장으로 100% 직결 정산됩니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
               <span className="text-emerald-700 font-semibold text-sm">01</span>
-              <span className="font-sans">PG 직접 계약 기반의 100% 투명한 마진 구조</span>
+              <span className="font-sans">중개 수수료 0원 · 전액 판매자 직결 정산</span>
             </div>
           </div>
 
@@ -365,12 +437,12 @@ export default function SolutionHero() {
                 고객 DB 직접 소유
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                스토어에 방문한 고객의 구매 이력과 회원 데이터를 온전히 자사 자산으로 확보합니다. 직접 소통하는 CRM 마케팅과 개인화 멤버십으로 지속 가능한 브랜드 팬덤을 구축할 수 있습니다.
+                구매 고객의 성명, 연락처, 배송지, 주문 내역을 자사 DB로 영구 보존합니다. 가상번호가 아닌 실제 고객 연락처로 신상품 안내, 카카오 알림톡 등 자율적인 재구매 마케팅을 집행할 수 있습니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
               <span className="text-blue-700 font-semibold text-sm">02</span>
-              <span className="font-sans">단골 고객과의 1:1 직접 관계 자산화</span>
+              <span className="font-sans">실고객 데이터 100% 엑셀 다운로드 및 CRM 자산화</span>
             </div>
           </div>
 
@@ -389,12 +461,12 @@ export default function SolutionHero() {
                 체계적인 인프라 운영 관리
               </h3>
               <p className="text-sm sm:text-base text-slate-600 leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                정성껏 지은 명작이 비바람에 흔들리지 않도록. 매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에만 전념하실 수 있습니다.
+                서울 ICN 거점 기반의 초저지연 서버와 매일 새벽 자동 DB 백업, 서울·미국·유럽 10분 주기 헬스체크를 가동합니다. 전담 엔지니어가 시스템을 관리하므로 비개발자도 기술 부담 없이 판매에 집중할 수 있습니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-slate-100 text-xs font-mono font-medium text-slate-500 flex items-center justify-between h-10">
               <span className="text-amber-700 font-semibold text-sm">03</span>
-              <span className="font-sans">24/7 중단 없는 브랜드 지속 가능성 확보</span>
+              <span className="font-sans">24/7 서버 장애 자동 감시 &amp; 일일 백업</span>
             </div>
           </div>
         </div>
