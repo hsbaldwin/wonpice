@@ -496,7 +496,7 @@ export default function DualIndustryShowcase({
                   핏과 감성을 온전히 담아내는 &apos;온결&apos;
                 </h3>
                 <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed break-keep">
-                  에이블리나 지그재그의 가격 비교 알고리즘에 묻히지 않도록, 브랜드 고유의 감성을 표현하는 세로형 룩북과 체형별 사이즈 가이드를 기본 탑재했습니다.
+                  소모적인 가격 경쟁에 휘둘리지 않고, 브랜드 고유의 감성과 실루엣을 온전히 살리는 세로형 룩북과 체형별 사이즈 가이드를 기본 탑재했습니다.
                 </p>
               </div>
 
