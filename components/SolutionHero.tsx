@@ -34,13 +34,13 @@ export default function SolutionHero() {
           <span className="text-[#1a73e8] font-bold"> 내 브랜드를 키우는 자사몰 솔루션</span>
         </h1>
 
-        {/* Subtitle - Informative & natural */}
+        {/* Subtitle - Warm, reassuring mentor tone */}
         <p className="text-[#5f6368] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-12 font-normal break-keep">
-          스마트스토어와 오픈마켓의 과도한 중개 수수료에서 벗어나 내 고객을 직접 소유하세요.
+          남들과 똑같은 스마트스토어 화면과 오픈마켓의 과도한 수수료에서 벗어나 내 고객과 마진의 온전한 주권을 되찾으세요.
           <br className="hidden md:inline" />
-          농가·식품부터 패션 브랜드까지, 업종에 맞는 테마 디자인과 상품 100개 등록,
+          농가·식품부터 패션 브랜드까지, 대표님의 철학을 담은 독창적인 맞춤 디자인과 상품 100개 등록,
           <br className="hidden md:inline" />
-          토스페이먼츠 간편결제 연동까지 3~5주 만에 원스톱으로 완성합니다.
+          토스 간편결제 연동까지 3~5주 만에 든든한 기술 동반자가 함께 완성합니다.
         </p>
 
         {/* Dual Actions - Refined pill buttons */}
@@ -125,13 +125,28 @@ export default function SolutionHero() {
           </div>
         </div>
 
+        {/* Brand Manifesto Callout (One Masterpiece) */}
+        <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f8f9fa] border border-[#dadce0] text-xs font-semibold text-[#1a73e8] mb-5 shadow-xs">
+            <span>WonPice Philosophy · One Masterpiece</span>
+          </div>
+          <blockquote className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#202124] tracking-tight leading-snug sm:leading-relaxed break-keep">
+            “모두가 똑같은 플랫폼 템플릿에 브랜드를 구겨 넣을 때,
+            <br className="hidden sm:inline" />
+            원피스는 대표님의 철학과 핏을 오롯이 담아낸 <span className="text-[#1a73e8] font-bold">단 하나의 명작</span>을 짓습니다.”
+          </blockquote>
+          <p className="text-sm sm:text-base text-[#5f6368] mt-4 max-w-2xl mx-auto leading-relaxed break-keep font-normal">
+            오픈마켓의 잦은 알고리즘 변화에 불안해하지 않고, 내 브랜드의 주권을 온전히 지키며 단골과 직접 호흡할 수 있도록 가장 가까운 기술 동반자가 되어드립니다.
+          </p>
+        </div>
+
         {/* 3 Core Value Pillars */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-semibold mb-3">
             <span>자사몰 핵심 강점</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold text-[#202124] tracking-tight break-keep">
-            오픈마켓 수수료와 종속에서 벗어나는 3가지 이유
+            단 하나의 명작 자사몰이 약속하는 3가지 본질
           </h2>
         </div>
 
@@ -154,7 +169,7 @@ export default function SolutionHero() {
                 플랫폼 중개 수수료 0%
               </h3>
               <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
+                오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료만 지출됩니다. 땀 흘려 일군 마진을 플랫폼에 빼앗기지 않고 온전히 대표님의 몫으로 지켜드립니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
@@ -178,7 +193,7 @@ export default function SolutionHero() {
                 고객 DB 직접 소유
               </h3>
               <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
+                플랫폼 가상번호 뒤에 가려졌던 소중한 단골 고객을 직접 맞이하세요. 구매 이력과 연락처를 100% 소유하여, 언제든 내 손으로 재구매와 브랜드 팬덤을 키워갈 수 있습니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
@@ -202,7 +217,7 @@ export default function SolutionHero() {
                 체계적인 인프라 운영 관리
               </h3>
               <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
-                매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
+                정성껏 지은 명작이 비바람에 흔들리지 않도록. 매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에만 전념하실 수 있습니다.
               </p>
             </div>
             <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
