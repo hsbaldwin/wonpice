@@ -10,9 +10,9 @@ import PartnerApplicationModal from "@/components/PartnerApplicationModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "업종 맞춤 자사몰 솔루션 — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 제작 | WonPice",
+  title: "mord (모르드) — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 솔루션 | WonPice",
   description:
-    "스마트스토어·오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤형 자사몰 솔루션. 식품·농가('제철곳간')부터 패션('온결')까지. 테마 제작, 상품 100개 등록 대행, 결제 연동 3~5주 완성. 2026 자사몰 구축비 50% 할인 프로모션.",
+    "스마트스토어·오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤형 자사몰 솔루션 mord(모르드). 식품·농가('제철곳간')부터 패션('온결')까지. 테마 제작, 상품 100개 등록 대행, 결제 연동 3~5주 완성. 2026 자사몰 구축비 50% 할인 프로모션.",
 };
 
 export default function Home() {

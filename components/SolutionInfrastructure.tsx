@@ -79,7 +79,7 @@ export default function SolutionInfrastructure() {
                     </div>
                     <div className="flex-1 p-3 rounded-xl bg-[#e8f0fe] border border-[#d2e3fc] flex flex-col items-center justify-center text-[#1a73e8]">
                       <span className="text-[10px] text-[#1a73e8] font-mono font-medium">02. 자동 변환 엔진</span>
-                      <span className="font-semibold text-[#1a73e8] mt-0.5">WonPice Engine</span>
+                      <span className="font-semibold text-[#1a73e8] mt-0.5">mord Engine</span>
                       <span className="text-[11px] text-[#1967d2]">규격화 &amp; 이미지 최적화</span>
                     </div>
                     <div className="flex-1 p-3 rounded-xl bg-[#e6f4ea] border border-[#ceead6] flex flex-col items-center justify-center text-[#137333]">
@@ -108,7 +108,7 @@ export default function SolutionInfrastructure() {
                     </div>
                     <div className="space-y-1">
                       <div className="flex justify-between text-[11px] text-[#1a73e8] font-medium">
-                        <span className="font-semibold">WonPice 대행 솔루션</span>
+                        <span className="font-semibold">mord 대행 솔루션</span>
                         <span className="font-semibold">등록 대행 지원 (기본 100개 포함)</span>
                       </div>
                       <div className="w-full h-2 rounded-full bg-[#e8f0fe] overflow-hidden">

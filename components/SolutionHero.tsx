@@ -87,7 +87,7 @@ export default function SolutionHero() {
               <span className="w-3 h-3 rounded-full bg-[#34a853]/80" />
               <div className="ml-2 px-3 py-1 rounded-full bg-white border border-[#dadce0] text-xs font-mono text-[#5f6368] flex items-center gap-1.5 shadow-2xs max-w-[260px] sm:max-w-none truncate">
                 <Lock className="w-3.5 h-3.5 text-[#137333]" />
-                <span className="text-[#202124] font-semibold">https://brand-flagship.wonpice.kr</span>
+                <span className="text-[#202124] font-semibold">https://brand-flagship.mord.kr</span>
                 <span className="text-[10px] text-[#137333] hidden sm:inline font-sans font-medium">· TLS 1.3 보안 연결</span>
               </div>
             </div>
@@ -279,15 +279,15 @@ export default function SolutionHero() {
         {/* Brand Manifesto Callout (One Masterpiece) */}
         <div className="max-w-4xl mx-auto mb-16 sm:mb-20 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f8f9fa] border border-[#dadce0] text-xs font-semibold text-[#1a73e8] mb-5 shadow-xs">
-            <span>WonPice Philosophy · One Masterpiece</span>
+            <span>mord Philosophy · One Masterpiece</span>
           </div>
           <blockquote className="text-xl sm:text-2xl md:text-3xl font-semibold text-[#202124] tracking-tight leading-snug sm:leading-relaxed break-keep">
             “모두가 똑같은 플랫폼 템플릿에 브랜드를 구겨 넣을 때,
             <br className="hidden sm:inline" />
-            원피스는 대표님의 철학과 핏을 오롯이 담아낸 <span className="text-[#1a73e8] font-bold">단 하나의 명작</span>을 짓습니다.”
+            모르드(mord)는 대표님의 철학과 핏을 오롯이 담아낸 <span className="text-[#1a73e8] font-bold">단 하나의 명작</span>을 짓습니다.”
           </blockquote>
           <p className="text-sm sm:text-base text-[#5f6368] mt-4 max-w-2xl mx-auto leading-relaxed break-keep font-normal">
-            오픈마켓의 잦은 알고리즘 변화에 불안해하지 않고, 내 브랜드의 주권을 온전히 지키며 단골과 직접 호흡할 수 있도록 가장 가까운 기술 동반자가 되어드립니다.
+            오픈마켓의 잦은 알고리즘 변화에 불안해하지 않고, 내 브랜드의 주권을 온전히 지키며 단골과 직접 호흡할 수 있도록 mord가 가장 가까운 기술 동반자가 되어드립니다.
           </p>
         </div>
 

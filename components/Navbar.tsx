@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Store, ExternalLink, Menu, X } from "lucide-react";
+import { ExternalLink, Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -36,7 +36,7 @@ export default function Navbar() {
           2026 프로모션
         </span>
         <span className="font-normal truncate sm:overflow-visible">
-          업종 맞춤 자사몰 제작 구축비 50% 프로모션 접수 중
+          mord 업종 맞춤 자사몰 제작 구축비 50% 프로모션 접수 중
         </span>
         <a
           href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_topbanner"
@@ -54,14 +54,19 @@ export default function Navbar() {
         {/* Brand Logo */}
         <Link
           href="/"
-          aria-label="WonPice 홈으로 이동"
+          aria-label="mord (WonPice) 홈으로 이동"
           className="flex items-center gap-2.5 sm:gap-3 group shrink-0"
         >
-          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#1a73e8] text-white flex items-center justify-center rounded-full group-hover:scale-105 transition-transform shrink-0">
-            <Store className="w-4 h-4 sm:w-4.5 sm:h-4.5 text-white" />
+          <div className="w-8 h-8 sm:w-9 sm:h-9 bg-[#202124] text-white flex items-center justify-center rounded-full group-hover:scale-105 transition-transform shrink-0 font-bold text-sm tracking-tighter shadow-xs">
+            m
           </div>
           <div className="flex items-center gap-2.5">
-            <span className="font-semibold text-lg sm:text-xl text-[#202124] tracking-tight">WonPice</span>
+            <span className="font-bold text-xl sm:text-2xl text-[#202124] tracking-tight font-sans">
+              mord
+            </span>
+            <span className="text-[11px] font-semibold text-[#5f6368] tracking-wider uppercase border-l border-[#dadce0] pl-2.5 hidden sm:inline">
+              WonPice
+            </span>
             <span className="text-xs font-medium text-[#5f6368] border-l border-[#dadce0] pl-2.5 hidden lg:inline">
               업종 맞춤 자사몰 솔루션
             </span>
@@ -147,10 +152,13 @@ export default function Navbar() {
               {/* Drawer Header */}
               <div className="flex items-center justify-between pb-6 border-b border-[#dadce0]">
                 <div className="flex items-center gap-2.5">
-                  <div className="w-8 h-8 rounded-full bg-[#1a73e8] text-white flex items-center justify-center font-medium text-sm">
-                    <Store className="w-4 h-4 text-white" />
+                  <div className="w-8 h-8 rounded-full bg-[#202124] text-white flex items-center justify-center font-bold text-sm tracking-tighter shadow-xs">
+                    m
                   </div>
-                  <span className="font-semibold text-lg text-[#202124] tracking-tight">WonPice</span>
+                  <div className="flex items-center gap-2">
+                    <span className="font-bold text-xl text-[#202124] tracking-tight font-sans">mord</span>
+                    <span className="text-[11px] font-semibold text-[#5f6368] uppercase border-l border-[#dadce0] pl-2">WonPice</span>
+                  </div>
                 </div>
                 <button
                   type="button"

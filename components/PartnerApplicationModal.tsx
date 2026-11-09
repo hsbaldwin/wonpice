@@ -184,7 +184,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
                 id="partner-modal-title"
                 className="text-xl sm:text-2xl font-normal text-[#202124] tracking-tight"
               >
-                WonPice 자사몰 파트너십 구축 신청서
+                mord (모르드) 자사몰 파트너십 구축 신청서
               </h2>
               <p className="text-xs sm:text-sm text-[#5f6368] mt-1">
                 별도 중개 수수료 없는 자사몰 운영을 시작하세요. 3~5주 내 제작 완료 및 50% 혜택이 적용됩니다.

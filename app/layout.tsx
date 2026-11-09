@@ -9,10 +9,12 @@ const robotoFlex = Roboto_Flex({
 });
 
 export const metadata: Metadata = {
-  title: "업종 맞춤 자사몰 솔루션 — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 제작 | WonPice",
+  title: "mord (모르드) — 오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 솔루션 | WonPice",
   description:
-    "스마트스토어·오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤형 자사몰 솔루션. 식품·농가('제철곳간')부터 패션('온결')까지. 테마 제작, 상품 100개 등록 대행, 결제 연동 3~5주 완성. 2026 선착순 구축비 50% 할인 프로모션.",
+    "스마트스토어·오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤형 자사몰 솔루션 mord(모르드). 식품·농가('제철곳간')부터 패션('온결')까지. 테마 제작, 상품 100개 등록 대행, 결제 연동 3~5주 완성. 2026 선착순 구축비 50% 할인 프로모션.",
   keywords: [
+    "mord",
+    "모르드",
     "자사몰 솔루션",
     "쇼핑몰 제작 솔루션",
     "업종 맞춤 쇼핑몰",
@@ -27,20 +29,20 @@ export const metadata: Metadata = {
     "몰스튜디오",
     "wonpice",
   ],
-  authors: [{ name: "WonPice 자사몰 솔루션 센터" }],
+  authors: [{ name: "mord (모르드) 자사몰 솔루션 센터" }],
   openGraph: {
-    title: "업종 맞춤 자사몰 솔루션 — 2026 선착순 구축비 50% 프로모션",
+    title: "mord (모르드) 업종 맞춤 자사몰 솔루션 — 2026 선착순 구축비 50% 프로모션",
     description:
-      "오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 솔루션. 식품·농가 및 패션 브랜드 라이브 데모 체험 및 50% 지원 혜택.",
+      "오픈마켓 수수료 없이 내 브랜드를 키우는 자사몰 솔루션 mord. 식품·농가 및 패션 브랜드 라이브 데모 체험 및 50% 지원 혜택.",
     type: "website",
     locale: "ko_KR",
-    siteName: "WonPice (원피스)",
+    siteName: "mord (모르드) · WonPice",
   },
   twitter: {
     card: "summary_large_image",
-    title: "업종 맞춤 자사몰 솔루션 — 선착순 구축비 50% 프로모션 | WonPice",
+    title: "mord (모르드) — 선착순 구축비 50% 프로모션 | WonPice",
     description:
-      "플랫폼 판매 수수료 0%. 내 고객을 직접 소유하는 자사몰 제작부터 운영 관리까지.",
+      "플랫폼 판매 수수료 0%. 내 고객을 직접 소유하는 자사몰 제작부터 운영 관리까지 mord.",
   },
 };
 
@@ -52,11 +54,11 @@ export default function RootLayout({
   const jsonLdWebsite = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "WonPice 업종 맞춤 자사몰 솔루션",
-    alternateName: ["원피스", "WonPice", "몰스튜디오 자사몰 솔루션"],
+    name: "mord (모르드) 업종 맞춤 자사몰 솔루션",
+    alternateName: ["mord", "모르드", "원피스", "WonPice", "몰스튜디오 자사몰 솔루션"],
     url: "https://wonpice.com",
     description:
-      "오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤 자사몰 솔루션. 농가·식품 및 패션 쇼핑몰 제작, 2026 구축비 50% 프로모션.",
+      "오픈마켓 수수료 없이 내 브랜드를 키우는 업종 맞춤 자사몰 솔루션 mord. 농가·식품 및 패션 쇼핑몰 제작, 2026 구축비 50% 프로모션.",
   };
 
   const jsonLdSoftware = {

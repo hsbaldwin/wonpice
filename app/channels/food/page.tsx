@@ -10,9 +10,9 @@ import PartnerApplicationModal from "@/components/PartnerApplicationModal";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "수제 식품·신선식품 자사몰 솔루션 — 2026 자사몰 구축비 50% 프로모션 | WonPice",
+  title: "수제 식품·신선식품 자사몰 솔루션 mord — 2026 자사몰 구축비 50% 프로모션 | WonPice",
   description:
-    "오픈마켓 수수료 없이 전국 단골을 확보하는 식품 전용 자사몰 솔루션. 중량 옵션, 오늘 출고 마감, 냉장 배송 안내. 50% 프로모션 안내.",
+    "오픈마켓 수수료 없이 전국 단골을 확보하는 식품 전용 자사몰 솔루션 mord. 중량 옵션, 오늘 출고 마감, 냉장 배송 안내. 50% 프로모션 안내.",
 };
 
 export default function FoodChannelPage() {
