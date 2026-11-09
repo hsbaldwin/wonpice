@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Store, Shirt, Wheat, ExternalLink, Clock, Package, Scale, Ruler, Sparkles, Layers, ArrowDown } from "lucide-react";
+import { Store, Shirt, Wheat, ExternalLink, Clock, Package, Scale, Ruler, Sparkles, Layers } from "lucide-react";
 
 export interface DualIndustryShowcaseProps {
   initialIndustry?: "food" | "fashion";
@@ -303,18 +303,18 @@ export default function DualIndustryShowcase({
   return (
     <section id="showcase" className="py-24 sm:py-32 lg:py-36 bg-[#f8f9fa] border-b border-[#e8eaed] overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
-        {/* Section Header with Numerological Storytelling (The Dyad of Commerce) */}
+        {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white border border-[#dadce0] text-[#3c4043] text-xs sm:text-sm font-semibold mb-6 shadow-xs">
             <Store className="w-4 h-4 text-[#1a73e8]" />
-            <span className="font-semibold text-[#202124]">The Dyad of D2C · 2대 특화 영역</span>
+            <span className="font-semibold text-[#202124]">업종별 특화 쇼케이스</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep">
             내 업종에 꼭 맞는 특화 기능과 테마 디자인
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">
-            대지의 신선도를 전하는 <strong>식품(01)</strong>과 핏과 감각을 표현하는 <strong>패션(02)</strong>. 
-            획일화된 템플릿 대신 각 산업의 본질에 맞추어 설계된 2대 라이브 데모 쇼핑몰을 직접 경험해 보세요.
+            대지의 신선도를 전하는 <strong>식품 쇼핑몰(제철곳간)</strong>과 핏과 감각을 표현하는 <strong>패션 브랜드(온결)</strong>. 
+            획일화된 템플릿 대신 각 산업의 특성에 맞추어 정밀하게 설계된 2대 라이브 데모 쇼핑몰을 직접 경험해 보세요.
           </p>
 
           {/* Industry Dual Switcher Pills */}
@@ -607,40 +607,6 @@ export default function DualIndustryShowcase({
             </div>
           </div>
         )}
-
-        {/* Contextual Transition Bridge to Section 03 (Infrastructure) */}
-        <div className="pt-6 sm:pt-10">
-          <a
-            href="#infrastructure"
-            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-white via-[#f8f9fa] to-white border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
-                    Next Chapter · 03
-                  </span>
-                  <span className="text-xs font-semibold text-[#5f6368]">
-                    4대 인프라 기반 &amp; 7단계 완성 주기
-                  </span>
-                </div>
-                <h4 className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5 break-keep">
-                  <span>예쁜 디자인 뒤에 숨겨진 안정적인 기술 기반은 무엇일까요?</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-[#5f6368] leading-relaxed break-keep">
-                  독립 데이터베이스 소유, 토스 간편결제 직가맹, 3중 모니터링 레이더와 7단계 런칭 아키텍처
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-semibold text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
-                  <span>03 기술 인프라 확인</span>
-                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-                </span>
-              </div>
-            </div>
-          </a>
-        </div>
       </div>
     </section>
   );

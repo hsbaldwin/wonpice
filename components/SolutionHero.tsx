@@ -125,13 +125,13 @@ export default function SolutionHero() {
           </div>
         </div>
 
-        {/* 3 Core Value Pillars (The Trinity of Growth) */}
+        {/* 3 Core Value Pillars */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-mono font-semibold mb-3">
-            <span>The Trinity of Growth · 3대 본질 기둥</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-semibold mb-3">
+            <span>자사몰 핵심 강점</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold text-[#202124] tracking-tight break-keep">
-            성장과 자립을 완성하는 3가지 본질적 조화
+            오픈마켓 수수료와 종속에서 벗어나는 3가지 이유
           </h2>
         </div>
 
@@ -139,15 +139,15 @@ export default function SolutionHero() {
           id="features"
           className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto text-left scroll-mt-24 sm:scroll-mt-28 items-stretch"
         >
-          {/* Card 1: Monad */}
+          {/* Card 1 */}
           <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
                 <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
                   <Zap className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-semibold text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6] shrink-0">
-                  Pillar I · 독립 (The Monad)
+                <span className="text-xs font-semibold text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6] shrink-0">
+                  01 · 수수료 독립
                 </span>
               </div>
               <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
@@ -163,15 +163,15 @@ export default function SolutionHero() {
             </div>
           </div>
 
-          {/* Card 2: Dyad */}
+          {/* Card 2 */}
           <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
                 <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
                   <Users className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] shrink-0">
-                  Pillar II · 소유 (The Dyad)
+                <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] shrink-0">
+                  02 · 고객 데이터 소유
                 </span>
               </div>
               <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
@@ -187,15 +187,15 @@ export default function SolutionHero() {
             </div>
           </div>
 
-          {/* Card 3: Triad */}
+          {/* Card 3 */}
           <div className="bg-[#f8f9fa] p-8 sm:p-10 rounded-[32px] border border-[#dadce0] shadow-xs hover:border-[#bdc1c6] transition-colors flex flex-col justify-between h-full">
             <div>
               <div className="flex items-center justify-between mb-6 h-12">
                 <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-semibold text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3] shrink-0">
-                  Pillar III · 영속 (The Triad)
+                <span className="text-xs font-semibold text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3] shrink-0">
+                  03 · 안정적 인프라
                 </span>
               </div>
               <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
@@ -210,40 +210,6 @@ export default function SolutionHero() {
               <span>24/7 중단 없는 브랜드 지속 가능성 확보</span>
             </div>
           </div>
-        </div>
-
-        {/* Contextual Transition Bridge to Section 02 (Showcase) */}
-        <div className="mt-16 sm:mt-20 pt-4">
-          <a
-            href="#showcase"
-            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
-                    Next Chapter · 02
-                  </span>
-                  <span className="text-xs font-semibold text-[#5f6368]">
-                    라이브 데모 쇼케이스
-                  </span>
-                </div>
-                <h4 className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5 break-keep">
-                  <span>3대 본질 가치가 실제 내 업종 쇼핑몰에 어떻게 구현될까요?</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-[#5f6368] leading-relaxed break-keep">
-                  대지의 신선도를 전하는 <strong>식품(제철곳간)</strong>과 핏과 감각의 <strong>패션(온결)</strong> 실제 구축 화면 둘러보기
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-semibold text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
-                  <span>02 라이브 데모 확인</span>
-                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-                </span>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>

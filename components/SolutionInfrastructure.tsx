@@ -11,18 +11,17 @@ import {
   Activity,
   Database,
   GraduationCap,
-  ArrowDown,
 } from "lucide-react";
 
 export default function SolutionInfrastructure() {
   return (
     <section id="infrastructure" className="py-24 sm:py-32 lg:py-36 bg-white border-b border-[#e8eaed]">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
-        {/* Header with Numerological Storytelling (The Tetrad of Foundation) */}
+        {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-semibold mb-6">
             <Server className="w-4 h-4 text-[#1a73e8]" />
-            <span className="font-mono">The Tetrad of Foundation · 4대 인프라 기반</span>
+            <span>4대 기술 인프라</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep">
             쇼핑몰 오픈에 필요한 모든 기술을 원스톱으로 제공합니다
@@ -30,7 +29,7 @@ export default function SolutionInfrastructure() {
           <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">
             복잡한 PG사 가맹 계약, 도메인 DNS 설정, 상품 100개 등록, 일일 백업까지.
             <br className="hidden sm:inline" />
-            대표님은 판매에만 집중하실 수 있도록 사각(四角)의 흔들림 없는 4대 인프라 토대를 솔루션이 책임집니다.
+            대표님은 판매에만 집중하실 수 있도록 안정적인 4대 기술 인프라를 솔루션이 책임집니다.
           </p>
         </div>
 
@@ -44,8 +43,8 @@ export default function SolutionInfrastructure() {
                   <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
                     <Layers className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc]">
-                    Foundation I · 데이터 (Data)
+                  <span className="text-xs font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc]">
+                    01 · 상품 데이터 등록
                   </span>
                 </div>
                 <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl tracking-tight break-keep">
@@ -135,8 +134,8 @@ export default function SolutionInfrastructure() {
                   <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
                     <CreditCard className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-semibold text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6]">
-                    Foundation II · 결제 (Exchange)
+                  <span className="text-xs font-semibold text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6]">
+                    02 · 간편결제 직연동
                   </span>
                 </div>
                 <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl h-8 flex items-center tracking-tight break-keep">
@@ -207,8 +206,8 @@ export default function SolutionInfrastructure() {
                   <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
                     <Globe className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-semibold text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3]">
-                    Foundation III · 정체성 (Identity)
+                  <span className="text-xs font-semibold text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3]">
+                    03 · 독립 도메인 &amp; 보안
                   </span>
                 </div>
                 <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl h-8 flex items-center tracking-tight break-keep">
@@ -262,8 +261,8 @@ export default function SolutionInfrastructure() {
                   <div className="w-12 h-12 rounded-2xl bg-[#fce8e6] text-[#d93025] flex items-center justify-center shrink-0">
                     <Server className="w-6 h-6" />
                   </div>
-                  <span className="text-xs font-mono font-semibold text-[#d93025] bg-[#fce8e6] px-3 py-1 rounded-full border border-[#fad2cf]">
-                    Foundation IV · 영속성 (Continuity)
+                  <span className="text-xs font-semibold text-[#d93025] bg-[#fce8e6] px-3 py-1 rounded-full border border-[#fad2cf]">
+                    04 · 24/7 모니터링
                   </span>
                 </div>
                 <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl h-8 flex items-center tracking-tight break-keep">
@@ -350,12 +349,12 @@ export default function SolutionInfrastructure() {
           </div>
         </div>
 
-        {/* The Heptad of Completion (7대 완성 프로세스 로드맵) */}
+        {/* 7단계 런칭 프로세스 로드맵 */}
         <div className="pt-6 sm:pt-10">
           <div className="bg-[#f8f9fa] rounded-[36px] border border-[#dadce0] p-8 sm:p-12 shadow-xs space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-[#dadce0] text-xs font-mono text-[#3c4043] font-semibold shadow-xs">
-                The Heptad of Completion · 7대 완성 주기
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white border border-[#dadce0] text-xs text-[#3c4043] font-semibold shadow-xs">
+                7단계 런칭 프로세스
               </span>
               <h3 className="text-xl sm:text-2xl font-semibold text-[#202124] tracking-tight break-keep">
                 신청부터 자립까지 이어지는 7단계 런칭 아키텍처
@@ -403,40 +402,6 @@ export default function SolutionInfrastructure() {
               ))}
             </div>
           </div>
-        </div>
-
-        {/* Contextual Transition Bridge to Section 04 (Pricing) */}
-        <div className="pt-4">
-          <a
-            href="#pricing"
-            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-[#f8f9fa] via-white to-[#f8f9fa] border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
-                    Next Chapter · 04
-                  </span>
-                  <span className="text-xs font-semibold text-[#5f6368]">
-                    요금제 &amp; 50% 구축비 프로모션
-                  </span>
-                </div>
-                <h4 className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5 break-keep">
-                  <span>체계적인 4대 인프라와 7단계 런칭, 시작 비용은 얼마일까요?</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-[#5f6368] leading-relaxed break-keep">
-                  개발사 외주 대비 50% 감면 혜택, 스타터 75만 원부터 시작하는 투명한 요금제와 자가진단
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-semibold text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
-                  <span>04 요금제 및 프로모션 확인</span>
-                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-                </span>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>

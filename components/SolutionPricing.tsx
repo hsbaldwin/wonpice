@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck, AlertCircle, ArrowDown } from "lucide-react";
+import { Sparkles, CheckCircle2, ExternalLink, ShieldCheck, AlertCircle } from "lucide-react";
 import { usePartnerModal } from "./PartnerModalContext";
 
 export default function SolutionPricing() {
@@ -17,9 +17,6 @@ export default function SolutionPricing() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <p className="text-xs uppercase font-mono tracking-widest text-[#1a73e8] font-semibold mb-3">
-            The Trinity of Scale · 3단계 성장 구조
-          </p>
           <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white text-[#137333] border border-[#ceead6] text-xs sm:text-sm font-semibold mb-6">
             <Sparkles className="w-4 h-4 text-[#1e8e3e]" />
             <span>2026 자사몰 구축 프로모션</span>
@@ -46,9 +43,6 @@ export default function SolutionPricing() {
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm font-semibold text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
                     스타터
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
-                    Stage I · 씨앗 (Seed)
                   </span>
                 </div>
                 <span className="text-xs font-medium text-[#5f6368]">처음 자사몰을 여는 브랜드</span>
@@ -124,9 +118,6 @@ export default function SolutionPricing() {
                   <span className="text-xs sm:text-sm font-semibold text-[#137333] bg-[#e6f4ea] px-4 py-1.5 rounded-full border border-[#ceead6]">
                     비즈니스
                   </span>
-                  <span className="text-[11px] font-mono font-semibold text-[#137333] bg-[#ceead6] px-2.5 py-0.5 rounded-full">
-                    Stage II · 도약 (Core)
-                  </span>
                 </div>
                 <span className="text-xs font-medium text-[#5f6368]">스마트스토어 탈플랫폼 브랜드</span>
               </div>
@@ -196,10 +187,7 @@ export default function SolutionPricing() {
               <div className="flex flex-wrap items-center justify-between gap-2 mb-6 min-h-[36px]">
                 <div className="flex items-center gap-2">
                   <span className="text-xs sm:text-sm font-semibold text-[#5f6368] bg-[#f1f3f4] px-4 py-1.5 rounded-full">
-                    맞춤
-                  </span>
-                  <span className="text-[11px] font-mono font-semibold text-[#5f6368] bg-[#f1f3f4] px-2.5 py-0.5 rounded-full">
-                    Stage III · 무한 (Infinity)
+                    맞춤 플랜
                   </span>
                 </div>
                 <span className="text-xs font-medium text-[#5f6368]">엔터프라이즈 / 기업</span>
@@ -324,40 +312,6 @@ export default function SolutionPricing() {
               <span>공식 지원 신청서 바로가기 ↗</span>
             </a>
           </div>
-        </div>
-
-        {/* Contextual Transition Bridge to Section 05 (FAQ) */}
-        <div className="pt-4">
-          <a
-            href="#faq"
-            className="group block w-full max-w-7xl mx-auto bg-gradient-to-r from-white via-[#f8f9fa] to-white border border-[#dadce0] rounded-3xl p-6 sm:p-8 text-left shadow-xs hover:border-[#1a73e8]/50 hover:shadow-md transition-all cursor-pointer"
-          >
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
-                    Next Chapter · 05
-                  </span>
-                  <span className="text-xs font-semibold text-[#5f6368]">
-                    자주 묻는 질문 &amp; 1:1 상담
-                  </span>
-                </div>
-                <h4 className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5 break-keep">
-                  <span>신청 전, 아직 풀리지 않은 궁금증이나 고민이 있으신가요?</span>
-                </h4>
-                <p className="text-xs sm:text-sm text-[#5f6368] leading-relaxed break-keep">
-                  기존 상품 100개 이전 절차, 도메인 연결, 토스 결제 계약, 관리자 실무 교육 안내
-                </p>
-              </div>
-
-              <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-semibold text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
-                  <span>05 궁금증 해결하기</span>
-                  <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
-                </span>
-              </div>
-            </div>
-          </a>
         </div>
       </div>
     </section>
