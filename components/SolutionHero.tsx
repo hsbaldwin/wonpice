@@ -28,14 +28,14 @@ export default function SolutionHero() {
         </div>
 
         {/* Primary SEO Heading (H1) - Clean Google Sans style */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-normal text-[#202124] tracking-tight leading-[1.14] mb-6 sm:mb-8 max-w-5xl mx-auto">
+        <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[72px] font-semibold text-[#202124] tracking-tight leading-[1.12] mb-6 sm:mb-8 max-w-5xl mx-auto break-keep">
           오픈마켓 수수료 없이,
           <br className="hidden sm:inline" />
-          <span className="text-[#1a73e8] font-medium"> 내 브랜드를 키우는 자사몰 솔루션</span>
+          <span className="text-[#1a73e8] font-bold"> 내 브랜드를 키우는 자사몰 솔루션</span>
         </h1>
 
         {/* Subtitle - Informative & natural */}
-        <p className="text-[#5f6368] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-12 font-normal">
+        <p className="text-[#5f6368] text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto mb-10 sm:mb-12 font-normal break-keep">
           스마트스토어와 오픈마켓의 과도한 중개 수수료에서 벗어나 내 고객을 직접 소유하세요.
           <br className="hidden md:inline" />
           농가·식품부터 패션 브랜드까지, 업종에 맞는 테마 디자인과 상품 100개 등록,
@@ -49,7 +49,7 @@ export default function SolutionHero() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_hero"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shadow-xs hover:shadow transition-colors cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-semibold text-sm sm:text-base shadow-xs hover:shadow transition-colors cursor-pointer tracking-tight"
           >
             <span>50% 프로모션 신청하기</span>
             <ExternalLink className="w-4 h-4 opacity-80" />
@@ -57,7 +57,7 @@ export default function SolutionHero() {
 
           <a
             href="#showcase"
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-[#f8f9fa] text-[#1a73e8] font-medium text-sm sm:text-base border border-[#dadce0] transition-colors cursor-pointer shadow-xs"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full bg-white hover:bg-[#f8f9fa] text-[#1a73e8] font-semibold text-sm sm:text-base border border-[#dadce0] transition-colors cursor-pointer shadow-xs tracking-tight"
           >
             <span>업종별 라이브 데모 둘러보기</span>
             <ArrowDown className="w-4 h-4 opacity-70" />
@@ -70,14 +70,14 @@ export default function SolutionHero() {
             <div className="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-[#dadce0] gap-y-6 lg:gap-y-0">
               {/* Metric 1 */}
               <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center min-h-[96px]">
-                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">자사몰 제작비</span>
+                <span className="text-xs font-semibold text-[#5f6368] h-4 flex items-center tracking-tight">자사몰 제작비</span>
                 <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
-                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">
                     75만 원부터
                   </span>
                 </div>
                 <div className="h-6 flex items-center">
-                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
+                  <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#137333] bg-[#e6f4ea] px-2.5 py-0.5 rounded-full border border-[#ceead6]">
                     50% 프로모션가
                   </span>
                 </div>
@@ -85,40 +85,40 @@ export default function SolutionHero() {
 
               {/* Metric 2 */}
               <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center min-h-[96px]">
-                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">월 고정 유지비</span>
+                <span className="text-xs font-semibold text-[#5f6368] h-4 flex items-center tracking-tight">월 고정 유지비</span>
                 <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
-                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">
                     10만 원
                   </span>
                 </div>
                 <div className="h-6 flex items-center">
-                  <span className="text-[11px] text-[#5f6368]">서버·자동 백업·3중 모니터링</span>
+                  <span className="text-[11px] font-medium text-[#5f6368]">서버·자동 백업·3중 모니터링</span>
                 </div>
               </div>
 
               {/* Metric 3 */}
               <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0 min-h-[96px]">
-                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">추가 중개 수수료</span>
+                <span className="text-xs font-semibold text-[#5f6368] h-4 flex items-center tracking-tight">추가 중개 수수료</span>
                 <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
-                  <span className="text-2xl sm:text-3xl font-medium text-[#1a73e8] tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#1a73e8] tracking-tight">
                     0원 (0%)
                   </span>
                 </div>
                 <div className="h-6 flex items-center">
-                  <span className="text-[11px] text-[#5f6368]">토스 PG 직접 계약 · 판매 수수료 0%</span>
+                  <span className="text-[11px] font-medium text-[#5f6368]">토스 PG 직접 계약 · 판매 수수료 0%</span>
                 </div>
               </div>
 
               {/* Metric 4 */}
               <div className="flex flex-col items-center justify-between px-4 py-2 lg:py-1 text-center pt-6 lg:pt-0 min-h-[96px]">
-                <span className="text-xs font-medium text-[#5f6368] h-4 flex items-center">제작 소요 기간</span>
+                <span className="text-xs font-semibold text-[#5f6368] h-4 flex items-center tracking-tight">제작 소요 기간</span>
                 <div className="flex items-baseline justify-center gap-1.5 h-8 items-center my-1">
-                  <span className="text-2xl sm:text-3xl font-medium text-[#202124] tracking-tight">
+                  <span className="text-2xl sm:text-3xl font-bold text-[#202124] tracking-tight">
                     3~5주 완성
                   </span>
                 </div>
                 <div className="h-6 flex items-center">
-                  <span className="text-[11px] text-[#5f6368]">PG 심사 대행 + 상품 100개 등록</span>
+                  <span className="text-[11px] font-medium text-[#5f6368]">PG 심사 대행 + 상품 100개 등록</span>
                 </div>
               </div>
             </div>
@@ -127,10 +127,10 @@ export default function SolutionHero() {
 
         {/* 3 Core Value Pillars (The Trinity of Growth) */}
         <div className="text-center max-w-2xl mx-auto mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-mono font-medium mb-3">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs font-mono font-semibold mb-3">
             <span>The Trinity of Growth · 3대 본질 기둥</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-normal text-[#202124] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-[#202124] tracking-tight break-keep">
             성장과 자립을 완성하는 3가지 본질적 조화
           </h2>
         </div>
@@ -146,18 +146,18 @@ export default function SolutionHero() {
                 <div className="w-12 h-12 rounded-2xl bg-[#e6f4ea] text-[#137333] flex items-center justify-center shrink-0">
                   <Zap className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6] shrink-0">
+                <span className="text-xs font-mono font-semibold text-[#137333] bg-[#e6f4ea] px-3 py-1 rounded-full border border-[#ceead6] shrink-0">
                   Pillar I · 독립 (The Monad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+              <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
                 플랫폼 중개 수수료 0%
               </h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
                 오픈마켓의 8~13% 중개 수수료 대신, 토스페이먼츠 직접 계약으로 투명한 PG 결제 수수료(2~3%)만 지출되어 유통 마진을 효과적으로 개선할 수 있습니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
               <span className="font-mono text-[#137333] font-semibold text-sm">01</span>
               <span>수수료 종속 탈피와 마진의 온전한 회복</span>
             </div>
@@ -170,18 +170,18 @@ export default function SolutionHero() {
                 <div className="w-12 h-12 rounded-2xl bg-[#e8f0fe] text-[#1a73e8] flex items-center justify-center shrink-0">
                   <Users className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] shrink-0">
+                <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] shrink-0">
                   Pillar II · 소유 (The Dyad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+              <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
                 고객 DB 직접 소유
               </h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
                 플랫폼 가상번호 대신 고객의 연락처와 구매 내역을 직접 소유하여, 플랫폼 제약 없이 재구매 프로모션을 직접 기획하고 운영합니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
               <span className="font-mono text-[#1a73e8] font-semibold text-sm">02</span>
               <span>단골 고객과의 1:1 직접 관계 자산화</span>
             </div>
@@ -194,18 +194,18 @@ export default function SolutionHero() {
                 <div className="w-12 h-12 rounded-2xl bg-[#fef7e0] text-[#b06000] flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3] shrink-0">
+                <span className="text-xs font-mono font-semibold text-[#b06000] bg-[#fef7e0] px-3 py-1 rounded-full border border-[#feefc3] shrink-0">
                   Pillar III · 영속 (The Triad)
                 </span>
               </div>
-              <h3 className="font-medium text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center">
+              <h3 className="font-semibold text-[#202124] text-xl sm:text-2xl mb-3 h-8 sm:h-9 flex items-center tracking-tight break-keep">
                 체계적인 인프라 운영 관리
               </h3>
-              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px]">
+              <p className="text-sm sm:text-base text-[#5f6368] leading-relaxed min-h-[72px] sm:min-h-[84px] break-keep">
                 매일 새벽 자동 DB 백업과 서울·미국·유럽 10분 주기 3중 장애 모니터링으로 기술 걱정 없이 판매에 집중하실 수 있습니다.
               </p>
             </div>
-            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs text-[#5f6368] flex items-center justify-between h-10">
+            <div className="pt-6 mt-6 border-t border-[#e8eaed] text-xs font-medium text-[#5f6368] flex items-center justify-between h-10">
               <span className="font-mono text-[#b06000] font-semibold text-sm">03</span>
               <span>24/7 중단 없는 브랜드 지속 가능성 확보</span>
             </div>
@@ -221,23 +221,23 @@ export default function SolutionHero() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="space-y-1.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono font-medium text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
+                  <span className="text-xs font-mono font-semibold text-[#1a73e8] bg-[#e8f0fe] px-2.5 py-0.5 rounded-full">
                     Next Chapter · 02
                   </span>
-                  <span className="text-xs font-medium text-[#5f6368]">
+                  <span className="text-xs font-semibold text-[#5f6368]">
                     라이브 데모 쇼케이스
                   </span>
                 </div>
-                <h4 className="text-base sm:text-lg font-medium text-[#202124] group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5">
+                <h4 className="text-base sm:text-lg font-semibold text-[#202124] tracking-tight group-hover:text-[#1a73e8] transition-colors flex items-center gap-1.5 break-keep">
                   <span>3대 본질 가치가 실제 내 업종 쇼핑몰에 어떻게 구현될까요?</span>
                 </h4>
-                <p className="text-xs sm:text-sm text-[#5f6368]">
+                <p className="text-xs sm:text-sm text-[#5f6368] leading-relaxed break-keep">
                   대지의 신선도를 전하는 <strong>식품(제철곳간)</strong>과 핏과 감각의 <strong>패션(온결)</strong> 실제 구축 화면 둘러보기
                 </p>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
-                <span className="text-xs font-medium text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
+                <span className="text-xs font-semibold text-[#1a73e8] bg-white border border-[#dadce0] px-5 py-2.5 rounded-full group-hover:bg-[#1a73e8] group-hover:text-white transition-all shadow-xs inline-flex items-center gap-2">
                   <span>02 라이브 데모 확인</span>
                   <ArrowDown className="w-3.5 h-3.5 group-hover:translate-y-0.5 transition-transform" />
                 </span>

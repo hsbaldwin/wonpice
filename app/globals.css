@@ -126,14 +126,29 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-h1, h2 {
-  letter-spacing: var(--tracking-headline, -0.02em);
+h1, h2, h3, h4 {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+h1 {
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  letter-spacing: -0.02em;
 }
 
 h3, h4 {
-  letter-spacing: var(--tracking-subhead, -0.01em);
+  letter-spacing: -0.015em;
+}
+
+p {
+  word-break: keep-all;
 }
 
 input[type="range"] {

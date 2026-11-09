@@ -49,14 +49,14 @@ export default function SolutionFaq() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 space-y-16 sm:space-y-20">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#f1f3f4] text-[#3c4043] text-xs sm:text-sm font-semibold mb-6">
             <HelpCircle className="w-4 h-4 text-[#1a73e8]" />
             <span>자주 묻는 질문</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-normal text-[#202124] tracking-tight mb-6 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-[#202124] tracking-tight mb-6 leading-tight break-keep">
             자사몰 제작 및 운영 실무 FAQ
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-[#5f6368] leading-relaxed break-keep font-normal">
             자사몰 오픈을 준비하시는 대표님들이 가장 많이 질문하시는 내용을 모았습니다.
           </p>
         </div>
@@ -79,8 +79,8 @@ export default function SolutionFaq() {
                   onClick={() => toggle(idx)}
                   className="w-full p-6 sm:p-8 text-left flex items-center justify-between gap-5 cursor-pointer"
                 >
-                  <span className="font-medium text-[#202124] text-base sm:text-lg flex items-center gap-3.5">
-                    <span className="text-[#1a73e8] font-medium text-base sm:text-lg shrink-0">
+                  <span className="font-semibold text-[#202124] text-base sm:text-lg flex items-center gap-3.5 tracking-tight break-keep">
+                    <span className="text-[#1a73e8] font-bold text-base sm:text-lg shrink-0">
                       Q{idx + 1}.
                     </span>
                     <span>{faq.q}</span>
@@ -98,7 +98,7 @@ export default function SolutionFaq() {
                     isOpen ? "block bg-white" : "hidden"
                   }`}
                 >
-                  <p>{faq.a}</p>
+                  <p className="break-keep">{faq.a}</p>
                 </div>
               </div>
             );
@@ -108,10 +108,10 @@ export default function SolutionFaq() {
         {/* Bottom Support Card */}
         <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
-            <div className="font-medium text-[#202124] text-lg sm:text-xl mb-1.5">
+            <div className="font-semibold text-[#202124] text-lg sm:text-xl mb-1.5 tracking-tight break-keep">
               내 브랜드 맞춤 제작 견적이나 상담이 필요하신가요?
             </div>
-            <div className="text-sm text-[#5f6368]">
+            <div className="text-sm text-[#5f6368] break-keep font-normal">
               전문 기술 상담팀이 업종과 취급 상품에 맞추어 가장 알맞은 구축 방식을 안내해 드립니다.
             </div>
           </div>
@@ -123,7 +123,7 @@ export default function SolutionFaq() {
               e.preventDefault();
               openPartnerModal({ plan: "custom" });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-medium text-sm sm:text-base shrink-0 shadow-xs transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] text-white font-semibold text-sm sm:text-base shrink-0 shadow-xs transition-all cursor-pointer tracking-tight"
           >
             <span>1:1 상담 신청서 작성 ↗</span>
           </a>

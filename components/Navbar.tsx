@@ -115,31 +115,31 @@ export default function Navbar() {
         <nav className="hidden md:flex items-center gap-6 lg:gap-8">
           <a
             href="#features"
-            className="text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors py-1"
+            className="text-sm font-semibold text-[#5f6368] hover:text-[#202124] transition-colors py-1 tracking-tight"
           >
             솔루션
           </a>
           <a
             href="#showcase"
-            className="text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors py-1"
+            className="text-sm font-semibold text-[#5f6368] hover:text-[#202124] transition-colors py-1 tracking-tight"
           >
             라이브 데모
           </a>
           <a
             href="#infrastructure"
-            className="text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors py-1"
+            className="text-sm font-semibold text-[#5f6368] hover:text-[#202124] transition-colors py-1 tracking-tight"
           >
             인프라
           </a>
           <a
             href="#pricing"
-            className="text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors py-1"
+            className="text-sm font-semibold text-[#5f6368] hover:text-[#202124] transition-colors py-1 tracking-tight"
           >
             요금제
           </a>
           <a
             href="#faq"
-            className="text-sm font-medium text-[#5f6368] hover:text-[#202124] transition-colors py-1"
+            className="text-sm font-semibold text-[#5f6368] hover:text-[#202124] transition-colors py-1 tracking-tight"
           >
             FAQ
           </a>
@@ -151,7 +151,7 @@ export default function Navbar() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_nav"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full transition-all cursor-pointer shadow-sm hover:shadow text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap"
+            className="bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-full transition-all cursor-pointer shadow-sm hover:shadow text-xs sm:text-sm font-semibold inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap tracking-tight"
           >
             <span>50% 프로모션 신청</span>
             <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 opacity-80" />

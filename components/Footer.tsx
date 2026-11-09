@@ -13,24 +13,24 @@ export default function Footer() {
                 <Store className="w-4.5 h-4.5 text-white" />
               </div>
               <span className="font-semibold text-xl text-[#202124] tracking-tight">WonPice</span>
-              <span className="text-xs text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] font-medium shrink-0">
+              <span className="text-xs text-[#1a73e8] bg-[#e8f0fe] px-3 py-1 rounded-full border border-[#d2e3fc] font-semibold shrink-0">
                 업종 맞춤 자사몰 솔루션
               </span>
             </div>
 
-            <p className="text-[#5f6368] text-sm leading-relaxed max-w-sm">
+            <p className="text-[#5f6368] text-sm leading-relaxed max-w-sm break-keep">
               WonPice는 플랫폼의 과도한 중개 수수료와 알고리즘 종속에서 벗어나, 
-              내 브랜드만의 독립된 자사몰을 통해 고객을 직접 소유하고 성장할 수 있도록 돕는 <strong>업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
+              내 브랜드만의 독립된 자사몰을 통해 고객을 직접 소유하고 성장할 수 있도록 돕는 <strong className="font-semibold text-[#202124]">업종 맞춤형 쇼핑몰 제작 및 운영 관리 솔루션</strong>입니다.
             </p>
 
-            <div className="text-xs text-[#5f6368] pt-1">
+            <div className="text-xs text-[#5f6368] pt-1 leading-relaxed break-keep">
               공식 솔루션 파트너십: 몰스튜디오(가게지기) 2026 자사몰 구축비 50% 프로모션 공식 연계
             </div>
           </div>
 
           {/* Col 2: Solution Navigation (lg:col-span-2) */}
           <div className="lg:col-span-2 space-y-3">
-            <div className="font-medium text-[#202124] text-sm tracking-wider uppercase">
+            <div className="font-semibold text-[#202124] text-sm tracking-tight">
               솔루션 안내
             </div>
             <ul className="space-y-2.5 text-[#5f6368] text-sm">
@@ -64,7 +64,7 @@ export default function Footer() {
 
           {/* Col 3: Live Demos & Outbound (lg:col-span-3) */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="font-medium text-[#202124] text-sm tracking-wider uppercase">
+            <div className="font-semibold text-[#202124] text-sm tracking-tight">
               라이브 데모 쇼핑몰
             </div>
             <ul className="space-y-2.5 text-[#5f6368] text-sm">
@@ -95,7 +95,7 @@ export default function Footer() {
                   href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_footer"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#202124] transition-colors flex items-center gap-1.5 text-[#1a73e8]"
+                  className="hover:text-[#202124] transition-colors flex items-center gap-1.5 text-[#1a73e8] font-semibold"
                 >
                   <span>가게지기 공식 50% 신청서</span>
                   <ExternalLink className="w-3.5 h-3.5 opacity-80" />
@@ -106,7 +106,7 @@ export default function Footer() {
 
           {/* Col 4: Support & Trust (lg:col-span-3) */}
           <div className="lg:col-span-3 space-y-3">
-            <div className="font-medium text-[#202124] text-sm tracking-wider uppercase">
+            <div className="font-semibold text-[#202124] text-sm tracking-tight">
               기술 지원 &amp; 보안
             </div>
             <ul className="space-y-2.5 text-[#5f6368] text-sm">
@@ -122,7 +122,7 @@ export default function Footer() {
                 <RefreshCw className="w-4 h-4 text-[#1a73e8] shrink-0" />
                 <span>매일 새벽 자동 DB 백업 &amp; 시점 복구</span>
               </li>
-              <li className="text-xs text-[#5f6368] pt-1 leading-relaxed">
+              <li className="text-xs text-[#5f6368] pt-1 leading-relaxed break-keep">
                 안정적 기술 지원 및 계약 종료 시 고객 데이터 엑셀 파일 안전 반환
               </li>
             </ul>
@@ -137,9 +137,9 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 text-xs sm:text-sm">
             <span>업종 맞춤 자사몰 솔루션</span>
             <span>•</span>
-            <span className="font-medium text-[#137333]">판매 수수료 0%</span>
+            <span className="font-semibold text-[#137333]">판매 수수료 0%</span>
             <span>•</span>
-            <span className="font-medium text-[#1a73e8]">50% 구축비 프로모션</span>
+            <span className="font-semibold text-[#1a73e8]">50% 구축비 프로모션</span>
           </div>
         </div>
       </div>
