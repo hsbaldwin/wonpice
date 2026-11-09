@@ -115,10 +115,10 @@ export default function Navbar() {
             href="https://shop-site-950864605215.asia-northeast3.run.app?ref=wonpice_nav"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-slate-900 hover:bg-slate-800 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full btn-3d-primary cursor-pointer text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap tracking-tight ring-1 ring-cyan-500/40"
+            className="bg-slate-900 hover:bg-slate-800 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-full btn-3d-ultra cursor-pointer text-xs sm:text-sm font-medium inline-flex items-center gap-1.5 sm:gap-2 shrink-0 whitespace-nowrap tracking-tight ring-1 ring-cyan-500/40 relative overflow-hidden group"
           >
-            <span>50% 프로모션 신청</span>
-            <ExternalLink className="w-3.5 h-3.5 opacity-80" />
+            <span className="neon-text-cyan font-bold">50% 프로모션 신청</span>
+            <ExternalLink className="w-3.5 h-3.5 opacity-90 text-cyan-300" />
           </a>
 
           <button

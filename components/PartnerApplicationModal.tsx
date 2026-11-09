@@ -84,7 +84,7 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
       onClick={closePartnerModal}
     >
       <div
-        className="bg-white rounded-[32px] border border-[#dadce0] shadow-2xl w-full max-w-2xl my-auto p-6 sm:p-8 md:p-10 relative overflow-hidden text-[#202124] animate-in fade-in zoom-in-95 duration-150"
+        className="bg-white rounded-[32px] border border-cyan-500/30 card-3d-elevated shadow-2xl w-full max-w-2xl my-auto p-6 sm:p-8 md:p-10 relative overflow-hidden text-[#202124] animate-in fade-in zoom-in-95 duration-150"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -417,9 +417,9 @@ function PartnerModalDialog({ plan, industry, closePartnerModal }: DialogProps) 
               <div className="pt-3">
                 <button
                   type="submit"
-                  className="w-full py-3.5 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-medium text-sm sm:text-base shadow-sm hover:shadow transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+                  className="w-full py-3.5 px-6 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-medium text-sm sm:text-base btn-3d-ultra transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 ring-1 ring-cyan-500/40 relative overflow-hidden group"
                 >
-                  <span>50% 프로모션 신청서 접수하기</span>
+                  <span className="font-bold">50% 프로모션 신청서 접수하기</span>
                 </button>
               </div>
             </form>

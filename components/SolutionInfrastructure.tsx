@@ -36,7 +36,7 @@ export default function SolutionInfrastructure() {
         {/* Asymmetric Bento Grid spanning 12 columns */}
         <div className="grid grid-cols-1 sm:grid-cols-12 gap-6 lg:gap-8">
           {/* Card 1: Hero Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-cyan-400 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated shimmer-glass-card hover:border-cyan-400 hover:shadow-[0_20px_45px_-10px_rgba(6,182,212,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -122,7 +122,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 2: PG Payments Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-emerald-400 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated shimmer-glass-card hover:border-emerald-400 hover:shadow-[0_20px_45px_-10px_rgba(16,185,129,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -194,7 +194,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 3: Custom Domain Bento (5 cols desktop) */}
-          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-amber-400 hover:shadow-[0_20px_45px_-10px_rgba(245,158,11,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-6 lg:col-span-5 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated shimmer-glass-card hover:border-amber-400 hover:shadow-[0_20px_45px_-10px_rgba(245,158,11,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -249,7 +249,7 @@ export default function SolutionInfrastructure() {
           </div>
 
           {/* Card 4: Monitoring Radar Bento (7 cols desktop) */}
-          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated hover:border-indigo-400 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
+          <div className="col-span-1 sm:col-span-12 lg:col-span-7 bg-white p-8 sm:p-9 lg:p-10 rounded-2xl border border-slate-200/90 card-3d-elevated shimmer-glass-card hover:border-indigo-400 hover:shadow-[0_20px_45px_-10px_rgba(99,102,241,0.25)] transition-all duration-300 flex flex-col justify-between space-y-6 sm:space-y-8">
             <div className="space-y-6">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
@@ -282,7 +282,7 @@ export default function SolutionInfrastructure() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-2.5">
-                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 flex items-center justify-between">
+                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 digital-meter-well flex items-center justify-between hover:-translate-y-0.5 transition-transform">
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -293,10 +293,10 @@ export default function SolutionInfrastructure() {
                           <div className="text-[11px] font-mono text-slate-500">Ping 8ms</div>
                         </div>
                       </div>
-                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60">OK</span>
+                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 shadow-2xs">OK</span>
                     </div>
 
-                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 flex items-center justify-between">
+                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 digital-meter-well flex items-center justify-between hover:-translate-y-0.5 transition-transform">
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -307,10 +307,10 @@ export default function SolutionInfrastructure() {
                           <div className="text-[11px] font-mono text-slate-500">Ping 118ms</div>
                         </div>
                       </div>
-                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60">OK</span>
+                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 shadow-2xs">OK</span>
                     </div>
 
-                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 flex items-center justify-between">
+                    <div className="flex-1 p-3 rounded-lg bg-white border border-slate-200 digital-meter-well flex items-center justify-between hover:-translate-y-0.5 transition-transform">
                       <div className="flex items-center gap-2">
                         <span className="relative flex h-2 w-2">
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
@@ -321,7 +321,7 @@ export default function SolutionInfrastructure() {
                           <div className="text-[11px] font-mono text-slate-500">Ping 182ms</div>
                         </div>
                       </div>
-                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60">OK</span>
+                      <span className="text-[10px] font-mono text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200/60 shadow-2xs">OK</span>
                     </div>
                   </div>
 

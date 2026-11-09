@@ -106,7 +106,7 @@ export default function SolutionPricing() {
           {/* Business Plan (Recommended) */}
           <div
             data-testid="plan-business"
-            className="bg-white p-8 sm:p-10 rounded-2xl border-2 border-slate-900 card-3d-featured lg:-translate-y-3 flex flex-col justify-between h-full relative overflow-hidden ring-4 ring-cyan-500/10 hover:border-cyan-400 hover:shadow-[0_25px_60px_-10px_rgba(6,182,212,0.35)] transition-all duration-300"
+            className="bg-white p-8 sm:p-10 rounded-2xl border-2 border-slate-900 card-3d-featured electric-conduit-active shimmer-glass-card lg:-translate-y-3 flex flex-col justify-between h-full relative overflow-hidden ring-4 ring-cyan-500/10 hover:border-cyan-400 hover:shadow-[0_25px_60px_-10px_rgba(6,182,212,0.35)] transition-all duration-300"
           >
             <div className="absolute top-4 right-4 bg-slate-950 text-cyan-300 text-xs font-mono font-medium px-3.5 py-1 rounded-full shadow-[0_0_12px_rgba(6,182,212,0.35)] border border-cyan-500/40">
               가장 추천하는 플랜 ⚡
@@ -170,9 +170,9 @@ export default function SolutionPricing() {
                   e.preventDefault();
                   openPartnerModal({ plan: "business" });
                 }}
-                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-sm sm:text-base btn-3d-primary transition-all cursor-pointer h-12 tracking-tight ring-1 ring-cyan-500/40"
+                className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-slate-950 hover:bg-slate-900 text-white font-medium text-sm sm:text-base btn-3d-ultra transition-all cursor-pointer h-12 tracking-tight ring-1 ring-cyan-500/40 relative overflow-hidden group"
               >
-                <span>비즈니스 50% 신청 ↗</span>
+                <span className="neon-text-cyan font-bold">비즈니스 50% 신청 ↗</span>
                 <ExternalLink className="w-4 h-4 text-cyan-300" />
               </a>
             </div>

@@ -412,4 +412,144 @@ input[type="range"] {
     inset 0 -1px 0 rgba(0, 0, 0, 0.2);
 }
 
+/* =========================================================================
+   ULTRA 3D DEPTH & ADVANCED ELECTRIC CONDUIT SYSTEM (초입체 & 동적 광전류)
+   ========================================================================= */
+
+@keyframes conduit-stream-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+  }
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+/* Active Electric Conduit with Continuous Energy Pulse */
+.electric-conduit-active {
+  position: relative;
+  background-clip: padding-box;
+}
+
+.electric-conduit-active::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 25%, #10b981 50%, #3b82f6 75%, #06b6d4 100%);
+  background-size: 200% 100%;
+  animation: conduit-stream-flow 4s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Shimmer Glass Surface with 45-degree Specular Reflection on Hover */
+.shimmer-glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-glass-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    transparent 70%
+  );
+  transform: translateX(-150%) rotate(25deg);
+  pointer-events: none;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.shimmer-glass-card:hover::after {
+  opacity: 1;
+  animation: shimmer-sweep 1.1s ease-out;
+}
+
+/* Digital Optical Meter Well (Recessed OLED/LCD telemetry plate) */
+.digital-meter-well {
+  background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.08) 0%, rgba(15, 23, 42, 0.02) 100%), #ffffff;
+  box-shadow: 
+    inset 0 2px 4px rgba(15, 23, 42, 0.08),
+    inset 0 1px 1px rgba(0, 0, 0, 0.04),
+    0 1px 0 rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(203, 213, 225, 0.85);
+}
+
+/* 3D Tactile Ultra Button with Deep Mechanical Key Stroke Travel */
+.btn-3d-ultra {
+  position: relative;
+  box-shadow: 
+    0 4px 0 #020617,
+    0 8px 20px -2px rgba(2, 6, 23, 0.4),
+    0 0 22px rgba(6, 182, 212, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.12s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.btn-3d-ultra:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 6px 0 #020617,
+    0 12px 28px -2px rgba(2, 6, 23, 0.5),
+    0 0 35px rgba(6, 182, 212, 0.75),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.btn-3d-ultra:active {
+  transform: translateY(3px);
+  box-shadow: 
+    0 1px 0 #020617,
+    0 3px 8px -1px rgba(2, 6, 23, 0.5),
+    0 0 15px rgba(6, 182, 212, 0.35),
+    inset 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+/* Physical Ground Contact Shadow for High-Altitude Floating Stages */
+.stage-ground-shadow {
+  position: relative;
+}
+
+.stage-ground-shadow::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 6%;
+  width: 88%;
+  height: 28px;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.22) 0%, rgba(6, 182, 212, 0.15) 35%, transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+.stage-ground-shadow:hover::after {
+  bottom: -24px;
+  height: 34px;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.28) 0%, rgba(6, 182, 212, 0.25) 40%, transparent 70%);
+  filter: blur(14px);
+}
+
+
 

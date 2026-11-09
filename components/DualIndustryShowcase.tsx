@@ -409,16 +409,16 @@ export default function DualIndustryShowcase({
                   href="https://shop-demo-food-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-primary transition-all w-full sm:w-auto text-center justify-center tracking-tight"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-ultra transition-all w-full sm:w-auto text-center justify-center tracking-tight ring-1 ring-cyan-500/40 relative overflow-hidden group"
                 >
-                  <span>&apos;제철곳간&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
-                  <ExternalLink className="w-4.5 h-4.5 opacity-80" />
+                  <span className="neon-text-cyan font-bold">&apos;제철곳간&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
+                  <ExternalLink className="w-4.5 h-4.5 opacity-90 text-cyan-300" />
                 </a>
               </div>
             </div>
 
             {/* Right Mock Card (7 cols) */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating space-y-6">
+            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating stage-ground-shadow shimmer-glass-card space-y-6">
               <div className="flex items-center justify-between pb-5 border-b border-[#dadce0]">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#dadce0]" />
@@ -537,16 +537,16 @@ export default function DualIndustryShowcase({
                   href="https://shop-store-950864605215.asia-northeast3.run.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-primary transition-all w-full sm:w-auto text-center justify-center tracking-tight"
+                  className="inline-flex items-center gap-2.5 px-5 sm:px-8 py-4 rounded-full bg-[#202124] hover:bg-[#3c4043] text-white font-semibold text-sm sm:text-base btn-3d-ultra transition-all w-full sm:w-auto text-center justify-center tracking-tight ring-1 ring-cyan-500/40 relative overflow-hidden group"
                 >
-                  <span>패션 &apos;온결&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
-                  <ExternalLink className="w-4.5 h-4.5 opacity-80" />
+                  <span className="neon-text-cyan font-bold">패션 &apos;온결&apos; 라이브 데모 쇼핑몰 직접 들어가 보기</span>
+                  <ExternalLink className="w-4.5 h-4.5 opacity-90 text-cyan-300" />
                 </a>
               </div>
             </div>
 
             {/* Right Mock Card (7 cols) */}
-            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating space-y-6">
+            <div className="lg:col-span-7 bg-white p-8 sm:p-12 rounded-[36px] border border-[#dadce0] stage-3d-floating stage-ground-shadow shimmer-glass-card space-y-6">
               <div className="flex items-center justify-between pb-5 border-b border-[#dadce0]">
                 <div className="flex items-center gap-2">
                   <span className="w-3 h-3 rounded-full bg-[#dadce0]" />

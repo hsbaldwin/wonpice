@@ -112,7 +112,7 @@ export default function SolutionFaq() {
         </div>
 
         {/* Bottom Support Card */}
-        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6 card-3d-elevated">
+        <div className="p-9 sm:p-12 rounded-[36px] bg-[#f8f9fa] border border-[#dadce0] flex flex-col sm:flex-row items-center justify-between gap-6 card-3d-elevated shimmer-glass-card">
           <div>
             <div className="font-semibold text-[#202124] text-lg sm:text-xl mb-1.5 tracking-tight break-keep">
               내 브랜드 맞춤 제작 견적이나 상담이 필요하신가요?
@@ -129,9 +129,9 @@ export default function SolutionFaq() {
               e.preventDefault();
               openPartnerModal({ plan: "custom" });
             }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-semibold text-sm sm:text-base shrink-0 btn-3d-primary transition-all cursor-pointer tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1a73e8] hover:bg-[#1557b0] active:bg-[#174ea6] text-white font-semibold text-sm sm:text-base shrink-0 btn-3d-ultra transition-all cursor-pointer tracking-tight focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1a73e8] focus-visible:ring-offset-2 ring-1 ring-cyan-500/40 relative overflow-hidden group"
           >
-            <span>1:1 상담 신청서 작성 ↗</span>
+            <span className="font-bold">1:1 상담 신청서 작성 ↗</span>
           </a>
         </div>
       </div>
